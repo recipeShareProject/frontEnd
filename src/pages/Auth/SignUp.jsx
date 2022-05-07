@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
 const SignUp = (props) => {
   return (
-    <div>
+    <React.Fragment>
       <div>회원 가입</div>
-    </div>
+    </React.Fragment>
   );
 };
 
