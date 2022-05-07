@@ -7,6 +7,7 @@ import AppWrapper from 'components/common/AppWrapper';
 import Header from 'components/common/Header';
 import DetailHeader from 'components/common/DetailHeader';
 import Auth from 'pages/Auth';
+import Party from 'pages/party';
 import Navigation from 'components/common/Navigation';
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/auth/*" element={<Auth />} />
+          <Route path="/party/*" element={<Party />} />
         </Routes>
       </BrowserRouter>
     </AppWrapper>

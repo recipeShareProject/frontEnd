@@ -1,18 +1,19 @@
 import PageLoader from 'components/common/PageLoader';
 import React, {lazy, Suspense} from 'react';
 import {Route, Routes, Navigate} from 'react-router-dom';
-import SignUp from 'pages/Auth/SignUp';
-import Login from 'pages/Auth/Login';
+import Party1 from 'pages/party/Party';
+import DetailParty from 'pages/party/DetailParty';
+import EditParty from 'pages/party/EditParty';
 
-const Auth = () => {
+const Party = () => {
   return (
     <Routes>
-      <Route path={`/party`} element={<SignUp />} />
-      <Route path={`/partyDetail/:postId`} element={<Login />} />
-      <Route path={`/partyAdd`} element={<Login />} />
-      <Route path={`/partyModi/:postId`} element={<Login />} />
+      <Route path={'/'} element={<Party1 />} />
+      <Route path={`/detailParty/:postId`} element={<DetailParty />} />
+      <Route path={`/addParty`} element={<EditParty />} />
+      <Route path={`/modiParty/:postId`} element={<EditParty />} />
     </Routes>
   );
 };
 
-export default Auth;
+export default Party;
