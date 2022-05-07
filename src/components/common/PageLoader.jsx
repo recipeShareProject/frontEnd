@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, CircularProgress } from "@mui/material";
+import React from 'react';
+import {Box, CircularProgress} from '@mui/material';
 
 const PageLoader = () => {
   //Todo : page loader css 변경

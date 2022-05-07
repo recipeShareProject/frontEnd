@@ -1,4 +1,4 @@
-import { SET_AUTH_USER } from "constants/ActionTypes";
+import {SET_AUTH_USER} from 'constants/ActionTypes';
 
 //Todo : sample code
 export const setAuthUser = (user) => {

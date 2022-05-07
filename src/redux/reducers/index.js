@@ -1,6 +1,6 @@
-import { combineReducers } from "redux";
-import { connectRouter } from "connected-react-router";
-import Auth from "./Auth";
+import {combineReducers} from 'redux';
+import {connectRouter} from 'connected-react-router';
+import Auth from './Auth';
 
 const reducers = (history) =>
   combineReducers({
