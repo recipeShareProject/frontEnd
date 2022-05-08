@@ -1,8 +1,9 @@
 import PageLoader from 'components/common/PageLoader';
 import React, {lazy, Suspense} from 'react';
 import {Route, Routes, Navigate} from 'react-router-dom';
-import SignUp from 'pages/Auth/SignUp';
-import Login from 'pages/Auth/Login';
+
+const SignUp = lazy(() => import('pages/auth/SignUp'));
+const Login = lazy(() => import('pages/auth/Login'));
 
 const Auth = () => {
   return (
