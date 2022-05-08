@@ -9,6 +9,7 @@ import Auth from 'pages/auth';
 import Party from 'pages/party';
 import TestPage from 'pages/TestPage';
 import MainPage from 'pages/main/MainPage';
+import SearchResult from 'pages/search/SearchResult';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<MainPage />} />
+              <Route path="/search" element={<SearchResult />} />
               <Route path="/auth/*" element={<Auth />} />
               <Route path="/party/*" element={<Party />} />
               <Route path="/test" element={<TestPage />} />

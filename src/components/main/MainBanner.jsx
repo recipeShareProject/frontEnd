@@ -15,11 +15,11 @@ const MainBanner = () => {
       </BannerTitleBox>
       <BannerImgGroupWrapper>
         <BannerImgGroup>
-          <MainBannerImg />
-          <MainBannerImg />
-          <MainBannerImg />
-          <MainBannerImg />
-          <MainBannerImg />
+          <MainBannerImg width="160px" />
+          <MainBannerImg width="160px" />
+          <MainBannerImg width="160px" />
+          <MainBannerImg width="160px" />
+          <MainBannerImg width="160px" />
         </BannerImgGroup>
       </BannerImgGroupWrapper>
     </Box>

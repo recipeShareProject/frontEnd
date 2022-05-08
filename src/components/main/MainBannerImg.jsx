@@ -11,11 +11,11 @@ const useStyles = makeStyles({
   },
 });
 
-const MainBannerImg = () => {
+const MainBannerImg = ({width}) => {
   const classes = useStyles();
   return (
     <MainBannerImgWrapper>
-      <ImgWrapper>
+      <ImgWrapper width={width}>
         <Img
           src="https://i.pinimg.com/564x/b9/cd/cc/b9cdccde10d5a581874f58bb7e914962.jpg"
           alt="음식사진"
@@ -29,9 +29,10 @@ const MainBannerImg = () => {
 };
 const MainBannerImgWrapper = styled.div`
   margin-right: 10px;
+  margin-bottom: 10px;
 `;
 const ImgWrapper = styled.div`
-  width: 160px;
+  width: ${(props) => props.width};
   height: 120px;
   object-fit: contain;
   position: relative;
