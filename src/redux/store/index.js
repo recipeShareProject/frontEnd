@@ -1,39 +1,42 @@
-import {applyMiddleware, createStore} from 'redux';
-import thunk from 'redux-thunk';
-import {createBrowserHistory} from 'history';
-import {routerMiddleware} from 'connected-react-router';
-import reducers from '../reducers';
+import {configureStore, combineReducers} from '@reduxjs/toolkit';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import persistReducer from 'redux-persist/es/persistReducer';
-import persistStore from 'redux-persist/es/persistStore';
+import logger from 'redux-logger';
 
-const history = createBrowserHistory();
-const routeMiddleware = routerMiddleware(history);
-const bindMiddleware = (middleware) => {
-  if (process.env.NODE_ENV !== 'production') {
-    const {composeWithDevTools} = require('redux-devtools-extension');
-    const {logger} = require('redux-logger');
-    middleware.push(logger);
-    return composeWithDevTools(applyMiddleware(...middleware));
-  }
-  return applyMiddleware(...middleware);
-};
+import testReducer from 'redux/slice/testSlice';
+import postReducer from 'redux/slice/postSlice';
 
 const persistConfig = {
   key: 'root',
+  version: 1,
   storage,
-  whitelist: ['auth'], //TODO : localstorage 에 저장할 state
 };
-const persistedReducer = persistReducer(persistConfig, reducers(history));
 
-function configureStore(initialState = {}) {
-  const store = createStore(
-    persistedReducer,
-    initialState,
-    bindMiddleware([routeMiddleware, thunk.withExtraArgument(history)]),
-  );
-  const persistor = persistStore(store);
-  return {store, persistor};
-}
-export default configureStore;
-export {history};
+const rootReducer = combineReducers({
+  test: testReducer,
+  post: postReducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+      // }).concat(logger),
+    }),
+});
+export const persistor = persistStore(store);
+export default store;

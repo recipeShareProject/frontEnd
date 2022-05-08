@@ -1,13 +1,13 @@
-import axios from "axios";
-import { getToken } from "./GetToken";
-import { API_ENDPOINTS } from "./ApiEndpoint";
+import axios from 'axios';
+import {getToken} from './getToken';
+import {API_ENDPOINTS} from './apiEndpoint';
 
 const http = axios.create({
   baseURL: process.env.REACT_APP_API_HOST,
   timeout: 30000,
   headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json",
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
   },
 });
 
@@ -16,7 +16,7 @@ http.interceptors.request.use(
     const token = getToken();
 
     config.headers = {
-      Authorization: `Bearer ${token ? token : ""}`,
+      Authorization: `Bearer ${token ? token : ''}`,
       ...config.headers,
     };
 
@@ -24,7 +24,7 @@ http.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 http.interceptors.response.use(
@@ -38,7 +38,7 @@ http.interceptors.response.use(
       window.location.href = API_ENDPOINTS.LOGIN;
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default http;

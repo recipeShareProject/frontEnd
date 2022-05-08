@@ -1,28 +1,30 @@
 import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-// import {PersistGate} from 'redux-persist/integration/react';
-import Pages from 'pages';
+import {PersistGate} from 'redux-persist/integration/react';
+import store, {persistor} from 'redux/store';
+import {Provider} from 'react-redux';
+
 import AppWrapper from 'components/common/AppWrapper';
-// export const {store, persistor} = configureStore();
-import Header from 'components/common/Header';
-import DetailHeader from 'components/common/DetailHeader';
-import Auth from 'pages/Auth';
+import Auth from 'pages/auth';
 import Party from 'pages/party';
-import Navigation from 'components/common/Navigation';
+import TestPage from 'pages/TestPage';
 
 const App = () => {
   return (
-    // <PersistGate loading={null} persistor={persistor}>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <AppWrapper>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/auth/*" element={<Auth />} />
+              <Route path="/party/*" element={<Party />} />
 
-    <AppWrapper>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/auth/*" element={<Auth />} />
-          <Route path="/party/*" element={<Party />} />
-        </Routes>
-      </BrowserRouter>
-    </AppWrapper>
-    // </PersistGate>
+              <Route path="/test" element={<TestPage />} />
+            </Routes>
+          </BrowserRouter>
+        </AppWrapper>
+      </PersistGate>
+    </Provider>
   );
 };
 

@@ -4,5 +4,5 @@ export const getToken = () => {
   }
 
   //Todo : auth 토큰 이름 지정
-  return localStorage.getItem("token");
+  return localStorage.getItem('token');
 };
