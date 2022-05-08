@@ -69,12 +69,18 @@ function Navigation() {
 }
 
 const StyleNavi = styled.div`
+  width: 100%;
   border: 1px solid green;
   height: 60px;
+  background-color: white;
 
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
 `;
 
 const StyleWrapper = styled.div`

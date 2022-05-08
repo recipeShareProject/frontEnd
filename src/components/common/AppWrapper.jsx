@@ -2,8 +2,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Body from './Body';
+import Header from './Header';
+import Navigation from './Navigation';
 function AppWrapper({children}) {
-  return <StyleApp>{children}</StyleApp>;
+  return (
+    <StyleApp>
+      <Header />
+      <Body>{children}</Body>
+      <Navigation />
+    </StyleApp>
+  );
 }
 
 const StyleApp = styled.div`
