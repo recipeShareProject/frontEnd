@@ -8,6 +8,7 @@ import AppWrapper from 'components/common/AppWrapper';
 import Auth from 'pages/auth';
 import Party from 'pages/party';
 import TestPage from 'pages/TestPage';
+import MainPage from 'pages/main/MainPage';
 
 const App = () => {
   return (
@@ -16,9 +17,9 @@ const App = () => {
         <AppWrapper>
           <BrowserRouter>
             <Routes>
+              <Route path="/" element={<MainPage />} />
               <Route path="/auth/*" element={<Auth />} />
               <Route path="/party/*" element={<Party />} />
-
               <Route path="/test" element={<TestPage />} />
             </Routes>
           </BrowserRouter>

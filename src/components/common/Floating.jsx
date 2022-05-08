@@ -1,8 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-function Floating() {
-  return <FloatBtn>+</FloatBtn>;
-}
+import AddIcon from '@mui/icons-material/Add';
+
+const Floating = () => {
+  return (
+    <FloatBtn>
+      <AddIcon />
+    </FloatBtn>
+  );
+};
 const FloatBtn = styled.div`
   border-radius: 50%;
   background-color: black;
@@ -14,5 +20,8 @@ const FloatBtn = styled.div`
   position: fixed;
   left: calc(100% - 4rem);
   top: calc(100% - 8rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export default Floating;

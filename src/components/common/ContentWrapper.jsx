@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Floating from './Floating';
-function Body({children}) {
+
+function ContentWrapper({children}) {
   return (
     <BodyDiv>
       {children}
@@ -11,8 +12,8 @@ function Body({children}) {
 }
 const BodyDiv = styled.div`
   position: relative;
-  height: calc(769px - 152px);
+  height: calc(100vh - 164px);
   overflow: auto;
   box-sizing: border-box;
 `;
-export default Body;
+export default ContentWrapper;

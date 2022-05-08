@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Body from './Body';
+import Body from './ContentWrapper';
 import Header from './Header';
 import Navigation from './Navigation';
 function AppWrapper({children}) {
@@ -18,7 +18,7 @@ function AppWrapper({children}) {
 const StyleApp = styled.div`
   border: 1px solid red;
   height: 100%;
-  padding: 1rem;
+  padding: 16px;
   box-sizing: border-box;
 `;
 
