@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
 function Floating() {
-  return <FloatBtn>+</FloatBtn>;
+  return (
+    <FloatBtn>
+      <AddRoundedIcon />
+    </FloatBtn>
+  );
 }
 const FloatBtn = styled.div`
   border-radius: 50%;

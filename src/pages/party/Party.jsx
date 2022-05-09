@@ -62,6 +62,17 @@ function Party() {
           </RowDiv>
         </div>
       </Card>
+      <Card>
+        <Thumnail></Thumnail>
+        <div>
+          <div>나눔해요</div>
+          <div>파티 게시글 제목</div>
+          <RowDiv>
+            <div>00동</div>
+            <div>n분 n뒤까지</div>
+          </RowDiv>
+        </div>
+      </Card>
       <Navigation></Navigation>
     </>
   );
