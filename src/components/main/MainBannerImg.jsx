@@ -28,12 +28,12 @@ const MainBannerImg = ({width, height}) => {
   );
 };
 const MainBannerImgWrapper = styled.div`
-  margin-right: 10px;
-  margin-bottom: 10px;
+  // margin-right: 10px;
+  // margin-bottom: 10px;
 `;
 const ImgWrapper = styled.div`
   width: ${(props) => props.width};
-  height: ${(props) => (props.height ? props.height : '120px')};
+  height: ${(props) => (props.height ? props.height : '130px')};
   object-fit: contain;
   position: relative;
 `;

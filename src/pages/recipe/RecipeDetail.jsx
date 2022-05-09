@@ -1,8 +1,8 @@
 import {Box} from '@mui/material';
-import MainBannerImg from 'components/main/MainBannerImg';
 import RecipeImg from 'components/recipe/RecipeImg';
 import RecipeReview from 'components/recipe/RecipeReview';
 import styled from 'styled-components';
+
 const ReciepeDetail = () => {
   return (
     <div>

@@ -13,6 +13,7 @@ import Search from 'pages/search';
 import SearchResult from 'pages/search/SearchResult';
 import SearchFilter from 'pages/search/SearchFilter';
 import ReciepeDetail from 'pages/recipe/RecipeDetail';
+import BookMarkPage from 'pages/bookmark/BookMarkPage';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
               <Route path="/search/result" element={<SearchResult />} />
               <Route path="/search/filter" element={<SearchFilter />} />
               <Route path="/recipe/detail" element={<ReciepeDetail />} />
+              <Route path="/bookmark" element={<BookMarkPage />} />
               <Route path="/auth/*" element={<Auth />} />
               <Route path="/party/*" element={<Party />} />
               <Route path="/test" element={<TestPage />} />
