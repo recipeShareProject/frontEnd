@@ -7,6 +7,7 @@ const SearchFilter = () => {
   return (
     <div>
       <Box>
+        {/* Todo : 공통으로 빼기 */}
         <Title>필터 설정하기</Title>
         <FilterTitle>카테고리</FilterTitle>
       </Box>
