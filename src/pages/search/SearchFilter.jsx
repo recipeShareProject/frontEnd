@@ -1,4 +1,4 @@
-import {Box, Button} from '@mui/material';
+import {Box} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import styled from 'styled-components';
@@ -75,7 +75,7 @@ const FilterButton = styled.button`
   width: 100%;
   border: none;
   background: ${(props) => props.background};
-  margin: 10px 10px 5px 0px;
+  // margin: 10px 10px 5px 0px;
   color: ${(props) => (props.color ? props.color : 'black')};
 `;
 

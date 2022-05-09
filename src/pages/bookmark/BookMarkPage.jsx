@@ -75,6 +75,7 @@ const CheckboxWrapper = styled.div`
 `;
 const Checkbox = styled.input`
   position: absolute;
-  top: 0px;
+  top: 5px;
+  left: 5px;
   z-index: 10;
 `;

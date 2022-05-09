@@ -14,6 +14,7 @@ import SearchResult from 'pages/search/SearchResult';
 import SearchFilter from 'pages/search/SearchFilter';
 import ReciepeDetail from 'pages/recipe/RecipeDetail';
 import BookMarkPage from 'pages/bookmark/BookMarkPage';
+import WriteRecipe from 'pages/recipe/WriteRecipe';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
               <Route path="/search/filter" element={<SearchFilter />} />
               <Route path="/recipe/detail" element={<ReciepeDetail />} />
               <Route path="/bookmark" element={<BookMarkPage />} />
+              <Route path="/write" element={<WriteRecipe />} />
               <Route path="/auth/*" element={<Auth />} />
               <Route path="/party/*" element={<Party />} />
               <Route path="/test" element={<TestPage />} />
