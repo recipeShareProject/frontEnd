@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import CloseIcon from '@mui/icons-material/Close';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 const WriteRecipe = () => {
   const {
@@ -50,8 +51,46 @@ const WriteRecipe = () => {
             <div>0</div>
             <AddIcon />
           </AmountCounter>
-          <p>인분</p>
+          <Typography>인분</Typography>
         </Box>
+      </Box>
+      <Box mt={5}>
+        <FilterTitle>소요시간</FilterTitle>
+        <Box sx={{display: 'flex'}}>
+          <TimeInput type="number" width="50px" />
+          <Typography>시간</Typography>
+          <TimeInput type="number" width="50px" />
+          <Typography>분</Typography>
+        </Box>
+      </Box>
+      <Box mt={5}>
+        <FilterTitle>재료</FilterTitle>
+        <Box sx={{display: 'flex', gap: '10px'}} my={1}>
+          <TimeInput width="100%" placeholder="재료를 입력해주세요" />
+          <TimeInput width="100%" placeholder="양을 입력해 주세요" />
+        </Box>
+        <FilterButton background="#5C5C5C" color="white">
+          재료 추가하기
+        </FilterButton>
+      </Box>
+      <Box mt={5}>
+        <FilterTitle>과정</FilterTitle>
+        <Box sx={{display: 'flex', gap: '10px'}} my={1}>
+          <TimeInput width="100%" placeholder="과정을 입력해주세요" />
+        </Box>
+        {/* TODO : 공통 컴포넌트추가하기 */}
+
+        <FilterButton background="#5C5C5C" color="white">
+          과정추가하기
+        </FilterButton>
+      </Box>
+      <Box mt={5}>
+        <FilterTitle>완성 사진</FilterTitle>
+        {/* TODO : 공통 컴포넌트추가하기 */}
+
+        <FilterButton background="#5C5C5C" color="white">
+          등록하기
+        </FilterButton>
       </Box>
 
       {/* Todo : form 연결하기 */}
@@ -129,4 +168,18 @@ const AmountCounter = styled.div`
   justify-content: space-around;
   padding: 10px 0px;
   align-items: center;
+`;
+
+const TimeInput = styled.input`
+  background: #e5e5e5;
+  border: noe;
+  border: none;
+  width: ${(props) => props.width};
+  height: 50px;
+  padding: 0px 10px;
+`;
+
+//Todo : 공통으로 뺴기
+const Typography = styled.p`
+  margin: auto 1rem;
 `;
