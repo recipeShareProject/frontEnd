@@ -9,6 +9,7 @@ const Floating = () => {
     </FloatBtn>
   );
 };
+
 const FloatBtn = styled.div`
   border-radius: 50%;
   background-color: black;

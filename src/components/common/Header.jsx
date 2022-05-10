@@ -66,8 +66,8 @@ const StyleAlert = styled.div`
 const StyleAvata = styled.div`
   border-radius: 50%;
   background-color: gray;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 2.25rem;
+  width: 2.25rem;
 `;
 
 export default Header;

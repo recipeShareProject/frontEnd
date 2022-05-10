@@ -2,14 +2,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Body from './ContentWrapper';
+import ContentWrapper from './ContentWrapper';
 import Header from './Header';
 import Navigation from './Navigation';
 function AppWrapper({children}) {
   return (
     <StyleApp>
       <Header />
-      <Body>{children}</Body>
+      <ContentWrapper>{children}</ContentWrapper>
       <Navigation />
     </StyleApp>
   );
