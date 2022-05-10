@@ -43,7 +43,6 @@ const StyleLogo = styled.div`
   background-color: gray;
   height: 2rem;
   width: 6rem;
-
   cursor: pointer;
 `;
 const StyleDiv = styled.div`

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Floating from './Floating';
+
 function ContentWrapper({children}) {
   return (
     <BodyDiv>

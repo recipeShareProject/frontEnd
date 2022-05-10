@@ -8,6 +8,13 @@ import AppWrapper from 'components/common/AppWrapper';
 import Auth from 'pages/auth';
 import Party from 'pages/party';
 import TestPage from 'pages/TestPage';
+import MainPage from 'pages/main/MainPage';
+import Search from 'pages/search';
+import SearchResult from 'pages/search/SearchResult';
+import SearchFilter from 'pages/search/SearchFilter';
+import ReciepeDetail from 'pages/recipe/RecipeDetail';
+import BookMarkPage from 'pages/bookmark/BookMarkPage';
+import WriteRecipe from 'pages/recipe/WriteRecipe';
 
 const App = () => {
   return (
@@ -16,9 +23,15 @@ const App = () => {
         <AppWrapper>
           <BrowserRouter>
             <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/search/*" element={<Search />} />
+              <Route path="/search/result" element={<SearchResult />} />
+              <Route path="/search/filter" element={<SearchFilter />} />
+              <Route path="/recipe/detail" element={<ReciepeDetail />} />
+              <Route path="/bookmark" element={<BookMarkPage />} />
+              <Route path="/write" element={<WriteRecipe />} />
               <Route path="/auth/*" element={<Auth />} />
               <Route path="/party/*" element={<Party />} />
-
               <Route path="/test" element={<TestPage />} />
             </Routes>
           </BrowserRouter>
