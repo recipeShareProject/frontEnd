@@ -1,15 +1,13 @@
-import PageLoader from 'components/common/PageLoader';
-import React, {lazy, Suspense} from 'react';
-import {Route, Routes, Navigate} from 'react-router-dom';
-
-const SignUp = lazy(() => import('pages/auth/SignUp'));
-const Login = lazy(() => import('pages/auth/Login'));
+import React from 'react';
+import {Route, Routes} from 'react-router-dom';
+import Login from 'pages/auth/Login';
+import Profil from 'pages/auth/Profil';
 
 const Auth = () => {
   return (
     <Routes>
-      <Route path={`/signup`} element={<SignUp />} />
       <Route path={`/login`} element={<Login />} />
+      <Route path={`/profil`} element={<Profil />} />
     </Routes>
   );
 };

@@ -5,7 +5,6 @@ import AddImgSlider from 'components/common/AddImgSlider';
 import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 function EditParty() {
-  // console.log(Img);
   return (
     <>
       <h1>게시글 등록하기</h1>
@@ -25,13 +24,16 @@ function EditParty() {
 
       <Link>
         <LinkRoundedIcon />
-        Potluck의 레시피 링크를 추가해 보세요
+        <p>Potluck의 레시피 링크를 추가해 보세요</p>
       </Link>
+
       <TagBtn>
-        태그를 추가해 주세요
+        <p>태그를 추가해 주세요</p>
         <AddRoundedIcon />
       </TagBtn>
+
       <TagSlider>태그영역</TagSlider>
+
       <h4>나눔 종료 일시</h4>
       <FlexDiv>
         <Days>00/00/00</Days>
@@ -77,7 +79,12 @@ const TagBtn = styled.div`
   height: 48px;
   background-color: lightgray;
   margin-bottom: 1rem;
+  p {
+    /* margin: 0.5rem; */
+    padding: 0;
+  }
 `;
+
 const TagSlider = styled.div`
   height: 28px;
   background-color: lightgray;
@@ -100,6 +107,9 @@ const AddBtn = styled.div`
   height: 48px;
   background-color: lightgray;
   margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default EditParty;
