@@ -2,10 +2,12 @@ import {Button} from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
-const SearchFilter = () => {
+const SearchFilter = ({_onClick}) => {
   return (
     <ButtonGroup>
-      <Button fullWidth>필터</Button>
+      <Button fullWidth onClick={_onClick}>
+        필터
+      </Button>
       <Button fullWidth>조회순</Button>
     </ButtonGroup>
   );
