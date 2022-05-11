@@ -2,7 +2,7 @@ import React from 'react';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import styled from 'styled-components';
 import {makeStyles} from '@mui/styles';
-
+import {useNavigate} from 'react-router-dom';
 const useStyles = makeStyles({
   bookMark: {
     position: 'absolute',
@@ -13,14 +13,23 @@ const useStyles = makeStyles({
 
 const MainBannerImg = ({width, height}) => {
   const classes = useStyles();
+  const navigate = useNavigate();
   return (
     <MainBannerImgWrapper>
       <ImgWrapper width={width} height={height}>
         <Img
           src="https://i.pinimg.com/564x/b9/cd/cc/b9cdccde10d5a581874f58bb7e914962.jpg"
           alt="음식사진"
+          onClick={() => {
+            navigate('/recipe/detail');
+          }}
         />
-        <BookmarkIcon className={classes.bookMark} />
+        <StyleBookIcon
+          onClick={() => {
+            navigate('/bookmark');
+          }}>
+          <BookmarkIcon className={classes.bookMark} />
+        </StyleBookIcon>
       </ImgWrapper>
       <MainBannerTitle>레시피명</MainBannerTitle>
       <MainBannerTime>n 분</MainBannerTime>
@@ -41,6 +50,7 @@ const Img = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  cursor: pointer;
 `;
 
 const MainBannerTitle = styled.p`
@@ -50,4 +60,9 @@ const MainBannerTime = styled.p`
   margin: 0.5rem 0px;
   font-size: 0.8rem;
 `;
+
+const StyleBookIcon = styled.div`
+  cursor: pointer;
+`;
+
 export default MainBannerImg;

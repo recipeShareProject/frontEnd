@@ -17,37 +17,37 @@ const BookMarkPage = () => {
         {/* Todo : 공통 컴포넌트 제작 */}
         <CheckboxWrapper>
           <Checkbox type="checkbox" id="scales" name="scales" />
-          <label for="scales">
+          <label htmlFor="scales">
             <MainBannerImg />
           </label>
         </CheckboxWrapper>
         <CheckboxWrapper>
           <Checkbox type="checkbox" id="scales" name="scales" />
-          <label for="scales">
+          <label htmlFor="scales">
             <MainBannerImg />
           </label>
         </CheckboxWrapper>
         <CheckboxWrapper>
           <Checkbox type="checkbox" id="scales" name="scales" />
-          <label for="scales">
+          <label htmlFor="scales">
             <MainBannerImg />
           </label>
         </CheckboxWrapper>
         <CheckboxWrapper>
           <Checkbox type="checkbox" id="scales" name="scales" />
-          <label for="scales">
+          <label htmlFor="scales">
             <MainBannerImg />
           </label>
         </CheckboxWrapper>
         <CheckboxWrapper>
           <Checkbox type="checkbox" id="scales" name="scales" />
-          <label for="scales">
+          <label htmlFor="scales">
             <MainBannerImg />
           </label>
         </CheckboxWrapper>
         <CheckboxWrapper>
           <Checkbox type="checkbox" id="scales" name="scales" />
-          <label for="scales">
+          <label htmlFor="scales">
             <MainBannerImg />
           </label>
         </CheckboxWrapper>

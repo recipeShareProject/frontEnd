@@ -1,14 +1,13 @@
-import React, {lazy} from 'react';
+import React from 'react';
 import {Route, Routes} from 'react-router-dom';
-
-const SignUp = lazy(() => import('pages/auth/SignUp'));
-const Login = lazy(() => import('pages/auth/Login'));
+import Login from 'pages/auth/Login';
+import Profil from 'pages/auth/Profil';
 
 const Auth = () => {
   return (
     <Routes>
-      <Route path={`/signup`} element={<SignUp />} />
       <Route path={`/login`} element={<Login />} />
+      <Route path={`/profil`} element={<Profil />} />
     </Routes>
   );
 };

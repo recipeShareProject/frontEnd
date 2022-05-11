@@ -1,4 +1,6 @@
 import React from 'react';
+import Squre from 'components/common/Squre';
+
 import {useSelector, useDispatch} from 'react-redux';
 import {testActions} from 'redux/slice/testSlice';
 import postsActions from 'redux/thunkActions/PostsAction';
@@ -29,7 +31,7 @@ function TestPage() {
       <button onClick={() => dispatch(postsActions.getPostAPI())}>
         요청하기
       </button>
-      <div>hi</div>
+      <Squre></Squre>
     </>
   );
 }

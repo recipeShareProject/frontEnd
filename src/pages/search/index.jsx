@@ -1,19 +1,21 @@
 import React, {lazy} from 'react';
 import {Route, Routes, Outlet} from 'react-router-dom';
 
-const SearchFilter = lazy(() => import('pages/search/SearchFilter'));
-const SearchResult = lazy(() => import('pages/search/SearchResult'));
+import SearchFilter from 'pages/search/SearchFilter';
+import SearchResult from 'pages/search/SearchResult';
+// const SearchFilter = lazy(() => import('pages/search/SearchFilter'));
+// const SearchResult = lazy(() => import('pages/search/SearchResult'));
 
 //Todo : 중첩 라우팅
 const Search = () => {
   return (
-    // <Route>
-    //   <Route path="/result" element={<SearchResult />} />
-    //   <Route path="/filter" element={<SearchFilter />} />
-    // </Route>
-    <div>
-      <Outlet />
-    </div>
+    <Routes>
+      <Route path="/result" element={<SearchResult />} />
+      <Route path="/filter" element={<SearchFilter />} />
+    </Routes>
+    // <div>
+    //   <Outlet />
+    // </div>
   );
 };
 

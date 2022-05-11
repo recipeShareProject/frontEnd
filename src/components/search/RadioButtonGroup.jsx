@@ -10,7 +10,7 @@ const RadioButtonGroup = () => {
           checked
         />
         <label
-          for="filter1-0"
+          htmlhtmlFor="filter1-0"
           class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow">
           All
         </label>
