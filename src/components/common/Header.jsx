@@ -1,18 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
+import {useNavigate} from 'react-router-dom';
 
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 function Header() {
+  const navigate = useNavigate();
+  const onClickLogo = () => {
+    navigate('/');
+  };
+  const onClickNoti = () => {
+    navigate('/noti');
+  };
+  const onClickProfil = () => {
+    navigate('/my');
+  };
+  const onClickLogin = () => {
+    navigate('/auth/login');
+  };
+
   return (
     <StyleHeader>
-      <StyleLogo></StyleLogo>
+      <StyleLogo onClick={onClickLogin}></StyleLogo>
       <StyleDiv>
-        <StyleAlert>
+        <StyleAlert onClick={onClickNoti}>
           <NotificationsRoundedIcon />
         </StyleAlert>
-        <StyleAvata></StyleAvata>
+        <StyleAvata onClick={onClickProfil}></StyleAvata>
       </StyleDiv>
-      {/* <StyleBtn>로그인</StyleBtn> */}
+      {/* <StyleBtn onClick={onClickLogin}>로그인</StyleBtn> */}
     </StyleHeader>
   );
 }
@@ -35,9 +50,9 @@ const StyleLogo = styled.div`
   background-color: gray;
   height: 2rem;
   width: 6rem;
-
   cursor: pointer;
 `;
+
 const StyleDiv = styled.div`
   display: flex;
   justify-content: center;
@@ -54,6 +69,8 @@ const StyleAlert = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  cursor: pointer;
 `;
 
 const StyleAvata = styled.div`
@@ -61,6 +78,8 @@ const StyleAvata = styled.div`
   background-color: gray;
   height: 2.25rem;
   width: 2.25rem;
+
+  cursor: pointer;
 `;
 
 export default Header;

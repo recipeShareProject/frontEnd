@@ -12,10 +12,10 @@ function EditParty() {
       <form>
         <FlexDiv>
           <Radio id="content1" type="radio" value="share" name="share"></Radio>
-          <Label htmlFor="content1">나눔해요</Label>
+          <Label htmlhtmlFor="content1">나눔해요</Label>
 
           <Radio id="content2" type="radio" value="share" name="share"></Radio>
-          <Label htmlFor="content2">나눔해줘요</Label>
+          <Label htmlhtmlFor="content2">나눔해줘요</Label>
         </FlexDiv>
       </form>
       <h4>사진</h4>

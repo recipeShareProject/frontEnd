@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import {useNavigate} from 'react-router-dom';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import CreateRoundedIcon from '@mui/icons-material/CreateRounded';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
+
 function My() {
+  const navigate = useNavigate();
   return (
     <>
       <h3>마이페이지</h3>
@@ -15,11 +17,11 @@ function My() {
           <div>potluck@kakao.com</div>
         </div>
       </ProfillDiv>
-      <Btn>
+      <Btn onClick={() => navigate('/my/myInfo')}>
         <CreateRoundedIcon />
         <p>나의 정보</p>
       </Btn>
-      <Btn>
+      <Btn onClick={() => navigate('/my/myPost')}>
         <PersonRoundedIcon />
         <p>나의 글</p>
       </Btn>
@@ -60,6 +62,8 @@ const Btn = styled.div`
     font-size: 14px;
     line-height: 120%;
   }
+
+  cursor: pointer;
 `;
 
 export default My;
