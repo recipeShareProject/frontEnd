@@ -2,44 +2,37 @@ import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 
 import styled from 'styled-components';
-function Tag({type}) {
+
+import {useDispatch, useSelector} from 'react-redux';
+import {tagActions} from 'redux/slice/tagSlice';
+function Tag({type, Children}) {
+  const dispatch = useDispatch();
+  const tags = useSelector((state) => state.tag.tags);
+
+  const deleteTag = (idx) => {
+    dispatch(tagActions.delTag(idx));
+  };
+
   switch (type) {
     case 'input':
       return (
         <FilterInputTagWrapper>
-          <FilterInputTag>
-            <p>스팸</p>
-            <CloseIcon fontSize="small" />
-          </FilterInputTag>
-          <FilterInputTag>
-            <p>돼지고기</p>
-            <CloseIcon fontSize="small" />
-          </FilterInputTag>
-          <FilterInputTag>
-            <p>돼지고기</p>
-            <CloseIcon fontSize="small" />
-          </FilterInputTag>
-          <FilterInputTag>
-            <p>스팸</p>
-            <CloseIcon fontSize="small" />
-          </FilterInputTag>
+          {tags.map((tag, idx) => (
+            <FilterInputTag key={idx}>
+              <p>{tag}</p>
+              <CloseBtn onClick={() => deleteTag(idx)} fontSize="small" />
+            </FilterInputTag>
+          ))}
         </FilterInputTagWrapper>
       );
     default:
       return (
         <FilterInputTagWrapper>
-          <FilterInputTag>
-            <p>스팸</p>
-          </FilterInputTag>
-          <FilterInputTag>
-            <p>돼지고기</p>
-          </FilterInputTag>
-          <FilterInputTag>
-            <p>돼지고기</p>
-          </FilterInputTag>
-          <FilterInputTag>
-            <p>스팸</p>
-          </FilterInputTag>
+          {tags.map((tag, idx) => (
+            <FilterInputTag key={idx}>
+              <p>{tag}</p>
+            </FilterInputTag>
+          ))}
         </FilterInputTagWrapper>
       );
   }
@@ -64,5 +57,9 @@ const FilterInputTag = styled.div`
     margin: 0;
     margin: 0px 10px;
   }
+`;
+
+const CloseBtn = styled(CloseIcon)`
+  cursor: pointer;
 `;
 export default Tag;

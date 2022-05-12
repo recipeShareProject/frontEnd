@@ -1,16 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
+import {useDispatch, useSelector} from 'react-redux';
+import {tagActions} from 'redux/slice/tagSlice';
+import dayjs from 'dayjs';
 
 import AddImgSlider from 'components/common/AddImgSlider';
 import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 
 import BtnGroup from 'pages/party/BtnGroup';
+import Tag from 'components/common/Tag';
+
 function EditParty() {
+  const dispatch = useDispatch();
+  const tags = useSelector((state) => state.tag.tags);
+  const tagInput = React.useRef();
   const [check, setCheck] = React.useState('content1');
   const handleChkChange = (e) => {
     setCheck(e.target.id);
   };
+
+  const onTag = (e) => {
+    //enter 키코드 = 0
+    if (e.keyCode === 0 || e.type === 'click') {
+      dispatch(tagActions.addTag(tagInput.current.value));
+      tagInput.current.value = '';
+    }
+  };
+  const now = dayjs().format();
+  const date = dayjs(now, 'YY/MM/DD');
+  console.log(date.format);
   return (
     <>
       <h1>게시글 등록하기</h1>
@@ -38,26 +57,21 @@ function EditParty() {
           </Label>
         </div>
       </FlexDiv>
-
       <h4>사진</h4>
       <AddImgSlider></AddImgSlider>
       <TextArea placeholder="게시글에 들어갈 내용을 입력해 주세요"></TextArea>
-
       <Link>
         <LinkRoundedIcon />
         <p>Potluck의 레시피 링크를 추가해 보세요</p>
       </Link>
-
       <TagBtn>
-        <p>태그를 추가해 주세요</p>
-        <AddRoundedIcon />
+        <TagInput onKeyPress={onTag} ref={tagInput} />
+        <PlusBtn onClick={onTag} />
       </TagBtn>
-
-      <TagSlider>태그영역</TagSlider>
-
+      <Tag type="input">태그영역</Tag>
       <h4>나눔 종료 일시</h4>
       <FlexDiv>
-        <Days>00/00/00</Days>
+        <Days>date</Days>
         <Time>00:00</Time>
       </FlexDiv>
       <AddBtn>등록하기</AddBtn>
@@ -151,6 +165,18 @@ const AddBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const TagInput = styled.input`
+  width: 100%;
+  border: none;
+  background: none;
+
+  line-height: 1.5rem;
+`;
+
+const PlusBtn = styled(AddRoundedIcon)`
+  cursor: pointer;
 `;
 
 export default EditParty;
