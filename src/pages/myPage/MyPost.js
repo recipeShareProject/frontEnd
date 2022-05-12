@@ -79,7 +79,6 @@ function MyPost() {
               onChange={handleChange}
               aria-label="basic tabs example"
               variant="fullWidth"
-              disabled={false}
               TabIndicatorProps={{sx: {height: ''}}}>
               <Tab label="레시피" {...a11yProps(0)} />
               <Tab label="파티" {...a11yProps(1)} />

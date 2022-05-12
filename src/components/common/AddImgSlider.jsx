@@ -7,8 +7,7 @@ import 'slick-carousel/slick/slick-theme.css';
 function AddImgSlider() {
   const fileInput = useRef('');
   const [Img, setImg] = useState([]);
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [activeSlide2, setactiveSlide2] = useState(0);
+
   const settings = {
     dots: true,
     dotsClass: 'slick-dots',
@@ -17,10 +16,8 @@ function AddImgSlider() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-
-    beforeChange: (current, next) => setActiveSlide({activeSlide: next}),
-    afterChange: (current) => setactiveSlide2({activeSlide2: current}),
   };
+
   //파일선택
   const selectFile = (e) => {
     const {
@@ -29,6 +26,7 @@ function AddImgSlider() {
 
     const imageFile = files[0];
     const reader = new FileReader();
+    const targetId = e.target.id;
 
     reader.readAsDataURL(imageFile);
 
@@ -37,36 +35,77 @@ function AddImgSlider() {
         currentTarget: {result},
       } = e;
       setImg([...Img, result]);
+      // setImg(Img.map((value, index) => (index === targetId ? result : value)));
+      const a = Img.map((value, index) =>
+        index.toString() === targetId ? 'result' : 'value',
+      );
+      console.log(a);
     };
   };
-  return (
-    <StyleSlider {...settings}>
-      <div>
-        <StyleImg src={Img[0]}></StyleImg>
-      </div>
-      <div>
-        <StyleImg src={Img[1]}></StyleImg>
-      </div>
-      <div>
-        <img src={Img[2]} alt="profile"></img>
-      </div>
-      <div>
-        <img src={Img[3]} alt="profile"></img>
-      </div>
-      <div>
-        <img src={Img[4]} alt="profile"></img>
-      </div>
-    </StyleSlider>
 
-    //    <input type="file" onChange={selectFile} ref={fileInput}></input>
+  return (
+    <React.Fragment>
+      <StyleSlider {...settings}>
+        <div>
+          <StyleInput
+            id="0"
+            type="file"
+            onChange={selectFile}
+            ref={fileInput}></StyleInput>
+          <label htmlFor="0">
+            <StyleImg src={Img[0]}></StyleImg>
+          </label>
+        </div>
+        <div>
+          <StyleInput
+            id="1"
+            type="file"
+            onChange={selectFile}
+            ref={fileInput}></StyleInput>
+          <label htmlFor="1">
+            <StyleImg src={Img[1]}></StyleImg>
+          </label>
+        </div>
+        <div>
+          <StyleInput
+            id="2"
+            type="file"
+            onChange={selectFile}
+            ref={fileInput}></StyleInput>
+          <label htmlFor="2">
+            <StyleImg src={Img[2]}></StyleImg>
+          </label>
+        </div>
+        <div>
+          <StyleInput
+            id="3"
+            type="file"
+            onChange={selectFile}
+            ref={fileInput}></StyleInput>
+          <label htmlFor="3">
+            <StyleImg src={Img[3]}></StyleImg>
+          </label>
+        </div>
+        <div>
+          <StyleInput
+            id="4"
+            type="file"
+            onChange={selectFile}
+            ref={fileInput}></StyleInput>
+          <label htmlFor="4">
+            <StyleImg src={Img[4]}></StyleImg>
+          </label>
+        </div>
+      </StyleSlider>
+    </React.Fragment>
   );
 }
 
 const StyleSlider = styled(Slider)`
   .slick-dots li button:hover:before,
   .slick-dots li button:focus:before {
-    opacity: 0.25;
-    color: black;
+    opacity: 1;
+    color: #e5e5e5;
   }
 
   li.slick-active button:hover:before,
@@ -94,5 +133,9 @@ const StyleImg = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+`;
+
+const StyleInput = styled.input`
+  display: none;
 `;
 export default AddImgSlider;

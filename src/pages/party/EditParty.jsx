@@ -4,20 +4,41 @@ import styled from 'styled-components';
 import AddImgSlider from 'components/common/AddImgSlider';
 import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+
+import BtnGroup from 'pages/party/BtnGroup';
 function EditParty() {
+  const [check, setCheck] = React.useState('content1');
+  const handleChkChange = (e) => {
+    setCheck(e.target.id);
+  };
   return (
     <>
       <h1>게시글 등록하기</h1>
       <h4>제목</h4>
-      <form>
-        <FlexDiv>
-          <Radio id="content1" type="radio" value="share" name="share"></Radio>
-          <Label htmlhtmlFor="content1">나눔해요</Label>
 
-          <Radio id="content2" type="radio" value="share" name="share"></Radio>
-          <Label htmlhtmlFor="content2">나눔해줘요</Label>
-        </FlexDiv>
-      </form>
+      <FlexDiv>
+        <div>
+          <Radio
+            onChange={handleChkChange}
+            id="content1"
+            type="radio"
+            name="share"></Radio>
+          <Label check={check === 'content1'} htmlFor="content1">
+            나눔해요
+          </Label>
+        </div>
+        <div>
+          <Radio
+            onChange={handleChkChange}
+            id="content2"
+            type="radio"
+            name="share"></Radio>
+          <Label check={check === 'content2'} htmlFor="content2">
+            나눔해줘요
+          </Label>
+        </div>
+      </FlexDiv>
+
       <h4>사진</h4>
       <AddImgSlider></AddImgSlider>
       <TextArea placeholder="게시글에 들어갈 내용을 입력해 주세요"></TextArea>
@@ -45,18 +66,27 @@ function EditParty() {
 }
 
 const Radio = styled.input`
+  display: none;
   margin-right: 1rem;
 `;
 
 const FlexDiv = styled.div`
   display: flex;
+  width: 100%;
+  div:first-child {
+    margin-right: 0.5rem;
+  }
 `;
 
 const Label = styled.label`
   height: 48px;
-  width: 50%;
+  width: 44vw;
   display: inline-block;
-  background-color: gray;
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${(props) => (props.check ? 'background-color:  #5C5C5C; color:white;' : '')}
 `;
 
 const TextArea = styled.textarea`
@@ -73,15 +103,26 @@ const Link = styled.div`
   height: 48px;
   background-color: lightgray;
   margin-bottom: 0.5rem;
+
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  p {
+    padding-left: 10px;
+  }
 `;
 
 const TagBtn = styled.div`
   height: 48px;
   background-color: lightgray;
   margin-bottom: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1rem;
   p {
-    /* margin: 0.5rem; */
-    padding: 0;
+    padding-left: 0.5rem;
   }
 `;
 
