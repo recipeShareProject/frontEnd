@@ -18,7 +18,7 @@ function Navigation() {
     navigate('/');
   };
   const onClickRecipe = () => {
-    navigate('/recipe/detail');
+    navigate('/search/result');
   };
   const onClickParty = () => {
     navigate('/party');
