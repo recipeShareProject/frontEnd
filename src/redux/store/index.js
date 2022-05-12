@@ -14,7 +14,7 @@ import logger from 'redux-logger';
 
 import testReducer from 'redux/slice/testSlice';
 import postReducer from 'redux/slice/postSlice';
-
+import tagReducer from 'redux/slice/tagSlice';
 const persistConfig = {
   key: 'root',
   version: 1,
@@ -24,6 +24,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   test: testReducer,
   post: postReducer,
+  tag: tagReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

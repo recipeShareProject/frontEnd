@@ -9,7 +9,6 @@ const Floating = () => {
       <FloatBtn>
         <AddIcon />
       </FloatBtn>
-
       <DropdownContent>
         <div onClick={() => navigate('/recipe/write')}>레시피 추가하기</div>
         <div onClick={() => navigate('/party/addParty')}>게시글 추가하기</div>

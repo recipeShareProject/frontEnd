@@ -5,11 +5,13 @@ import MainBanner from 'components/main/MainBanner';
 import SearchFilter from 'components/search/SearchFilter';
 import SearchResultContent from 'components/search/SearchResultContent';
 
+import {useNavigate} from 'react-router-dom';
 const SearchResult = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <SearchBar />
-      <SearchFilter />
+      <SearchFilter _onClick={() => navigate('../filter')} />
       <SearchResultContent />
     </div>
   );

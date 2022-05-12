@@ -1,18 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Squre() {
+function Squre({children}) {
   return (
     <>
-      <StyleSqure>Squre</StyleSqure>
+      <StyleSqure>{children}</StyleSqure>
     </>
   );
 }
 
 const StyleSqure = styled.div`
-  width: 10%;
-  height: 10%;
+  width: 10vw;
+  height: 10vw;
+
   background-color: red;
+
+  display: inline-block;
 `;
 
 export default Squre;

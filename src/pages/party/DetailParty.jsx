@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import AddImgSlider from 'components/common/AddImgSlider';
 import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
+
+import Tag from 'components/common/Tag';
 function DetailParty() {
   return (
     <>
@@ -13,28 +15,25 @@ function DetailParty() {
         <TextDiv>n분 뒤까지</TextDiv>
       </FlexDiv>
       <AddImgSlider></AddImgSlider>
-      <ProfillDiv>
-        <StyleAvata></StyleAvata>
-        <div>
-          <div>닉네임</div>
-          <div>n분전</div>
-        </div>
-      </ProfillDiv>
+
       <Content>
         숟가락을 이용해 전복 살과 껍질을 분리하고 내장도 조심스럽게 떼어 내세요.
         내장은 버리지 말고 죽이나 찌개 등에 넣어 드셔도 좋아요.
       </Content>
-      <TagSlider>태그영역</TagSlider>
+      <Tag></Tag>
       <Link>
         <LinkRoundedIcon />
-        레시피명 보러 가기
+        <p>레시피명 보러 가기</p>
       </Link>
 
       <ProfillDiv>
         <StyleAvata></StyleAvata>
         <div>
-          <div>닉네임</div>
-          <div>n분전</div>
+          <p>닉네임</p>
+          <FlexDiv>
+            <p>OO동</p>
+            <p>n분전</p>
+          </FlexDiv>
         </div>
       </ProfillDiv>
       <Content>
@@ -46,8 +45,11 @@ function DetailParty() {
       <ProfillDiv>
         <StyleAvata></StyleAvata>
         <div>
-          <div>닉네임</div>
-          <div>n분전</div>
+          <p>닉네임</p>
+          <FlexDiv>
+            <p>OO동</p>
+            <p>n분전</p>
+          </FlexDiv>
         </div>
       </ProfillDiv>
       <Content>
@@ -91,8 +93,8 @@ const StyleAvata = styled.div`
 
 const ProfillDiv = styled.div`
   margin-top: 1.5rem;
-  margin-bottom: 1.125rem;
   display: flex;
+  align-items: center;
 `;
 
 const Content = styled.div`
@@ -115,5 +117,13 @@ const Link = styled.div`
   height: 48px;
   background-color: lightgray;
   margin-bottom: 3rem;
+
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+
+  p {
+    padding-left: 10px;
+  }
 `;
 export default DetailParty;

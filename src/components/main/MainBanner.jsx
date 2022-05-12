@@ -12,7 +12,7 @@ const MainBanner = () => {
           지금 가장 <br />
           인기있는 레시피에요
         </BannerTitle>
-        <BannerMore onClick={() => navigate('/recipe/detail')}>
+        <BannerMore onClick={() => navigate('/search/result')}>
           더보기
         </BannerMore>
       </BannerTitleBox>
