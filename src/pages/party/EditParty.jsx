@@ -2,11 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import {useDispatch, useSelector} from 'react-redux';
 import {tagActions} from 'redux/slice/tagSlice';
-import dayjs from 'dayjs';
 
 import AddImgSlider from 'components/common/AddImgSlider';
 import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import dayjs from 'dayjs';
 
 import BtnGroup from 'pages/party/BtnGroup';
 import Tag from 'components/common/Tag';
@@ -15,7 +18,17 @@ function EditParty() {
   const dispatch = useDispatch();
   const tags = useSelector((state) => state.tag.tags);
   const tagInput = React.useRef();
-  const [check, setCheck] = React.useState('content1');
+  const [check, setCheck] = React.useState('share');
+
+  const now = dayjs();
+  const puls = now.add(5, 'day').$d;
+  const start = now.add(1, 'day').$d;
+  const [startDate, setStartDate] = React.useState(start);
+  const [startTime, setStartTime] = React.useState(new Date());
+  const date = React.useRef();
+  const time = React.useRef();
+  const [radioVal, setRadioVal] = React.useState('');
+
   const handleChkChange = (e) => {
     setCheck(e.target.id);
   };
@@ -27,32 +40,37 @@ function EditParty() {
       tagInput.current.value = '';
     }
   };
-  const now = dayjs().format();
-  const date = dayjs(now, 'YY/MM/DD');
-  console.log(date.format);
+
+  const onCheck = (e) => {};
+  const onRadio = (e) => {
+    console.log(e.target.id);
+  };
   return (
     <>
       <h1>게시글 등록하기</h1>
       <h4>제목</h4>
-
       <FlexDiv>
         <div>
           <Radio
             onChange={handleChkChange}
-            id="content1"
+            id="share"
             type="radio"
-            name="share"></Radio>
-          <Label check={check === 'content1'} htmlFor="content1">
+            name="share"
+            value={radioVal}
+            onClick={onRadio}></Radio>
+          <Label check={check === 'share'} htmlFor="share">
             나눔해요
           </Label>
         </div>
         <div>
           <Radio
             onChange={handleChkChange}
-            id="content2"
+            id="noshare"
             type="radio"
-            name="share"></Radio>
-          <Label check={check === 'content2'} htmlFor="content2">
+            name="share"
+            value={radioVal}
+            onClick={onRadio}></Radio>
+          <Label check={check === 'noshare'} htmlFor="noshare">
             나눔해줘요
           </Label>
         </div>
@@ -71,18 +89,30 @@ function EditParty() {
       <Tag type="input">태그영역</Tag>
       <h4>나눔 종료 일시</h4>
       <FlexDiv>
-        <Days>date</Days>
-        <Time>00:00</Time>
+        <DatePicker1
+          dateFormat="yyyy-MM-dd"
+          minDate={new Date()}
+          maxDate={puls}
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+          ref={date}
+        />
+
+        <TimePicker1
+          selected={startTime}
+          onChange={(date) => setStartTime(date)}
+          showTimeSelect
+          showTimeSelectOnly
+          timeIntervals={15}
+          timeCaption="시간"
+          dateFormat="h:mm aa"
+          ref={time}
+        />
       </FlexDiv>
-      <AddBtn>등록하기</AddBtn>
+      <AddBtn onClick={onCheck}>등록하기</AddBtn>
     </>
   );
 }
-
-const Radio = styled.input`
-  display: none;
-  margin-right: 1rem;
-`;
 
 const FlexDiv = styled.div`
   display: flex;
@@ -91,7 +121,10 @@ const FlexDiv = styled.div`
     margin-right: 0.5rem;
   }
 `;
-
+const Radio = styled.input`
+  display: none;
+  margin-right: 1rem;
+`;
 const Label = styled.label`
   height: 48px;
   width: 44vw;
@@ -140,24 +173,6 @@ const TagBtn = styled.div`
   }
 `;
 
-const TagSlider = styled.div`
-  height: 28px;
-  background-color: lightgray;
-`;
-
-const Days = styled.div`
-  height: 48px;
-  width: 50%;
-  background-color: lightgray;
-  margin-right: 0.5rem;
-`;
-
-const Time = styled.div`
-  height: 48px;
-  width: 30%;
-  background-color: lightgray;
-`;
-
 const AddBtn = styled.div`
   height: 48px;
   background-color: lightgray;
@@ -165,6 +180,8 @@ const AddBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  cursor: pointer;
 `;
 
 const TagInput = styled.input`
@@ -178,5 +195,11 @@ const TagInput = styled.input`
 const PlusBtn = styled(AddRoundedIcon)`
   cursor: pointer;
 `;
-
+const DatePicker1 = styled(DatePicker)`
+  background-color: red;
+  width: 50%;
+`;
+const TimePicker1 = styled(DatePicker)`
+  width: 50%;
+`;
 export default EditParty;
