@@ -16,6 +16,7 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import dayjs from 'dayjs';
+
 function TestPage() {
   const count = useSelector((state) => state.test.value);
   const post = useSelector((state) => state.post);
@@ -32,6 +33,50 @@ function TestPage() {
   const onBtn = () => {
     console.log(date.current.input.value);
   };
+  const {kakao} = window;
+  const geocoder = new kakao.maps.services.Geocoder();
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      // GPS를 지원하면
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // position 객체 내부에 timestamp(현재 시간)와 coords 객체
+          const time = new Date(position.timestamp);
+          console.log(position);
+          console.log(`현재시간 : ${time}`);
+          console.log(`latitude 위도 : ${position.coords.latitude}`);
+          console.log(`longitude 경도 : ${position.coords.longitude}`);
+          var coord = new kakao.maps.LatLng(
+            `${position.coords.latitude}`,
+            `${position.coords.longitude}`,
+          );
+          var a = geocoder.coord2Address(
+            coord.getLng(),
+            coord.getLat(),
+            callback,
+          );
+          console.log(a);
+        },
+        (error) => {
+          console.error(error);
+        },
+        {
+          enableHighAccuracy: false,
+          maximumAge: 0,
+          timeout: Infinity,
+        },
+      );
+    } else {
+      alert('GPS를 지원하지 않습니다');
+    }
+  };
+
+  const callback = function (result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+      console.log(result[0].address.address_name);
+    }
+  };
+
   return (
     <>
       <button
@@ -89,6 +134,7 @@ function TestPage() {
         dateFormat="h:mm aa"
       />
       <button onClick={onBtn}>가져와</button>
+      <button onClick={getLocation}>위치가져와</button>
     </>
   );
 }

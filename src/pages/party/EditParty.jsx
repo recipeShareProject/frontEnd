@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import {useDispatch, useSelector} from 'react-redux';
 import {tagActions} from 'redux/slice/tagSlice';
 
 import AddImgSlider from 'components/common/AddImgSlider';
-import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import CloseIcon from '@mui/icons-material/Close';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -16,39 +17,94 @@ import Tag from 'components/common/Tag';
 
 function EditParty() {
   const dispatch = useDispatch();
-  const tags = useSelector((state) => state.tag.tags);
-  const tagInput = React.useRef();
-  const [check, setCheck] = React.useState('share');
-
   const now = dayjs();
   const puls = now.add(5, 'day').$d;
   const start = now.add(1, 'day').$d;
-  const [startDate, setStartDate] = React.useState(start);
-  const [startTime, setStartTime] = React.useState(new Date());
+
+  const Img = useSelector((state) => state.img.completeImgs);
+  const tags = useSelector((state) => state.tag.tags);
+  const tag = React.useRef();
+  const title = React.useRef();
+  const content = React.useRef();
   const date = React.useRef();
   const time = React.useRef();
-  const [radioVal, setRadioVal] = React.useState('');
+
+  const [startDate, setStartDate] = React.useState(start);
+  const [startTime, setStartTime] = React.useState(new Date());
+  const [radioVal, setRadioVal] = React.useState('share');
+  const [location, setLocation] = React.useState('');
 
   const handleChkChange = (e) => {
-    setCheck(e.target.id);
+    setRadioVal(e.target.id);
   };
 
   const onTag = (e) => {
     //enter 키코드 = 0
     if (e.keyCode === 0 || e.type === 'click') {
-      dispatch(tagActions.addTag(tagInput.current.value));
-      tagInput.current.value = '';
+      dispatch(tagActions.addTag(tag.current.value));
+      tag.current.value = '';
+    }
+  };
+  const onDel = (e) => {
+    title.current.value = '';
+  };
+
+  const {kakao} = window;
+  const geocoder = new kakao.maps.services.Geocoder();
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      // GPS를 지원하면
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // position 객체 내부에 timestamp(현재 시간)와 coords 객체
+          const time = new Date(position.timestamp);
+          console.log(position);
+          console.log(`현재시간 : ${time}`);
+          console.log(`latitude 위도 : ${position.coords.latitude}`);
+          console.log(`longitude 경도 : ${position.coords.longitude}`);
+          const coord = new kakao.maps.LatLng(
+            // `${position.coords.latitude}`,
+            // `${position.coords.longitude}`,
+            35.1631,
+            129.1636,
+          );
+          return geocoder.coord2Address(
+            coord.getLng(),
+            coord.getLat(),
+            callback,
+          );
+        },
+        (error) => {
+          console.error(error);
+        },
+        {
+          enableHighAccuracy: false,
+          maximumAge: 0,
+          timeout: Infinity,
+        },
+      );
+    } else {
+      alert('GPS를 지원하지 않습니다');
     }
   };
 
-  const onCheck = (e) => {};
-  const onRadio = (e) => {
-    console.log(e.target.id);
+  const callback = function (result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+      const adress = result[0].address.address_name.split(' ');
+    }
   };
+  const onRegi = (e) => {
+    getLocation();
+  };
+
   return (
     <>
       <h1>게시글 등록하기</h1>
       <h4>제목</h4>
+      <InputWrapper>
+        <Input placeholder="제목을 입력해주세요" ref={title} />
+        <CloseBtn onClick={onDel} />
+      </InputWrapper>
       <FlexDiv>
         <div>
           <Radio
@@ -56,9 +112,8 @@ function EditParty() {
             id="share"
             type="radio"
             name="share"
-            value={radioVal}
-            onClick={onRadio}></Radio>
-          <Label check={check === 'share'} htmlFor="share">
+            value={radioVal}></Radio>
+          <Label check={radioVal === 'share'} htmlFor="share">
             나눔해요
           </Label>
         </div>
@@ -68,24 +123,22 @@ function EditParty() {
             id="noshare"
             type="radio"
             name="share"
-            value={radioVal}
-            onClick={onRadio}></Radio>
-          <Label check={check === 'noshare'} htmlFor="noshare">
+            value={radioVal}></Radio>
+          <Label check={radioVal === 'noshare'} htmlFor="noshare">
             나눔해줘요
           </Label>
         </div>
       </FlexDiv>
       <h4>사진</h4>
       <AddImgSlider></AddImgSlider>
-      <TextArea placeholder="게시글에 들어갈 내용을 입력해 주세요"></TextArea>
-      <Link>
-        <LinkRoundedIcon />
-        <p>Potluck의 레시피 링크를 추가해 보세요</p>
-      </Link>
-      <TagBtn>
-        <TagInput onKeyPress={onTag} ref={tagInput} />
+      <TextArea
+        placeholder="게시글에 들어갈 내용을 입력해 주세요"
+        ref={content}></TextArea>
+
+      <InputWrapper>
+        <Input placeholder="태그를 입력해주세요" onKeyPress={onTag} ref={tag} />
         <PlusBtn onClick={onTag} />
-      </TagBtn>
+      </InputWrapper>
       <Tag type="input">태그영역</Tag>
       <h4>나눔 종료 일시</h4>
       <FlexDiv>
@@ -109,7 +162,7 @@ function EditParty() {
           ref={time}
         />
       </FlexDiv>
-      <AddBtn onClick={onCheck}>등록하기</AddBtn>
+      <AddBtn onClick={onRegi}>등록하기</AddBtn>
     </>
   );
 }
@@ -146,20 +199,7 @@ const TextArea = styled.textarea`
   margin-bottom: 0.5rem;
 `;
 
-const Link = styled.div`
-  height: 48px;
-  background-color: lightgray;
-  margin-bottom: 0.5rem;
-
-  display: flex;
-  align-items: center;
-  padding-left: 10px;
-  p {
-    padding-left: 10px;
-  }
-`;
-
-const TagBtn = styled.div`
+const InputWrapper = styled.div`
   height: 48px;
   background-color: lightgray;
   margin-bottom: 1rem;
@@ -184,7 +224,7 @@ const AddBtn = styled.div`
   cursor: pointer;
 `;
 
-const TagInput = styled.input`
+const Input = styled.input`
   width: 100%;
   border: none;
   background: none;
@@ -193,6 +233,9 @@ const TagInput = styled.input`
 `;
 
 const PlusBtn = styled(AddRoundedIcon)`
+  cursor: pointer;
+`;
+const CloseBtn = styled(CloseIcon)`
   cursor: pointer;
 `;
 const DatePicker1 = styled(DatePicker)`

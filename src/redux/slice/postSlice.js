@@ -1,7 +1,17 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  posts: [],
+  posts: [
+    {
+      title: '',
+      category: '',
+      imagePath: [],
+      content: '',
+      tag: [],
+      expiredAt: '',
+      loaction: '',
+    },
+  ],
 };
 
 const postSlice = createSlice({

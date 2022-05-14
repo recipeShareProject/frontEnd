@@ -4,9 +4,13 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import {useDispatch, useSelector} from 'react-redux';
+import {imgActions} from 'redux/slice/imgSlice';
+
 function AddImgSlider() {
+  const dispatch = useDispatch();
   const fileInput = useRef('');
-  const [Img, setImg] = useState([]);
+  const Img = useSelector((state) => state.img.completeImgs);
 
   const settings = {
     dots: true,
@@ -26,7 +30,7 @@ function AddImgSlider() {
 
     const imageFile = files[0];
     const reader = new FileReader();
-    const targetId = e.target.id;
+    const idx = e.target.id;
 
     reader.readAsDataURL(imageFile);
 
@@ -34,12 +38,9 @@ function AddImgSlider() {
       const {
         currentTarget: {result},
       } = e;
-      setImg([...Img, result]);
-      // setImg(Img.map((value, index) => (index === targetId ? result : value)));
-      const a = Img.map((value, index) =>
-        index.toString() === targetId ? 'result' : 'value',
-      );
-      console.log(a);
+      // setImg([...Img, result]);
+      const img = result;
+      dispatch(imgActions.addCompleteImg({img: img, idx: idx}));
     };
   };
 
@@ -127,7 +128,7 @@ const StyleSlider = styled(Slider)`
 `;
 
 const StyleImg = styled.div`
-  background-image: url('${(props) => props.src}');
+  background-image: url('${(props) => (props.src ? props.src : '')}');
   height: 248px;
   background-color: gray;
   background-size: contain;
