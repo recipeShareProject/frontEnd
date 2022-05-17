@@ -16,7 +16,7 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import dayjs from 'dayjs';
-
+import axios from 'axios';
 function TestPage() {
   const count = useSelector((state) => state.test.value);
   const post = useSelector((state) => state.post);
@@ -47,18 +47,13 @@ function TestPage() {
           console.log(position);
           console.log(`현재시간 : ${time}`);
           console.log(`latitude 위도 : ${position.coords.latitude}`);
-          console.log(`longitude 경도 : ${position.coords.longitude}`);
-          var coord = new kakao.maps.LatLng(
-            `${position.coords.latitude}`,
-            `${position.coords.longitude}`,
-          );
+          console.log(`longitude 경도 : ${position.coords.longitude}`); //이거만 내 위도 경도 받아오는거임
+          // var coord = new kakao.maps.LatLng(
+          //   `${position.coords.latitude}`,
+          //   `${position.coords.longitude}`,
+          // );
 
-          var a = geocoder.coord2Address(
-            coord.getLng(),
-            coord.getLat(),
-            callback,
-          );
-          console.log(a);
+          // geocoder.coord2Address(coord.getLng(), coord.getLat(), callback); // 주소받아오는거
         },
         (error) => {
           console.error(error);
@@ -85,7 +80,21 @@ function TestPage() {
       'https://potluck-test.s3.ap-northeast-2.amazonaws.com/board/d9752923-a839-4823-bfc3-a92fc35d3245%EA%B9%80%EC%A7%80%EC%9B%901.jpg',
     );
   };
+  const getData = () => {
+    axios
+      .get('http://3.35.106.187/api/board/1')
 
+      .then(function (response) {
+        // handle success
+        console.log(response);
+        console.log('로그인요청');
+      })
+      .catch(function (error) {
+        // handle error
+        console.log('로그인요청');
+        console.log(error);
+      });
+  };
   const onLogin = () => {};
   return (
     <>
@@ -147,9 +156,10 @@ function TestPage() {
       <button onClick={getLocation}>위치가져와</button>
       <button onClick={getImg}>사진가져와</button>
       <StyleImg src={img}></StyleImg>
-      <a href="https://kauth.kakao.com/oauth/authorize?client_id=740a6ba6ace29c1a5211a4105bfd7353&redirect_uri=http://localhost:3000/auth/profil&response_type=code">
+      <a href="http://3.35.106.187/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/auth/profil">
         로그인
       </a>
+      <button onClick={getData}>데이터가져오기</button>
     </>
   );
 }

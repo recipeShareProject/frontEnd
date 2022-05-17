@@ -14,6 +14,9 @@ const tagSlice = createSlice({
     delTag: (state, {payload}) => {
       state.tags = state.tags.filter((val, idx) => idx !== payload);
     },
+    setTag: (state, {payload}) => {
+      state.tags = [];
+    },
   },
 });
 

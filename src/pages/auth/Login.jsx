@@ -14,11 +14,16 @@ const Login = () => {
       <Flex>
         <Kakao onClick={() => {}}>
           <Icon src={KakaoIcon} />
-          <p>카카오로 시작하기</p>
+
+          <a href="http://3.35.106.187/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/auth/profil">
+            카카오로 시작하기
+          </a>
         </Kakao>
         <Google>
           <Icon src={GoogleIcon} />
-          <p>구글로 시작하기</p>
+          <a href="http://3.35.106.187/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/auth/profil">
+            구글로 시작하기
+          </a>
         </Google>
       </Flex>
     </React.Fragment>
@@ -74,8 +79,10 @@ const Kakao = styled.div`
 
   color: #191919;
   cursor: pointer;
-  p {
+  a {
     margin-left: 12px;
+    text-decoration: none;
+    color: #191919;
   }
   box-sizing: border-box;
 `;
@@ -100,8 +107,10 @@ const Google = styled.div`
   line-height: 140%;
   color: #191919;
   letter-spacing: 0.15px;
-  p {
+  a {
     margin-left: 12px;
+    text-decoration: none;
+    color: #191919;
   }
   box-sizing: border-box;
 `;

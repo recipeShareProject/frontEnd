@@ -1,8 +1,14 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  completeImgs: ['', '', '', '', ''],
-  processImgs: [],
+  user: {
+    email: '',
+    nickName: '',
+    profilUrl: '',
+    location: '',
+    lat: '',
+    lon: '',
+  },
 };
 
 const imgSlice = createSlice({

@@ -12,40 +12,8 @@ const Profil = (props) => {
   });
   const fileInput = React.useRef('');
   const [Img, setImg] = React.useState('');
-  const axiosApi = () => {
-    axios({
-      method: 'post',
-      url: 'https://3.35.106.187/oauth2/authorization/kakao',
-      data: {
-        username: queryData.code,
-        provider: 'kakao',
-      },
-    })
-      .then((response) => {})
-      .catch((error) => {});
-    // console.log(queryData.code);
-    // axios
-    //   // https://3.35.106.187/oauth2/authorization/kakao
-    //   //https://13.125.207.199/login
-    //   .post('https://3.35.106.187/oauth2/authorization/kakao', {
-    //     code: queryData.code,
-    //     provider: 'kakao',
-    //   })
+  console.log(queryData);
 
-    //   .then(function (response) {
-    //     // handle success
-    //     console.log(response);
-    //     console.log('로그인요청');
-    //   })
-    //   .catch(function (error) {
-    //     // handle error
-    //     console.log('로그인요청');
-    //     console.log(error);
-    //   });
-  };
-  const onToken = () => {
-    axiosApi();
-  };
   //파일선택
   const selectFile = (e) => {
     const {
@@ -91,9 +59,6 @@ const Profil = (props) => {
         <p>가입하기</p>
       </StyleBtn>
       <div>hi</div>
-      <StyleBtn onClick={onToken}>
-        <p>토큰받아오기</p>
-      </StyleBtn>
     </>
   );
 };

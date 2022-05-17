@@ -1,23 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
+import {useNavigate} from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import dayjs from 'dayjs';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {tagActions} from 'redux/slice/tagSlice';
+import {imgActions} from 'redux/slice/imgSlice';
 import {postActions} from 'redux/slice/postSlice';
 
 import AddImgSlider from 'components/common/AddImgSlider';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import CloseIcon from '@mui/icons-material/Close';
-
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import dayjs from 'dayjs';
-
-import BtnGroup from 'pages/party/BtnGroup';
 import Tag from 'components/common/Tag';
 
 function EditParty() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const now = dayjs();
   const puls = now.add(5, 'day').$d;
   const start = now.add(1, 'day').$d;
@@ -33,8 +34,13 @@ function EditParty() {
   const [startDate, setStartDate] = React.useState(start);
   const [startTime, setStartTime] = React.useState(new Date());
   const [category, setcategory] = React.useState('나눔해요');
-  const [location, setLocation] = React.useState('');
 
+  React.useEffect(() => {
+    return () => {
+      dispatch(imgActions.setCompleteImg());
+      dispatch(tagActions.setTag());
+    };
+  }, []);
   const handleChkChange = (e) => {
     setcategory(e.target.id);
   };
@@ -103,6 +109,7 @@ function EditParty() {
   };
   const onRegi = (e) => {
     getLocation();
+    navigate('/party');
   };
 
   return (
