@@ -25,6 +25,8 @@ function TestPage() {
   const puls = now.add(5, 'day').$d;
   const start = now.add(1, 'day').$d;
 
+  const [img, setImg] = React.useState();
+
   const [value, setValue] = React.useState(null);
   const [startDate, setStartDate] = React.useState(start);
   const [startTime, setStartTime] = React.useState(new Date());
@@ -50,6 +52,7 @@ function TestPage() {
             `${position.coords.latitude}`,
             `${position.coords.longitude}`,
           );
+
           var a = geocoder.coord2Address(
             coord.getLng(),
             coord.getLat(),
@@ -77,6 +80,13 @@ function TestPage() {
     }
   };
 
+  const getImg = () => {
+    setImg(
+      'https://potluck-test.s3.ap-northeast-2.amazonaws.com/board/d9752923-a839-4823-bfc3-a92fc35d3245%EA%B9%80%EC%A7%80%EC%9B%901.jpg',
+    );
+  };
+
+  const onLogin = () => {};
   return (
     <>
       <button
@@ -135,6 +145,11 @@ function TestPage() {
       />
       <button onClick={onBtn}>가져와</button>
       <button onClick={getLocation}>위치가져와</button>
+      <button onClick={getImg}>사진가져와</button>
+      <StyleImg src={img}></StyleImg>
+      <a href="https://kauth.kakao.com/oauth/authorize?client_id=740a6ba6ace29c1a5211a4105bfd7353&redirect_uri=http://localhost:3000/auth/profil&response_type=code">
+        로그인
+      </a>
     </>
   );
 }
@@ -145,5 +160,12 @@ const DatePicker1 = styled(DatePicker)`
     background-color: red;
   }
 `;
-
+const StyleImg = styled.div`
+  background-image: url('${(props) => (props.src ? props.src : '')}');
+  height: 248px;
+  background-color: gray;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+`;
 export default TestPage;

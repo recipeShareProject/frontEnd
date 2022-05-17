@@ -1,25 +1,23 @@
 import {createSlice} from '@reduxjs/toolkit';
-
+// {
+//   title: '',
+//   category: '',
+//   imagePath: [],
+//   content: '',
+//   tag: [],
+//   expiredAt: '',
+//   loaction: '',
+// },
 const initialState = {
-  posts: [
-    {
-      title: '',
-      category: '',
-      imagePath: [],
-      content: '',
-      tag: [],
-      expiredAt: '',
-      loaction: '',
-    },
-  ],
+  posts: [],
 };
 
 const postSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {
-    setPost: (state, action) => {
-      state.posts = action.payload;
+    setPost: (state, {payload}) => {
+      state.posts.push(payload);
     },
   },
 });

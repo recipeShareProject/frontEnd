@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import KakaoIcon from 'asset/img/KakaoIcon.png';
 import GoogleIcon from 'asset/img/GoogleIcon.png';
+
 const Login = () => {
   return (
     <React.Fragment>
@@ -11,7 +12,7 @@ const Login = () => {
         <div>음식과 기쁨을 나눠보세요!</div>
       </TextArea>
       <Flex>
-        <Kakao>
+        <Kakao onClick={() => {}}>
           <Icon src={KakaoIcon} />
           <p>카카오로 시작하기</p>
         </Kakao>

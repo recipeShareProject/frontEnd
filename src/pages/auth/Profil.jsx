@@ -1,9 +1,51 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
+import {useParams, useLocation} from 'react-router-dom';
+import QueryString from 'qs';
+import axios from 'axios';
+
 const Profil = (props) => {
+  const location = useLocation();
+  const queryData = QueryString.parse(location.search, {
+    ignoreQueryPrefix: true,
+  });
   const fileInput = React.useRef('');
   const [Img, setImg] = React.useState('');
+  const axiosApi = () => {
+    axios({
+      method: 'post',
+      url: 'https://3.35.106.187/oauth2/authorization/kakao',
+      data: {
+        username: queryData.code,
+        provider: 'kakao',
+      },
+    })
+      .then((response) => {})
+      .catch((error) => {});
+    // console.log(queryData.code);
+    // axios
+    //   // https://3.35.106.187/oauth2/authorization/kakao
+    //   //https://13.125.207.199/login
+    //   .post('https://3.35.106.187/oauth2/authorization/kakao', {
+    //     code: queryData.code,
+    //     provider: 'kakao',
+    //   })
+
+    //   .then(function (response) {
+    //     // handle success
+    //     console.log(response);
+    //     console.log('로그인요청');
+    //   })
+    //   .catch(function (error) {
+    //     // handle error
+    //     console.log('로그인요청');
+    //     console.log(error);
+    //   });
+  };
+  const onToken = () => {
+    axiosApi();
+  };
   //파일선택
   const selectFile = (e) => {
     const {
@@ -47,6 +89,10 @@ const Profil = (props) => {
       <StyleP>이미 사용 중인 닉네임이에요</StyleP>
       <StyleBtn>
         <p>가입하기</p>
+      </StyleBtn>
+      <div>hi</div>
+      <StyleBtn onClick={onToken}>
+        <p>토큰받아오기</p>
       </StyleBtn>
     </>
   );

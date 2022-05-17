@@ -17,6 +17,7 @@
     "axios": "^0.24.0",
     "connected-react-router": "^6.8.0",
     "dayjs": "^1.11.2",
+    "qs": "^6.10.3",
     "react": "^18.1.0",
     "react-datepicker": "^4.7.0",
     "react-dom": "^18.1.0",

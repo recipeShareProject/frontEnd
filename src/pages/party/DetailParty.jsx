@@ -1,11 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import {useSelector} from 'react-redux';
 import AddImgSlider from 'components/common/AddImgSlider';
 import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
+import {useParams} from 'react-router-dom';
 
 import Tag from 'components/common/Tag';
 function DetailParty() {
+  const posts = useSelector((state) => state.post.posts);
+  const params = useParams();
+
   return (
     <>
       <ShareText>나눔해요</ShareText>

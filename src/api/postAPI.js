@@ -2,7 +2,7 @@ import axios from 'axios';
 
 //인스턴스 생성
 const apiClicent = axios.create({
-  baseURL: 'http://13.125.207.199/api',
+  baseURL: process.env.REACT_APP_API_HOST,
 });
 
 //------------------------게시글-----------------------//
