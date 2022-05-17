@@ -14,11 +14,13 @@ import MainPage from 'pages/main/MainPage';
 import Search from 'pages/search';
 import Recipe from 'pages/recipe';
 import BookMarkPage from 'pages/bookmark/BookMarkPage';
-
+import Header from 'components/common/Header';
+import Navigation from 'components/common/Navigation';
 const App = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+        <Header />
         <AppWrapper>
           <Routes>
             <Route path="/" element={<MainPage />} />
@@ -32,6 +34,7 @@ const App = () => {
             <Route path="/test" element={<TestPage />} />
           </Routes>
         </AppWrapper>
+        <Navigation />
       </PersistGate>
     </Provider>
   );

@@ -62,7 +62,6 @@ function Navigation() {
 
 const StyleNavi = styled(BottomNavigation)`
   width: 100%;
-  border: 1px solid green;
   height: 60px;
   background-color: white;
 

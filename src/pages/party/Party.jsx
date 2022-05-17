@@ -38,7 +38,6 @@ const Thumnail = styled.div`
   width: 6.5rem;
   height: 6.5rem;
 
-  border: 1px solid gray;
   margin-right: 0.5rem;
 
   background-image: url('${(props) => (props.src ? props.src : '')}');
