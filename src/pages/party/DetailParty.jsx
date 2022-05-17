@@ -2,51 +2,38 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {useSelector} from 'react-redux';
-import AddImgSlider from 'components/common/AddImgSlider';
+import ImgSlider from 'components/common/ImgSlider';
 import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
 import {useParams} from 'react-router-dom';
 
 import Tag from 'components/common/Tag';
+import {timeForToday} from 'common/timeForToday';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 function DetailParty() {
   const posts = useSelector((state) => state.post.posts);
   const params = useParams();
+  const postId = params.postId;
+  const {category, content, expiredAt, imagePath, location, tag, title} =
+    posts[postId];
 
   return (
     <>
-      <ShareText>나눔해요</ShareText>
-      <Title>게시글 제목</Title>
+      <ShareText>{category}</ShareText>
+      <Title>{title}</Title>
       <FlexDiv>
-        <TextDiv>OO동</TextDiv>
-        <TextDiv>n분 뒤까지</TextDiv>
+        <TextDiv>{location}</TextDiv>
+        <TextDiv>{timeForToday(expiredAt)}</TextDiv>
       </FlexDiv>
-      <AddImgSlider></AddImgSlider>
+      <ImgSlider Img={imagePath}></ImgSlider>
 
-      <Content>
-        숟가락을 이용해 전복 살과 껍질을 분리하고 내장도 조심스럽게 떼어 내세요.
-        내장은 버리지 말고 죽이나 찌개 등에 넣어 드셔도 좋아요.
-      </Content>
-      <Tag></Tag>
-      <Link>
-        <LinkRoundedIcon />
-        <p>레시피명 보러 가기</p>
-      </Link>
+      <Content>{content}</Content>
+      <Tag tag={tag}></Tag>
 
-      <ProfillDiv>
-        <StyleAvata></StyleAvata>
-        <div>
-          <p>닉네임</p>
-          <FlexDiv>
-            <p>OO동</p>
-            <p>n분전</p>
-          </FlexDiv>
-        </div>
-      </ProfillDiv>
-      <Content>
-        숟가락을 이용해 전복 살과 껍질을 분리하고 내장도 조심스럽게 떼어 내세요.
-        내장은 버리지 말고 죽이나 찌개 등에 넣어 드셔도 좋아요.
-      </Content>
-      <div>답글달기</div>
-
+      <Title>댓글</Title>
+      <InputWrapper>
+        <StyledInput placeholder="댓글을 남겨보세요"></StyledInput>
+        <ArrowForwardIcon></ArrowForwardIcon>
+      </InputWrapper>
       <ProfillDiv>
         <StyleAvata></StyleAvata>
         <div>
@@ -103,32 +90,28 @@ const ProfillDiv = styled.div`
 `;
 
 const Content = styled.div`
-  height: 60px;
-
   font-size: 14px;
   line-height: 140%;
 
   letter-spacing: 0.25px;
 `;
 
-const TagSlider = styled.div`
-  height: 28px;
-  background-color: lightgray;
+const InputWrapper = styled.div`
+  margin-top: 0.5rem;
 
-  margin-bottom: 1rem;
-`;
-
-const Link = styled.div`
-  height: 48px;
-  background-color: lightgray;
-  margin-bottom: 3rem;
+  background-color: #e5e5e5;
+  padding: 10px 8px;
 
   display: flex;
-  align-items: center;
-  padding-left: 10px;
+  justify-content: space-between;
+`;
 
-  p {
-    padding-left: 10px;
-  }
+const StyledInput = styled.input`
+  background-color: #e5e5e5;
+  font-size: 1rem;
+  line-height: 1.5rem;
+
+  outline: none;
+  border: none;
 `;
 export default DetailParty;

@@ -17,6 +17,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import dayjs from 'dayjs';
 import axios from 'axios';
+import ImgSlider from 'components/common/ImgSlider';
 function TestPage() {
   const count = useSelector((state) => state.test.value);
   const post = useSelector((state) => state.post);
@@ -39,7 +40,6 @@ function TestPage() {
   const geocoder = new kakao.maps.services.Geocoder();
   const getLocation = () => {
     if (navigator.geolocation) {
-      // GPS를 지원하면
       navigator.geolocation.getCurrentPosition(
         (position) => {
           // position 객체 내부에 timestamp(현재 시간)와 coords 객체
@@ -160,6 +160,7 @@ function TestPage() {
         로그인
       </a>
       <button onClick={getData}>데이터가져오기</button>
+      <ImgSlider></ImgSlider>
     </>
   );
 }

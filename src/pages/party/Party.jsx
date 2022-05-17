@@ -19,7 +19,7 @@ function Party() {
             <div>{v.title}</div>
             <RowDiv>
               <div>{v.location}</div>
-              <div>{timeForToday(v.expiredAt)}</div>
+              <div>{timeForToday(v.expiredAt, 'party')}</div>
             </RowDiv>
           </div>
         </Card>

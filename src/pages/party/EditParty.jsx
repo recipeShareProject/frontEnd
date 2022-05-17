@@ -32,7 +32,7 @@ function EditParty() {
   const time = React.useRef();
 
   const [startDate, setStartDate] = React.useState(start);
-  const [startTime, setStartTime] = React.useState(new Date());
+  // const [startTime, setStartTime] = React.useState(new Date());
   const [category, setcategory] = React.useState('나눔해요');
 
   React.useEffect(() => {
@@ -64,7 +64,7 @@ function EditParty() {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           // position 객체 내부에 timestamp(현재 시간)와 coords 객체
-          const time = new Date(position.timestamp);
+          // const time = new Date(position.timestamp);
           // console.log(position);
           // console.log(`현재시간 : ${time}`);
           // console.log(`latitude 위도 : ${position.coords.latitude}`);
@@ -104,12 +104,13 @@ function EditParty() {
         expiredAt: `${startDate}`,
         loaction: adress[2],
       };
+      console.log(data);
       dispatch(postActions.setPost(data));
+      navigate('/party');
     }
   };
   const onRegi = (e) => {
     getLocation();
-    navigate('/party');
   };
 
   return (
@@ -128,7 +129,7 @@ function EditParty() {
             type="radio"
             name="share"
             value={category}></Radio>
-          <Label check={category === '나눔해요'} htmlFor="share">
+          <Label check={category === '나눔해요'} htmlFor="나눔해요">
             나눔해요
           </Label>
         </div>
@@ -139,7 +140,7 @@ function EditParty() {
             type="radio"
             name="share"
             value={category}></Radio>
-          <Label check={category === '나눔해줘요'} htmlFor="noshare">
+          <Label check={category === '나눔해줘요'} htmlFor="나눔해줘요">
             나눔해줘요
           </Label>
         </div>
@@ -167,8 +168,8 @@ function EditParty() {
         />
 
         <TimePicker1
-          selected={startTime}
-          onChange={(date) => setStartTime(date)}
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
           showTimeSelect
           showTimeSelectOnly
           timeIntervals={15}
@@ -209,7 +210,7 @@ const Label = styled.label`
 const TextArea = styled.textarea`
   height: 110px;
   width: 100%;
-  margin-top: 4.5rem;
+  margin-top: 0.5rem;
   box-sizing: border-box;
   resize: none;
   padding: 1rem;
@@ -223,10 +224,8 @@ const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-right: 1rem;
-  p {
-    padding-left: 0.5rem;
-  }
+
+  padding: 0 8px;
 `;
 
 const AddBtn = styled.div`
