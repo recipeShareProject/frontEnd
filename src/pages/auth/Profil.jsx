@@ -1,14 +1,51 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
+import {useParams, useLocation} from 'react-router-dom';
+import QueryString from 'qs';
+import axios from 'axios';
+
 const Profil = (props) => {
+  const location = useLocation();
+  const queryData = QueryString.parse(location.search, {
+    ignoreQueryPrefix: true,
+  });
+  const fileInput = React.useRef('');
+  const [Img, setImg] = React.useState('');
+  console.log(queryData);
+
+  //파일선택
+  const selectFile = (e) => {
+    const {
+      target: {files},
+    } = e;
+
+    const imageFile = files[0];
+    const reader = new FileReader();
+
+    reader.readAsDataURL(imageFile);
+
+    reader.onloadend = (e) => {
+      const {
+        currentTarget: {result},
+      } = e;
+      setImg(result);
+    };
+  };
   return (
     <>
       <h3>프로필 설정하기</h3>
       <Flex>
         <div>
-          <Avata />
-          <p>사진 업로드하기</p>
+          <Avata src={Img} />
+          <Upload
+            id="1"
+            type="file"
+            onChange={selectFile}
+            ref={fileInput}></Upload>
+          <StyleLabel htmlFor="1">
+            <p>사진 업로드하기</p>
+          </StyleLabel>
         </div>
       </Flex>
       <h4>닉네임</h4>
@@ -21,6 +58,7 @@ const Profil = (props) => {
       <StyleBtn>
         <p>가입하기</p>
       </StyleBtn>
+      <div>hi</div>
     </>
   );
 };
@@ -28,9 +66,12 @@ const Profil = (props) => {
 const Avata = styled.div`
   border-radius: 50%;
   background-color: lightgray;
-
+  background-image: url('${(props) => props.src}');
   width: 120px;
   height: 120px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 const Flex = styled.div`
@@ -83,4 +124,13 @@ const StyleInput = styled.input`
   border: none;
   outline: none;
 `;
+
+const Upload = styled.input`
+  display: none;
+`;
+
+const StyleLabel = styled.label`
+  cursor: pointer;
+`;
+
 export default Profil;

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {tagActions} from 'redux/slice/tagSlice';
-function Tag({type, Children}) {
+function Tag({type, Children, tag}) {
   const dispatch = useDispatch();
   const tags = useSelector((state) => state.tag.tags);
 
@@ -28,7 +28,7 @@ function Tag({type, Children}) {
     default:
       return (
         <FilterInputTagWrapper>
-          {tags.map((tag, idx) => (
+          {tag.map((tag, idx) => (
             <FilterInputTag key={idx}>
               <p>{tag}</p>
             </FilterInputTag>

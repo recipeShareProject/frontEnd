@@ -21,7 +21,6 @@ function Header() {
 }
 
 const StyleHeader = styled.div`
-  border: 1px solid green;
   height: 72px;
 
   display: flex;
