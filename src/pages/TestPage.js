@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Squre from 'components/common/Squre';
 
 import {useSelector, useDispatch} from 'react-redux';
-import {testActions} from 'redux/slice/testSlice';
 import postsActions from 'redux/thunkActions/PostsAction';
 
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
@@ -18,8 +17,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import dayjs from 'dayjs';
 import axios from 'axios';
 import ImgSlider from 'components/common/ImgSlider';
+
+import ModalPopup from 'components/modal/ModalPopup';
+
 function TestPage() {
-  const count = useSelector((state) => state.test.value);
   const post = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const now = dayjs();
@@ -96,26 +97,13 @@ function TestPage() {
       });
   };
   const onLogin = () => {};
+  const openModal = () => {};
   return (
     <>
-      <button
-        aria-label="Increment value"
-        onClick={() => dispatch(testActions.increment())}>
-        Increment
-      </button>
-      <span>{count}</span>
-      <button
-        aria-label="Decrement value"
-        onClick={() => dispatch(testActions.decrement())}>
-        Decrement
-      </button>
-      <span></span>
       {post.posts.map((post, idx) => (
         <div key={idx}>{post.content}</div>
       ))}
-      <button onClick={() => dispatch(postsActions.getPostAPI())}>
-        요청하기
-      </button>
+
       <Squre></Squre>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <MobileDatePicker
@@ -152,7 +140,7 @@ function TestPage() {
         timeCaption="Time"
         dateFormat="h:mm aa"
       />
-      <button onClick={onBtn}>가져와</button>
+      <button onClick={onBtn}>input가져와</button>
       <button onClick={getLocation}>위치가져와</button>
       <button onClick={getImg}>사진가져와</button>
       <StyleImg src={img}></StyleImg>
@@ -160,7 +148,8 @@ function TestPage() {
         로그인
       </a>
       <button onClick={getData}>데이터가져오기</button>
-      <ImgSlider></ImgSlider>
+      <button onClick={openModal}>모달팝업</button>
+      <ModalPopup />
     </>
   );
 }

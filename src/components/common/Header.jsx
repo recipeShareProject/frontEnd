@@ -23,18 +23,19 @@ function Header() {
     navigate(-1);
   };
   return (
-    // <StyleHeader>
-    //   <StyleLogo onClick={onClickLogin}></StyleLogo>
-    //   <StyleDiv>
-    //     <StyleAlert onClick={onClickNoti}>
-    //       <NotificationsRoundedIcon />
-    //     </StyleAlert>
-    //     <StyleAvata onClick={onClickProfil}></StyleAvata>
-    //   </StyleDiv>
-    //   {/* <StyleBtn onClick={onClickLogin}>로그인</StyleBtn> */}
-    // </StyleHeader>
     <React.Fragment>
       <StyleHeader>
+        <StyleLogo onClick={onClickLogin}></StyleLogo>
+        <StyleDiv>
+          <StyleAlert onClick={onClickNoti}>
+            <NotificationsRoundedIcon />
+          </StyleAlert>
+          <StyleAvata onClick={onClickProfil}></StyleAvata>
+        </StyleDiv>
+        {/* <StyleBtn onClick={onClickLogin}>로그인</StyleBtn> */}
+      </StyleHeader>
+
+      {/* <StyleHeader>
         <ArrowBackIosIcon onClick={onClickBack} fontSize="small" />
         <MoreVert />
         <DropdownContent>
@@ -42,7 +43,7 @@ function Header() {
           <div onClick={() => {}}>수정하기</div>
           <div onClick={() => {}}>삭제하기</div>
         </DropdownContent>
-      </StyleHeader>
+      </StyleHeader> */}
     </React.Fragment>
   );
 }

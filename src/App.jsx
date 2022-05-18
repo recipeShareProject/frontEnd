@@ -16,6 +16,8 @@ import Recipe from 'pages/recipe';
 import BookMarkPage from 'pages/bookmark/BookMarkPage';
 import Header from 'components/common/Header';
 import Navigation from 'components/common/Navigation';
+import ApiTest from 'pages/ApiTest';
+import Popup from 'components/modal/Popup';
 const App = () => {
   return (
     <Provider store={store}>
@@ -32,9 +34,11 @@ const App = () => {
             <Route path="/noti/*" element={<Noti />} />
             <Route path="/bookmark" element={<BookMarkPage />} />
             <Route path="/test" element={<TestPage />} />
+            <Route path="testApi" element={<ApiTest />} />
           </Routes>
         </AppWrapper>
         <Navigation />
+        <Popup></Popup>
       </PersistGate>
     </Provider>
   );

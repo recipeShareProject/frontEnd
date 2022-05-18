@@ -12,7 +12,6 @@ import {
 import storage from 'redux-persist/lib/storage';
 import logger from 'redux-logger';
 
-import testReducer from 'redux/slice/testSlice';
 import postReducer from 'redux/slice/postSlice';
 import tagReducer from 'redux/slice/tagSlice';
 import imgReducer from 'redux/slice/imgSlice';
@@ -23,7 +22,6 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  test: testReducer,
   post: postReducer,
   tag: tagReducer,
   img: imgReducer,
