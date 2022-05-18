@@ -3,6 +3,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import styled from 'styled-components';
 import {makeStyles} from '@mui/styles';
 import {useNavigate} from 'react-router-dom';
+
 const useStyles = makeStyles({
   bookMark: {
     position: 'absolute',
@@ -29,7 +30,7 @@ const MainBannerImg = ({width, height}) => {
           onClick={() => {
             navigate('/bookmark');
           }}>
-          <BookmarkIcon className={classes.bookMark} />
+          <BookmarkIcon fontSize="small" className={classes.bookMark} />
         </StyleBookIcon>
       </ImgWrapper>
       <MainBannerTitle>레시피명</MainBannerTitle>
