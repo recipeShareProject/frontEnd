@@ -4,12 +4,24 @@ import MainBannerImg from './MainBannerImg';
 import {Box} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 
+const Item = ({text}) => {
+  return (
+    <BannerTitle>
+      {text.split('\n').map((txt, idx) => (
+        <div key={idx}>
+          {txt}
+          <br />
+        </div>
+      ))}
+    </BannerTitle>
+  );
+};
 const MainBanner = ({title}) => {
   const navigate = useNavigate();
   return (
-    <Box my={2}>
+    <Box my={2} mb={4}>
       <BannerTitleBox>
-        <BannerTitle>{title}</BannerTitle>
+        <Item text={title} />
         <BannerMore onClick={() => navigate('/search/result')}>
           더보기
         </BannerMore>
@@ -31,8 +43,9 @@ const BannerTitleBox = styled.div`
   justify-content: space-between;
   align-items: end;
   display: flex;
+  margin: 1.2rem 0px;
 `;
-const BannerTitle = styled.p`
+const BannerTitle = styled.div`
   font-size: 1.4rem;
   font-weight: bold;
   white-space: pre;

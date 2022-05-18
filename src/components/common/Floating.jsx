@@ -1,47 +1,56 @@
 import React from 'react';
 import styled from 'styled-components';
-import AddIcon from '@mui/icons-material/Add';
 import {useNavigate} from 'react-router';
 import WritePencilIcon from 'common/icons/WritePencilIcon';
 import {Colar100} from 'assets/colorSet';
+import {useState} from 'react';
+import {useEffect} from 'react';
+
 const Floating = () => {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    return setOpen(false);
+  }, []);
+
   return (
     <>
       <FloatBtn>
-        <WritePencilIcon />
+        <WritePencilIcon onClick={() => setOpen(!open)} />
       </FloatBtn>
-      <DropdownContent>
-        <div onClick={() => navigate('/recipe/write')}>레시피 추가하기</div>
-        <div onClick={() => navigate('/party/addParty')}>게시글 추가하기</div>
-      </DropdownContent>
+      {open && (
+        <DropdownContent>
+          <div onClick={() => navigate('/recipe/write')}>레시피 추가하기</div>
+          <div onClick={() => navigate('/party/addParty')}>게시글 추가하기</div>
+        </DropdownContent>
+      )}
     </>
   );
 };
 
 const DropdownContent = styled.div`
-  display: none;
   width: 160px;
-  height: 140px;
-
+  height: 80px;
   position: fixed;
   left: calc(100% - 11rem);
   top: calc(100% - 14rem);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  font-size: 12px;
+
   div {
+    display: flex;
+    justify-content: center;
     height: 40px;
-    background-color: gray;
-    padding-left: 0.5rem;
-    /* margin-bottom: 0.5rem; */
+    background-color: white;
     display: flex;
     align-items: center;
 
     cursor: pointer;
   }
-  &:hover {
-    display: block;
-  }
+
   div:nth-child(odd) {
-    margin-bottom: 0.5rem;
+    // margin-bottom: 0.5rem;
   }
 `;
 
