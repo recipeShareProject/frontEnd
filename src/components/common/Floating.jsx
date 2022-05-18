@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import AddIcon from '@mui/icons-material/Add';
 import {useNavigate} from 'react-router';
+import WritePencilIcon from 'common/icons/WritePencilIcon';
+import {Colar100} from 'assets/colorSet';
 const Floating = () => {
   const navigate = useNavigate();
   return (
     <>
       <FloatBtn>
-        <AddIcon />
+        <WritePencilIcon />
       </FloatBtn>
       <DropdownContent>
         <div onClick={() => navigate('/recipe/write')}>레시피 추가하기</div>
@@ -45,7 +47,7 @@ const DropdownContent = styled.div`
 
 const FloatBtn = styled.div`
   border-radius: 50%;
-  background-color: black;
+  background-color: ${Colar100};
   color: white;
   width: 3rem;
   height: 3rem;

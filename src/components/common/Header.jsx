@@ -1,19 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
-
-import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import LogoIcon from 'common/icons/LogoIcon';
+import AlarmIcon from 'common/icons/AlarmIcon';
+import ProfileIcon from 'common/icons/ProfileIcon';
+import {Box} from '@mui/material';
+
 function Header() {
   const navigate = useNavigate();
-  const onClickLogo = () => {
+
+  const moveToHome = () => {
     navigate('/');
   };
-  const onClickNoti = () => {
+  const moveToNoti = () => {
     navigate('/noti');
   };
-  const onClickProfil = () => {
+  const moveToMypage = () => {
     navigate('/my');
   };
   const onClickLogin = () => {
@@ -25,14 +28,13 @@ function Header() {
   return (
     <React.Fragment>
       <StyleHeader>
-        <StyleLogo onClick={onClickLogin}></StyleLogo>
+        <LogoIcon onClick={() => moveToHome()} />
         <StyleDiv>
-          <StyleAlert onClick={onClickNoti}>
-            <NotificationsRoundedIcon />
-          </StyleAlert>
-          <StyleAvata onClick={onClickProfil}></StyleAvata>
+          <Box mr={2}>
+            <AlarmIcon onClick={() => moveToNoti()} />
+          </Box>
+          <ProfileIcon onClick={() => moveToMypage()} />
         </StyleDiv>
-        {/* <StyleBtn onClick={onClickLogin}>로그인</StyleBtn> */}
       </StyleHeader>
 
       {/* <StyleHeader>
@@ -67,7 +69,6 @@ const StyleHeader = styled.div`
 `;
 
 const StyleLogo = styled.div`
-  background-color: gray;
   height: 2rem;
   width: 6rem;
   cursor: pointer;
@@ -81,9 +82,6 @@ const StyleDiv = styled.div`
   cursor: pointer;
 `;
 const StyleAlert = styled.div`
-  background-color: gray;
-  height: 2rem;
-  width: 2rem;
   margin-right: 0.75rem;
 
   display: flex;
@@ -95,9 +93,9 @@ const StyleAlert = styled.div`
 
 const StyleAvata = styled.div`
   border-radius: 50%;
-  background-color: gray;
-  height: 2.25rem;
-  width: 2.25rem;
+  justify-content: center;
+  align-items: center;
+  display: fl;
 `;
 
 const DropdownContent = styled.div`

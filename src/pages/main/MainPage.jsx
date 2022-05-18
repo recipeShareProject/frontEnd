@@ -6,8 +6,9 @@ const MainPage = () => {
   return (
     <div>
       <SearchBar />
-      <MainBanner />
-      <MainBanner />
+      {/* TODO : 줄바꿈 */}
+      <MainBanner title="지금 가장 인기있는 레시피에요" />
+      <MainBanner title="빠르게 만들 수 있어요" />
     </div>
   );
 };
