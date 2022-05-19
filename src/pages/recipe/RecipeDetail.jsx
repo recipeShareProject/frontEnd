@@ -1,13 +1,21 @@
+import React from 'react';
 import {Box} from '@mui/material';
 import RecipeImg from 'components/recipe/RecipeImg';
 import RecipeReview from 'components/recipe/RecipeReview';
 import styled from 'styled-components';
-
+import ModalPopup from 'components/common/ModalPopup';
 const ReciepeDetail = () => {
+  const [modal, setModal] = React.useState(false);
   return (
     <div>
       <Box>
-        <Title>김치찌개</Title>
+        {/* TODO : 현주님 모달 일단 타이틀 누르면 나오게해놨어요 */}
+        <Title
+          onClick={() => {
+            setModal(true);
+          }}>
+          김치찌개
+        </Title>
         <TitleBox>
           <p>n분 한식</p>
           <p>n개 리뷰 보기</p>
@@ -70,6 +78,13 @@ const ReciepeDetail = () => {
           <RecipeReview />
         </Box>
       </Box>
+      {modal && (
+        <ModalPopup
+          isOn={true}
+          content="레시피명에 대한 닉네임님의 평가가 궁금해요"
+          closeEvent={setModal}
+          yesEvent={() => {}}></ModalPopup>
+      )}
     </div>
   );
 };

@@ -4,11 +4,11 @@ import MainBanner from 'components/main/MainBanner';
 
 const MainPage = () => {
   return (
-    <div>
+    <React.Fragment>
       <SearchBar />
       <MainBanner />
       <MainBanner />
-    </div>
+    </React.Fragment>
   );
 };
 

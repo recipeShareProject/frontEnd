@@ -1,12 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation, useParams} from 'react-router-dom';
 
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+
+import Foobar from 'components/common/FooBar';
 function Header() {
   const navigate = useNavigate();
+  const loca = useLocation();
+  const postId = loca.pathname.split('/')[3];
   const onClickLogo = () => {
     navigate('/');
   };
@@ -19,45 +23,43 @@ function Header() {
   const onClickLogin = () => {
     navigate('/auth/login');
   };
-  const onClickBack = () => {
-    navigate(-1);
-  };
-  return (
-    <React.Fragment>
-      <StyleHeader>
-        <StyleLogo onClick={onClickLogin}></StyleLogo>
-        <StyleDiv>
-          <StyleAlert onClick={onClickNoti}>
-            <NotificationsRoundedIcon />
-          </StyleAlert>
-          <StyleAvata onClick={onClickProfil}></StyleAvata>
-        </StyleDiv>
-        {/* <StyleBtn onClick={onClickLogin}>로그인</StyleBtn> */}
-      </StyleHeader>
 
-      {/* <StyleHeader>
-        <ArrowBackIosIcon onClick={onClickBack} fontSize="small" />
-        <MoreVert />
-        <DropdownContent>
-          <div onClick={() => {}}>나눔 완료로 상태변경하기</div>
-          <div onClick={() => {}}>수정하기</div>
-          <div onClick={() => {}}>삭제하기</div>
-        </DropdownContent>
-      </StyleHeader> */}
-    </React.Fragment>
-  );
+  switch (loca.pathname) {
+    case loca.pathname.includes(`/my`) ? loca.pathname : '':
+    case '/search/filter':
+    case '/recipe/write':
+    case '/party/addParty':
+      return <Foobar type="back" />;
+
+    // case `/recipe/detail/${postId}`:
+    case loca.pathname.includes(`/recipe/detail`) ? loca.pathname : '':
+      return <Foobar type="recipe" />;
+
+    case `/party/detailParty/${postId}`:
+      return <Foobar type="party" />;
+
+    default:
+      return (
+        <StyleHeader>
+          <StyleLogo onClick={onClickLogin}></StyleLogo>
+          <StyleDiv>
+            <StyleAlert onClick={onClickNoti}>
+              <NotificationsRoundedIcon />
+            </StyleAlert>
+            <StyleAvata onClick={onClickProfil}></StyleAvata>
+          </StyleDiv>
+          {/* <StyleBtn onClick={onClickLogin}>로그인</StyleBtn> */}
+        </StyleHeader>
+      );
+  }
 }
 
 const StyleBtn = styled.div`
   height: 1rem;
   line-height: 1rem;
-
   cursor: pointer;
 `;
-const HeaderWrapper = styled.div`
-  height: 72px;
-  padding: 16px;
-`;
+
 const StyleHeader = styled.div`
   height: 40px;
   padding: 16px;
@@ -77,7 +79,6 @@ const StyleDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   cursor: pointer;
 `;
 const StyleAlert = styled.div`
@@ -85,11 +86,9 @@ const StyleAlert = styled.div`
   height: 2rem;
   width: 2rem;
   margin-right: 0.75rem;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   cursor: pointer;
 `;
 
@@ -100,36 +99,4 @@ const StyleAvata = styled.div`
   width: 2.25rem;
 `;
 
-const DropdownContent = styled.div`
-  display: none;
-  width: 160px;
-  height: 140px;
-  z-index: 1;
-  position: fixed;
-  left: 180px;
-  top: 60px;
-  div {
-    height: 40px;
-    background-color: gray;
-    padding-left: 0.5rem;
-    /* margin-bottom: 0.5rem; */
-    display: flex;
-    align-items: center;
-
-    cursor: pointer;
-  }
-  &:hover {
-    display: block;
-  }
-  div:nth-child(n) {
-    margin-bottom: 0.5rem;
-  }
-`;
-
-const MoreVert = styled(MoreVertIcon)`
-  &:hover + ${DropdownContent} {
-    display: block;
-  }
-  cursor: pointer;
-`;
 export default Header;
