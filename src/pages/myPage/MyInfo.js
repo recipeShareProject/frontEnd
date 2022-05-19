@@ -19,9 +19,7 @@ function MyInfo() {
       </Btn>
       <StyleP>이미 사용 중인 닉네임이에요</StyleP>
 
-      <StyleDiv>
-        <p>탈퇴하기</p>
-      </StyleDiv>
+      <StyleDiv></StyleDiv>
       <StyleBtn>
         <p>수정하기</p>
       </StyleBtn>
@@ -69,7 +67,7 @@ const StyleP = styled.p`
 `;
 
 const StyleDiv = styled.div`
-  margin-top: 223px;
+  margin-top: 200px;
 
   display: flex;
   justify-content: center;
