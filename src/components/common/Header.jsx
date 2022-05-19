@@ -11,7 +11,6 @@ function Header() {
   const navigate = useNavigate();
   const loca = useLocation();
   const postId = loca.pathname.split('/')[3];
-  console.log(loca.pathname);
   const onClickLogo = () => {
     navigate('/');
   };

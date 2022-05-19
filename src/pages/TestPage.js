@@ -18,7 +18,7 @@ import dayjs from 'dayjs';
 import axios from 'axios';
 import ImgSlider from 'components/common/ImgSlider';
 
-import ModalPopup from 'components/modal/ModalPopup';
+import ModalPopup from 'components/common/ModalPopup';
 
 function TestPage() {
   const post = useSelector((state) => state.post);

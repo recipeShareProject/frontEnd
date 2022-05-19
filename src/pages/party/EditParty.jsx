@@ -40,7 +40,7 @@ function EditParty() {
       dispatch(imgActions.setCompleteImg());
       dispatch(tagActions.setTag());
     };
-  }, []);
+  }, [dispatch]);
   const handleChkChange = (e) => {
     setcategory(e.target.id);
   };
