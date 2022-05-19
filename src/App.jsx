@@ -17,7 +17,7 @@ import BookMarkPage from 'pages/bookmark/BookMarkPage';
 import Header from 'components/common/Header';
 import Navigation from 'components/common/Navigation';
 import ApiTest from 'pages/ApiTest';
-import Popup from 'components/modal/Popup';
+
 const App = () => {
   return (
     <Provider store={store}>
@@ -38,7 +38,6 @@ const App = () => {
           </Routes>
         </AppWrapper>
         <Navigation />
-        <Popup></Popup>
       </PersistGate>
     </Provider>
   );

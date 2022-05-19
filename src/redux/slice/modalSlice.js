@@ -1,7 +1,14 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  modalList: [],
+  modalList: [
+    {
+      name: 'nomal',
+      content: '레시피를 등록 하시겠어요',
+      noContent: '아니오',
+      yesContent: '네',
+    },
+  ],
 };
 
 const modalSlice = createSlice({
