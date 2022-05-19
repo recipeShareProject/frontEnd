@@ -1,4 +1,6 @@
-const AlarmIcon = ({onClick}) => {
-  return <img alt="alarm" src="imgs/alarm.png" onClick={() => onClick()} />;
+import alarm from 'imgs/alarm.png';
+
+const AlarmIcon = () => {
+  return <img alt="alarm" src={alarm} />;
 };
 export default AlarmIcon;

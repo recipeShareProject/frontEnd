@@ -1,66 +1,100 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
-
+import {useLocation} from 'react-router-dom';
 import Box from '@mui/material/Box';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import HomeIcon from 'common/icons/HomeIcon';
+import RecipeIcon from 'common/icons/RecipeIcon';
+import PartyIcon from 'common/icons/PartyIcon';
+import BookMarkIcon from 'common/icons/BookMarkIcon';
+import {Black20, Colar100} from 'assets/colorSet';
+import HomeColorIcon from 'common/icons/HomeColorIcon';
+import RecipeColorIcon from 'common/icons/RecipeColorIcon';
+import PartyColorIcon from 'common/icons/PartyColorIcon';
+import BookMarkColorIcon from 'common/icons/BookMarkColorIcon';
 
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import FastfoodRoundedIcon from '@mui/icons-material/FastfoodRounded';
-import ChatBubbleRoundedIcon from '@mui/icons-material/ChatBubbleRounded';
-import BookmarkRoundedIcon from '@mui/icons-material/BookmarkRounded';
+const Navigation = () => {
+  const [value, setValue] = useState(0);
+  const location = useLocation();
+  console.log(location);
 
-function Navigation() {
-  const [value, setValue] = React.useState(0);
   const navigate = useNavigate();
-  const onClickHome = () => {
+
+  const moveToHome = () => {
     navigate('/');
   };
-  const onClickRecipe = () => {
+  const moveToRecipe = () => {
     navigate('/search/result');
   };
-  const onClickParty = () => {
+  const moveToParty = () => {
     navigate('/party');
   };
-  const onClickBookmark = () => {
+  const moveToBookmark = () => {
     navigate('/bookmark');
   };
 
   return (
     <Box>
       <StyleNavi
-        showLabels
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}>
-        <BottomNavigationAction
-          onClick={onClickHome}
-          label="홈"
-          icon={<HomeRoundedIcon />}
-        />
-        <BottomNavigationAction
-          onClick={onClickRecipe}
-          label="레시피"
-          icon={<FastfoodRoundedIcon />}
-        />
-        <BottomNavigationAction
-          onClick={onClickParty}
-          label="파티"
-          icon={<ChatBubbleRoundedIcon />}
-        />
-        <BottomNavigationAction
-          onClick={onClickBookmark}
-          label="북마크"
-          icon={<BookmarkRoundedIcon />}
-        />
+      // showLabels
+      // value={value}
+      // onChange={(event, newValue) => {
+      // setValue(newValue);
+      // }}
+      >
+        <NaviBox
+          onClick={() => {
+            moveToHome();
+          }}>
+          {location.pathname === '/' ? <HomeColorIcon /> : <HomeIcon />}
+
+          <NaviText isActive={location.pathname === '/'}>홈</NaviText>
+        </NaviBox>
+        <NaviBox
+          onClick={() => {
+            moveToRecipe();
+          }}>
+          {location.pathname === '/search/result' ? (
+            <RecipeColorIcon />
+          ) : (
+            <RecipeIcon />
+          )}
+          <NaviText isActive={location.pathname === '/search/result'}>
+            레시피
+          </NaviText>
+        </NaviBox>
+        <NaviBox
+          onClick={() => {
+            moveToParty();
+          }}>
+          {location.pathname === '/party' ? (
+            <PartyColorIcon />
+          ) : (
+            <PartyIcon></PartyIcon>
+          )}
+
+          <NaviText isActive={location.pathname === '/party'}>파티</NaviText>
+        </NaviBox>
+        <NaviBox
+          onClick={() => {
+            moveToBookmark();
+          }}>
+          {location.pathname === '/bookmark' ? (
+            <BookMarkColorIcon />
+          ) : (
+            <BookMarkIcon />
+          )}
+
+          <NaviText isActive={location.pathname === '/bookmark'}>
+            북마크
+          </NaviText>
+        </NaviBox>
       </StyleNavi>
     </Box>
   );
-}
+};
 
-const StyleNavi = styled(BottomNavigation)`
+const StyleNavi = styled.div`
   width: 100%;
   height: 60px;
   background-color: white;
@@ -72,6 +106,19 @@ const StyleNavi = styled(BottomNavigation)`
   position: fixed;
   bottom: 0;
   left: 0;
+`;
+
+const NaviBox = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0px 20px;
+`;
+const NaviText = styled.p`
+  font-size: 12px;
+  color: ${(props) => (props.isActive ? Colar100 : Black20)};
+  margin: 0px;
+  margin-top: 5px;
 `;
 
 export default Navigation;

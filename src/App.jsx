@@ -18,6 +18,7 @@ import Header from 'components/common/Header';
 import Navigation from 'components/common/Navigation';
 import ApiTest from 'pages/ApiTest';
 import Popup from 'components/modal/Popup';
+import SearchResult from 'pages/search/SearchResult';
 const App = () => {
   return (
     <Provider store={store}>
@@ -25,8 +26,13 @@ const App = () => {
         <Header />
         <AppWrapper>
           <Routes>
-            <Route path="/" element={<MainPage />} />
+            <Route path="/" exact={true} element={<MainPage />} />
             <Route path="/search/*" element={<Search />} />
+            <Route
+              path="/search/result"
+              exact={true}
+              element={<SearchResult />}
+            />
             <Route path="/recipe/*" element={<Recipe />} />
             <Route path="/auth/*" element={<Auth />} />
             <Route path="/party/*" element={<Party />} />

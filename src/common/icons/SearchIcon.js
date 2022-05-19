@@ -1,4 +1,6 @@
+import search from 'imgs/search.png';
+
 const SearchIcon = ({onClick}) => {
-  return <img alt="search" src="imgs/search.png" onClick={() => onClick()} />;
+  return <img alt="search" src={search} onClick={() => onClick()} />;
 };
 export default SearchIcon;

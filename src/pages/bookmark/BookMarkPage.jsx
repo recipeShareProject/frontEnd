@@ -1,5 +1,6 @@
 import {Box} from '@mui/material';
 import {Black40} from 'assets/colorSet';
+import NotFound from 'common/NotFound';
 import MainBannerImg from 'components/main/MainBannerImg';
 import styled from 'styled-components';
 
@@ -20,10 +21,7 @@ const BookMarkPage = () => {
       </MainBannerGroup> */}
 
       {/* TODO: 북마크 없을때 */}
-      <NotFoundWrapper>
-        <NotFoundImg src="imgs/illust.png" alt="" />
-        <p>북마크가 존재하지 않아요.</p>
-      </NotFoundWrapper>
+      <NotFound desc="북마크가 존재하지 않아요" />
     </Box>
   );
 };
@@ -52,18 +50,4 @@ const Checkbox = styled.input`
   top: 5px;
   left: 5px;
   z-index: 10;
-`;
-
-const NotFoundWrapper = styled.div`
-  width: 100%;
-  height: 50vh;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
-`;
-const NotFoundImg = styled.img`
-  width: 160px;
-  height: 160px;
 `;
