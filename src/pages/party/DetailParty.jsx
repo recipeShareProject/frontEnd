@@ -13,6 +13,7 @@ function DetailParty() {
   const posts = useSelector((state) => state.post.posts);
   const params = useParams();
   const postId = params.postId;
+
   const {category, content, expiredAt, imagePath, location, tag, title} =
     posts[postId];
 
@@ -22,7 +23,7 @@ function DetailParty() {
       <Title>{title}</Title>
       <FlexDiv>
         <TextDiv>{location}</TextDiv>
-        <TextDiv>{timeForToday(expiredAt)}</TextDiv>
+        <TextDiv>{timeForToday(expiredAt, 'party')}</TextDiv>
       </FlexDiv>
       <ImgSlider Img={imagePath}></ImgSlider>
 

@@ -18,7 +18,7 @@ import dayjs from 'dayjs';
 import axios from 'axios';
 import ImgSlider from 'components/common/ImgSlider';
 
-import ModalPopup from 'components/modal/ModalPopup';
+import ModalPopup from 'components/common/ModalPopup';
 
 function TestPage() {
   const post = useSelector((state) => state.post);
@@ -32,6 +32,7 @@ function TestPage() {
   const [value, setValue] = React.useState(null);
   const [startDate, setStartDate] = React.useState(start);
   const [startTime, setStartTime] = React.useState(new Date());
+  const [modal, setModal] = React.useState(false);
   const date = React.useRef();
 
   const onBtn = () => {
@@ -97,7 +98,9 @@ function TestPage() {
       });
   };
   const onLogin = () => {};
-  const openModal = () => {};
+  const openModal = () => {
+    setModal(true);
+  };
   return (
     <>
       {post.posts.map((post, idx) => (
@@ -149,7 +152,13 @@ function TestPage() {
       </a>
       <button onClick={getData}>데이터가져오기</button>
       <button onClick={openModal}>모달팝업</button>
-      <ModalPopup />
+      {modal && (
+        <ModalPopup
+          isOn={true}
+          content="레시피명에 대한 닉네임님의 평가가 궁금해요"
+          closeEvent={setModal}
+          yesEvent={() => console.log('yes')}></ModalPopup>
+      )}
     </>
   );
 }

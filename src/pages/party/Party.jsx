@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {timeForToday} from 'common/timeForToday';
-import dayjs from 'dayjs';
 function Party() {
   const navigate = useNavigate();
   const posts = useSelector((state) => state.post.posts);
