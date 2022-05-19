@@ -1,38 +1,39 @@
 import React from 'react';
 import styled from 'styled-components';
-import {useNavigate, useLocation, useParams} from 'react-router-dom';
-
-import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import {useNavigate, useLocation} from 'react-router-dom';
 
 import Foobar from 'components/common/FooBar';
-function Header() {
+import LogoIcon from 'common/icons/LogoIcon';
+import AlarmIcon from 'common/icons/AlarmIcon';
+import ProfileIcon from 'common/icons/ProfileIcon';
+
+const Header = () => {
   const navigate = useNavigate();
-  const loca = useLocation();
-  const postId = loca.pathname.split('/')[3];
-  const onClickLogo = () => {
+  const location = useLocation();
+  const postId = location.pathname.split('/')[3];
+
+  const moveToMain = () => {
     navigate('/');
   };
-  const onClickNoti = () => {
+  const moveToNoti = () => {
     navigate('/noti');
   };
-  const onClickProfil = () => {
+  const moveToMypage = () => {
     navigate('/my');
   };
   const onClickLogin = () => {
     navigate('/auth/login');
   };
 
-  switch (loca.pathname) {
-    case loca.pathname.includes(`/my`) ? loca.pathname : '':
+  switch (location.pathname) {
+    case location.pathname.includes(`/my`) ? location.pathname : '':
     case '/search/filter':
     case '/recipe/write':
     case '/party/addParty':
       return <Foobar type="back" />;
 
     // case `/recipe/detail/${postId}`:
-    case loca.pathname.includes(`/recipe/detail`) ? loca.pathname : '':
+    case location.pathname.includes(`/recipe/detail`) ? location.pathname : '':
       return <Foobar type="recipe" />;
 
     case `/party/detailParty/${postId}`:
@@ -41,24 +42,18 @@ function Header() {
     default:
       return (
         <StyleHeader>
-          <StyleLogo onClick={onClickLogin}></StyleLogo>
+          <LogoIcon onClick={moveToMain}></LogoIcon>
           <StyleDiv>
-            <StyleAlert onClick={onClickNoti}>
-              <NotificationsRoundedIcon />
+            <StyleAlert onClick={moveToNoti}>
+              <AlarmIcon />
             </StyleAlert>
-            <StyleAvata onClick={onClickProfil}></StyleAvata>
+            <ProfileIcon onClick={moveToMypage}></ProfileIcon>
           </StyleDiv>
           {/* <StyleBtn onClick={onClickLogin}>로그인</StyleBtn> */}
         </StyleHeader>
       );
   }
-}
-
-const StyleBtn = styled.div`
-  height: 1rem;
-  line-height: 1rem;
-  cursor: pointer;
-`;
+};
 
 const StyleHeader = styled.div`
   height: 40px;
@@ -68,13 +63,6 @@ const StyleHeader = styled.div`
   align-items: center;
 `;
 
-const StyleLogo = styled.div`
-  background-color: gray;
-  height: 2rem;
-  width: 6rem;
-  cursor: pointer;
-`;
-
 const StyleDiv = styled.div`
   display: flex;
   justify-content: center;
@@ -82,9 +70,6 @@ const StyleDiv = styled.div`
   cursor: pointer;
 `;
 const StyleAlert = styled.div`
-  background-color: gray;
-  height: 2rem;
-  width: 2rem;
   margin-right: 0.75rem;
   display: flex;
   justify-content: center;
@@ -94,9 +79,9 @@ const StyleAlert = styled.div`
 
 const StyleAvata = styled.div`
   border-radius: 50%;
-  background-color: gray;
-  height: 2.25rem;
-  width: 2.25rem;
+  justify-content: center;
+  align-items: center;
+  display: fl;
 `;
 
 export default Header;

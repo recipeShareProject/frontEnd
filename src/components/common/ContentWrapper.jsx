@@ -1,14 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Floating from './Floating';
 
 function ContentWrapper({children}) {
-  return (
-    <BodyDiv>
-      {children}
-      <Floating />
-    </BodyDiv>
-  );
+  return <BodyDiv>{children}</BodyDiv>;
 }
 const BodyDiv = styled.div`
   position: relative;

@@ -3,15 +3,25 @@ import styled from 'styled-components';
 import MainBannerImg from './MainBannerImg';
 import {Box} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
-const MainBanner = () => {
+
+const Item = ({text}) => {
+  return (
+    <BannerTitle>
+      {text.split('\n').map((txt, idx) => (
+        <div key={idx}>
+          {txt}
+          <br />
+        </div>
+      ))}
+    </BannerTitle>
+  );
+};
+const MainBanner = ({title}) => {
   const navigate = useNavigate();
   return (
-    <Box my={2}>
+    <Box my={2} mb={4}>
       <BannerTitleBox>
-        <BannerTitle>
-          지금 가장 <br />
-          인기있는 레시피에요
-        </BannerTitle>
+        <Item text={title} />
         <BannerMore onClick={() => navigate('/search/result')}>
           더보기
         </BannerMore>
@@ -33,10 +43,12 @@ const BannerTitleBox = styled.div`
   justify-content: space-between;
   align-items: end;
   display: flex;
+  margin: 1.2rem 0px;
 `;
-const BannerTitle = styled.p`
+const BannerTitle = styled.div`
   font-size: 1.4rem;
   font-weight: bold;
+  white-space: pre;
 `;
 const BannerMore = styled.p`
   font-size: 0.8rem;
@@ -52,6 +64,7 @@ const BannerImgGroup = styled.div`
 
   & > div:nth-child(n) {
     margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 `;
 

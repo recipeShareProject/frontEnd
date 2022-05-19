@@ -1,4 +1,6 @@
-import {Box, Button} from '@mui/material';
+import {Box} from '@mui/material';
+import {Black40} from 'assets/colorSet';
+import NotFound from 'common/NotFound';
 import MainBannerImg from 'components/main/MainBannerImg';
 import styled from 'styled-components';
 
@@ -9,49 +11,17 @@ const BookMarkPage = () => {
         <Title>북마크</Title>
         <BookmarkCount>n개</BookmarkCount>
       </Box>
-      <Box sx={{display: 'flex', justifyContent: 'right'}}>
-        <Button>편집</Button>
-      </Box>
+      {/* TODO: 북마크 있을때 */}
+      {/* <MainBannerGroup>
+        <MainBannerImg width="160px" />
+        <MainBannerImg width="160px" />
+        <MainBannerImg width="160px" />
+        <MainBannerImg width="160px" />
+        <MainBannerImg width="160px" />
+      </MainBannerGroup> */}
 
-      <MainBannerGroup>
-        {/* Todo : 공통 컴포넌트 제작 */}
-        <CheckboxWrapper>
-          <Checkbox type="checkbox" id="scales" name="scales" />
-          <label htmlFor="scales">
-            <MainBannerImg />
-          </label>
-        </CheckboxWrapper>
-        <CheckboxWrapper>
-          <Checkbox type="checkbox" id="scales" name="scales" />
-          <label htmlFor="scales">
-            <MainBannerImg />
-          </label>
-        </CheckboxWrapper>
-        <CheckboxWrapper>
-          <Checkbox type="checkbox" id="scales" name="scales" />
-          <label htmlFor="scales">
-            <MainBannerImg />
-          </label>
-        </CheckboxWrapper>
-        <CheckboxWrapper>
-          <Checkbox type="checkbox" id="scales" name="scales" />
-          <label htmlFor="scales">
-            <MainBannerImg />
-          </label>
-        </CheckboxWrapper>
-        <CheckboxWrapper>
-          <Checkbox type="checkbox" id="scales" name="scales" />
-          <label htmlFor="scales">
-            <MainBannerImg />
-          </label>
-        </CheckboxWrapper>
-        <CheckboxWrapper>
-          <Checkbox type="checkbox" id="scales" name="scales" />
-          <label htmlFor="scales">
-            <MainBannerImg />
-          </label>
-        </CheckboxWrapper>
-      </MainBannerGroup>
+      {/* TODO: 북마크 없을때 */}
+      <NotFound desc="북마크가 존재하지 않아요" />
     </Box>
   );
 };
@@ -63,6 +33,8 @@ const Title = styled.p`
 `;
 const BookmarkCount = styled.p`
   margin: 0;
+  color: ${Black40};
+  font-size: 14px;
 `;
 
 const MainBannerGroup = styled.div`
