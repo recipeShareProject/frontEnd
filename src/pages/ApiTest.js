@@ -1,13 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
+import recipeApi from 'api/recipeApi';
 function ApiTest() {
+  const [imgs, setImgs] = React.useState([]);
   return (
     <>
+      <input type="file"></input>
       <h2>레시피</h2>
-      <Button>레시피 홈목록 </Button>
+      <Button
+        onClick={async () => {
+          const a = await recipeApi.test();
+          console.log(a);
+        }}>
+        레시피 홈목록
+      </Button>
       <Button>레시피 검색 </Button>
       <Button>레시피 추가 </Button>
-      <Button>레시피 조회(상세) </Button>
+      <Button
+        onClick={async () => {
+          const a = await recipeApi.getRecipe();
+          console.log(a);
+        }}>
+        레시피 조회(상세)
+      </Button>
       <Button>레시피 삭제</Button>
       <Button>레시피 수정</Button>
       <Button>리뷰 작성</Button>

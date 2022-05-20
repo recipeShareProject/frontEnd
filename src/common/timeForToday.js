@@ -7,7 +7,7 @@ export function timeForToday(value, type) {
   if (type === 'party') {
     today = new Date();
     createdAt = new Date(value);
-    word = '까지';
+    word = '뒤까지';
     betweenTime = Math.floor(
       (createdAt.getTime() - today.getTime()) / 1000 / 60,
     );

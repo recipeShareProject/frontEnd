@@ -28,11 +28,6 @@ const App = () => {
           <Routes>
             <Route path="/" exact={true} element={<MainPage />} />
             <Route path="/search/*" element={<Search />} />
-            <Route
-              path="/search/result"
-              exact={true}
-              element={<SearchResult />}
-            />
             <Route path="/recipe/*" element={<Recipe />} />
             <Route path="/auth/*" element={<Auth />} />
             <Route path="/party/*" element={<Party />} />

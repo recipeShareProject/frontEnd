@@ -23,7 +23,7 @@ function Popup({content, closeEvent, yesEvent, isOn}) {
                       </>
                     ) : (
                       <>
-                        <Icon src="imgs/bad_unselect.png"></Icon>
+                        <Icon src="imgs/bad_select.png"></Icon>
                         <IconContent>별로에요</IconContent>
                       </>
                     )}
@@ -58,7 +58,7 @@ function Popup({content, closeEvent, yesEvent, isOn}) {
               )}
             </ContentWrapper>
           </Box>
-          <FlexDiv>
+          <StyleFlex>
             <Button side="left" bgcolor="#FAF7F6">
               {noText}
             </Button>
@@ -69,7 +69,7 @@ function Popup({content, closeEvent, yesEvent, isOn}) {
               color="#F6F2F0">
               {yesText}
             </Button>
-          </FlexDiv>
+          </StyleFlex>
         </div>
       </Container>
     </>
@@ -133,7 +133,7 @@ const IconContent = styled.div`
   color: ${(props) => (props.color ? props.color : '#D1D0CF')};
   font-size: 12px;
 `;
-const FlexDiv = styled.div`
+const StyleFlex = styled.div`
   display: flex;
 `;
 const Button = styled.div`

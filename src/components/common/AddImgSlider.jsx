@@ -103,30 +103,37 @@ function AddImgSlider() {
 }
 
 const StyleSlider = styled(Slider)`
+  .slick-dots li {
+    margin: 0;
+  }
+  .slick-dots li button:before {
+    font-family: none;
+    font-size: 25px;
+  }
+
   .slick-dots li button:hover:before,
   .slick-dots li button:focus:before {
     opacity: 1;
-    color: #e5e5e5;
+    color: #f6f2f0;
   }
 
   li.slick-active button:hover:before,
   li.slick-active button:focus:before {
     opacity: 1;
-    color: black;
+    color: #f6f2f0;
   }
   .slick-dots {
     bottom: 16px;
   }
   .slick-dots li button:before {
     opacity: 1;
-    color: #e5e5e5;
+    color: #f6f2f0;
   }
   .slick-dots li.slick-active button:before {
     opacity: 1;
-    color: #5c5c5c;
+    color: #f17751;
   }
 `;
-
 const StyleImg = styled.div`
   background-image: url('${(props) => (props.src ? props.src : '')}');
   height: 248px;

@@ -4,67 +4,12 @@ function Noti() {
   return (
     <>
       <h3>알림</h3>
-      <FlexEnd>
+      <StyleFlex>
         <div>비우기</div>
-      </FlexEnd>
+      </StyleFlex>
       <Flex>
         <Profill>
-          <StyledImg></StyledImg>
-        </Profill>
-        <div>
-          <div>OO님이 나의 글에 댓글을 남겼어요</div>
-          <div>아직도 나눔 하시나요? 저도 받고 싶어요 답 주세요!</div>
-
-          <div>n분 전 </div>
-        </div>
-      </Flex>
-      <Flex>
-        <Profill>
-          <StyledImg></StyledImg>
-        </Profill>
-        <div>
-          <div>OO님이 나의 글에 댓글을 남겼어요</div>
-          <div>아직도 나눔 하시나요? 저도 받고 싶어요 답 주세요!</div>
-
-          <div>n분 전 </div>
-        </div>
-      </Flex>
-      <Flex>
-        <Profill>
-          <StyledImg></StyledImg>
-        </Profill>
-        <div>
-          <div>OO님이 나의 글에 댓글을 남겼어요</div>
-          <div>아직도 나눔 하시나요? 저도 받고 싶어요 답 주세요!</div>
-
-          <div>n분 전 </div>
-        </div>
-      </Flex>
-      <Flex>
-        <Profill>
-          <StyledImg></StyledImg>
-        </Profill>
-        <div>
-          <div>OO님이 나의 글에 댓글을 남겼어요</div>
-          <div>아직도 나눔 하시나요? 저도 받고 싶어요 답 주세요!</div>
-
-          <div>n분 전 </div>
-        </div>
-      </Flex>
-      <Flex>
-        <Profill>
-          <StyledImg></StyledImg>
-        </Profill>
-        <div>
-          <div>OO님이 나의 글에 댓글을 남겼어요</div>
-          <div>아직도 나눔 하시나요? 저도 받고 싶어요 답 주세요!</div>
-
-          <div>n분 전 </div>
-        </div>
-      </Flex>
-      <Flex>
-        <Profill>
-          <StyledImg></StyledImg>
+          <StyledImg />
         </Profill>
         <div>
           <div>OO님이 나의 글에 댓글을 남겼어요</div>
@@ -76,7 +21,7 @@ function Noti() {
     </>
   );
 }
-const FlexEnd = styled.div`
+const StyleFlex = styled.div`
   display: flex;
   justify-content: flex-end;
 `;

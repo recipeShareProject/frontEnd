@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 import {useLocation} from 'react-router-dom';
+
 import Box from '@mui/material/Box';
 import HomeIcon from 'common/icons/HomeIcon';
 import RecipeIcon from 'common/icons/RecipeIcon';
@@ -16,7 +17,6 @@ import BookMarkColorIcon from 'common/icons/BookMarkColorIcon';
 const Navigation = () => {
   const [value, setValue] = useState(0);
   const location = useLocation();
-  console.log(location);
 
   const navigate = useNavigate();
 
