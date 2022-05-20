@@ -1,10 +1,16 @@
 import React from 'react';
+import {useNavigate} from 'react-router';
 import styled from 'styled-components';
 
 const SearchFilter = () => {
+  const navigate = useNavigate();
+
+  const moveToSetFilterPage = () => {
+    navigate('/search/filter');
+  };
   return (
     <ButtonGroup>
-      <Button>필터</Button>
+      <Button onClick={() => moveToSetFilterPage()}>필터</Button>
       <Button>매칭률순</Button>
     </ButtonGroup>
   );
