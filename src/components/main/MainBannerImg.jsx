@@ -2,7 +2,10 @@ import React from 'react';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import styled from 'styled-components';
 import {makeStyles} from '@mui/styles';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
+import {Box} from '@mui/material';
+import {Black100, Black40} from 'assets/colorSet';
+import Floating from 'components/common/Floating';
 
 const useStyles = makeStyles({
   bookMark: {
@@ -16,6 +19,8 @@ const useStyles = makeStyles({
 const MainBannerImg = ({width, height}) => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const {pathname} = useLocation();
+
   return (
     <MainBannerImgWrapper>
       <ImgWrapper width={width} height={height}>
@@ -34,7 +39,15 @@ const MainBannerImg = ({width, height}) => {
         </StyleBookIcon>
       </ImgWrapper>
       <MainBannerTitle>레시피명</MainBannerTitle>
-      <MainBannerTime>n 분</MainBannerTime>
+      <Box sx={{display: 'flex'}}>
+        <MainBannerTime color={Black100}>n 분</MainBannerTime>
+        {pathname === '/search/result' && (
+          <MainBannerTime color={Black40} margin="0px 0px 0px 10px">
+            100% 일치
+          </MainBannerTime>
+        )}
+      </Box>
+      <Floating />
     </MainBannerImgWrapper>
   );
 };
@@ -62,6 +75,8 @@ const MainBannerTitle = styled.p`
 const MainBannerTime = styled.p`
   margin: 0.5rem 0px;
   font-size: 12px;
+  color: ${(props) => props.color};
+  margin: ${(props) => (props.margin ? props.margin : '0px')};
 `;
 
 const StyleBookIcon = styled.div`
