@@ -12,6 +12,7 @@ import {
 } from 'assets/colorSet';
 import {useForm} from 'react-hook-form';
 import {useState} from 'react';
+
 const SearchFilter = () => {
   const {
     register,
@@ -38,6 +39,7 @@ const SearchFilter = () => {
           <Title>필터 설정하기</Title>
           <FilterTitle>카테고리</FilterTitle>
         </Box>
+        {/* todo : 이거를 어떻게 공통화 하지? */}
         <FilterButtonGroup>
           <input
             type="radio"

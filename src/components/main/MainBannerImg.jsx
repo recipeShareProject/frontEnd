@@ -68,7 +68,7 @@ const Img = styled.img`
 `;
 
 const MainBannerTitle = styled.p`
-  margin: 0.5rem 0px;
+  margin: 0.5rem 0px 0.2rem 0px;
   font-size: 14px;
   font-weight: bold;
 `;

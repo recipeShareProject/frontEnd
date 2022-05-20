@@ -21,6 +21,7 @@ const SearchFilter = () => {
     setToggleValue(value);
     setOpen(false);
   };
+
   return (
     <>
       <ButtonGroup>

@@ -37,6 +37,7 @@ const DropdownContent = styled.div`
   top: calc(100% - 14rem);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   font-size: 12px;
+  border-radius: 4px;
 
   div {
     display: flex;
