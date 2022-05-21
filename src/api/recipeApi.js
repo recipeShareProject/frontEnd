@@ -1,1 +1,15 @@
-import api from 'api/axios';
+import instance from 'api/instance';
+
+const recipeApi = {
+  getRecipe() {
+    return instance({url: '/board/1', method: 'get'});
+  },
+  addRecipe(data) {
+    return instance({url: '/board/1', method: 'post', data: data});
+  },
+  test() {
+    return instance({url: '', method: 'get'});
+  },
+};
+
+export default recipeApi;

@@ -11,7 +11,7 @@ import MyInfoIcon from 'common/icons/MyInfoIcon';
 import PencilIcon from 'common/icons/PencilIcon';
 import LogoutIcon from 'common/icons/LogoutIcon';
 
-function My() {
+const My = () => {
   const navigate = useNavigate();
   return (
     <>
@@ -41,7 +41,7 @@ function My() {
       </Box>
     </>
   );
-}
+};
 
 const ProfillDiv = styled.div`
   margin-top: 1.5rem;

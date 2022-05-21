@@ -5,7 +5,7 @@ import {Typography} from './My';
 import {Black20, Black40, Colar100} from 'assets/colorSet';
 import {Box} from '@mui/material';
 
-function MyInfo() {
+const MyInfo = () => {
   return (
     <>
       <h3>나의 정보</h3>
@@ -39,7 +39,7 @@ function MyInfo() {
       </Box>
     </>
   );
-}
+};
 
 const Flex = styled.div`
   display: flex;

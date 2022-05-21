@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 import {useLocation} from 'react-router-dom';
+
 import Box from '@mui/material/Box';
 import HomeIcon from 'common/icons/HomeIcon';
 import RecipeIcon from 'common/icons/RecipeIcon';
@@ -16,7 +17,6 @@ import BookMarkColorIcon from 'common/icons/BookMarkColorIcon';
 const Navigation = () => {
   const [value, setValue] = useState(0);
   const location = useLocation();
-  console.log(location);
 
   const navigate = useNavigate();
 
@@ -33,65 +33,76 @@ const Navigation = () => {
     navigate('/bookmark');
   };
 
-  return (
-    <Box>
-      <StyleNavi
-      // showLabels
-      // value={value}
-      // onChange={(event, newValue) => {
-      // setValue(newValue);
-      // }}
-      >
-        <NaviBox
-          onClick={() => {
-            moveToHome();
-          }}>
-          {location.pathname === '/' ? <HomeColorIcon /> : <HomeIcon />}
+  switch (location.pathname) {
+    case location.pathname.includes(`/my`) ? location.pathname : '':
+    case '/search/filter':
+    case '/recipe/write':
+    case '/party/addParty':
+      return '';
 
-          <NaviText isActive={location.pathname === '/'}>홈</NaviText>
-        </NaviBox>
-        <NaviBox
-          onClick={() => {
-            moveToRecipe();
-          }}>
-          {location.pathname === '/search/result' ? (
-            <RecipeColorIcon />
-          ) : (
-            <RecipeIcon />
-          )}
-          <NaviText isActive={location.pathname === '/search/result'}>
-            레시피
-          </NaviText>
-        </NaviBox>
-        <NaviBox
-          onClick={() => {
-            moveToParty();
-          }}>
-          {location.pathname === '/party' ? (
-            <PartyColorIcon />
-          ) : (
-            <PartyIcon></PartyIcon>
-          )}
+    default:
+      return (
+        <Box>
+          <StyleNavi
+          // showLabels
+          // value={value}
+          // onChange={(event, newValue) => {
+          // setValue(newValue);
+          // }}
+          >
+            <NaviBox
+              onClick={() => {
+                moveToHome();
+              }}>
+              {location.pathname === '/' ? <HomeColorIcon /> : <HomeIcon />}
 
-          <NaviText isActive={location.pathname === '/party'}>파티</NaviText>
-        </NaviBox>
-        <NaviBox
-          onClick={() => {
-            moveToBookmark();
-          }}>
-          {location.pathname === '/bookmark' ? (
-            <BookMarkColorIcon />
-          ) : (
-            <BookMarkIcon />
-          )}
+              <NaviText isActive={location.pathname === '/'}>홈</NaviText>
+            </NaviBox>
+            <NaviBox
+              onClick={() => {
+                moveToRecipe();
+              }}>
+              {location.pathname === '/search/result' ? (
+                <RecipeColorIcon />
+              ) : (
+                <RecipeIcon />
+              )}
+              <NaviText isActive={location.pathname === '/search/result'}>
+                레시피
+              </NaviText>
+            </NaviBox>
+            <NaviBox
+              onClick={() => {
+                moveToParty();
+              }}>
+              {location.pathname === '/party' ? (
+                <PartyColorIcon />
+              ) : (
+                <PartyIcon></PartyIcon>
+              )}
 
-          <NaviText isActive={location.pathname === '/bookmark'}>
-            북마크
-          </NaviText>
-        </NaviBox>
-      </StyleNavi>
-    </Box>
-  );
+              <NaviText isActive={location.pathname === '/party'}>
+                파티
+              </NaviText>
+            </NaviBox>
+            <NaviBox
+              onClick={() => {
+                moveToBookmark();
+              }}>
+              {location.pathname === '/bookmark' ? (
+                <BookMarkColorIcon />
+              ) : (
+                <BookMarkIcon />
+              )}
+
+              <NaviText isActive={location.pathname === '/bookmark'}>
+                북마크
+              </NaviText>
+            </NaviBox>
+          </StyleNavi>
+        </Box>
+      );
+  }
 };
 
 const StyleNavi = styled.div`

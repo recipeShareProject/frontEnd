@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Squre({children}) {
+const Squre = ({children}) => {
   return (
     <>
       <StyleSqure>{children}</StyleSqure>
     </>
   );
-}
+};
 
 const StyleSqure = styled.div`
   width: 10vw;

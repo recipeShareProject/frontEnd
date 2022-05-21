@@ -7,7 +7,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 import ModalPopup from 'components/common/ModalPopup';
-function FooBar({type}) {
+const FooBar = ({type}) => {
   const navigate = useNavigate();
   const [modal, setModal] = React.useState(false);
   const [shareModal, setShareModal] = React.useState(false);
@@ -19,31 +19,20 @@ function FooBar({type}) {
     case 'back':
       return (
         <StyleHeader>
-          <ArrowBackIosIcon onClick={() => setModal(true)} fontSize="small" />
-          {modal && (
-            <ModalPopup
-              isOn={false}
-              content="게시물 작성을 정말 그만두시겠어요?"
-              closeEvent={setModal}
-              yesEvent={() => {
-                onClickBack();
-              }}></ModalPopup>
-          )}
+          <ArrowBackIosIcon onClick={onClickBack} fontSize="small" />
         </StyleHeader>
       );
     case 'recipe':
       return (
         <StyleHeader>
-          <ArrowBackIosIcon onClick={onClickBack} fontSize="small" />
+          <ArrowBackIosIcon onClick={setModal(true)} fontSize="small" />
           <BookmarkIcon />
           {modal && (
             <ModalPopup
               isOn={false}
               content="레시피 등록을 정말 그만두시겠어요?"
               closeEvent={setModal}
-              yesEvent={() => {
-                onClickBack();
-              }}></ModalPopup>
+              yesEvent={() => {}}></ModalPopup>
           )}
         </StyleHeader>
       );
@@ -89,7 +78,7 @@ function FooBar({type}) {
       break;
   }
   return <React.Fragment></React.Fragment>;
-}
+};
 
 const StyleHeader = styled.div`
   height: 40px;
