@@ -9,6 +9,7 @@ import {timeForToday} from 'common/timeForToday';
 import {Black40, Colar100} from 'assets/colorSet';
 import NotFound from 'common/NotFound';
 import WritePencilIcon from 'common/icons/WritePencilIcon';
+import PartyPost from 'components/party/PartyPost';
 const Party = () => {
   const navigate = useNavigate();
   const posts = useSelector((state) => state.post.posts);
@@ -21,6 +22,11 @@ const Party = () => {
         <Location>OO동</Location>
       </Box>
       <Msg>나의 위치를 기준으로 5km 이내의 게시물이 노출돼요</Msg>
+      <PartyPost />
+      <PartyPost />
+      <PartyPost />
+      <PartyPost />
+      <PartyPost />
       {posts ? (
         posts.map((v, idx) => (
           <Card key={idx} onClick={() => navigate(`detailParty/${idx}`)}>
