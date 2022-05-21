@@ -254,6 +254,7 @@ const AddButton = styled.button`
   font-weight: 500;
 `;
 
+//TODO : 공통
 const SubmitButton = styled.button`
   width: 100%;
   background: ${Colar100};
