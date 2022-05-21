@@ -9,16 +9,16 @@ import Auth from 'pages/auth';
 import Party from 'pages/party';
 import MyPage from 'pages/myPage';
 import Noti from 'pages/noti';
-import TestPage from 'pages/TestPage';
 import MainPage from 'pages/main/MainPage';
 import Search from 'pages/search';
 import Recipe from 'pages/recipe';
 import BookMarkPage from 'pages/bookmark/BookMarkPage';
 import Header from 'components/common/Header';
 import Navigation from 'components/common/Navigation';
-import ApiTest from 'pages/ApiTest';
-import SearchResult from 'pages/search/SearchResult';
+import RecipeDetail from 'pages/recipe/RecipeDetail';
 
+import ApiTest from 'pages/ApiTest';
+import TestPage from 'pages/TestPage';
 const App = () => {
   return (
     <Provider store={store}>
@@ -28,11 +28,6 @@ const App = () => {
           <Routes>
             <Route path="/" exact={true} element={<MainPage />} />
             <Route path="/search/*" element={<Search />} />
-            <Route
-              path="/search/result"
-              exact={true}
-              element={<SearchResult />}
-            />
             <Route path="/recipe/*" element={<Recipe />} />
             <Route path="/auth/*" element={<Auth />} />
             <Route path="/party/*" element={<Party />} />

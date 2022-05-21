@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {tagActions} from 'redux/slice/tagSlice';
+import {Colar100, Black5} from 'assets/colorSet';
 function Tag({type, Children, tag}) {
   const dispatch = useDispatch();
   const tags = useSelector((state) => state.tag.tags);
@@ -46,16 +47,21 @@ const FilterInputTagWrapper = styled.div`
 `;
 
 const FilterInputTag = styled.div`
-  color: white;
-  background: #5c5c5c;
+  color: ${Colar100};
+  border: 2px solid ${Black5};
+  background: white;
   display: flex;
   align-items: center;
   width: fit-content;
   padding: 5px;
-  font-size: 0.8rem;
+
   p {
     margin: 0;
     margin: 0px 10px;
+    font-size: 12px;
+    line-height: 130%;
+    font-weight: 600;
+    text-align: center;
   }
 `;
 

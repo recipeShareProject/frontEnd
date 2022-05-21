@@ -13,7 +13,6 @@ import PartyPost from 'components/party/PartyPost';
 const Party = () => {
   const navigate = useNavigate();
   const posts = useSelector((state) => state.post.posts);
-  React.useEffect(() => {}, []);
 
   return (
     <>
@@ -23,27 +22,21 @@ const Party = () => {
       </Box>
       <Msg>나의 위치를 기준으로 5km 이내의 게시물이 노출돼요</Msg>
       <PartyPost />
-      <PartyPost />
-      <PartyPost />
-      <PartyPost />
-      <PartyPost />
       {posts ? (
         posts.map((v, idx) => (
-          <Card key={idx} onClick={() => navigate(`detailParty/${idx}`)}>
-            <Thumnail src={v.imagePath[0]}></Thumnail>
-            <div>
-              <Category>{v.category}</Category>
-              <PostTitle>{v.title}</PostTitle>
-              <StyleRow>
-                <PostLocation>{v.location}</PostLocation>
-                <Time>{timeForToday(v.expiredAt, 'party')}</Time>
-              </StyleRow>
-            </div>
-          </Card>
+          <PartyPost
+            key={idx}
+            thumnail={v.imagePath[0]}
+            category={v.category}
+            title={v.title}
+            location={v.location}
+            time={timeForToday(v.expiredAt, 'party')}
+          />
         ))
       ) : (
         <NotFound desc="새로운 게시글이 존재하지 않아요" />
       )}
+
       <FloatBtn>
         <WritePencilIcon
           onClick={() => {
@@ -71,43 +64,6 @@ const Msg = styled.p`
   font-size: 12px;
   margin-top: 0.5rem;
 `;
-const Card = styled.div`
-  display: flex;
-  margin: 1rem 0;
-
-  cursor: pointer;
-`;
-const Thumnail = styled.div`
-  width: 6.5rem;
-  height: 6.5rem;
-
-  margin-right: 0.5rem;
-
-  background-image: url('${(props) => (props.src ? props.src : '')}');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  border-radius: 4px;
-`;
-
-const StyleRow = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-const Category = styled.p`
-  margin: 0;
-  color: ${Colar100};
-  font-size: 12px;
-`;
-
-const PostTitle = styled.p`
-  font-weight: bold;
-  font-size: 1rem;
-  margin: 0;
-
-  margin: 8px 8px 8px 0;
-`;
 
 const FloatBtn = styled.div`
   border-radius: 50%;
@@ -125,15 +81,5 @@ const FloatBtn = styled.div`
 
   cursor: pointer;
 `;
-const PostLocation = styled.p`
-  margin: 0;
-  color: black;
-  font-size: 12px;
-  margin-right: 8px;
-`;
-const Time = styled.p`
-  margin: 0;
-  color: ${Black40};
-  font-size: 12px;
-`;
+
 export default Party;

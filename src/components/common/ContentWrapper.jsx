@@ -6,7 +6,7 @@ const ContentWrapper = ({children}) => {
 };
 const BodyDiv = styled.div`
   position: relative;
-  height: calc(100vh - 160px);
+  height: calc(100vh - 132px);
   padding: 0 16px;
   width: 100%;
   overflow: auto;

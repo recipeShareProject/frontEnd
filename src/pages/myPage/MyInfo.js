@@ -26,14 +26,14 @@ const MyInfo = () => {
       <StyleP>이미 사용 중인 닉네임이에요</StyleP>
 
       <Box>
-        <SubmitButton background="white" color={Black20} bottom="120px">
+        {/* <SubmitButton background="white" color={Black20} bottom="120px">
           탈퇴하기
-        </SubmitButton>
+        </SubmitButton> */}
         <SubmitButton
           type="submit"
           background={Colar100}
           color="white"
-          bottom="60px">
+          bottom="0px">
           가입하기
         </SubmitButton>
       </Box>
