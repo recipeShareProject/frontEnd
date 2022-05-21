@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import recipeApi from 'api/recipeApi';
-function ApiTest() {
+const ApiTest = () => {
   const [imgs, setImgs] = React.useState([]);
   return (
     <>
@@ -52,7 +52,7 @@ function ApiTest() {
       <Button>내 댓글</Button>
     </>
   );
-}
+};
 
 const Button = styled.button`
   width: 100%;

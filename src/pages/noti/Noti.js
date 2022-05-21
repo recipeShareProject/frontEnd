@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-function Noti() {
+const Noti = () => {
   return (
     <>
       <h3>알림</h3>
@@ -20,7 +20,7 @@ function Noti() {
       </Flex>
     </>
   );
-}
+};
 const StyleFlex = styled.div`
   display: flex;
   justify-content: flex-end;

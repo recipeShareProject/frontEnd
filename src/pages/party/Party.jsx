@@ -9,9 +9,10 @@ import {timeForToday} from 'common/timeForToday';
 import {Black40, Colar100} from 'assets/colorSet';
 import NotFound from 'common/NotFound';
 import WritePencilIcon from 'common/icons/WritePencilIcon';
-function Party() {
+const Party = () => {
   const navigate = useNavigate();
   const posts = useSelector((state) => state.post.posts);
+  React.useEffect(() => {}, []);
 
   return (
     <>
@@ -28,8 +29,8 @@ function Party() {
               <Category>{v.category}</Category>
               <PostTitle>{v.title}</PostTitle>
               <StyleRow>
-                <div>{v.location}</div>
-                <div>{timeForToday(v.expiredAt, 'party')}</div>
+                <PostLocation>{v.location}</PostLocation>
+                <Time>{timeForToday(v.expiredAt, 'party')}</Time>
               </StyleRow>
             </div>
           </Card>
@@ -46,7 +47,7 @@ function Party() {
       </FloatBtn>
     </>
   );
-}
+};
 const Title = styled.p`
   font-weight: bold;
   font-size: 1.4rem;
@@ -98,7 +99,8 @@ const PostTitle = styled.p`
   font-weight: bold;
   font-size: 1rem;
   margin: 0;
-  margin-right: 0.5rem;
+
+  margin: 8px 8px 8px 0;
 `;
 
 const FloatBtn = styled.div`
@@ -116,5 +118,16 @@ const FloatBtn = styled.div`
   align-items: center;
 
   cursor: pointer;
+`;
+const PostLocation = styled.p`
+  margin: 0;
+  color: black;
+  font-size: 12px;
+  margin-right: 8px;
+`;
+const Time = styled.p`
+  margin: 0;
+  color: ${Black40};
+  font-size: 12px;
 `;
 export default Party;

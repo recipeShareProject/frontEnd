@@ -258,7 +258,7 @@ const SubmitButton = styled.button`
   width: 100%;
   background: ${Colar100};
   position: fixed;
-  bottom: 60px;
+  bottom: 0px;
   margin-left: -1rem;
   border: none;
   padding: 20px;

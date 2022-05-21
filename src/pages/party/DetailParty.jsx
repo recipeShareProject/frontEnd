@@ -9,7 +9,7 @@ import {useParams} from 'react-router-dom';
 import Tag from 'components/common/Tag';
 import {timeForToday} from 'common/timeForToday';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-function DetailParty() {
+const DetailParty = () => {
   const posts = useSelector((state) => state.post.posts);
   const params = useParams();
   const postId = params.postId;
@@ -50,7 +50,7 @@ function DetailParty() {
       <div>답글달기</div>
     </>
   );
-}
+};
 
 const Category = styled.div`
   font-size: 14px;

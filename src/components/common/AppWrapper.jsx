@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 import ContentWrapper from './ContentWrapper';
 
-function AppWrapper({children}) {
+const AppWrapper = ({children}) => {
   return (
     <>
       <ContentWrapper>{children}</ContentWrapper>
     </>
   );
-}
+};
 
 export default AppWrapper;

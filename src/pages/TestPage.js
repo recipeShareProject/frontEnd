@@ -19,8 +19,8 @@ import axios from 'axios';
 import ImgSlider from 'components/common/ImgSlider';
 
 import ModalPopup from 'components/common/ModalPopup';
-
-function TestPage() {
+import {getLocation} from 'common/getLocation';
+const TestPage = () => {
   const post = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const now = dayjs();
@@ -40,47 +40,15 @@ function TestPage() {
   };
   const {kakao} = window;
   const geocoder = new kakao.maps.services.Geocoder();
-  const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          // position 객체 내부에 timestamp(현재 시간)와 coords 객체
-          const time = new Date(position.timestamp);
-          console.log(position);
-          console.log(`현재시간 : ${time}`);
-          console.log(`latitude 위도 : ${position.coords.latitude}`);
-          console.log(`longitude 경도 : ${position.coords.longitude}`); //이거만 내 위도 경도 받아오는거임
-          // var coord = new kakao.maps.LatLng(
-          //   `${position.coords.latitude}`,
-          //   `${position.coords.longitude}`,
-          // );
-
-          // geocoder.coord2Address(coord.getLng(), coord.getLat(), callback); // 주소받아오는거
-        },
-        (error) => {
-          console.error(error);
-        },
-        {
-          enableHighAccuracy: false,
-          maximumAge: 0,
-          timeout: Infinity,
-        },
-      );
-    } else {
-      alert('GPS를 지원하지 않습니다');
-    }
-  };
-
-  const callback = function (result, status) {
-    if (status === kakao.maps.services.Status.OK) {
-      console.log(result[0].address.address_name);
-    }
-  };
 
   const getImg = () => {
     setImg(
       'https://potluck-test.s3.ap-northeast-2.amazonaws.com/board/d9752923-a839-4823-bfc3-a92fc35d3245%EA%B9%80%EC%A7%80%EC%9B%901.jpg',
     );
+  };
+  const ClickLocation = () => {
+    const a = getLocation();
+    console.log(a);
   };
   const getData = () => {
     axios
@@ -144,7 +112,7 @@ function TestPage() {
         dateFormat="h:mm aa"
       />
       <button onClick={onBtn}>input가져와</button>
-      <button onClick={getLocation}>위치가져와</button>
+      <button onClick={ClickLocation}>위치가져와</button>
       <button onClick={getImg}>사진가져와</button>
       <StyleImg src={img}></StyleImg>
       <a href="http://3.35.106.187/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/auth/profil">
@@ -161,7 +129,7 @@ function TestPage() {
       )}
     </>
   );
-}
+};
 
 const DatePicker1 = styled(DatePicker)`
   /* background-color: red; */

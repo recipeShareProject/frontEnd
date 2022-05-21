@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 
-function MyInfo() {
+const MyInfo = () => {
   return (
     <>
       <h3>나의 정보</h3>
@@ -25,7 +25,7 @@ function MyInfo() {
       </StyleBtn>
     </>
   );
-}
+};
 
 const Avata = styled.div`
   border-radius: 50%;

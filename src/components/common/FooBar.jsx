@@ -7,7 +7,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 import ModalPopup from 'components/common/ModalPopup';
-function FooBar({type}) {
+const FooBar = ({type}) => {
   const navigate = useNavigate();
   const [modal, setModal] = React.useState(false);
   const [shareModal, setShareModal] = React.useState(false);
@@ -78,7 +78,7 @@ function FooBar({type}) {
       break;
   }
   return <React.Fragment></React.Fragment>;
-}
+};
 
 const StyleHeader = styled.div`
   height: 40px;

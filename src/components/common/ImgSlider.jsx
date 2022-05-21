@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-function AddImgSlider({Img}) {
+const AddImgSlider = ({Img}) => {
   const settings = {
     dots: true,
     dotsClass: 'slick-dots',
@@ -29,7 +29,7 @@ function AddImgSlider({Img}) {
       </StyleSlider>
     </React.Fragment>
   );
-}
+};
 
 const StyleSlider = styled(Slider)`
   .slick-dots li {

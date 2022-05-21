@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function RecipeTab() {
+const RecipeTab = () => {
   return (
     <>
       <StyleGrid>
@@ -28,7 +28,7 @@ function RecipeTab() {
       </StyleGrid>
     </>
   );
-}
+};
 
 const StyleGrid = styled.div`
   display: grid;

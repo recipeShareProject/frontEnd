@@ -18,7 +18,7 @@ import Box from '@mui/material/Box';
 import {Black5, Black20, Colar100} from 'assets/colorSet';
 
 import CostomDatePicker from 'components/party/CostomDatePicker';
-function EditParty() {
+const EditParty = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -95,9 +95,8 @@ function EditParty() {
         content: content.current.value,
         tag: tags,
         expiredAt: `${startDate}`,
-        loaction: adress[2],
+        location: adress[2],
       };
-      console.log(data);
       dispatch(postActions.setPost(data));
       navigate('/party');
     }
@@ -114,7 +113,7 @@ function EditParty() {
       </Title>
       <Box>
         <InputWrapper>
-          <Input placeholder="제목을 입력해주세요"></Input>
+          <Input ref={title} placeholder="제목을 입력해주세요"></Input>
         </InputWrapper>
       </Box>
       <Title fontSize="16px" margin="24px 0 16px 0">
@@ -149,7 +148,7 @@ function EditParty() {
       </Title>
       <Box sx={{margin: '0 0 16px 0'}}>
         <InputWrapper>
-          <Input placeholder="설명을 입력해 주세요"></Input>
+          <Input ref={content} placeholder="설명을 입력해 주세요"></Input>
         </InputWrapper>
       </Box>
       <AddImgSlider />
@@ -187,10 +186,10 @@ function EditParty() {
           />
         </PickerWrapper>
       </StyleFlex>
-      <AddBtn onClick={onRegi}>등록하기</AddBtn>
+      <SubmitButton onClick={onRegi}>등록하기</SubmitButton>
     </>
   );
-}
+};
 
 const Title = styled.div`
   font-weight: bold;
@@ -244,16 +243,6 @@ const Input = styled.input`
   background: none;
 `;
 
-const AddBtn = styled.div`
-  height: 48px;
-  background-color: lightgray;
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-`;
-
 const PlusBtn = styled(AddRoundedIcon)`
   cursor: pointer;
 `;
@@ -275,5 +264,14 @@ const TimePicker1 = styled(DatePicker)`
   border: none;
   outline: none;
 `;
-
+const SubmitButton = styled.button`
+  width: 100%;
+  background: ${Colar100};
+  position: fixed;
+  bottom: 0px;
+  margin-left: -1rem;
+  border: none;
+  padding: 20px;
+  color: white;
+`;
 export default EditParty;

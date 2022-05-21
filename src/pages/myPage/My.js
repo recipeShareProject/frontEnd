@@ -5,7 +5,7 @@ import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import CreateRoundedIcon from '@mui/icons-material/CreateRounded';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 
-function My() {
+const My = () => {
   const navigate = useNavigate();
   return (
     <>
@@ -31,7 +31,7 @@ function My() {
       </Btn>
     </>
   );
-}
+};
 
 const StyleAvata = styled.div`
   border-radius: 50%;
