@@ -2,10 +2,8 @@ import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {Box} from '@mui/material';
 import styled from 'styled-components';
-import CloseIcon from '@mui/icons-material/Close';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ModalPopup from 'components/common/ModalPopup';
 import {Black20, Black5, Colar100, Navy100} from 'assets/colorSet';
 
@@ -254,6 +252,7 @@ const AddButton = styled.button`
   font-weight: 500;
 `;
 
+//TODO : 공통
 const SubmitButton = styled.button`
   width: 100%;
   background: ${Colar100};
