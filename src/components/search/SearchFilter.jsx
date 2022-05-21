@@ -26,7 +26,7 @@ const SearchFilter = () => {
     <>
       <ButtonGroup>
         <Button onClick={() => moveToSetFilterPage()}>필터</Button>
-        <Button onClick={() => onOpenFilterMenu()} color>
+        <Button onClick={() => onOpenFilterMenu()} color={Colar100}>
           {toggleValue}
         </Button>
         {open && (
@@ -56,7 +56,7 @@ const Button = styled.button`
   width: 100%;
   padding: 10px;
   font-weight: 500;
-  color: ${(props) => (props.color ? Colar100 : '')};
+  color: ${(props) => (props.color ? props.color : '')};
 `;
 
 const ToggleMenu = styled.div`
