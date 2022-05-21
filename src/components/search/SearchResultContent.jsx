@@ -3,7 +3,6 @@ import MainBannerImg from 'components/main/MainBannerImg';
 
 const SearchResultContent = () => {
   return (
-    //   TODO : 간격 맞추기
     <ImgGroup>
       <MainBannerImg width="100%" />
       <MainBannerImg width="100%" />
@@ -21,6 +20,7 @@ const SearchResultContent = () => {
 const ImgGroup = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 `;
 
 export default SearchResultContent;
