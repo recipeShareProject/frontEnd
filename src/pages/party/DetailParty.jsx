@@ -9,6 +9,11 @@ import {useParams} from 'react-router-dom';
 import Tag from 'components/common/Tag';
 import {timeForToday} from 'common/timeForToday';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
+import {Colar100, Black40, Black20} from 'assets/colorSet';
+import SendIcon from 'common/icons/SendIcon';
+
+import RecipeReview from 'components/recipe/RecipeReview';
 const DetailParty = () => {
   const posts = useSelector((state) => state.post.posts);
   const params = useParams();
@@ -19,59 +24,65 @@ const DetailParty = () => {
 
   return (
     <>
-      <Category>{category}</Category>
+      <Nickname>닉네임</Nickname>
       <Title>{title}</Title>
       <StyleFlex>
-        <Text>{location}</Text>
-        <Text>{timeForToday(expiredAt, 'party')}</Text>
+        <Location>{location}</Location>
+        <Time>{timeForToday(expiredAt, 'party')}</Time>
       </StyleFlex>
       <ImgSlider Img={imagePath}></ImgSlider>
       <Content>{content}</Content>
       <Tag tag={tag}></Tag>
-      <Title>댓글</Title>
+
       <InputWrapper>
-        <StyledInput placeholder="댓글을 남겨보세요"></StyledInput>
-        <ArrowForwardIcon />
+        <Input placeholder="댓글을 남겨보세요" />
+        <SendIcon />
       </InputWrapper>
+      <CommentTitle>댓글</CommentTitle>
       <Profile>
         <StyleAvata />
+
         <div>
-          <p>닉네임</p>
+          <CommentNickname>닉네임</CommentNickname>
           <StyleFlex>
-            <p>OO동</p>
-            <p>n분 전</p>
+            <CommentLocation>OO동</CommentLocation>
+            <CommentTime>n분 전</CommentTime>
           </StyleFlex>
         </div>
       </Profile>
-      <Content>
+      <ComentContent>
         숟가락을 이용해 전복 살과 껍질을 분리하고 내장도 조심스럽게 떼어 내세요.
         내장은 버리지 말고 죽이나 찌개 등에 넣어 드셔도 좋아요.
-      </Content>
-      <div>답글달기</div>
+      </ComentContent>
+      <Reply>답글달기</Reply>
     </>
   );
 };
 
-const Category = styled.div`
-  font-size: 14px;
-  line-height: 140%;
+const Nickname = styled.div`
+  font-size: 12px;
+  color: ${Colar100};
+  margin-bottom: 8px;
 `;
 
 const Title = styled.div`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 20px;
   line-height: 120%;
+  margin-bottom: 8px;
 `;
-
+const Location = styled.div`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  margin-right: 8px;
+`;
+const Time = styled.div`
+  color: ${Black40};
+`;
 const StyleFlex = styled.div`
   display: flex;
   margin-bottom: 1rem;
-`;
-
-const Text = styled.div`
-  font-size: 14px;
-  line-height: 140%;
-  margin-right: 0.5rem;
 `;
 
 const StyleAvata = styled.div`
@@ -83,7 +94,7 @@ const StyleAvata = styled.div`
 `;
 
 const Profile = styled.div`
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   display: flex;
   align-items: center;
 `;
@@ -96,21 +107,56 @@ const Content = styled.div`
 `;
 
 const InputWrapper = styled.div`
-  margin-top: 0.5rem;
-
-  background-color: #e5e5e5;
-  padding: 10px 8px;
-
+  width: 100%;
+  height: 48px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid ${Black20};
 `;
 
-const StyledInput = styled.input`
-  background-color: #e5e5e5;
-  font-size: 1rem;
-  line-height: 1.5rem;
-
-  outline: none;
+const Input = styled.input`
+  width: 100%;
   border: none;
+  background: none;
 `;
+const CommentTitle = styled.div`
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  margin-top: 24px;
+`;
+const CommentNickname = styled.div`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+`;
+const CommentLocation = styled.div`
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 130%;
+  margin-right: 8px;
+`;
+const CommentTime = styled.div`
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 130%;
+  color: ${Black40};
+`;
+const ComentContent = styled.div`
+  font-size: 14px;
+  line-height: 150%;
+
+  letter-spacing: 0.25px;
+  margin-bottom: 8px;
+`;
+const Reply = styled.div`
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 130%;
+  color: ${Black40};
+`;
+
 export default DetailParty;
