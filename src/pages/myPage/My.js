@@ -5,18 +5,18 @@ import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import CreateRoundedIcon from '@mui/icons-material/CreateRounded';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 
-function My() {
+const My = () => {
   const navigate = useNavigate();
   return (
     <>
       <h3>마이페이지</h3>
-      <ProfillDiv>
+      <Profile>
         <StyleAvata></StyleAvata>
         <div>
           <div>닉네임</div>
           <div>potluck@kakao.com</div>
         </div>
-      </ProfillDiv>
+      </Profile>
       <Btn onClick={() => navigate('/my/myInfo')}>
         <CreateRoundedIcon />
         <p>나의 정보</p>
@@ -31,7 +31,7 @@ function My() {
       </Btn>
     </>
   );
-}
+};
 
 const StyleAvata = styled.div`
   border-radius: 50%;
@@ -41,7 +41,7 @@ const StyleAvata = styled.div`
   margin-right: 0.75rem;
 `;
 
-const ProfillDiv = styled.div`
+const Profile = styled.div`
   margin-top: 1.5rem;
   margin-bottom: 1.125rem;
   display: flex;

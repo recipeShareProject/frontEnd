@@ -7,7 +7,9 @@ import 'slick-carousel/slick/slick-theme.css';
 import {useDispatch, useSelector} from 'react-redux';
 import {imgActions} from 'redux/slice/imgSlice';
 
-function AddImgSlider() {
+import {Black10} from 'assets/colorSet';
+import EmptyPictureIcon from 'common/icons/EmptyPictureIcon';
+const AddImgSlider = () => {
   const dispatch = useDispatch();
   const fileInput = useRef('');
   const Img = useSelector((state) => state.img.completeImgs);
@@ -54,7 +56,16 @@ function AddImgSlider() {
             onChange={selectFile}
             ref={fileInput}></StyleInput>
           <label htmlFor="0">
-            <StyleImg src={Img[0]}></StyleImg>
+            {Img[0] ? (
+              <StyleImg src={Img[0]}></StyleImg>
+            ) : (
+              <EmptyImg>
+                <EmptyImgWrapper>
+                  <EmptyPictureIcon />
+                  <p>사진을 추가해주세요</p>
+                </EmptyImgWrapper>
+              </EmptyImg>
+            )}
           </label>
         </div>
         <div>
@@ -64,7 +75,16 @@ function AddImgSlider() {
             onChange={selectFile}
             ref={fileInput}></StyleInput>
           <label htmlFor="1">
-            <StyleImg src={Img[1]}></StyleImg>
+            {Img[1] ? (
+              <StyleImg src={Img[1]}></StyleImg>
+            ) : (
+              <EmptyImg>
+                <EmptyImgWrapper>
+                  <EmptyPictureIcon />
+                  <p>사진을 추가해주세요</p>
+                </EmptyImgWrapper>
+              </EmptyImg>
+            )}
           </label>
         </div>
         <div>
@@ -74,7 +94,16 @@ function AddImgSlider() {
             onChange={selectFile}
             ref={fileInput}></StyleInput>
           <label htmlFor="2">
-            <StyleImg src={Img[2]}></StyleImg>
+            {Img[2] ? (
+              <StyleImg src={Img[2]}></StyleImg>
+            ) : (
+              <EmptyImg>
+                <EmptyImgWrapper>
+                  <EmptyPictureIcon />
+                  <p>사진을 추가해주세요</p>
+                </EmptyImgWrapper>
+              </EmptyImg>
+            )}
           </label>
         </div>
         <div>
@@ -84,7 +113,16 @@ function AddImgSlider() {
             onChange={selectFile}
             ref={fileInput}></StyleInput>
           <label htmlFor="3">
-            <StyleImg src={Img[3]}></StyleImg>
+            {Img[3] ? (
+              <StyleImg src={Img[3]}></StyleImg>
+            ) : (
+              <EmptyImg>
+                <EmptyImgWrapper>
+                  <EmptyPictureIcon />
+                  <p>사진을 추가해주세요</p>
+                </EmptyImgWrapper>
+              </EmptyImg>
+            )}
           </label>
         </div>
         <div>
@@ -94,43 +132,59 @@ function AddImgSlider() {
             onChange={selectFile}
             ref={fileInput}></StyleInput>
           <label htmlFor="4">
-            <StyleImg src={Img[4]}></StyleImg>
+            {Img[4] ? (
+              <StyleImg src={Img[4]}></StyleImg>
+            ) : (
+              <EmptyImg>
+                <EmptyImgWrapper>
+                  <EmptyPictureIcon />
+                  <p>사진을 추가해주세요</p>
+                </EmptyImgWrapper>
+              </EmptyImg>
+            )}
           </label>
         </div>
       </StyleSlider>
     </React.Fragment>
   );
-}
+};
 
 const StyleSlider = styled(Slider)`
+  .slick-dots li {
+    margin: 0;
+  }
+  .slick-dots li button:before {
+    font-family: none;
+    font-size: 25px;
+  }
+
   .slick-dots li button:hover:before,
   .slick-dots li button:focus:before {
     opacity: 1;
-    color: #e5e5e5;
+    color: #f6f2f0;
   }
 
   li.slick-active button:hover:before,
   li.slick-active button:focus:before {
     opacity: 1;
-    color: black;
+    color: #f6f2f0;
   }
   .slick-dots {
     bottom: 16px;
   }
   .slick-dots li button:before {
     opacity: 1;
-    color: #e5e5e5;
+    color: #f6f2f0;
   }
   .slick-dots li.slick-active button:before {
     opacity: 1;
-    color: #5c5c5c;
+    color: #f17751;
   }
 `;
-
 const StyleImg = styled.div`
   background-image: url('${(props) => (props.src ? props.src : '')}');
   height: 248px;
-  background-color: gray;
+  background-color: ${Black10};
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -138,5 +192,25 @@ const StyleImg = styled.div`
 
 const StyleInput = styled.input`
   display: none;
+`;
+const EmptyImgWrapper = styled.div`
+  height: 248px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const EmptyImg = styled.div`
+  height: 248px;
+  width: 100%;
+  background-color: ${Black10};
+
+  p {
+    margin: 0;
+    color: white;
+    margin: 7px;
+  }
 `;
 export default AddImgSlider;

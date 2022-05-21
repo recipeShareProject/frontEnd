@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function PartyTab() {
+const PartyTab = () => {
   return (
     <>
       <div>2021년 0월 0일</div>
@@ -52,7 +52,7 @@ function PartyTab() {
       </Flex>
     </>
   );
-}
+};
 const StyledImg = styled.div`
   background-color: lightgray;
   width: 104px;

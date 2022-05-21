@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function ContentWrapper({children}) {
+const ContentWrapper = ({children}) => {
   return <BodyDiv>{children}</BodyDiv>;
-}
+};
 const BodyDiv = styled.div`
   position: relative;
   height: calc(100vh - 160px);

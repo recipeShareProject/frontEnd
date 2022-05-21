@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import KakaoIcon from 'asset/img/KakaoIcon.png';
-import GoogleIcon from 'asset/img/GoogleIcon.png';
+import KakaoIcon from 'imgs/KakaoIcon.png';
+import GoogleIcon from 'imgs/GoogleIcon.png';
 
 const Login = () => {
   return (
@@ -15,13 +15,13 @@ const Login = () => {
         <Kakao onClick={() => {}}>
           <Icon src={KakaoIcon} />
 
-          <a href="http://3.35.106.187/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/auth/profil">
+          <a href="http://justpotluck.shop/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/auth/profil">
             카카오로 시작하기
           </a>
         </Kakao>
         <Google>
           <Icon src={GoogleIcon} />
-          <a href="http://3.35.106.187/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/auth/profil">
+          <a href="http://www.justpotluck.shop/oauth2/authorization/google?redirect_uri=http://localhost:3000/auth/profil">
             구글로 시작하기
           </a>
         </Google>
