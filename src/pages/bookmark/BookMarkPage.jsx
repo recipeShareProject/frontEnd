@@ -12,16 +12,16 @@ const BookMarkPage = () => {
         <BookmarkCount>n개</BookmarkCount>
       </Box>
       {/* TODO: 북마크 있을때 */}
-      {/* <MainBannerGroup>
+      <MainBannerGroup>
         <MainBannerImg width="160px" />
         <MainBannerImg width="160px" />
         <MainBannerImg width="160px" />
         <MainBannerImg width="160px" />
         <MainBannerImg width="160px" />
-      </MainBannerGroup> */}
+      </MainBannerGroup>
 
       {/* TODO: 북마크 없을때 */}
-      <NotFound desc="북마크가 존재하지 않아요" />
+      {/* <NotFound desc="북마크가 존재하지 않아요" /> */}
     </Box>
   );
 };
