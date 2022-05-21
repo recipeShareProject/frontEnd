@@ -25,7 +25,7 @@ const FooBar = ({type}) => {
     case 'recipe':
       return (
         <StyleHeader>
-          <ArrowBackIosIcon onClick={setModal(true)} fontSize="small" />
+          <ArrowBackIosIcon onClick={() => setModal(true)} fontSize="small" />
           <BookmarkIcon />
           {modal && (
             <ModalPopup

@@ -8,7 +8,7 @@ import WriteRecipe from 'pages/recipe/WriteRecipe';
 const Recipe = () => {
   return (
     <Routes>
-      {/* <Route path="/detail" element={<RecipeDetail />} /> */}
+      <Route path="/detail" element={<RecipeDetail />} />
       <Route path="/write" element={<WriteRecipe />} />
     </Routes>
     // <div>
