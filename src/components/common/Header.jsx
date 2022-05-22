@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {useNavigate, useLocation} from 'react-router-dom';
 
-import Foobar from 'components/common/FooBar';
+import HeaderBar from 'components/common/HeaderBar';
 import LogoIcon from 'common/icons/LogoIcon';
 import AlarmIcon from 'common/icons/AlarmIcon';
 import ProfileIcon from 'common/icons/ProfileIcon';
@@ -28,17 +28,18 @@ const Header = () => {
   switch (location.pathname) {
     case location.pathname.includes(`/my`) ? location.pathname : '':
     case '/search/filter':
-    case '/recipe/write':
-    case '/party/addParty':
-      return <Foobar type="back" />;
+    case location.pathname.includes(`/recipe/detail`) ? location.pathname : '':
+      return <HeaderBar type="back" />;
 
     // case `/recipe/detail/${postId}`:
-    case location.pathname.includes(`/recipe/detail`) ? location.pathname : '':
-      return <Foobar type="recipe" />;
+    case '/recipe/write':
+      return <HeaderBar type="recipe" />;
 
     case `/party/detailParty/${postId}`:
-      return <Foobar type="party" />;
+      return <HeaderBar type="party" />;
 
+    case '/party/addParty':
+      return <HeaderBar type="writeParty" />;
     default:
       return (
         <StyleHeader>

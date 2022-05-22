@@ -32,7 +32,7 @@ const FooBar = ({type}) => {
               isOn={false}
               content="레시피 등록을 정말 그만두시겠어요?"
               closeEvent={setModal}
-              yesEvent={() => {}}></ModalPopup>
+              yesEvent={onClickBack}></ModalPopup>
           )}
         </StyleHeader>
       );
@@ -73,7 +73,18 @@ const FooBar = ({type}) => {
           )}
         </StyleHeader>
       );
-
+    case 'writeParty':
+      <StyleHeader>
+        <ArrowBackIosIcon onClick={() => setModal(true)} fontSize="small" />
+        <BookmarkIcon />
+        {modal && (
+          <ModalPopup
+            isOn={false}
+            content="게시글 등록을 정말 그만두시겠어요?"
+            closeEvent={setModal}
+            yesEvent={onClickBack}></ModalPopup>
+        )}
+      </StyleHeader>;
     default:
       break;
   }
