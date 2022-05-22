@@ -1,4 +1,4 @@
-import alarm from 'imgs/alarm.png';
+import alarm from 'assets/imgs/alarm.png';
 
 const AlarmIcon = () => {
   return <img alt="alarm" src={alarm} />;

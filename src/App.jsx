@@ -5,19 +5,19 @@ import store, {persistor} from 'redux/store';
 import {Provider} from 'react-redux';
 
 import AppWrapper from 'components/common/AppWrapper';
-import Auth from 'pages/auth';
-import Party from 'pages/party';
-import MyPage from 'pages/myPage';
-import Noti from 'pages/noti';
-import TestPage from 'pages/TestPage';
-import MainPage from 'pages/main/MainPage';
-import Search from 'pages/search';
-import Recipe from 'pages/recipe';
-import BookMarkPage from 'pages/bookmark/BookMarkPage';
-import Header from 'components/common/Header';
-import Navigation from 'components/common/Navigation';
-import ApiTest from 'pages/ApiTest';
-import SearchResult from 'pages/search/SearchResult';
+import Auth from 'ui/pages/auth';
+import Party from 'ui/pages/party';
+import MyPage from 'ui/pages/myPage';
+import Noti from 'ui/pages/noti';
+import TestPage from 'ui/pages/test/TestPage';
+import MainPage from 'ui/pages/main/MainPage';
+import Search from 'ui/pages/search';
+import Recipe from 'ui/pages/recipe';
+import BookMarkPage from 'ui/pages/bookmark/BookMarkPage';
+import Header from 'ui/organisms/Header';
+import Navigation from 'ui/organisms/Navigation';
+import ApiTest from 'ui/pages/test/ApiTest';
+import SearchResult from 'ui/pages/search/SearchResult';
 
 const App = () => {
   return (

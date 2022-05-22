@@ -1,4 +1,4 @@
-import pencil from 'imgs/pencil.png';
+import pencil from 'assets/imgs/pencil.png';
 
 const WritePencilIcon = ({onClick}) => {
   return <img alt="search" src={pencil} onClick={() => onClick()} />;

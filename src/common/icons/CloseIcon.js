@@ -1,4 +1,4 @@
-import close from 'imgs/close.png';
+import close from 'assets/imgs/close.png';
 
 const CloseIcon = () => {
   return <img alt="alarm" src={close} />;
