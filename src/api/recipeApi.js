@@ -1,4 +1,5 @@
 import instance from 'api/instance';
+import http from './http';
 
 const recipeApi = {
   getRecipe() {

@@ -1,4 +1,4 @@
-import home_color from 'imgs/home_color.png';
+import home_color from 'assets/imgs/home_color.png';
 
 const HomeColorIcon = () => {
   return <img alt="home" src={home_color} />;

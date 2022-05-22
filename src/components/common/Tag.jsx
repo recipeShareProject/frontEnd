@@ -5,7 +5,8 @@ import styled from 'styled-components';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {tagActions} from 'redux/slice/tagSlice';
-function Tag({type, Children, tag}) {
+
+const Tag = ({type, Children, tag}) => {
   const dispatch = useDispatch();
   const tags = useSelector((state) => state.tag.tags);
 
@@ -36,7 +37,7 @@ function Tag({type, Children, tag}) {
         </FilterInputTagWrapper>
       );
   }
-}
+};
 
 const FilterInputTagWrapper = styled.div`
   margin: 1.2rem 0px;
