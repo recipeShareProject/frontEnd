@@ -18,9 +18,10 @@ const DetailParty = () => {
   const posts = useSelector((state) => state.post.posts);
   const params = useParams();
   const postId = params.postId;
-
   const {category, content, expiredAt, imagePath, location, tag, title} =
     posts[postId];
+
+  const [ReplyNickname, setReplyNickname] = React.useState('');
 
   return (
     <>
@@ -34,8 +35,8 @@ const DetailParty = () => {
       <Content>{content}</Content>
       <Tag tag={tag}></Tag>
 
-      <InputWrapper>
-        <Input placeholder="댓글을 남겨보세요" />
+      <InputWrapper content={ReplyNickname}>
+        <CommentInput placeholder="댓글을 남겨보세요" />
         <SendIcon />
       </InputWrapper>
       <CommentTitle>댓글</CommentTitle>
@@ -54,7 +55,7 @@ const DetailParty = () => {
         숟가락을 이용해 전복 살과 껍질을 분리하고 내장도 조심스럽게 떼어 내세요.
         내장은 버리지 말고 죽이나 찌개 등에 넣어 드셔도 좋아요.
       </ComentContent>
-      <Reply>답글달기</Reply>
+      <Reply onClick={() => setReplyNickname('닉네임')}>답글달기</Reply>
     </>
   );
 };
@@ -115,13 +116,21 @@ const InputWrapper = styled.div`
   padding: 0px 10px;
   box-sizing: border-box;
   border-bottom: 1px solid ${Black20};
+  font-size: 14px;
+  &:before {
+    content: '${(props) => props.content}';
+    color: ${Colar100};
+    font-size: 12px;
+    width: ${(props) => (props.content ? '3rem' : '')};
+  }
 `;
 
-const Input = styled.input`
+const CommentInput = styled.input`
   width: 100%;
   border: none;
   background: none;
 `;
+
 const CommentTitle = styled.div`
   font-weight: 600;
   font-size: 20px;
