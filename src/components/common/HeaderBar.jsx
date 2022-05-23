@@ -6,7 +6,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 
-import ModalPopup from 'components/common/ModalPopup';
+import ModalPopup from 'ui/molecules/ModalPopup';
 const FooBar = ({type}) => {
   const navigate = useNavigate();
   const [modal, setModal] = React.useState(false);

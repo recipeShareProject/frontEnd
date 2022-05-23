@@ -1,4 +1,4 @@
-import emptyPicture from 'imgs/emptyPicture.png';
+import emptyPicture from 'assets/imgs/emptyPicture.png';
 
 const EmptyPictureIcon = () => {
   return <img alt="alarm" src={emptyPicture} />;
