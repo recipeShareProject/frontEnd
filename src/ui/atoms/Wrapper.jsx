@@ -13,6 +13,9 @@ const Wrapper = ({
   background,
   position,
   boxSizing,
+  gap,
+  flexWrap,
+  _onClick,
   children,
 }) => {
   return (
@@ -27,7 +30,10 @@ const Wrapper = ({
       height={height}
       background={background}
       position={position}
-      boxSizing={boxSizing}>
+      boxSizing={boxSizing}
+      gap={gap}
+      flexWrap={flexWrap}
+      onClick={_onClick}>
       {children}
     </StyledWrapper>
   );
@@ -45,6 +51,8 @@ const StyledWrapper = styled.div`
   background: ${(props) => props.background};
   position: ${(props) => props.position};
   box-sizing: ${(props) => props.boxSizing};
+  gap: ${(props) => props.gap};
+  flex-wrap: ${(props) => props.flexWrap};
 `;
 
 export default Wrapper;

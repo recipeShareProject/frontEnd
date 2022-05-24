@@ -4,6 +4,9 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import {Black10} from 'assets/colorSet';
+
+import Image from 'ui/atoms/Image';
 const AddImgSlider = ({Img}) => {
   const settings = {
     dots: true,
@@ -17,13 +20,25 @@ const AddImgSlider = ({Img}) => {
 
   return (
     <React.Fragment>
-      <StyleSlider {...settings}>
+      {/* <StyleSlider {...settings}>
         {Img.map(
           (v, idx) =>
             v && (
               <div key={idx}>
                 <StyleImg src={Img[idx]}></StyleImg>
               </div>
+            ),
+        )}
+      </StyleSlider> */}
+      <StyleSlider {...settings}>
+        {Img.map(
+          (v, idx) =>
+            v && (
+              <Image
+                key={idx}
+                src={Img[idx]}
+                height="248px"
+                radius="8px"></Image>
             ),
         )}
       </StyleSlider>
@@ -62,15 +77,6 @@ const StyleSlider = styled(Slider)`
     opacity: 1;
     color: #f17751;
   }
-`;
-
-const StyleImg = styled.div`
-  background-image: url('${(props) => (props.src ? props.src : '')}');
-  height: 248px;
-  background-color: gray;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 `;
 
 export default AddImgSlider;

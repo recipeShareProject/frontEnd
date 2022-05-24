@@ -6,6 +6,7 @@ import AlarmIcon from 'common/icons/AlarmIcon';
 import ProfileIcon from 'common/icons/ProfileIcon';
 
 import Wrapper from 'ui/atoms/Wrapper';
+import HeaderWrapper from 'ui/atoms/HeaderWrapper';
 import Typography from 'ui/atoms/Typography';
 const Header = () => {
   const navigate = useNavigate();
@@ -27,16 +28,7 @@ const Header = () => {
   };
 
   return (
-    <Wrapper
-      width="100%"
-      height="72px"
-      padding="24px 16px 16px 16px"
-      background="white"
-      display="flex"
-      justify="space-between"
-      align="center"
-      position="fixed"
-      boxSizing="border-box">
+    <HeaderWrapper>
       <LogoIcon onClick={moveToMain}></LogoIcon>
 
       {isLogin ? (
@@ -51,7 +43,7 @@ const Header = () => {
           로그인
         </Typography>
       )}
-    </Wrapper>
+    </HeaderWrapper>
   );
 };
 

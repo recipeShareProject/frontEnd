@@ -3,29 +3,26 @@ import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 import ModalPopup from 'ui/molecules/ModalPopup';
+import HeaderWrapper from 'ui/atoms/HeaderWrapper';
+
+import MoreButton from 'ui/organisms/MoreButton';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 const HeaderBar = ({type}) => {
   const navigate = useNavigate();
   const [modal, setModal] = React.useState(false);
   const [shareModal, setShareModal] = React.useState(false);
   const [delModal, setDelModal] = React.useState(false);
-  const [open, setOpen] = React.useState(false);
+
   const onClickBack = () => {
     navigate(-1);
   };
   switch (type) {
-    case 'back':
-      return (
-        <StyleHeader>
-          <ArrowBackIosIcon onClick={onClickBack} fontSize="small" />
-        </StyleHeader>
-      );
     case 'recipe':
       return (
-        <StyleHeader>
+        <HeaderWrapper>
           <ArrowBackIosIcon onClick={() => setModal(true)} fontSize="small" />
           <BookmarkIcon />
           {modal && (
@@ -35,30 +32,14 @@ const HeaderBar = ({type}) => {
               closeEvent={setModal}
               yesEvent={onClickBack}></ModalPopup>
           )}
-        </StyleHeader>
+        </HeaderWrapper>
       );
     case 'party':
       return (
-        <StyleHeader>
+        <HeaderWrapper>
           <ArrowBackIosIcon onClick={onClickBack} fontSize="small" />
-          <MoreVert onClick={() => setOpen(!open)} />
-          {open && (
-            <DropdownContent>
-              <div
-                onClick={() => {
-                  setShareModal(true);
-                }}>
-                나눔 완료로 상태변경하기
-              </div>
-              <div onClick={() => {}}>수정하기</div>
-              <div
-                onClick={() => {
-                  setDelModal(true);
-                }}>
-                삭제하기
-              </div>
-            </DropdownContent>
-          )}
+
+          <MoreButton setShareModal={setShareModal} setDelModal={setDelModal} />
           {shareModal && (
             <ModalPopup
               isOn={false}
@@ -74,11 +55,11 @@ const HeaderBar = ({type}) => {
               closeEvent={setDelModal}
               yesEvent={() => {}}></ModalPopup>
           )}
-        </StyleHeader>
+        </HeaderWrapper>
       );
     case 'writeParty':
       return (
-        <StyleHeader>
+        <HeaderWrapper>
           <ArrowBackIosIcon onClick={() => setModal(true)} fontSize="small" />
           {modal && (
             <ModalPopup
@@ -87,28 +68,22 @@ const HeaderBar = ({type}) => {
               closeEvent={setModal}
               yesEvent={onClickBack}></ModalPopup>
           )}
-        </StyleHeader>
+        </HeaderWrapper>
       );
     default:
-      break;
+      <HeaderWrapper>
+        <ArrowBackIosIcon onClick={onClickBack} fontSize="small" />
+      </HeaderWrapper>;
   }
   return <React.Fragment></React.Fragment>;
 };
-
-const StyleHeader = styled.div`
-  height: 40px;
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
 
 const DropdownContent = styled.div`
   width: 160px;
   height: 80px;
   position: fixed;
   left: calc(100% - 11rem);
-  top: calc(100% - 32rem);
+  top: calc(100% - 36rem);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   font-size: 12px;
   border-radius: 4px;

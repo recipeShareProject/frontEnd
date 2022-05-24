@@ -6,19 +6,19 @@ import Header from 'ui/templates/header/Header';
 import Navigation from 'ui/templates/navigation/Navigation';
 
 import Divider from 'ui/atoms/Divider';
-import Body from 'ui/atoms/Body';
+import Wrapper from 'ui/atoms/Wrapper';
 const MainTemplate = () => {
   return (
     <React.Fragment>
       <Header />
-      <Body padding="72px 0 60px 0">
+      <Wrapper padding="72px 0 60px 0">
         <SearchBar />
         <Divider />
         <MainBanner title={'지금 가장 \n인기있는 레시피에요'} />
         <Divider />
         <MainBanner title={'빠르게 \n만들 수 있어요'} />
         <Floating />
-      </Body>
+      </Wrapper>
       <Navigation />
     </React.Fragment>
   );

@@ -1,6 +1,8 @@
 import {Black40, Colar100} from 'assets/colorSet';
 import {useNavigate} from 'react-router';
-import styled from 'styled-components';
+import Wrapper from 'ui/atoms/Wrapper';
+import Image from 'ui/atoms/Image';
+import Typography from 'ui/atoms/Typography';
 
 const PartyPost = ({
   thumnail = 'https://user-images.githubusercontent.com/51289147/169662629-ca401384-f9b4-464b-a2a1-a1a6aad119af.jpg',
@@ -11,64 +13,33 @@ const PartyPost = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <Card onClick={() => navigate(`detailParty/1`)}>
-      <Thumnail src={thumnail}></Thumnail>
-      <div>
-        <Category>{category}</Category>
-        <PostTitle>{title}</PostTitle>
-        <StyleRow>
-          <PostLocation>{location}</PostLocation>
-          <Time>{time}</Time>
-        </StyleRow>
-      </div>
-    </Card>
+    <Wrapper
+      display="flex"
+      margin="1rem 0"
+      _onClick={() => navigate(`detailParty/1`)}>
+      <Image
+        width="6.5rem"
+        height="6.5rem"
+        src={thumnail}
+        radius="4px"
+        margin="0 8px 0 0 "></Image>
+      <Wrapper>
+        <Typography color={Colar100} fontSize="12px">
+          {category}
+        </Typography>
+        <Typography fontWeight="bold" fontSize="1rem">
+          {title}
+        </Typography>
+        <Wrapper display="flex">
+          <Typography fontSize="12px" margin="0 8px 0 0">
+            {location}
+          </Typography>
+          <Typography color={Black40} fontSize="12px">
+            {time}
+          </Typography>
+        </Wrapper>
+      </Wrapper>
+    </Wrapper>
   );
 };
 export default PartyPost;
-const Card = styled.div`
-  display: flex;
-  margin: 1rem 0;
-
-  cursor: pointer;
-`;
-const Thumnail = styled.div`
-  width: 6.5rem;
-  height: 6.5rem;
-
-  margin-right: 0.5rem;
-
-  background-image: url('${(props) => (props.src ? props.src : '')}');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  border-radius: 4px;
-`;
-const Category = styled.p`
-  margin: 0;
-  color: ${Colar100};
-  font-size: 12px;
-`;
-
-const PostTitle = styled.p`
-  font-weight: bold;
-  font-size: 1rem;
-  margin: 0;
-
-  margin: 8px 8px 8px 0;
-`;
-const StyleRow = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-const PostLocation = styled.p`
-  margin: 0;
-  color: black;
-  font-size: 12px;
-  margin-right: 8px;
-`;
-const Time = styled.p`
-  margin: 0;
-  color: ${Black40};
-  font-size: 12px;
-`;

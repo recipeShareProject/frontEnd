@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const PrimaryButton = ({background, color, fix, children}) => {
+const PrimaryButton = ({background, color, fixed, children}) => {
   return (
-    <StyledButton background={background} color={color}>
+    <StyledButton fixed={fixed} background={background} color={color}>
       {children}
     </StyledButton>
   );
@@ -17,4 +17,6 @@ const StyledButton = styled.button`
   color: ${(props) => props.color};
   border: none;
   outline: none;
+
+  ${(props) => (props.fixed ? {position: 'fixed', bottom: 0, left: 0} : '')}
 `;
