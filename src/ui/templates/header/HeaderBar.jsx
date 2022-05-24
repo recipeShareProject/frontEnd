@@ -5,11 +5,13 @@ import {useNavigate} from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 
+import AlarmIcon from 'common/icons/AlarmIcon';
+import ProfileIcon from 'common/icons/ProfileIcon';
+
 import ModalPopup from 'ui/molecules/ModalPopup';
 import HeaderWrapper from 'ui/atoms/HeaderWrapper';
-
 import MoreButton from 'ui/organisms/MoreButton';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Wrapper from 'ui/atoms/Wrapper';
 const HeaderBar = ({type}) => {
   const navigate = useNavigate();
   const [modal, setModal] = React.useState(false);
@@ -19,7 +21,22 @@ const HeaderBar = ({type}) => {
   const onClickBack = () => {
     navigate(-1);
   };
+  const moveToNoti = () => {
+    navigate('/noti');
+  };
   switch (type) {
+    case 'my':
+      return (
+        <HeaderWrapper>
+          <ArrowBackIosIcon onClick={onClickBack} fontSize="small" />
+          <Wrapper display="flex" justify="center" align="center">
+            <Wrapper _onClick={moveToNoti} margin="0 11px 0 0">
+              <AlarmIcon />
+            </Wrapper>
+            <ProfileIcon />
+          </Wrapper>
+        </HeaderWrapper>
+      );
     case 'recipe':
       return (
         <HeaderWrapper>

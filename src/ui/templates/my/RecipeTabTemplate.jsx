@@ -2,7 +2,7 @@ import {Box} from '@mui/material';
 import SearchResultContent from 'ui/templates/SearchResultContent';
 import React from 'react';
 
-const RecipeTab = () => {
+const RecipeTabTemplate = () => {
   return (
     <Box mt={4}>
       <SearchResultContent />
@@ -10,4 +10,4 @@ const RecipeTab = () => {
   );
 };
 
-export default RecipeTab;
+export default RecipeTabTemplate;

@@ -10,7 +10,7 @@ import HeaderWrapper from 'ui/atoms/HeaderWrapper';
 import Typography from 'ui/atoms/Typography';
 const Header = () => {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = React.useState(false);
+  const [isLogin, setIsLogin] = React.useState(true);
   const moveToMain = () => {
     navigate('/');
   };
@@ -33,8 +33,8 @@ const Header = () => {
 
       {isLogin ? (
         <Wrapper display="flex" justify="center" align="center">
-          <Wrapper margin="0 11px 0 0">
-            <AlarmIcon onClick={moveToNoti} />
+          <Wrapper _onClick={moveToNoti} margin="0 11px 0 0">
+            <AlarmIcon />
           </Wrapper>
           <ProfileIcon onClick={moveToMypage}></ProfileIcon>
         </Wrapper>

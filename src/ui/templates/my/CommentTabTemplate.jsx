@@ -2,9 +2,9 @@ import {Box} from '@mui/material';
 import {Black40} from 'assets/colorSet';
 import PartyPost from 'ui/organisms/PartyPost';
 import React from 'react';
-import {Typography} from './My';
 
-const PartyTab = () => {
+import Typography from 'ui/atoms/Typography';
+const CommentTabTemplate = () => {
   return (
     <Box mt={4}>
       <Typography color={Black40} fontSize="12px">
@@ -23,4 +23,4 @@ const PartyTab = () => {
   );
 };
 
-export default PartyTab;
+export default CommentTabTemplate;
