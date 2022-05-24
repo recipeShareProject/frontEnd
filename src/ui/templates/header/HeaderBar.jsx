@@ -71,40 +71,12 @@ const HeaderBar = ({type}) => {
         </HeaderWrapper>
       );
     default:
-      <HeaderWrapper>
-        <ArrowBackIosIcon onClick={onClickBack} fontSize="small" />
-      </HeaderWrapper>;
+      return (
+        <HeaderWrapper>
+          <ArrowBackIosIcon onClick={onClickBack} fontSize="small" />
+        </HeaderWrapper>
+      );
   }
-  return <React.Fragment></React.Fragment>;
 };
 
-const DropdownContent = styled.div`
-  width: 160px;
-  height: 80px;
-  position: fixed;
-  left: calc(100% - 11rem);
-  top: calc(100% - 36rem);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  font-size: 12px;
-  border-radius: 4px;
-  z-index: 100;
-
-  div {
-    display: flex;
-    justify-content: center;
-    height: 40px;
-    background-color: white;
-    display: flex;
-    align-items: center;
-
-    cursor: pointer;
-  }
-`;
-
-const MoreVert = styled(MoreVertIcon)`
-  &:hover + ${DropdownContent} {
-    display: block;
-  }
-  cursor: pointer;
-`;
 export default HeaderBar;
