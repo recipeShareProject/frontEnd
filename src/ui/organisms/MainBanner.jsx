@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import MainBannerImg from '../organisms/MainBannerImg';
-import {Box} from '@mui/material';
+import MainBannerImg from './MainBannerImg';
+import Box from 'ui/atoms/Box';
 import {useNavigate} from 'react-router-dom';
 
 const Item = ({text}) => {
@@ -19,7 +19,7 @@ const Item = ({text}) => {
 const MainBanner = ({title}) => {
   const navigate = useNavigate();
   return (
-    <Box my={2} mb={4}>
+    <Box padding="1rem">
       <BannerTitleBox>
         <Item text={title} />
         <BannerMore onClick={() => navigate('/search/result')}>

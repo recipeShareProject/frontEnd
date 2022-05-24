@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const BookMarkPage = () => {
   return (
     <Box>
-      <Box sx={{display: 'flex', alignItems: 'center'}}>
+      <Box sx={{display: 'flex', align: 'center'}}>
         <Title>북마크</Title>
         <BookmarkCount>n개</BookmarkCount>
       </Box>

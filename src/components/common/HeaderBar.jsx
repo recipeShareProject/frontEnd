@@ -12,6 +12,7 @@ const FooBar = ({type}) => {
   const [modal, setModal] = React.useState(false);
   const [shareModal, setShareModal] = React.useState(false);
   const [delModal, setDelModal] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const onClickBack = () => {
     navigate(-1);
   };
@@ -25,14 +26,14 @@ const FooBar = ({type}) => {
     case 'recipe':
       return (
         <StyleHeader>
-          <ArrowBackIosIcon onClick={setModal(true)} fontSize="small" />
+          <ArrowBackIosIcon onClick={() => setModal(true)} fontSize="small" />
           <BookmarkIcon />
           {modal && (
             <ModalPopup
               isOn={false}
               content="레시피 등록을 정말 그만두시겠어요?"
               closeEvent={setModal}
-              yesEvent={() => {}}></ModalPopup>
+              yesEvent={onClickBack}></ModalPopup>
           )}
         </StyleHeader>
       );
@@ -40,22 +41,24 @@ const FooBar = ({type}) => {
       return (
         <StyleHeader>
           <ArrowBackIosIcon onClick={onClickBack} fontSize="small" />
-          <MoreVert />
-          <DropdownContent>
-            <div
-              onClick={() => {
-                setShareModal(true);
-              }}>
-              나눔 완료로 상태변경하기
-            </div>
-            <div onClick={() => {}}>수정하기</div>
-            <div
-              onClick={() => {
-                setDelModal(true);
-              }}>
-              삭제하기
-            </div>
-          </DropdownContent>
+          <MoreVert onClick={() => setOpen(!open)} />
+          {open && (
+            <DropdownContent>
+              <div
+                onClick={() => {
+                  setShareModal(true);
+                }}>
+                나눔 완료로 상태변경하기
+              </div>
+              <div onClick={() => {}}>수정하기</div>
+              <div
+                onClick={() => {
+                  setDelModal(true);
+                }}>
+                삭제하기
+              </div>
+            </DropdownContent>
+          )}
           {shareModal && (
             <ModalPopup
               isOn={false}
@@ -73,7 +76,19 @@ const FooBar = ({type}) => {
           )}
         </StyleHeader>
       );
-
+    case 'writeParty':
+      return (
+        <StyleHeader>
+          <ArrowBackIosIcon onClick={() => setModal(true)} fontSize="small" />
+          {modal && (
+            <ModalPopup
+              isOn={false}
+              content="게시글 등록을 정말 그만두시겠어요?"
+              closeEvent={setModal}
+              yesEvent={onClickBack}></ModalPopup>
+          )}
+        </StyleHeader>
+      );
     default:
       break;
   }
@@ -89,28 +104,25 @@ const StyleHeader = styled.div`
 `;
 
 const DropdownContent = styled.div`
-  display: none;
   width: 160px;
-  height: 140px;
-  z-index: 1;
+  height: 80px;
   position: fixed;
-  left: 180px;
-  top: 60px;
+  left: calc(100% - 11rem);
+  top: calc(100% - 32rem);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  font-size: 12px;
+  border-radius: 4px;
+  z-index: 100;
+
   div {
+    display: flex;
+    justify-content: center;
     height: 40px;
-    background-color: gray;
-    padding-left: 0.5rem;
-    /* margin-bottom: 0.5rem; */
+    background-color: white;
     display: flex;
     align-items: center;
 
     cursor: pointer;
-  }
-  &:hover {
-    display: block;
-  }
-  div:nth-child(n) {
-    margin-bottom: 0.5rem;
   }
 `;
 

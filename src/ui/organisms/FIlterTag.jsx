@@ -5,14 +5,13 @@ import {Black5, Colar100} from 'assets/colorSet';
 
 const FIlterTag = ({children}) => {
   return (
-    <FilterInputTag>
+    <StyledTag>
       <p>{children}</p>
-      <CloseIcon fontSize="small" />
-    </FilterInputTag>
+    </StyledTag>
   );
 };
 
-const FilterInputTag = styled.div`
+const StyledTag = styled.div`
   color: ${Colar100};
   border: 2px solid ${Black5};
   display: flex;
@@ -21,6 +20,7 @@ const FilterInputTag = styled.div`
   padding: 2px;
   font-size: 0.8rem;
   font-weight: 600;
+  margin-bottom: 16px;
   p {
     margin: 0;
     margin: 0px 10px;

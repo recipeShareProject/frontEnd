@@ -1,12 +1,20 @@
 import styled from 'styled-components';
 
-const Typography = ({color, fontSize, margin, fontWeight}, children) => {
+const Typography = ({
+  color,
+  fontSize,
+  margin,
+  fontWeight,
+  onClick,
+  children,
+}) => {
   return (
     <StyledTypography
       color={color}
       fontSize={fontSize}
       margin={margin}
-      fontWeight={fontWeight}>
+      fontWeight={fontWeight}
+      onClick={onClick}>
       {children}
     </StyledTypography>
   );

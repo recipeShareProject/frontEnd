@@ -1,13 +1,13 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 import Login from 'ui/pages/auth/Login';
-import Profil from 'ui/pages/auth/Profil';
+import Profile from 'ui/pages/auth/Profile';
 
 const Auth = () => {
   return (
     <Routes>
       <Route path={`/login`} element={<Login />} />
-      <Route path={`/profil`} element={<Profil />} />
+      <Route path={`/profile`} element={<Profile />} />
     </Routes>
   );
 };

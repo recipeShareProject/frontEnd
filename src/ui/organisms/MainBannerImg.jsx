@@ -47,7 +47,6 @@ const RecipeCard = ({width, height}) => {
           </MainBannerTime>
         )}
       </Box>
-      <Floating />
     </MainBannerImgWrapper>
   );
 };

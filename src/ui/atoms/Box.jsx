@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Box = ({margin, padding, display, width, height, gap}, children) => {
+const Box = ({margin, padding, display, width, height, gap, children}) => {
   return (
     <StyledBox
       margin={margin}

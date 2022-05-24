@@ -12,5 +12,4 @@ const StyledDivider = styled.div`
   width: 100%;
   height: 16px;
   background: ${Black5};
-  margin-left: -1rem;
 `;

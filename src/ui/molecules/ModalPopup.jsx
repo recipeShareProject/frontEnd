@@ -1,6 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Colar100, Beige60} from 'assets/colorSet';
 
+import BadSelectIcon from 'common/icons/BadSelectIcon';
+import BadUnselectIcon from 'common/icons/BadUnselectIcon';
+import SosoSelectIcon from 'common/icons/SosoSelectIcon';
+import SosoUnselectIcon from 'common/icons/SosoUnselectIcon';
+import BestSelectIcon from 'common/icons/BestSelectIcon';
+import BestUnselectIcon from 'common/icons/BestUnselectIcon';
 const Popup = ({content, closeEvent, yesEvent, isOn}) => {
   const [state, setState] = React.useState('괜찮아요');
   const _height = isOn ? '190px' : '142px';
@@ -15,58 +22,58 @@ const Popup = ({content, closeEvent, yesEvent, isOn}) => {
               <Content>{content}</Content>
               {isOn && (
                 <EvalWrapper>
-                  <ButtonWrapper onClick={() => setState('별로에요')}>
+                  <IconWrapper onClick={() => setState('별로에요')}>
                     {state === '별로에요' ? (
                       <>
-                        <Icon src="imgs/bad_select.png"></Icon>
-                        <IconContent color="#F17751">별로에요</IconContent>
+                        <BadSelectIcon />
+                        <IconContent color={Colar100}>별로에요</IconContent>
                       </>
                     ) : (
                       <>
-                        <Icon src="imgs/bad_select.png"></Icon>
+                        <BadUnselectIcon />
                         <IconContent>별로에요</IconContent>
                       </>
                     )}
-                  </ButtonWrapper>
-                  <ButtonWrapper onClick={() => setState('괜찮아요')}>
+                  </IconWrapper>
+                  <IconWrapper onClick={() => setState('괜찮아요')}>
                     {state === '괜찮아요' ? (
                       <>
-                        <Icon src="imgs/soso_select.png"></Icon>
-                        <IconContent color="#F17751">괜찮아요</IconContent>
+                        <SosoSelectIcon />
+                        <IconContent color={Colar100}>괜찮아요</IconContent>
                       </>
                     ) : (
                       <>
-                        <Icon src="imgs/soso_unselect.png"></Icon>
+                        <SosoUnselectIcon />
                         <IconContent>괜찮아요</IconContent>
                       </>
                     )}
-                  </ButtonWrapper>
-                  <ButtonWrapper onClick={() => setState('추천해요')}>
+                  </IconWrapper>
+                  <IconWrapper onClick={() => setState('추천해요')}>
                     {state === '추천해요' ? (
                       <>
-                        <Icon src="imgs/best_select.png"></Icon>
-                        <IconContent color="#F17751">추천해요</IconContent>
+                        <BestSelectIcon />
+                        <IconContent color={Colar100}>추천해요</IconContent>
                       </>
                     ) : (
                       <>
-                        <Icon src="imgs/best_unselect.png"></Icon>
+                        <BestUnselectIcon />
                         <IconContent>추천해요</IconContent>
                       </>
                     )}
-                  </ButtonWrapper>
+                  </IconWrapper>
                 </EvalWrapper>
               )}
             </ContentWrapper>
           </Box>
           <StyleFlex>
-            <Button side="left" bgcolor="#FAF7F6">
+            <Button side="left" bgcolor={Beige60}>
               {noText}
             </Button>
             <Button
               onClick={yesEvent}
               side="right"
-              bgcolor="#F17751"
-              color="#F6F2F0">
+              bgcolor={Colar100}
+              color={Beige60}>
               {yesText}
             </Button>
           </StyleFlex>
@@ -119,19 +126,14 @@ const EvalWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const ButtonWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
+const IconWrapper = styled.div`
   margin-top: 24px;
   margin-right: 20px;
 `;
-const Icon = styled.img``;
-const IconContent = styled.div`
+const IconContent = styled.p`
   color: ${(props) => (props.color ? props.color : '#D1D0CF')};
   font-size: 12px;
+  margin: 0;
 `;
 const StyleFlex = styled.div`
   display: flex;

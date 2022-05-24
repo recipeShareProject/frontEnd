@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 export function timeForToday(value, type) {
   let today;
   let createdAt;
@@ -12,6 +11,7 @@ export function timeForToday(value, type) {
       (createdAt.getTime() - today.getTime()) / 1000 / 60,
     );
   } else {
+    value = new Date();
     today = new Date();
     createdAt = new Date(value);
     word = '전';

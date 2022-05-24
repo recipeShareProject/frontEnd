@@ -9,10 +9,12 @@ import {imgActions} from 'redux/slice/imgSlice';
 
 import {Black10} from 'assets/colorSet';
 import EmptyPictureIcon from 'common/icons/EmptyPictureIcon';
+import Image from 'ui/atoms/Image';
+import EmptyImage from 'ui/atoms/EmptyImage';
 const AddImgSlider = () => {
   const dispatch = useDispatch();
   const fileInput = useRef('');
-  const Img = useSelector((state) => state.img.completeImgs);
+  const Imgs = useSelector((state) => state.img.completeImgs);
 
   const settings = {
     dots: true,
@@ -49,107 +51,29 @@ const AddImgSlider = () => {
   return (
     <React.Fragment>
       <StyleSlider {...settings}>
-        <div>
-          <StyleInput
-            id="0"
-            type="file"
-            onChange={selectFile}
-            ref={fileInput}></StyleInput>
-          <label htmlFor="0">
-            {Img[0] ? (
-              <StyleImg src={Img[0]}></StyleImg>
-            ) : (
-              <EmptyImg>
-                <EmptyImgWrapper>
-                  <EmptyPictureIcon />
-                  <p>사진을 추가해주세요</p>
-                </EmptyImgWrapper>
-              </EmptyImg>
-            )}
-          </label>
-        </div>
-        <div>
-          <StyleInput
-            id="1"
-            type="file"
-            onChange={selectFile}
-            ref={fileInput}></StyleInput>
-          <label htmlFor="1">
-            {Img[1] ? (
-              <StyleImg src={Img[1]}></StyleImg>
-            ) : (
-              <EmptyImg>
-                <EmptyImgWrapper>
-                  <EmptyPictureIcon />
-                  <p>사진을 추가해주세요</p>
-                </EmptyImgWrapper>
-              </EmptyImg>
-            )}
-          </label>
-        </div>
-        <div>
-          <StyleInput
-            id="2"
-            type="file"
-            onChange={selectFile}
-            ref={fileInput}></StyleInput>
-          <label htmlFor="2">
-            {Img[2] ? (
-              <StyleImg src={Img[2]}></StyleImg>
-            ) : (
-              <EmptyImg>
-                <EmptyImgWrapper>
-                  <EmptyPictureIcon />
-                  <p>사진을 추가해주세요</p>
-                </EmptyImgWrapper>
-              </EmptyImg>
-            )}
-          </label>
-        </div>
-        <div>
-          <StyleInput
-            id="3"
-            type="file"
-            onChange={selectFile}
-            ref={fileInput}></StyleInput>
-          <label htmlFor="3">
-            {Img[3] ? (
-              <StyleImg src={Img[3]}></StyleImg>
-            ) : (
-              <EmptyImg>
-                <EmptyImgWrapper>
-                  <EmptyPictureIcon />
-                  <p>사진을 추가해주세요</p>
-                </EmptyImgWrapper>
-              </EmptyImg>
-            )}
-          </label>
-        </div>
-        <div>
-          <StyleInput
-            id="4"
-            type="file"
-            onChange={selectFile}
-            ref={fileInput}></StyleInput>
-          <label htmlFor="4">
-            {Img[4] ? (
-              <StyleImg src={Img[4]}></StyleImg>
-            ) : (
-              <EmptyImg>
-                <EmptyImgWrapper>
-                  <EmptyPictureIcon />
-                  <p>사진을 추가해주세요</p>
-                </EmptyImgWrapper>
-              </EmptyImg>
-            )}
-          </label>
-        </div>
+        {Imgs.map((v, idx) => (
+          <React.Fragment key={idx}>
+            <StyleInput
+              id={idx}
+              type="file"
+              onChange={selectFile}
+              ref={fileInput}></StyleInput>
+            <label htmlFor={idx}>
+              {Imgs[idx] ? (
+                <Image src={Imgs[idx]} height="248px" radius="8px"></Image>
+              ) : (
+                <EmptyImage />
+              )}
+            </label>
+          </React.Fragment>
+        ))}
       </StyleSlider>
     </React.Fragment>
   );
 };
 
 const StyleSlider = styled(Slider)`
+  position: none;
   .slick-dots li {
     margin: 0;
   }
@@ -181,36 +105,9 @@ const StyleSlider = styled(Slider)`
     color: #f17751;
   }
 `;
-const StyleImg = styled.div`
-  background-image: url('${(props) => (props.src ? props.src : '')}');
-  height: 248px;
-  background-color: ${Black10};
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-`;
 
 const StyleInput = styled.input`
   display: none;
 `;
-const EmptyImgWrapper = styled.div`
-  height: 248px;
-  width: 100%;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-const EmptyImg = styled.div`
-  height: 248px;
-  width: 100%;
-  background-color: ${Black10};
-
-  p {
-    margin: 0;
-    color: white;
-    margin: 7px;
-  }
-`;
 export default AddImgSlider;

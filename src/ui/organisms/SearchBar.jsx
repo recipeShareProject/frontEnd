@@ -4,13 +4,15 @@ import SearchIcon from 'common/icons/SearchIcon';
 import {Black20} from 'assets/colorSet';
 import CloseIcon from 'common/icons/CloseIcon';
 
+import Box from 'ui/atoms/Box';
 const SearchBar = () => {
   return (
-    <SearchBarWrapper>
-      <SearchIcon />
-      <SearchInput placeholder="오늘은 무엇을 만들어볼까요?" />
-      <CloseIcon />
-    </SearchBarWrapper>
+    <Box padding="1rem">
+      <SearchBarWrapper>
+        <SearchIcon />
+        <SearchInput placeholder="오늘은 무엇을 만들어볼까요?" />
+      </SearchBarWrapper>
+    </Box>
   );
 };
 
@@ -19,8 +21,7 @@ const SearchBarWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
-  padding: 0px 1rem;
+
   border-bottom: 1px solid ${Black20};
 `;
 
