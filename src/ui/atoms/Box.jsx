@@ -11,10 +11,16 @@ const Box = ({
   justifyContent,
   mt,
   children,
+  position,
+  bottom,
+  background,
 }) => {
   return (
     <StyledBox
       mt={mt}
+      position={position}
+      bottom={bottom}
+      background={background}
       margin={margin}
       padding={padding}
       display={display}
@@ -36,5 +42,8 @@ const StyledBox = styled.div`
   height: ${(props) => props.height};
   gap: ${(props) => props.gap};
   justify-content: ${(props) => props.justifyContent};
+  position: ${(props) => props.position};
+  bottom: ${(props) => props.bottom};
+  background: ${(props) => props.background};
 `;
 export default Box;

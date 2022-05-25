@@ -8,6 +8,7 @@ import RecipeDetailIngredientSection from 'ui/templates/recipe/RecipeDetailIngre
 import Divider from 'ui/atoms/Divider';
 import RecipeDetailReviewSection from 'ui/templates/recipe/RecipeDetailReviewSection';
 import RecipeDetailProcessSection from 'ui/templates/recipe/RecipeDetailProcessSection';
+import WriteReviewInput from 'ui/organisms/WriteReviewInput';
 
 const ReciepeDetail = () => {
   const [modal, setModal] = React.useState(false);
@@ -22,6 +23,7 @@ const ReciepeDetail = () => {
         <RecipeDetailProcessSection />
         <Divider />
         <RecipeDetailReviewSection />
+        <WriteReviewInput placeholder="리뷰를 남겨보세요" />
       </Box>
       {modal && (
         <ModalPopup
