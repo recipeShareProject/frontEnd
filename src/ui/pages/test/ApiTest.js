@@ -5,13 +5,23 @@ import postApi from 'api/postApi';
 import userApi from 'api/userApi';
 import {timeForToday} from 'common/presenters/timeForToday';
 
-import {useSelector} from 'react-redux';
+import {imgActions} from 'redux/slices/imgSlice';
+import {useDispatch, useSelector} from 'react-redux';
 import AddImgSlider from 'ui/organisms/AddImgSlider';
 const ApiTest = () => {
-  const Img = useSelector((state) => state.img.completeImgs);
+  const dispatch = useDispatch();
+  const Imgs = useSelector((state) => state.img.completeImgs);
+  const sendImgs = useSelector((state) => state.img.sendCompleteImgs);
+  console.log(sendImgs);
   const fileInput = React.useRef('');
   const [img, setImg] = React.useState();
   const [sendImg, setSendImg] = React.useState();
+  React.useEffect(() => {
+    return () => {
+      dispatch(imgActions.setCompleteImg());
+      dispatch(imgActions.setSendCompleteImg());
+    };
+  }, [dispatch]);
   //파일선택
   const selectFile = (e) => {
     const {
@@ -63,8 +73,8 @@ const ApiTest = () => {
       cookTime: '20분',
       ingredient: {김치: '200g', 고기: '200g'},
       process: ['김치를 넣는다', '고기를 넣는다', '끓인다.'],
-      processImages: img,
-      completeImages: Img,
+      processImages: sendImgs,
+      completeImages: sendImgs,
       user: {nickname: '수민짱'},
     };
     console.log(data);
@@ -74,7 +84,7 @@ const ApiTest = () => {
 
   //레시피 한개 조회
   const getRecipe = async () => {
-    const a = await recipeApi.getRecipeAxios(1);
+    const a = await recipeApi.getRecipeAxios(4);
     console.log(a);
   };
 
@@ -106,7 +116,7 @@ const ApiTest = () => {
     const data = {
       comment: '김치찌개 수정',
       like: '괜찮아요',
-      picture: Img,
+      picture: Imgs,
       user: {nickname: '수민짱'},
     };
     const a = await recipeApi.writeReviewAxios(1, data);
@@ -124,7 +134,7 @@ const ApiTest = () => {
     const data = {
       comment: '김치찌개 수정',
       like: '한식',
-      picture: Img,
+      picture: Imgs,
       user: {nickname: '수민짱'},
     };
     const a = await recipeApi.patchReviewAxios(1, data);
@@ -156,29 +166,30 @@ const ApiTest = () => {
 
   //게시글 작성
   const addPost = async () => {
-    console.log(Img);
     const date = new Date();
+
     const data = {
       title: '게시글제목',
-      // category: '나눔해요',
+      category: '나눔해요',
       images: sendImg,
-      // content: '나눔하는 내용입니다.',
+      content: '나눔하는 내용입니다.',
       // tags: ['재료', '뭘까', '태그'],
-      // expiredAt: date,
+      expiredAt: date,
       // location: '중동',
       // latitude: 35.1631,
       // longitude: 129.1636,
     };
+    console.log(data);
     const res = await postApi.postWriteAxios(data);
     console.log(res);
   };
 
   //게시글 한개 조회
   const getPost = async () => {
-    const res = await postApi.getPostAxios(1);
+    const res = await postApi.getPostAxios(5);
 
     const time = timeForToday(res.data.expiredAt, 'party');
-    console.log(time);
+    console.log(res);
   };
 
   //게시글 삭제
@@ -189,12 +200,12 @@ const ApiTest = () => {
 
   //게시글 수정
   const patchPost = async () => {
-    console.log(Img);
+    console.log(Imgs);
     const date = new Date();
     const data = {
       title: '게시글제목 수정',
       category: '나눔해요',
-      images: Img,
+      images: Imgs,
       content: '수정 나눔하는 내용입니다.',
       tags: ['재료', '뭘까', '태그'],
       expiredAt: date,
@@ -305,8 +316,10 @@ const ApiTest = () => {
 
   return (
     <React.Fragment>
-      <input type="file" ref={fileInput} onChange={selectFile} />
-      <img src={img} alt="preview" />
+      <StyleDiv>
+        <input type="file" ref={fileInput} onChange={selectFile} />
+        <StyleImg src={img} alt="preview" />
+      </StyleDiv>
       <AddImgSlider />
 
       <h2>레시피</h2>
@@ -350,7 +363,12 @@ const ApiTest = () => {
     </React.Fragment>
   );
 };
+const StyleDiv = styled.div``;
 
+const StyleImg = styled.img`
+  width: 200px;
+  height: 200px;
+`;
 const Button = styled.button`
   width: 100%;
   height: 50px;

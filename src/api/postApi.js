@@ -15,25 +15,32 @@ const getPostsAxios = async () => {
     console.log('조회 실패');
   }
 };
-
+const config = {
+  headers: {
+    'Content-Type':
+      'multipart/form-data; boundary=<calculated when request is sent>',
+    accept: '*/*',
+    'Accept-Encoding': 'gzip, deflate, br',
+    Connection: 'keep-alive',
+  },
+};
 //게시글 작성
 const postWriteAxios = async (data) => {
-  http.defaults.headers['Content-Type'] = 'multipart/form-data';
+  // http.defaults.headers['Content-Type'] = 'multipart/form-data';
 
   const frm = new FormData();
   frm.append('title', data.title);
-  // frm.append('category', data.category);
-  // frm.append('images', data.imagePath);
-  // frm.append('content', data.content);
+  frm.append('category', data.category);
+  frm.append('images', data.images);
+  frm.append('content', data.content);
   // frm.append('tags', data.tags);
-  // frm.append('expiredAt', data.expiredAt);
+  frm.append('expiredAt', data.expiredAt);
   // frm.append('location', data.location);
   // frm.append('latitude', data.latitude);
   // frm.append('longitude', data.longitude);
-  // frm.append('content', content);
 
   try {
-    const res = await http.post('community', frm);
+    const res = await http.post('community', config);
     return res;
   } catch (error) {
     console.error(error);

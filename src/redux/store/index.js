@@ -12,10 +12,10 @@ import {
 import storage from 'redux-persist/lib/storage';
 import logger from 'redux-logger';
 
-import postReducer from 'redux/slice/postSlice';
-import tagReducer from 'redux/slice/tagSlice';
-import imgReducer from 'redux/slice/imgSlice';
-import modalReducer from 'redux/slice/modalSlice';
+import postReducer from 'redux/slices/postSlice';
+import tagReducer from 'redux/slices/tagSlice';
+import imgReducer from 'redux/slices/imgSlice';
+import modalReducer from 'redux/slices/modalSlice';
 
 const persistConfig = {
   key: 'root',
@@ -36,9 +36,7 @@ const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      serializableCheck: false,
       // }).concat(logger),
     }),
 });

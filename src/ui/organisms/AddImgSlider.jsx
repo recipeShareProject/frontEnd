@@ -1,14 +1,12 @@
-import React, {useState, useRef} from 'react';
+import React, {useRef} from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import {useDispatch, useSelector} from 'react-redux';
-import {imgActions} from 'redux/slice/imgSlice';
+import {imgActions} from 'redux/slices/imgSlice';
 
-import {Black10} from 'assets/colorSet';
-import EmptyPictureIcon from 'common/icons/EmptyPictureIcon';
 import Image from 'ui/atoms/Image';
 import EmptyImage from 'ui/atoms/EmptyImage';
 const AddImgSlider = () => {
@@ -37,12 +35,11 @@ const AddImgSlider = () => {
     const idx = e.target.id;
 
     reader.readAsDataURL(imageFile);
-
+    dispatch(imgActions.addSendCompleteImg({img: imageFile, idx: idx}));
     reader.onloadend = (e) => {
       const {
         currentTarget: {result},
       } = e;
-      // setImg([...Img, result]);
       const img = result;
       dispatch(imgActions.addCompleteImg({img: img, idx: idx}));
     };

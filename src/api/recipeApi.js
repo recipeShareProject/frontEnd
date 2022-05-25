@@ -40,19 +40,27 @@ const getSearchResultAxios = async (data) => {
   }
 };
 
+// const config = {
+//   headers: {'Content-Type': 'multipart/form-data'},
+// };
 //레시피 추가
 const addRecipeAxios = async (data) => {
   http.defaults.headers['Content-Type'] = 'multipart/form-data';
 
   const frm = new FormData();
   frm.append('title', data.title);
-  // frm.append('category', data.category);
-  // frm.append('quantity', data.quantity);
-  // frm.append('cookTime', data.cookTime);
-  // frm.append('ingredient', data.ingredient);
-  // frm.append('process', data.process);
-  frm.append('processImages', data.processImages);
-  frm.append('completeImages', data.completeImages);
+  frm.append('category', data.category);
+  frm.append('quantity', data.quantity);
+  frm.append('cookTime', data.cookTime);
+  frm.append('ingredient', data.ingredient);
+  frm.append('process', data.process);
+  data.processImages.forEach((processImage) =>
+    frm.append('processImages', processImage),
+  );
+  data.completeImages.forEach((completeImage) =>
+    frm.append('completeImages', completeImage),
+  );
+
   // frm.append('user', data.user);
 
   try {
