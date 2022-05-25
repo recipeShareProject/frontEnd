@@ -34,26 +34,11 @@ const ReciepeDetail = () => {
   );
 };
 export default ReciepeDetail;
-const Title = styled.p`
-  font-size: 1.4rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  margin-bottom: 0;
-`;
-const TitleBox = styled.div`
-  font-size: 0.8rem;
-  display: flex;
-  justify-content: space-between;
-`;
+
 export const RecipeImgGroupWrapper = styled.div`
   width: 100%;
   overflow: scroll;
 `;
 export const RecipeImgGroup = styled.div`
   display: flex;
-`;
-
-const SubTitle = styled.p`
-  font-weight: bold;
-  margin-right: 1rem;
 `;

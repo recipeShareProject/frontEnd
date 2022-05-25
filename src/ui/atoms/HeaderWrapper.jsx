@@ -13,7 +13,6 @@ const StyledWrapper = styled.div`
   width: 100%;
   height: 72px;
   background: white;
-  position: fixed;
   box-sizing: border-box;
   z-index: 100;
 `;
