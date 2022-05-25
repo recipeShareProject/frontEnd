@@ -6,7 +6,6 @@ import ImgSlider from 'ui/organisms/ImgSlider';
 import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
 import {useParams} from 'react-router-dom';
 
-import Tag from 'components/common/Tag';
 import {timeForToday} from 'common/presenters/timeForToday';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
