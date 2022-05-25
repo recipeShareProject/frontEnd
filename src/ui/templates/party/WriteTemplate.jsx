@@ -3,9 +3,9 @@ import {useNavigate} from 'react-router-dom';
 import dayjs from 'dayjs';
 
 import {useDispatch, useSelector} from 'react-redux';
-import {tagActions} from 'redux/slice/tagSlice';
-import {imgActions} from 'redux/slice/imgSlice';
-import {postActions} from 'redux/slice/postSlice';
+import {tagActions} from 'redux/slices/tagSlice';
+import {imgActions} from 'redux/slices/imgSlice';
+import {postActions} from 'redux/slices/postSlice';
 
 import AddImgSlider from 'ui/organisms/AddImgSlider';
 import FilterInputTag from 'ui/organisms/FilterInputTag';

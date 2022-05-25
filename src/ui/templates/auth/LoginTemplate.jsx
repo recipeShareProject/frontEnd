@@ -46,7 +46,7 @@ const Login = () => {
           <LoginButton
             background="#fee500"
             src={KakaoIcon}
-            href="http://justpotluck.shop/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/auth/profil"
+            href={process.env.REACT_APP_KAKAO_LOGIN}
             margin="0 0 8px 0">
             카카오로 시작하기
           </LoginButton>
@@ -55,7 +55,7 @@ const Login = () => {
             background="white"
             border="1px solid #4285f4"
             src={GoogleIcon}
-            href="http://www.justpotluck.shop/oauth2/authorization/google?redirect_uri=http://localhost:3000/auth/profil"
+            href={process.env.REACT_APP_GOOGLE_LOGIN}
             margin="0 0 0 0">
             구글로 시작하기
           </LoginButton>

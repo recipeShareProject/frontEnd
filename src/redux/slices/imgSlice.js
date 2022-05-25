@@ -2,6 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   completeImgs: ['', '', '', '', ''],
+  sendCompleteImgs: [],
   processImgs: [],
 };
 
@@ -15,13 +16,17 @@ const imgSlice = createSlice({
 
       state.completeImgs[idx] = img;
     },
-    delCompleteImg: (state, {payload}) => {
-      state.completeImgs = state.completeImgs.filter(
-        (val, idx) => idx !== payload,
-      );
+    addSendCompleteImg: (state, {payload}) => {
+      const idx = payload.idx;
+      const img = payload.img;
+      state.sendCompleteImgs[idx] = img;
     },
+
     setCompleteImg: (state, {payload}) => {
       state.completeImgs = ['', '', '', '', ''];
+    },
+    setSendCompleteImg: (state, {payload}) => {
+      state.sendCompleteImgs = [];
     },
   },
 });

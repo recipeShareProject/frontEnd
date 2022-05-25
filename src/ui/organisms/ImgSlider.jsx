@@ -20,16 +20,6 @@ const AddImgSlider = ({Img}) => {
 
   return (
     <React.Fragment>
-      {/* <StyleSlider {...settings}>
-        {Img.map(
-          (v, idx) =>
-            v && (
-              <div key={idx}>
-                <StyleImg src={Img[idx]}></StyleImg>
-              </div>
-            ),
-        )}
-      </StyleSlider> */}
       <StyleSlider {...settings}>
         {Img.map(
           (v, idx) =>

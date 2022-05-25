@@ -15,6 +15,7 @@ const Wrapper = ({
   boxSizing,
   gap,
   flexWrap,
+  opacity,
   _onClick,
   children,
 }) => {
@@ -33,7 +34,8 @@ const Wrapper = ({
       boxSizing={boxSizing}
       gap={gap}
       flexWrap={flexWrap}
-      onClick={_onClick}>
+      onClick={_onClick}
+      opacity={opacity}>
       {children}
     </StyledWrapper>
   );
@@ -53,6 +55,7 @@ const StyledWrapper = styled.div`
   box-sizing: ${(props) => props.boxSizing};
   gap: ${(props) => props.gap};
   flex-wrap: ${(props) => props.flexWrap};
+  opacity: ${(props) => props.opacity};
 `;
 
 export default Wrapper;
