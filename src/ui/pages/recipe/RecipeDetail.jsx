@@ -1,82 +1,27 @@
 import React from 'react';
 import {Box} from '@mui/material';
-import RecipeImg from 'ui/organisms/RecipeImg';
-import RecipeReview from 'ui/templates/RecipeReview';
 import styled from 'styled-components';
 import ModalPopup from 'ui/molecules/ModalPopup';
+import HeaderBar from 'ui/templates/header/HeaderBar';
+import RecipeDetailImgSection from 'ui/templates/recipe/RecipeDetailImgSection';
+import RecipeDetailIngredientSection from 'ui/templates/recipe/RecipeDetailIngredientSection';
+import Divider from 'ui/atoms/Divider';
+import RecipeDetailReviewSection from 'ui/templates/recipe/RecipeDetailReviewSection';
+import RecipeDetailProcessSection from 'ui/templates/recipe/RecipeDetailProcessSection';
+
 const ReciepeDetail = () => {
   const [modal, setModal] = React.useState(false);
   return (
     <div>
       <Box>
-        {/* TODO : 현주님 모달 일단 타이틀 누르면 나오게해놨어요 */}
-        <Title
-          onClick={() => {
-            setModal(true);
-          }}>
-          김치찌개
-        </Title>
-        <TitleBox>
-          <p>n분 한식</p>
-          <p>n개 리뷰 보기</p>
-        </TitleBox>
-        <RecipeImgGroupWrapper>
-          {/* TODO : 이미지 슬라이드로 바꾸기 */}
-          <RecipeImgGroup>
-            <RecipeImg width="320px" height="250px" />
-            <RecipeImg width="320px" height="250px" />
-            <RecipeImg width="320px" height="250px" />
-            <RecipeImg width="320px" height="250px" />
-            <RecipeImg width="320px" height="250px" />
-            <RecipeImg width="320px" height="250px" />
-          </RecipeImgGroup>
-        </RecipeImgGroupWrapper>
-        <Box mt={4}>
-          <Box sx={{display: 'flex'}}>
-            <SubTitle>재료</SubTitle>
-            <p>n인분</p>
-          </Box>
-          <Box sx={{display: 'flex'}}>
-            <Box sx={{width: '50%', height: '50px'}}>재료명</Box>
-            <div>n개</div>
-          </Box>
-          <Box sx={{display: 'flex'}}>
-            <Box sx={{width: '50%', height: '50px'}}>재료명</Box>
-            <div>n스푼</div>
-          </Box>
-          <Box sx={{display: 'flex'}}>
-            <Box sx={{width: '50%', height: '50px'}}>재료명</Box>
-            <div>n조각</div>
-          </Box>
-        </Box>
-        <Box mt={4}>
-          <SubTitle>재료</SubTitle>
-          <p>
-            숟가락을 이용해 전복 살과 껍질을 분리하고 내장도 조심스럽게 떼어
-            내세요. 내장은 버리지 말고 죽이나 찌개 등에 넣어 드셔도 좋아요.
-          </p>
-          <RecipeImg width="100%" height="250px" />
-          <p>
-            숟가락을 이용해 전복 살과 껍질을 분리하고 내장도 조심스럽게 떼어
-            내세요. 내장은 버리지 말고 죽이나 찌개 등에 넣어 드셔도 좋아요.
-          </p>
-          <RecipeImg width="100%" height="250px" />
-          <p>
-            숟가락을 이용해 전복 살과 껍질을 분리하고 내장도 조심스럽게 떼어
-            내세요. 내장은 버리지 말고 죽이나 찌개 등에 넣어 드셔도 좋아요.
-          </p>
-          <RecipeImg width="100%" height="250px" />
-        </Box>
-        <Box mt={4}>
-          <Box sx={{display: 'flex'}}>
-            <SubTitle>리뷰</SubTitle>
-            <p>n개</p>
-          </Box>
-          <RecipeReview />
-          <RecipeReview />
-          <RecipeReview />
-          <RecipeReview />
-        </Box>
+        <HeaderBar type="recipe" />
+        <RecipeDetailImgSection />
+        <Divider />
+        <RecipeDetailIngredientSection />
+        <Divider />
+        <RecipeDetailProcessSection />
+        <Divider />
+        <RecipeDetailReviewSection />
       </Box>
       {modal && (
         <ModalPopup
