@@ -2,12 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import SearchIcon from 'common/icons/SearchIcon';
 import {Black20} from 'assets/colorSet';
-import CloseIcon from 'common/icons/CloseIcon';
 
 import Box from 'ui/atoms/Box';
 const SearchBar = () => {
   return (
-    <Box padding="1rem">
+    <Box padding="72px 16px 0px 16px">
       <SearchBarWrapper>
         <SearchIcon />
         <SearchInput placeholder="오늘은 무엇을 만들어볼까요?" />

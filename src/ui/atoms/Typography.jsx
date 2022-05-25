@@ -6,10 +6,12 @@ const Typography = ({
   margin,
   fontWeight,
   onClick,
+  mt,
   children,
 }) => {
   return (
     <StyledTypography
+      mt={mt}
       color={color}
       fontSize={fontSize}
       margin={margin}
@@ -21,6 +23,7 @@ const Typography = ({
 };
 
 const StyledTypography = styled.p`
+  margin-top: ${(props) => (props.mt ? props.mt : '0px')};
   margin: ${(props) => (props.margin ? props.margin : '0px')};
   color: ${(props) => props.color};
   font-size: ${(props) => (props.fontSize ? props.fontSize : '1rem')};
