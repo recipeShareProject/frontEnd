@@ -15,6 +15,7 @@ const StyledWrapper = styled.div`
   background: white;
   box-sizing: border-box;
   z-index: 100;
+  position: fixed;
 `;
 
 export default HeaderWrapper;

@@ -8,7 +8,7 @@ import {Black40, Colar100} from 'assets/colorSet';
 const RecipeDetailImgSection = () => {
   const [modal, setModal] = React.useState(false);
   return (
-    <Box padding="0px 16px">
+    <Box padding="72px 16px">
       <Typography fontSize="1.4rem" fontWeight="bold" margin="1rem 0px 0px 0px">
         김치찌개
       </Typography>
