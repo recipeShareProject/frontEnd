@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import {Black5, Black20, Colar100} from 'assets/colorSet';
 import Wrapper from 'ui/atoms/Wrapper';
-const Radio = ({handleChkChange, category}) => {
+const Radio = ({handleChkChange, category, disabled}) => {
   return (
     <React.Fragment>
-      <Wrapper margin="16px 0 0 0" display="flex">
+      <Wrapper disabled={disabled} margin="16px 0 0 0" display="flex">
         <StyleRadio
           onChange={handleChkChange}
           id="나눔해요"

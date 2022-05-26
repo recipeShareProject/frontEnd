@@ -8,36 +8,45 @@ const MoreButton = ({setShareModal, setDelModal}) => {
     <React.Fragment>
       <MoreVert onClick={() => setOpen(!open)} />
       {open && (
-        <DropdownContent>
-          <div
-            onClick={() => {
-              setShareModal(true);
-            }}>
-            나눔 완료로 상태변경하기
-          </div>
-          <div onClick={() => {}}>수정하기</div>
-          <div
-            onClick={() => {
-              setDelModal(true);
-            }}>
-            삭제하기
-          </div>
-        </DropdownContent>
+        <CloseEffect onClick={() => setOpen(!open)}>
+          <DropdownContent>
+            <div
+              onClick={() => {
+                setShareModal(true);
+              }}>
+              나눔 완료로 상태변경하기
+            </div>
+            <div onClick={() => {}}>수정하기</div>
+            <div
+              onClick={() => {
+                setDelModal(true);
+              }}>
+              삭제하기
+            </div>
+          </DropdownContent>
+        </CloseEffect>
       )}
     </React.Fragment>
   );
 };
-
+const CloseEffect = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+`;
 const DropdownContent = styled.div`
   width: 160px;
   height: 80px;
-  position: fixed;
-  left: calc(100% - 11rem);
-  top: calc(100% - 32rem);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   font-size: 12px;
   border-radius: 4px;
   z-index: 100;
+  position: fixed;
+  left: calc(100% - 11rem);
+  /* top: calc(100% - 43rem); */
+  top: 61px;
 
   div {
     display: flex;

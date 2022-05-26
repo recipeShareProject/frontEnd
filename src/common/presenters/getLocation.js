@@ -1,9 +1,12 @@
+import React from 'react';
 const {kakao} = window;
 const geocoder = new kakao.maps.services.Geocoder();
+
 const getLocation = () => {
+  let test;
   if (navigator.geolocation) {
     // GPS를 지원하면
-    const a = navigator.geolocation.getCurrentPosition(
+    navigator.geolocation.getCurrentPosition(
       (position) => {
         const coord = new kakao.maps.LatLng(
           // `${position.coords.latitude}`,
@@ -11,8 +14,13 @@ const getLocation = () => {
           35.1631,
           129.1636,
         );
-        return 'coord';
-        geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+        const a = geocoder.coord2Address(
+          coord.getLng(),
+          coord.getLat(),
+          callback,
+        );
+        geocoder.coord2Address(35.1631, 129.1636, b);
+        console.log(a);
       },
       (error) => {
         console.error(error);
@@ -23,7 +31,6 @@ const getLocation = () => {
         timeout: Infinity,
       },
     );
-    return a;
   } else {
     alert('GPS를 지원하지 않습니다');
   }
@@ -31,8 +38,13 @@ const getLocation = () => {
 
 const callback = function (result, status) {
   if (status === kakao.maps.services.Status.OK) {
-    const adress = result[0].address.address_name.split(' ');
+    const test = result[0].address.region_3depth_name;
+    console.log(test);
+    return test;
   }
 };
 
+const b = (c, d) => {
+  console.log(c);
+};
 export {getLocation};

@@ -17,31 +17,26 @@ const getPostsAxios = async () => {
 };
 const config = {
   headers: {
-    'Content-Type':
-      'multipart/form-data; boundary=<calculated when request is sent>',
-    accept: '*/*',
-    'Accept-Encoding': 'gzip, deflate, br',
-    Connection: 'keep-alive',
+    'Content-Type': 'multipart/form-data',
   },
 };
 //게시글 작성
-const postWriteAxios = async (data) => {
+const writePostAxios = async (data) => {
   // http.defaults.headers['Content-Type'] = 'multipart/form-data';
 
   const frm = new FormData();
   frm.append('title', data.title);
   frm.append('category', data.category);
-  frm.append('images', data.images);
   frm.append('content', data.content);
-  // frm.append('tags', data.tags);
+  frm.append('tags', data.tags);
   frm.append('expiredAt', data.expiredAt);
-  // frm.append('location', data.location);
-  // frm.append('latitude', data.latitude);
-  // frm.append('longitude', data.longitude);
-
+  frm.append('location', data.location);
+  frm.append('latitude', data.latitude);
+  frm.append('longitude', data.longitude);
+  data.images.forEach((image) => frm.append('images', image));
   try {
-    const res = await http.post('community', config);
-    return res;
+    const res = await http.post('community', frm, config);
+    return res.data.success;
   } catch (error) {
     console.error(error);
   }
@@ -81,10 +76,9 @@ const patchPostAxios = async (communityId, data) => {
   frm.append('location', data.location);
   frm.append('latitude', data.latitude);
   frm.append('longitude', data.longitude);
-  // frm.append('content', content);
 
   try {
-    const res = await http.patch(`community/${communityId}`, frm);
+    const res = await http.put(`community/${communityId}`, frm);
     return res;
   } catch (error) {
     console.error(error);
@@ -114,6 +108,7 @@ const writeCommentAxios = async (communityId, data) => {
     console.error(error);
   }
 };
+
 //대댓글 작성
 const writeReplyAxios = async (communityId, commentId, data) => {
   const jsonData = JSON.stringify(data);
@@ -151,7 +146,7 @@ const patchCommentAxios = async (communityId, data) => {
 const postApi = {
   getPostsAxios,
   getPostAxios,
-  postWriteAxios,
+  writePostAxios,
   delPostAxios,
   patchPostAxios,
   patchPostStateAxios,

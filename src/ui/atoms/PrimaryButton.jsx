@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const PrimaryButton = ({background, color, fixed, children}) => {
+const PrimaryButton = ({background, color, fixed, _onClick, children}) => {
   return (
-    <StyledButton fixed={fixed} background={background} color={color}>
+    <StyledButton
+      fixed={fixed}
+      background={background}
+      color={color}
+      onClick={_onClick}>
       {children}
     </StyledButton>
   );

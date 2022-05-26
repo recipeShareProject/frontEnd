@@ -12,7 +12,6 @@ const ApiTest = () => {
   const dispatch = useDispatch();
   const Imgs = useSelector((state) => state.img.completeImgs);
   const sendImgs = useSelector((state) => state.img.sendCompleteImgs);
-  console.log(sendImgs);
   const fileInput = React.useRef('');
   const [img, setImg] = React.useState();
   const [sendImg, setSendImg] = React.useState();
@@ -180,7 +179,7 @@ const ApiTest = () => {
       // longitude: 129.1636,
     };
     console.log(data);
-    const res = await postApi.postWriteAxios(data);
+    const res = await postApi.writePostAxios(data);
     console.log(res);
   };
 
@@ -318,7 +317,10 @@ const ApiTest = () => {
     <React.Fragment>
       <StyleDiv>
         <input type="file" ref={fileInput} onChange={selectFile} />
-        <StyleImg src={img} alt="preview" />
+        <StyleImg
+          src="https://potluck-test.s3.ap-northeast-2.amazonaws.com/posts/9d04075b-456f-43b7-a0dc-0444463055b0%EA%B9%80%EC%A7%80%EC%9B%90.jpg"
+          alt="preview"
+        />
       </StyleDiv>
       <AddImgSlider />
 
