@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import SearchBar from 'ui/organisms/SearchBar';
 import MainBanner from 'ui/organisms/MainBanner';
 import Floating from 'ui/atoms/FloatingButton';
@@ -7,14 +7,8 @@ import Navigation from 'ui/templates/navigation/Navigation';
 
 import Divider from 'ui/atoms/Divider';
 import Wrapper from 'ui/atoms/Wrapper';
-import {useDispatch} from 'react-redux';
-import {StandbyService} from 'services';
 
 const MainTemplate = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(StandbyService.list());
-  }, [dispatch]);
   return (
     <React.Fragment>
       <Header />

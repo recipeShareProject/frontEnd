@@ -7,23 +7,47 @@ import AddIcon from '@mui/icons-material/Add';
 import ModalPopup from 'ui/molecules/ModalPopup';
 import {Black20, Black5, Colar100, Navy100} from 'assets/colorSet';
 import HeaderBar from 'ui/templates/header/HeaderBar';
+import AddImgFileInput from 'ui/organisms/AddImgFileInput';
+import AddImgSlider from 'ui/organisms/AddImgSlider';
+import {useSelector} from 'react-redux';
+import recipeApi from 'api/recipeApi';
+import {useNavigate} from 'react-router';
 
 const WriteRecipe = () => {
+  const navigate = useNavigate();
+  const [modal, setModal] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+  const [ingredient, setIngredient] = useState([1]);
+  const [process, setProcess] = useState([1]);
+
+  const processImgs = useSelector((state) => state.img.processImgs);
+  const sendCompleteImgs = useSelector((state) => state.img.sendCompleteImgs);
+
   const {
     register,
     handleSubmit,
-    watch,
-    formState: {errors},
+    // todo : required 처리
+    // formState: {errors},
   } = useForm();
 
-  const [modal, setModal] = useState(false);
+  const onSubmit = async (data) => {
+    const _cookTime =
+      parseInt(data.cookTime_hour) * 60 + parseInt(data.cookTime_minute);
+    const sendData = {
+      ...data,
+      category: category,
+      processImages: processImgs,
+      completeImages: sendCompleteImgs,
+      cookTime: _cookTime,
+    };
 
-  const onSubmitSearchFilter = (data) => {
-    console.log(data);
-    console.log(category);
+    recipeApi.addRecipeAxios(sendData).then((res) => {
+      window.alert('레시피가 등록되었습니다.');
+      navigate('/');
+    });
   };
 
-  const [category, setCategory] = useState('korea');
+  const [category, setCategory] = useState('한식');
 
   const onChangeCategoryValue = (e) => {
     setCategory(e.target.value);
@@ -32,15 +56,16 @@ const WriteRecipe = () => {
     <>
       <HeaderBar type="recipe" />
       <Box padding="72px 1rem">
-        <form onSubmit={handleSubmit(onSubmitSearchFilter)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Box>
-            {/* Todo : 공통으로 빼기 */}
             <Title>레시피 등록하기</Title>
             <FilterTitle>제목</FilterTitle>
           </Box>
           <Box>
             <FilterInputWrapper>
-              <FilterInput placeholder="제목을 입력해주세요"></FilterInput>
+              <FilterInput
+                placeholder="제목을 입력해주세요"
+                {...register('title')}></FilterInput>
             </FilterInputWrapper>
           </Box>
           <Box mt={50}>
@@ -48,64 +73,62 @@ const WriteRecipe = () => {
             <FilterButtonGroup>
               <input
                 type="radio"
-                name="korea"
-                id="korea"
-                value="korea"
+                name="한식"
+                id="한식"
+                value="한식"
                 style={{display: 'none'}}
                 {...register('category')}
                 onChange={(e) => onChangeCategoryValue(e)}
               />
-              <FilterButton htmlFor="korea" isChecked={category === 'korea'}>
+              <FilterButton htmlFor="한식" isChecked={category === '한식'}>
                 한식
               </FilterButton>
               <input
                 type="radio"
-                name="china"
-                id="china"
-                value="china"
+                name="중식"
+                id="중식"
+                value="중식"
                 style={{display: 'none'}}
                 {...register('category')}
                 onChange={(e) => onChangeCategoryValue(e)}
               />
-              <FilterButton htmlFor="china" isChecked={category === 'china'}>
+              <FilterButton htmlFor="중식" isChecked={category === '중식'}>
                 중식
               </FilterButton>
               <input
                 type="radio"
-                name="japan"
-                id="japan"
-                value="japan"
+                name="일식"
+                id="일식"
+                value="일식"
                 style={{display: 'none'}}
                 {...register('category')}
                 onChange={(e) => onChangeCategoryValue(e)}
               />
-              <FilterButton htmlFor="japan" isChecked={category === 'japan'}>
+              <FilterButton htmlFor="일식" isChecked={category === '일식'}>
                 일식
               </FilterButton>
               <input
                 type="radio"
-                name="america"
-                id="america"
-                value="america"
+                name="양식"
+                id="양식"
+                value="양식"
                 style={{display: 'none'}}
                 {...register('category')}
                 onChange={(e) => onChangeCategoryValue(e)}
               />
-              <FilterButton
-                htmlFor="america"
-                isChecked={category === 'america'}>
+              <FilterButton htmlFor="양식" isChecked={category === '양식'}>
                 양식
               </FilterButton>
               <input
                 type="radio"
-                name="snack"
-                id="snack"
-                value="snack"
+                name="간식"
+                id="간식"
+                value="간식"
                 style={{display: 'none'}}
                 {...register('category')}
                 onChange={(e) => onChangeCategoryValue(e)}
               />
-              <FilterButton htmlFor="snack" isChecked={category === 'snack'}>
+              <FilterButton htmlFor="간식" isChecked={category === '간식'}>
                 간식
               </FilterButton>
             </FilterButtonGroup>
@@ -114,9 +137,15 @@ const WriteRecipe = () => {
             <FilterTitle>양</FilterTitle>
             <Box display="flex">
               <AmountCounter>
-                <RemoveIcon />
-                <div>0</div>
-                <AddIcon />
+                <RemoveIcon
+                  onClick={() => {
+                    if (quantity > 0) {
+                      setQuantity(quantity - 1);
+                    }
+                  }}
+                />
+                <div>{quantity}</div>
+                <AddIcon onClick={() => setQuantity(quantity + 1)} />
               </AmountCounter>
               <Typography>인분</Typography>
             </Box>
@@ -124,38 +153,77 @@ const WriteRecipe = () => {
           <Box mt={50}>
             <FilterTitle>소요시간</FilterTitle>
             <Box display="flex">
-              <TimeInput type="number" width="50px" placeholder="0" />
+              <TimeInput
+                type="number"
+                width="50px"
+                placeholder="0"
+                {...register('cookTime_hour')}
+              />
               <Typography>시간</Typography>
-              <TimeInput type="number" width="50px" placeholder="0" />
+              <TimeInput
+                type="number"
+                width="50px"
+                placeholder="0"
+                {...register('cookTime_minute')}
+              />
               <Typography>분</Typography>
             </Box>
           </Box>
           <Box mt={50}>
             <FilterTitle>재료</FilterTitle>
-            <Box display="flex" gap="10px" margin="10px 0px">
-              <TimeInput width="100%" placeholder="재료를 입력해주세요" />
-              <TimeInput width="100%" placeholder="양을 입력해 주세요" />
-            </Box>
-            <AddButtonWrapper>
+            {ingredient.map((p, index) => {
+              return (
+                <Box key={index}>
+                  <Box display="flex" gap="10px" margin="10px 0px">
+                    <TimeInput
+                      width="100%"
+                      placeholder="재료를 입력해주세요"
+                      {...register(`ingredient.${index}.name`)}
+                    />
+                    <TimeInput
+                      width="100%"
+                      placeholder="양을 입력해 주세요"
+                      {...register(`ingredient.${index}.amount`)}
+                    />
+                  </Box>
+                </Box>
+              );
+            })}
+            <AddButtonWrapper
+              onClick={() => setIngredient([...ingredient, ingredient + 1])}>
               <AddIcon />
-              <AddButton>재료 추가하기</AddButton>
+              <AddButton type="button">재료 추가하기</AddButton>
             </AddButtonWrapper>
           </Box>
           <Box mt={50}>
             <FilterTitle>과정</FilterTitle>
-            <Box display="flex" gap="10px" margin="10px 0px">
-              <TimeInput width="100%" placeholder="과정을 입력해주세요" />
-            </Box>
-            {/* TODO : atom */}
+            {process.map((p, index) => {
+              return (
+                <Box key={index}>
+                  <Box display="flex" gap="10px" margin="10px 0px">
+                    <TimeInput
+                      width="100%"
+                      placeholder="과정을 입력해주세요"
+                      {...register(`process.${index}`)}
+                    />
+                  </Box>
+                  <AddImgFileInput
+                    idx={`${index}${index}`}
+                    {...register(`processImages.${index}`)}
+                  />
+                </Box>
+              );
+            })}
 
-            <AddButtonWrapper>
+            <AddButtonWrapper
+              onClick={() => setProcess([...process, process + 1])}>
               <AddIcon />
-              <AddButton>과정 추가하기</AddButton>
+              <AddButton type="button">과정 추가하기</AddButton>
             </AddButtonWrapper>
           </Box>
           <Box mt={50}>
             <FilterTitle>완성 사진</FilterTitle>
-            {/* TODO : 공통 컴포넌트추가하기 */}
+            <AddImgSlider />
 
             <SubmitButton type="submit">등록하기</SubmitButton>
           </Box>
@@ -225,7 +293,6 @@ const AmountCounter = styled.div`
   padding: 10px 0px;
   align-items: center;
   border-bottom: 1px solid ${Black20};
-  color: ${Black20};
 `;
 
 const TimeInput = styled.input`
@@ -235,8 +302,6 @@ const TimeInput = styled.input`
   height: 50px;
   padding: 0px 10px;
   border-bottom: 1px solid ${Black20};
-  color: ${Black20};
-  text-align: center;
 `;
 
 //Todo : atom으로 변경
@@ -256,6 +321,7 @@ const AddButton = styled.button`
   border: none;
   background: none;
   font-weight: 500;
+  color: ${Navy100};
 `;
 
 //TODO : atom

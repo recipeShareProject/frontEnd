@@ -11,6 +11,7 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage,
+  blacklist: ['img'],
 };
 
 const rootReducer = combineReducers({

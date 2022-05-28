@@ -34,31 +34,27 @@ const getSearchResultAxios = async (data) => {
   }
 };
 
-// const config = {
-//   headers: {'Content-Type': 'multipart/form-data'},
-// };
 //레시피 추가
 const addRecipeAxios = async (data) => {
-  http.defaults.headers['Content-Type'] = 'multipart/form-data';
-
-  const frm = new FormData();
-  frm.append('title', data.title);
-  frm.append('category', data.category);
-  frm.append('quantity', data.quantity);
-  frm.append('cookTime', data.cookTime);
-  frm.append('ingredient', data.ingredient);
-  frm.append('process', data.process);
+  const formData = new FormData();
+  formData.append('title', data.title);
+  formData.append('category', data.category);
+  formData.append('quantity', data.quantity);
+  formData.append('cookTime', data.cookTime);
+  formData.append('ingredient', data.ingredient);
+  formData.append('process', data.process);
   data.processImages.forEach((processImage) =>
-    frm.append('processImages', processImage),
+    formData.append('processImages', processImage),
   );
   data.completeImages.forEach((completeImage) =>
-    frm.append('completeImages', completeImage),
+    formData.append('completeImages', completeImage),
   );
 
+  //Todo : 백엔드 api 개발중
   // frm.append('user', data.user);
 
   try {
-    const res = await http.post('board', frm, formConfig);
+    const res = await http.post('board', formData, formConfig);
     return res;
   } catch (error) {
     console.error(error);
