@@ -21,16 +21,17 @@ const AddImgSlider = ({Img}) => {
   return (
     <React.Fragment>
       <StyleSlider {...settings}>
-        {Img.map(
-          (v, idx) =>
-            v && (
-              <Image
-                key={idx}
-                src={Img[idx]}
-                height="248px"
-                radius="8px"></Image>
-            ),
-        )}
+        {Img &&
+          Img.map(
+            (v, idx) =>
+              v && (
+                <Image
+                  key={idx}
+                  src={Img[idx]}
+                  height="248px"
+                  radius="8px"></Image>
+              ),
+          )}
       </StyleSlider>
     </React.Fragment>
   );

@@ -28,7 +28,7 @@ const App = () => {
           <Route path="/my/*" element={<MyPage />} />
           <Route path="/noti/*" element={<Noti />} />
           <Route path="/bookmark" element={<BookMarkPage />} />
-          <Route path="/test" element={<TestPage />} />
+          <Route path="/auth/test" element={<TestPage />} />
           <Route path="testApi" element={<ApiTest />} />
         </Routes>
       </PersistGate>

@@ -76,20 +76,19 @@ const ApiTest = () => {
       completeImages: sendImgs,
       user: {nickname: '수민짱'},
     };
-    console.log(data);
     const a = await recipeApi.addRecipeAxios(data);
     console.log(a);
   };
 
   //레시피 한개 조회
   const getRecipe = async () => {
-    const a = await recipeApi.getRecipeAxios(4);
+    const a = await recipeApi.getRecipeAxios(2);
     console.log(a);
   };
 
   //레시피 삭제
   const delRecipe = async () => {
-    const a = await recipeApi.delRecipeAxios(1);
+    const a = await recipeApi.delRecipeAxios(9);
     console.log(a);
   };
 
@@ -102,21 +101,21 @@ const ApiTest = () => {
       cookTime: '20분',
       ingredient: {김치: '200g', 고기: '200g'},
       process: ['김치를 넣는다', '고기를 넣는다', '끓인다.'],
-      processImages: sendImg,
-      completeImages: sendImg,
+      processImages: sendImgs,
+      completeImages: sendImgs,
       user: {nickname: '수민짱'},
     };
-    const a = await recipeApi.patchRecipeAxios(1, data);
+    const a = await recipeApi.patchRecipeAxios(9, data);
     console.log(a);
   };
 
   //리뷰 작성
   const writeReview = async () => {
+    console.log(sendImg);
     const data = {
-      comment: '김치찌개 수정',
-      like: '괜찮아요',
-      picture: Imgs,
-      user: {nickname: '수민짱'},
+      content: '리뷰작성테스트',
+      category: '괜찮아요',
+      images: sendImg,
     };
     const a = await recipeApi.writeReviewAxios(1, data);
     console.log(a);
@@ -131,10 +130,9 @@ const ApiTest = () => {
   //리뷰 수정
   const patchReview = async () => {
     const data = {
-      comment: '김치찌개 수정',
-      like: '한식',
-      picture: Imgs,
-      user: {nickname: '수민짱'},
+      content: '리뷰수정테스트',
+      category: '싫어요',
+      images: sendImg,
     };
     const a = await recipeApi.patchReviewAxios(1, data);
     console.log(a);
@@ -170,46 +168,45 @@ const ApiTest = () => {
     const data = {
       title: '게시글제목',
       category: '나눔해요',
-      images: sendImg,
+      images: sendImgs,
       content: '나눔하는 내용입니다.',
-      // tags: ['재료', '뭘까', '태그'],
+      tags: ['재료', '뭘까', '태그'],
       expiredAt: date,
-      // location: '중동',
-      // latitude: 35.1631,
-      // longitude: 129.1636,
+      location: '중동',
+      latitude: 35.1631,
+      longitude: 129.1636,
     };
-    console.log(data);
+
     const res = await postApi.writePostAxios(data);
     console.log(res);
   };
 
   //게시글 한개 조회
   const getPost = async () => {
-    const res = await postApi.getPostAxios(5);
+    const res = await postApi.getPostAxios(2);
 
-    const time = timeForToday(res.data.expiredAt, 'party');
+    // const time = timeForToday(res.data.expiredAt, 'party');
     console.log(res);
   };
 
   //게시글 삭제
   const delPost = async () => {
-    const res = await postApi.delPostAxios(1);
+    const res = await postApi.delPostAxios(2);
     console.log(res);
   };
 
   //게시글 수정
   const patchPost = async () => {
-    console.log(Imgs);
     const date = new Date();
     const data = {
       title: '게시글제목 수정',
       category: '나눔해요',
-      images: Imgs,
+      images: sendImgs,
       content: '수정 나눔하는 내용입니다.',
       tags: ['재료', '뭘까', '태그'],
       expiredAt: date,
     };
-    const res = await postApi.patchPostAxios(1, data);
+    const res = await postApi.patchPostAxios(2, data);
     console.log(res);
   };
 
@@ -218,11 +215,11 @@ const ApiTest = () => {
     const data = {
       category: '나눔완료',
     };
-    const res = await postApi.patchPostStateAxios(1, data);
+    const res = await postApi.patchPostStateAxios(2, data);
     console.log(res);
   };
 
-  //댓글작성
+  //댓글 작성
   const writeComment = async () => {
     const data = {
       comment: '댓글작성완료!',
@@ -231,17 +228,16 @@ const ApiTest = () => {
     console.log(res);
   };
 
-  //대댓글작성
+  //대댓글 작성
   const writeReply = async () => {
     const data = {
-      comment: '댓글작성완료!',
-      parent: 1,
+      comment: '대댓글작성완료!',
     };
     const res = await postApi.writeReplyAxios(1, 1, data);
     console.log(res);
   };
 
-  //댓글삭제
+  //댓글 삭제
   const delComment = async () => {
     const res = await postApi.delCommentAxios(1);
     console.log(res);
@@ -250,7 +246,7 @@ const ApiTest = () => {
   //댓글 수정
   const patchComment = async () => {
     const data = {
-      comment: '댓글수정완료!',
+      comment: '댓글수정 완료!',
     };
     const res = await postApi.patchCommentAxios(1, data);
     console.log(res);
@@ -262,7 +258,7 @@ const ApiTest = () => {
   const signup = async () => {
     const data = {
       profileImage: sendImg,
-      nickname: '닉네임으로가입',
+      nickname: '닉네임으로 가입',
     };
     const res = await userApi.signupAxios(data);
     console.log(res);
@@ -272,13 +268,13 @@ const ApiTest = () => {
   const patchMyInfo = async () => {
     const data = {
       profileImage: sendImg,
-      nickname: '닉네임수정',
+      nickname: '닉네임 수정',
     };
     const res = await userApi.patchMyInfoAxios(data);
     console.log(res);
   };
 
-  //닉네임 중복확인
+  //위치확인
   const home = async () => {
     const data = {
       location: '중동',
@@ -288,10 +284,10 @@ const ApiTest = () => {
     const res = await userApi.homeAxios(data);
     console.log(res);
   };
-  //위치확인
+  //닉네임중복확인
   const checkNickname = async () => {
     const data = {
-      nickname: '닉네임으로가입',
+      nickname: '닉네임으로 가입',
     };
     const res = await userApi.checkNicknameAxios(data);
     console.log(res);
@@ -312,15 +308,16 @@ const ApiTest = () => {
     const res = await userApi.getMyCommentAxios();
     console.log(res);
   };
-
+  //로그아웃
+  const logout = async () => {
+    const res = await userApi.logoutAxios();
+    console.log(res);
+  };
   return (
     <React.Fragment>
       <StyleDiv>
         <input type="file" ref={fileInput} onChange={selectFile} />
-        <StyleImg
-          src="https://potluck-test.s3.ap-northeast-2.amazonaws.com/posts/9d04075b-456f-43b7-a0dc-0444463055b0%EA%B9%80%EC%A7%80%EC%9B%90.jpg"
-          alt="preview"
-        />
+        <StyleImg src={img} alt="preview" />
       </StyleDiv>
       <AddImgSlider />
 
@@ -361,7 +358,7 @@ const ApiTest = () => {
       <Button onClick={getMyComment}>내 댓글</Button>
 
       <Button>로그인</Button>
-      <Button>로그아웃</Button>
+      <Button onClick={logout}>로그아웃</Button>
     </React.Fragment>
   );
 };

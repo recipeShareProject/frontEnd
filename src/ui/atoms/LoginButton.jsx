@@ -13,7 +13,7 @@ const LoginButton = ({background, border, src, href, margin, children}) => {
 const StyledButton = styled.div`
   height: 49px;
   background: ${(props) => props.background};
-  border: 1px solid #4285f4;
+  border: ${(props) => props.border};
   border-radius: 6px;
   display: flex;
   flex-direction: row;

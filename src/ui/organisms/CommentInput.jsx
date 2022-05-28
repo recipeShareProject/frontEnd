@@ -1,13 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
 import SendIcon from 'common/icons/SendIcon';
+import Typography from 'ui/atoms/Typography';
 import {Colar100, Black20} from 'assets/colorSet';
-const CommentInput = ({content, _onClick}) => {
+
+import {useDispatch} from 'react-redux';
+import {addComment} from 'redux/slices/postSlice';
+const CommentInput = ({postId, content, _onClick}) => {
+  const dispatch = useDispatch();
+  const w = content ? '50px' : '';
+
+  const handleInput = (e) => {
+    //enter 키코드 = 0
+    if (e.key === 'Enter' || e.type === 'click') {
+      const data = {
+        comment: e.target.value,
+      };
+
+      dispatch(addComment({postId, data}));
+    }
+  };
+
   return (
-    <InputWrapper onClick={() => _onClick('')} content={content}>
-      <StyleInput placeholder="댓글을 남겨보세요" />
-      <SendIcon />
-    </InputWrapper>
+    <React.Fragment>
+      <InputWrapper>
+        <Typography
+          color={Colar100}
+          fontSize="12px"
+          onClick={() => _onClick('')}
+          w={w}>
+          {content}
+        </Typography>
+        <StyleInput onKeyPress={handleInput} placeholder="댓글을 남겨보세요" />
+      </InputWrapper>
+      <SendIcon onClick={handleInput} />
+    </React.Fragment>
   );
 };
 const InputWrapper = styled.div`

@@ -1,7 +1,7 @@
 import React from 'react';
-import WriteTemplate from 'ui/templates/party/WriteTemplate';
-const EditParty = () => {
-  return <WriteTemplate />;
+import WritePostTemplate from 'ui/templates/party/WritePostTemplate';
+const EditParty = ({type}) => {
+  return <WritePostTemplate type={type} />;
 };
 
 export default EditParty;

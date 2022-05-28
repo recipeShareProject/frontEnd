@@ -23,7 +23,8 @@ import PrimaryButton from 'ui/atoms/PrimaryButton';
 import {Colar100} from 'assets/colorSet';
 
 import postApi from 'api/postApi';
-const WriteTemplate = ({type}) => {
+
+const WritePostTemplate = ({type}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sendImgs = useSelector((state) => state.img.sendCompleteImgs);
@@ -36,8 +37,27 @@ const WriteTemplate = ({type}) => {
   const startDay = now.add(1, 'day').$d;
   const [changeDate, setChangeDate] = React.useState(startDay);
   const [category, setcategory] = React.useState('나눔해요');
+  const post = useSelector((state) => state.post.post);
+  const postId = post.postId;
+
+  React.useEffect(() => {
+    if (type === 'modi') {
+      // dispatch(tagActions.setTags(post.tag));
+
+      post.images.map((v, idx) => {
+        dispatch(imgActions.setImgs({idx, v}));
+      });
+
+      setcategory('나눔해요'); //post.category
+      setChangeDate(post.expiredAt);
+      title.current.value = post.title;
+      content.current.value = post.content;
+    }
+  }, []);
+
   React.useEffect(() => {
     return () => {
+      dispatch(imgActions.setSendCompleteImg());
       dispatch(imgActions.setCompleteImg());
       dispatch(tagActions.setTag());
     };
@@ -102,14 +122,23 @@ const WriteTemplate = ({type}) => {
 
         console.log(data);
         // dispatch(postActions.setPost(data ));
-        const a = await postApi.writePostAxios(data);
+        if (type === 'modi') {
+          const res = await postApi.patchPostAxios(postId, data);
 
-        if (a === true) {
-          navigate('/party');
+          if (res) {
+            navigate('/party');
+          }
+        } else {
+          const res = await postApi.writePostAxios(data);
+
+          if (res) {
+            navigate('/party');
+          }
         }
       });
     }
   };
+
   const onSave = function (e) {
     getLocation();
   };
@@ -118,15 +147,13 @@ const WriteTemplate = ({type}) => {
     dispatch(tagActions.delTag(idx));
   };
 
-  type = 'patch';
-
   return (
     <React.Fragment>
       <HeaderBar type="writeParty" />
       <Wrapper padding="72px 0 60px 0">
         <Wrapper padding="0 1rem 0 1rem">
           <Typography fontSize="20px" fontWeight="600" margin="16px 0 0 0">
-            {type === 'patch' ? '게시글 수정하기' : '게시글 등록하기'}
+            {type === 'modi' ? '게시글 수정하기' : '게시글 등록하기'}
           </Typography>
           <Typography fontSize="16px" fontWeight="600" margin="24px 0 0 0">
             제목
@@ -137,7 +164,7 @@ const WriteTemplate = ({type}) => {
           <Typography fontSize="16px" fontWeight="600" margin="24px 0 0 0">
             말머리
           </Typography>
-          {type === 'patch' ? (
+          {type === 'modi' ? (
             <Radio disabled={true} category={category} />
           ) : (
             <Radio category={category} handleChkChange={handleChkChange} />
@@ -163,11 +190,15 @@ const WriteTemplate = ({type}) => {
             _ref={tag}
           />
           <Wrapper margin="1.2rem 0" display="flex" flexWrap="wrap" gap="10px">
-            {tags.map((tag, idx) => (
-              <FilterInputTag _onClick={() => deleteTag(idx)} type="input">
-                {tag}
-              </FilterInputTag>
-            ))}
+            {tags &&
+              tags.map((tag, idx) => (
+                <FilterInputTag
+                  key={idx}
+                  _onClick={() => deleteTag(idx)}
+                  type="input">
+                  {tag}
+                </FilterInputTag>
+              ))}
           </Wrapper>
         </Wrapper>
 
@@ -189,10 +220,10 @@ const WriteTemplate = ({type}) => {
         background={Colar100}
         color="white"
         _onClick={onSave}>
-        {type === 'patch' ? '수정하기' : '등록하기'}
+        {type === 'modi' ? '수정하기' : '등록하기'}
       </PrimaryButton>
     </React.Fragment>
   );
 };
 
-export default WriteTemplate;
+export default WritePostTemplate;

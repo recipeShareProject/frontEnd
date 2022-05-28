@@ -1,9 +1,19 @@
 import http from 'api/http';
+import {getCookie} from 'common/presenters/Cookie';
 //설정
 // http.defaults.headers['Content-Type'] = 'application/json';
-//   http.defaults.headers.common['Authorization'] =
-//     sessionStorage.getItem('token');
-
+const token = getCookie('token');
+const config = {
+  headers: {
+    authorization: 'Bearer ' + token,
+  },
+};
+const formConfig = {
+  headers: {
+    'Content-Type': 'multipart/form-data',
+    authorization: 'Bearer ' + token,
+  },
+};
 //게시글 목록 조회
 const getPostsAxios = async () => {
   try {
@@ -15,11 +25,7 @@ const getPostsAxios = async () => {
     console.log('조회 실패');
   }
 };
-const config = {
-  headers: {
-    'Content-Type': 'multipart/form-data',
-  },
-};
+
 //게시글 작성
 const writePostAxios = async (data) => {
   // http.defaults.headers['Content-Type'] = 'multipart/form-data';
@@ -29,13 +35,13 @@ const writePostAxios = async (data) => {
   frm.append('category', data.category);
   frm.append('content', data.content);
   frm.append('tags', data.tags);
-  frm.append('expiredAt', data.expiredAt);
+  // frm.append('expiredAt', data.expiredAt);
   frm.append('location', data.location);
   frm.append('latitude', data.latitude);
   frm.append('longitude', data.longitude);
   data.images.forEach((image) => frm.append('images', image));
   try {
-    const res = await http.post('community', frm, config);
+    const res = await http.post('community', frm, formConfig);
     return res.data.success;
   } catch (error) {
     console.error(error);
@@ -55,7 +61,7 @@ const getPostAxios = async (communityId) => {
 //게시글 삭제
 const delPostAxios = async (communityId) => {
   try {
-    const res = await http.delete(`community/${communityId}`);
+    const res = await http.delete(`community/${communityId}`, config);
     return res;
   } catch (error) {
     console.error(error);
@@ -64,21 +70,23 @@ const delPostAxios = async (communityId) => {
 
 //게시글 수정
 const patchPostAxios = async (communityId, data) => {
-  http.defaults.headers['Content-Type'] = 'multipart/form-data';
-
   const frm = new FormData();
   frm.append('title', data.title);
   frm.append('category', data.category);
-  frm.append('images', data.imagePath);
   frm.append('content', data.content);
   frm.append('tags', data.tags);
   // frm.append('expiredAt', data.expiredAt);
   frm.append('location', data.location);
   frm.append('latitude', data.latitude);
   frm.append('longitude', data.longitude);
+  data.images.forEach((image) =>
+    typeof image === 'string'
+      ? frm.append('saveimageurl', image)
+      : frm.append('images', image),
+  );
 
   try {
-    const res = await http.put(`community/${communityId}`, frm);
+    const res = await http.patch(`community/${communityId}`, frm, formConfig);
     return res;
   } catch (error) {
     console.error(error);
@@ -88,9 +96,12 @@ const patchPostAxios = async (communityId, data) => {
 //나눔완료
 const patchPostStateAxios = async (communityId, data) => {
   const jsonData = JSON.stringify(data);
-
   try {
-    const res = await http.patch(`community/${communityId}`, jsonData);
+    const res = await http.patch(
+      `community/${communityId}/complete`,
+      jsonData,
+      config,
+    );
     return res;
   } catch (error) {
     console.error(error);
@@ -98,11 +109,11 @@ const patchPostStateAxios = async (communityId, data) => {
 };
 
 //댓글 작성
-const writeCommentAxios = async (communityId, data) => {
+const writeCommentAxios = async (postId, data) => {
   const jsonData = JSON.stringify(data);
-
+  console.log(jsonData);
   try {
-    const res = await http.post(`comment/${communityId}`, jsonData);
+    const res = await http.post(`comment/${postId}`, jsonData, config);
     return res;
   } catch (error) {
     console.error(error);
@@ -117,8 +128,11 @@ const writeReplyAxios = async (communityId, commentId, data) => {
     const res = await http.post(
       `comment/${communityId}/${commentId}`,
       jsonData,
+      config,
     );
-    return res;
+    if (res.status === 200) {
+      return data;
+    }
   } catch (error) {
     console.error(error);
   }
@@ -126,7 +140,7 @@ const writeReplyAxios = async (communityId, commentId, data) => {
 //댓글 삭제
 const delCommentAxios = async (communityId) => {
   try {
-    const res = await http.delete(`comment/${communityId}`);
+    const res = await http.delete(`comment/${communityId}`, config);
     return res;
   } catch (error) {
     console.error(error);
@@ -137,7 +151,7 @@ const patchCommentAxios = async (communityId, data) => {
   const jsonData = JSON.stringify(data);
 
   try {
-    const res = await http.patch(`comment/${communityId}`, jsonData);
+    const res = await http.patch(`comment/${communityId}`, jsonData, config);
     return res;
   } catch (error) {
     console.error(error);

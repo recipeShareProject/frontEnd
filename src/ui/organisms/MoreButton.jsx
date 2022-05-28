@@ -2,7 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Typography from 'ui/atoms/Typography';
+import {Black10} from 'assets/colorSet';
+import {useNavigate, useParams} from 'react-router-dom';
 const MoreButton = ({setShareModal, setDelModal}) => {
+  const navigate = useNavigate();
+  const params = useParams();
+  const postId = params.postId;
   const [open, setOpen] = React.useState(false);
   return (
     <React.Fragment>
@@ -10,19 +16,24 @@ const MoreButton = ({setShareModal, setDelModal}) => {
       {open && (
         <CloseEffect onClick={() => setOpen(!open)}>
           <DropdownContent>
-            <div
+            <ContentButton
               onClick={() => {
                 setShareModal(true);
               }}>
-              나눔 완료로 상태변경하기
-            </div>
-            <div onClick={() => {}}>수정하기</div>
-            <div
+              나눔 완료로 변경하기
+            </ContentButton>
+            <ContentButton
+              onClick={() => {
+                navigate(`/party/modiParty/${postId}`);
+              }}>
+              수정하기
+            </ContentButton>
+            <ContentButton
               onClick={() => {
                 setDelModal(true);
               }}>
               삭제하기
-            </div>
+            </ContentButton>
           </DropdownContent>
         </CloseEffect>
       )}
@@ -38,28 +49,29 @@ const CloseEffect = styled.div`
 `;
 const DropdownContent = styled.div`
   width: 160px;
-  height: 80px;
+  height: 120px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  font-size: 12px;
+
+  border: 1px solid ${Black10};
   border-radius: 4px;
   z-index: 100;
   position: fixed;
   left: calc(100% - 11rem);
-  /* top: calc(100% - 43rem); */
   top: 61px;
-
-  div {
-    display: flex;
-    justify-content: center;
-    height: 40px;
-    background-color: white;
-    display: flex;
-    align-items: center;
-
-    cursor: pointer;
-  }
+  overflow: hidden;
 `;
+const ContentButton = styled.div`
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  background-color: white;
+  display: flex;
+  align-items: center;
 
+  cursor: pointer;
+`;
 const MoreVert = styled(MoreVertIcon)`
   &:hover + ${DropdownContent} {
     display: block;

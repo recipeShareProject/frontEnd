@@ -12,6 +12,8 @@ import Typography from 'ui/atoms/Typography';
 import Image from 'ui/atoms/Image';
 import Wrapper from 'ui/atoms/Wrapper';
 import Input from 'ui/atoms/Input';
+
+import {getCookie} from 'common/presenters/Cookie';
 const ProfileTemplate = ({title, btnText}) => {
   const fileInput = React.useRef('');
   const [Img, setImg] = React.useState(ProfileIcon);
@@ -34,6 +36,7 @@ const ProfileTemplate = ({title, btnText}) => {
       setImg(result);
     };
   };
+
   return (
     <React.Fragment>
       <Wrapper
@@ -77,7 +80,10 @@ const ProfileTemplate = ({title, btnText}) => {
           이미 사용 중인 닉네임이에요
         </Typography>
       </Wrapper>
-      <PrimaryButton background={Colar100} color="white">
+      <PrimaryButton
+        _onClick={() => getCookie('token')}
+        background={Colar100}
+        color="white">
         {btnText}
       </PrimaryButton>
     </React.Fragment>
