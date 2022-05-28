@@ -46,7 +46,7 @@ const HeaderBar = ({type}) => {
       return (
         <HeaderWrapper>
           <ArrowBackIosIcon onClick={() => setModal(true)} fontSize="small" />
-          <BookmarkIcon />
+
           {modal && (
             <ModalPopup
               isOn={false}
