@@ -13,6 +13,7 @@ import HeaderBar from 'ui/templates/header/HeaderBar';
 import Wrapper from 'ui/atoms/Wrapper';
 
 import {Black5} from 'assets/colorSet';
+
 const theme = createTheme({
   components: {
     MuiTab: {
@@ -34,7 +35,6 @@ const theme = createTheme({
 
 function TabPanel(props) {
   const {children, value, index, ...other} = props;
-
   return (
     <div
       role="tabpanel"

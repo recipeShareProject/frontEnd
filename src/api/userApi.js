@@ -122,6 +122,7 @@ const getMyCommentAxios = async () => {
     console.error(error);
   }
 };
+
 const userApi = {
   getInfoAxios,
   signupAxios,

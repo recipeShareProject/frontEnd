@@ -6,7 +6,7 @@ import logger from 'redux-logger';
 import postReducer from 'redux/slices/postSlice';
 import tagReducer from 'redux/slices/tagSlice';
 import imgReducer from 'redux/slices/imgSlice';
-
+import userReducer from 'redux/slices/userSlice';
 const persistConfig = {
   key: 'root',
   version: 1,
@@ -17,6 +17,7 @@ const rootReducer = combineReducers({
   post: postReducer,
   tag: tagReducer,
   img: imgReducer,
+  user: userReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
