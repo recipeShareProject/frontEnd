@@ -8,6 +8,9 @@ const tagSlice = createSlice({
   name: 'tag',
   initialState,
   reducers: {
+    setTags: (state, {payload}) => {
+      state.tags = payload;
+    },
     addTag: (state, {payload}) => {
       state.tags.push(payload);
     },

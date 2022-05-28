@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import ImgSlider from 'ui/organisms/ImgSlider';
 import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
 import {useParams} from 'react-router-dom';
@@ -19,15 +19,24 @@ import Profile from 'ui/organisms/Profile';
 import FIlterTag from 'ui/organisms/FIlterTag';
 import CommentInput from 'ui/organisms/CommentInput';
 import Comment from 'ui/organisms/Comment';
-const DetailTemplate = () => {
-  const posts = useSelector((state) => state.post.posts);
-  const params = useParams();
-  const postId = params.postId;
-  const {category, content, expiredAt, imagePath, location, tag, title} =
-    posts[postId];
 
+const DetailTemplate = () => {
+  const post = useSelector((state) => state.post.post);
+
+  const {
+    category,
+    content,
+    createdAt,
+    expiredAt,
+    images,
+    location,
+    tag,
+    title,
+    postId,
+  } = post;
+  console.log(post);
   const [replyNickname, setReplyNickname] = React.useState('');
-  console.log(replyNickname);
+
   return (
     <React.Fragment>
       <HeaderBar type="party" />
@@ -43,18 +52,18 @@ const DetailTemplate = () => {
             <Typography fontSize="14px" margin="0 8px 16px 0">
               {location}
             </Typography>
-            <Typography color={Black40}>
+            <Typography fontSize="14px" color={Black40}>
               {timeForToday(expiredAt, 'party')}
             </Typography>
           </Wrapper>
-          <ImgSlider Img={imagePath}></ImgSlider>
-          <Profile nickName="닉네임" />
+          <ImgSlider Img={images}></ImgSlider>
+          <Profile nickName="닉네임" time={createdAt} />
           <Typography fontSize="14px" margin="16px 0">
             {content}
           </Typography>
-          {tag.map((v, idx) => (
-            <FIlterTag key={idx}>{v}</FIlterTag>
-          ))}
+          <Wrapper margin="1.2rem 0" display="flex" flexWrap="wrap" gap="10px">
+            {tag && tag.map((v, idx) => <FIlterTag key={idx}>{v}</FIlterTag>)}
+          </Wrapper>
         </Wrapper>
         <Divider />
         <Wrapper padding="0 1rem 2rem 1rem">
@@ -63,7 +72,11 @@ const DetailTemplate = () => {
           </Typography>
           <Comment _onClick={setReplyNickname} />
         </Wrapper>
-        <CommentInput _onClick={setReplyNickname} content={replyNickname} />
+        <CommentInput
+          postId={postId}
+          _onClick={setReplyNickname}
+          content={replyNickname}
+        />
       </Wrapper>
     </React.Fragment>
   );

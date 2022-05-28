@@ -3,7 +3,31 @@ import http from 'api/http';
 // http.defaults.headers['Content-Type'] = 'application/json';
 //   http.defaults.headers.common['Authorization'] =
 //     sessionStorage.getItem('token');
+import {getCookie} from 'common/presenters/Cookie';
+//설정
+// http.defaults.headers['Content-Type'] = 'application/json';
+const token = getCookie('token');
+const formConfig = {
+  headers: {
+    'Content-Type': 'multipart/form-data',
+    authorization: 'Bearer ' + token,
+  },
+};
+const config = {
+  headers: {
+    authorization: 'Bearer ' + token,
+  },
+};
 
+const getInfoAxios = async () => {
+  try {
+    const res = await http.post('user/info', config);
+
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};
 //회원가입
 const signupAxios = async (data) => {
   const frm = new FormData();
@@ -11,7 +35,7 @@ const signupAxios = async (data) => {
   frm.append('profileImage', data.profileImage);
 
   try {
-    const res = await http.post('user/signup', data);
+    const res = await http.post('user/signup', data, formConfig);
 
     return res;
   } catch (error) {
@@ -25,7 +49,7 @@ const patchMyInfoAxios = async (data) => {
   frm.append('nickname', data.nickname);
   frm.append('profileImage', data.profileImage);
   try {
-    const res = await http.patch('user/me/edit', data);
+    const res = await http.patch('user/me/edit', data, formConfig);
 
     return res;
   } catch (error) {
@@ -60,7 +84,7 @@ const homeAxios = async (data) => {
 //회원 로그아웃
 const logoutAxios = async () => {
   try {
-    const res = await http.patch('logout');
+    const res = await http.post('user/logout');
 
     return res;
   } catch (error) {
@@ -71,7 +95,7 @@ const logoutAxios = async () => {
 //나의 레시피글보기
 const getMyBoardAxios = async () => {
   try {
-    const res = await http.get('user/me/board');
+    const res = await http.get('user/me/board', config);
 
     return res;
   } catch (error) {
@@ -81,7 +105,7 @@ const getMyBoardAxios = async () => {
 //나의 파티글 보기
 const getMyPostAxios = async () => {
   try {
-    const res = await http.get('user/me/community');
+    const res = await http.get('user/me/community', config);
 
     return res;
   } catch (error) {
@@ -91,7 +115,7 @@ const getMyPostAxios = async () => {
 //나의 댓글 보기
 const getMyCommentAxios = async () => {
   try {
-    const res = await http.get('user/me/comment');
+    const res = await http.get('user/me/comment', config);
 
     return res;
   } catch (error) {
@@ -99,6 +123,7 @@ const getMyCommentAxios = async () => {
   }
 };
 const userApi = {
+  getInfoAxios,
   signupAxios,
   patchMyInfoAxios,
   checkNicknameAxios,

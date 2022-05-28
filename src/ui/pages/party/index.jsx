@@ -9,8 +9,8 @@ const Party = () => {
     <Routes>
       <Route path={'/'} element={<PartyHome />} />
       <Route path={`/detailParty/:postId`} element={<DetailParty />} />
-      <Route path={`/addParty`} element={<EditParty />} />
-      <Route path={`/modiParty/:postId`} element={<EditParty />} />
+      <Route path={`/addParty`} element={<EditParty type="edit" />} />
+      <Route path={`/modiParty/:postId`} element={<EditParty type="modi" />} />
     </Routes>
   );
 };

@@ -1,8 +1,21 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import userApi from 'api/userApi';
+import {setCookie, getCookie, deleteCookie} from 'common/presenters/Cookie';
 
+export const getInfo = createAsyncThunk('user/getInfo', async (data) => {
+  const response = await userApi.getInfoAxios();
+
+  // return response;
+  return data;
+});
+export const logout = createAsyncThunk('user/logout', async (data) => {
+  const response = await userApi.logoutAxios();
+
+  // return response;
+  return data;
+});
 const initialState = {
   user: {
-    email: '',
     nickName: '',
     profilUrl: '',
     location: '',
@@ -29,6 +42,16 @@ const imgSlice = createSlice({
     setCompleteImg: (state, {payload}) => {
       state.completeImgs = ['', '', '', '', ''];
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getInfo.fulfilled, (state, {payload}) => {
+      console.log(payload);
+      // state.post.comment.push(payload);
+    });
+    builder.addCase(logout.fulfilled, (state, {payload}) => {
+      console.log(payload);
+      // state.post.comment.push(payload);
+    });
   },
 });
 

@@ -15,20 +15,30 @@ const FloatingButton = () => {
   }, []);
 
   return (
-    <>
+    <React.Fragment>
       <FloatBtn>
         <WritePencilIcon onClick={() => setOpen(!open)} />
       </FloatBtn>
       {open && (
-        <DropdownContent>
-          <div onClick={() => navigate('/recipe/write')}>레시피 추가하기</div>
-          <div onClick={() => navigate('/party/addParty')}>게시글 추가하기</div>
-        </DropdownContent>
+        <CloseEffect onClick={() => setOpen(!open)}>
+          <DropdownContent>
+            <div onClick={() => navigate('/recipe/write')}>레시피 추가하기</div>
+            <div onClick={() => navigate('/party/addParty')}>
+              게시글 추가하기
+            </div>
+          </DropdownContent>
+        </CloseEffect>
       )}
-    </>
+    </React.Fragment>
   );
 };
-
+const CloseEffect = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+`;
 const DropdownContent = styled.div`
   width: 160px;
   height: 80px;

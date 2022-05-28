@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {useSelector, useDispatch} from 'react-redux';
-import postsActions from 'redux/thunkActions/PostsAction';
+import postsActions from 'redux/thunkActions/postAction';
 
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
@@ -19,7 +19,21 @@ import ImgSlider from 'ui/organisms/ImgSlider';
 
 import ModalPopup from 'ui/molecules/ModalPopup';
 import {getLocation} from 'common/presenters/getLocation';
+
+import {useSearchParams, useNavigate} from 'react-router-dom';
+import {setCookie} from 'common/presenters/Cookie';
+
 const TestPage = () => {
+  // const navigate = useNavigate();
+  // const [params] = useSearchParams();
+  // const navigate = useNavigate();
+  // React.useEffect(() => {
+  //   const token = params.get('token');
+  //   if (token) {
+  //     setCookie('token', token);
+  //     navigate('/auth/profile');
+  //   }
+  // }, []);
   const post = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const now = dayjs();

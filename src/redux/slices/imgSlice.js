@@ -10,6 +10,10 @@ const imgSlice = createSlice({
   name: 'img',
   initialState,
   reducers: {
+    setImgs: (state, {payload}) => {
+      state.completeImgs[payload.idx] = payload.v;
+      state.sendCompleteImgs[payload.idx] = payload.v;
+    },
     addCompleteImg: (state, {payload}) => {
       const idx = payload.idx;
       const img = payload.img;

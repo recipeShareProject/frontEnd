@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
@@ -12,8 +12,13 @@ import ModalPopup from 'ui/molecules/ModalPopup';
 import HeaderWrapper from 'ui/atoms/HeaderWrapper';
 import MoreButton from 'ui/organisms/MoreButton';
 import Wrapper from 'ui/atoms/Wrapper';
+
+import {delPost} from 'redux/slices/postSlice';
 const HeaderBar = ({type}) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const params = useParams();
+  const postId = params.postId;
   const [modal, setModal] = React.useState(false);
   const [shareModal, setShareModal] = React.useState(false);
   const [delModal, setDelModal] = React.useState(false);
@@ -70,7 +75,10 @@ const HeaderBar = ({type}) => {
               isOn={false}
               content="게시물을 정말 삭제하시겠어요?"
               closeEvent={setDelModal}
-              yesEvent={() => {}}></ModalPopup>
+              yesEvent={() => {
+                dispatch(delPost(postId));
+                navigate('/party');
+              }}></ModalPopup>
           )}
         </HeaderWrapper>
       );

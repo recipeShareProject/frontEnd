@@ -10,7 +10,7 @@ import HeaderWrapper from 'ui/atoms/HeaderWrapper';
 import Typography from 'ui/atoms/Typography';
 const Header = () => {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = React.useState(true);
+  const [isLogin, setIsLogin] = React.useState(false);
   const moveToMain = () => {
     navigate('/');
   };

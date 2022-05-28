@@ -3,20 +3,24 @@ import {useNavigate} from 'react-router';
 import Wrapper from 'ui/atoms/Wrapper';
 import Image from 'ui/atoms/Image';
 import Typography from 'ui/atoms/Typography';
-
+import {useDispatch} from 'react-redux';
+import {getPost} from 'redux/slices/postSlice';
 const PartyPost = ({
   thumnail = 'https://user-images.githubusercontent.com/51289147/169662629-ca401384-f9b4-464b-a2a1-a1a6aad119af.jpg',
   category = '나눔해요',
   title = '쭈꾸미 좋아하세요?',
   location = '카이센동',
   time = '10분 뒤까지',
+  id,
 }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const moveDetailPage = () => {
+    dispatch(getPost(id));
+    navigate(`detailParty/${id}`);
+  };
   return (
-    <Wrapper
-      display="flex"
-      margin="1rem 0"
-      _onClick={() => navigate(`detailParty/1`)}>
+    <Wrapper display="flex" margin="1rem 0" _onClick={moveDetailPage}>
       <Image
         width="6.5rem"
         height="6.5rem"
