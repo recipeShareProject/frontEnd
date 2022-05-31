@@ -15,10 +15,11 @@ const RecipeTabTemplate = () => {
   return (
     <Wrapper padding="1rem">
       <Grid>
-        {recipes.map((v, idx) => (
+        {recipes.map((v) => (
           <MainBannerImg
             width="160px"
             cookTime={v.cookTime}
+            key={v.id}
             id={v.id}
             image={v.images[0]}
             title={v.title}

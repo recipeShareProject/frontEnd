@@ -38,7 +38,7 @@ const initialState = {
   },
   myRecipes: [],
   myPosts: [],
-  myComment: [],
+  myComments: [],
 };
 
 const imgSlice = createSlice({
@@ -75,13 +75,11 @@ const imgSlice = createSlice({
       state.myRecipes = payload;
     });
     builder.addCase(getMyPost.fulfilled, (state, {payload}) => {
-      //Todo:서버개발중
-      // state.post.comment.push(payload);
+      state.myPosts = payload;
     });
     builder.addCase(getMyComment.fulfilled, (state, {payload}) => {
       console.log(payload);
-      //Todo:서버개발중
-      // state.post.comment.push(payload);
+      state.myComments = payload;
     });
   },
 });
