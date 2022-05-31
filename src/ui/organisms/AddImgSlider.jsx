@@ -9,6 +9,7 @@ import {imgActions} from 'redux/slices/imgSlice';
 
 import Image from 'ui/atoms/Image';
 import EmptyImage from 'ui/atoms/EmptyImage';
+
 const AddImgSlider = () => {
   const dispatch = useDispatch();
   const fileInput = useRef('');
