@@ -21,6 +21,7 @@ const PartyTemplate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const posts = useSelector((state) => state.post.posts);
+
   const [location, setLocation] = React.useState('');
   const {kakao} = window;
   const geocoder = new kakao.maps.services.Geocoder();
@@ -79,7 +80,7 @@ const PartyTemplate = () => {
         <Typography fontSize="12px" color={Black40} margin="8px 0 24px 0">
           나의 위치를 기준으로 5km 이내의 게시물이 노출돼요
         </Typography>
-        {posts !== [] ? (
+        {posts.length !== 0 ? (
           posts.map((v, idx) => (
             <PartyPost
               key={v.postId}
