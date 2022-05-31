@@ -19,7 +19,8 @@ const config = {
   },
 };
 
-const getInfoAxios = async () => {
+//내정보 가져오기
+const myInfoAxios = async () => {
   try {
     const res = await http.post('user/info', config);
 
@@ -28,6 +29,7 @@ const getInfoAxios = async () => {
     console.error(error);
   }
 };
+
 //회원가입
 const signupAxios = async (data) => {
   const frm = new FormData();
@@ -124,7 +126,7 @@ const getMyCommentAxios = async () => {
 };
 
 const userApi = {
-  getInfoAxios,
+  myInfoAxios,
   signupAxios,
   patchMyInfoAxios,
   checkNicknameAxios,

@@ -245,6 +245,12 @@ const ApiTest = () => {
 
   // -----------------------------회원------------------------
 
+  //내정보 가져오기
+  const myInfo = async () => {
+    const res = await userApi.myInfoAxios();
+    console.log(res);
+  };
+
   //회원 가입
   const signup = async () => {
     const data = {
@@ -339,6 +345,7 @@ const ApiTest = () => {
       <Button onClick={toggleBookMark}>북마크 토글</Button>
 
       <h2>회원정보</h2>
+      <Button onClick={myInfo}>내 정보 가져오기 </Button>
       <Button onClick={signup}>회원가입정보입력 </Button>
       <Button onClick={patchMyInfo}>회원정보변경 </Button>
       <Button onClick={checkNickname}>닉네임 중복체크 </Button>
