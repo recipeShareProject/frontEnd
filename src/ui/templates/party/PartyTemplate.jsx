@@ -22,14 +22,14 @@ const PartyTemplate = () => {
   const navigate = useNavigate();
   const posts = useSelector((state) => state.post.posts);
 
-  const [location, setLocation] = React.useState('');
+  const [address, setAddress] = React.useState('');
   const {kakao} = window;
   const geocoder = new kakao.maps.services.Geocoder();
   React.useEffect(() => {
     dispatch(getPosts());
-    getLocation();
+    getAddress();
   }, []);
-  const getLocation = () => {
+  const getAddress = () => {
     if (navigator.geolocation) {
       // GPS를 지원하면
       navigator.geolocation.getCurrentPosition(
@@ -60,7 +60,7 @@ const PartyTemplate = () => {
     if (status === kakao.maps.services.Status.OK) {
       navigator.geolocation.getCurrentPosition(async (position) => {
         const adress = result[0].address.region_3depth_name;
-        setLocation(adress);
+        setAddress(adress);
       });
     }
   };
@@ -74,7 +74,7 @@ const PartyTemplate = () => {
             파티
           </Typography>
           <Typography fontSize="14px" color={Black40}>
-            {location}
+            {address}
           </Typography>
         </Wrapper>
         <Typography fontSize="12px" color={Black40} margin="8px 0 24px 0">
@@ -88,7 +88,7 @@ const PartyTemplate = () => {
               thumnail={v.images[0]}
               category={v.category}
               title={v.title}
-              location={v.location}
+              address={v.address}
               time={timeForToday(v.expiredAt, 'party')}
             />
           ))

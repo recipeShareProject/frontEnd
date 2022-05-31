@@ -18,6 +18,7 @@ const CommentInput = ({postId, content, _onClick}) => {
       };
 
       dispatch(addComment({postId, data}));
+      e.target.value = '';
     }
   };
 

@@ -22,19 +22,23 @@ import Comment from 'ui/organisms/Comment';
 
 const DetailTemplate = () => {
   const post = useSelector((state) => state.post.post);
-
   const {
     category,
     content,
     createdAt,
     expiredAt,
     images,
-    location,
+    address,
     tag,
     title,
     postId,
+    commentList,
   } = post;
-  const [replyNickname, setReplyNickname] = React.useState('');
+  console.log(post);
+  const [replyData, setReplyData] = React.useState({
+    nickName: '',
+    commentId: '',
+  });
 
   return (
     <React.Fragment>
@@ -49,7 +53,7 @@ const DetailTemplate = () => {
           </Typography>
           <Wrapper display="flex" margin="0 0 1rem 0">
             <Typography fontSize="14px" margin="0 8px 16px 0">
-              {location}
+              {address}
             </Typography>
             <Typography fontSize="14px" color={Black40}>
               {timeForToday(expiredAt, 'party')}
@@ -69,12 +73,22 @@ const DetailTemplate = () => {
           <Typography fontSize="20px" fontWeight="600" margin="24px 0 0 0">
             댓글
           </Typography>
-          <Comment _onClick={setReplyNickname} />
+          {commentList &&
+            commentList.map((v) => (
+              <Comment
+                key={v.commentId}
+                nickName={v.nickname}
+                comment={v.comment}
+                commentId={v.commentId}
+                _onClick={setReplyData}
+              />
+            ))}
         </Wrapper>
+
         <CommentInput
           postId={postId}
-          _onClick={setReplyNickname}
-          content={replyNickname}
+          replyData={replyData}
+          _onClick={setReplyData}
         />
       </Wrapper>
     </React.Fragment>
