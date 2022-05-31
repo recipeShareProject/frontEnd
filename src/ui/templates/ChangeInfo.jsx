@@ -1,11 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useCallback} from 'react';
 import styled from 'styled-components';
-import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
-import {useParams, useLocation} from 'react-router-dom';
-import QueryString from 'qs';
-import axios from 'axios';
-import PrimaryButton from 'ui/atoms/PrimaryButton';
+import {debounce} from 'lodash';
 
+import PrimaryButton from 'ui/atoms/PrimaryButton';
 import {Black40, Colar100} from 'assets/colorSet';
 import ProfileIcon from 'assets/imgs/profile120.png';
 import Typography from 'ui/atoms/Typography';
@@ -14,10 +11,28 @@ import Wrapper from 'ui/atoms/Wrapper';
 import Input from 'ui/atoms/Input';
 
 import {getCookie} from 'common/presenters/Cookie';
+import userApi from 'api/userApi';
 const ProfileTemplate = ({title, btnText}) => {
   const fileInput = React.useRef('');
   const [Img, setImg] = React.useState(ProfileIcon);
+  const [nickname, setNickname] = React.useState('');
+  const [duplication, setDuplication] = React.useState(false);
 
+  const sendApi = async (sendData) => {
+    //Todo: 닉네임 중복 체크 api
+    const res = await userApi.checkNicknameAxios(sendData);
+    console.log(sendData);
+    setDuplication(sendData);
+  };
+
+  const delayedSearch = useCallback(
+    debounce((v) => sendApi(v), 600),
+    [],
+  );
+  const handleChange = (e) => {
+    setNickname(e.target.value);
+    delayedSearch(e.target.value);
+  };
   //파일선택
   const selectFile = (e) => {
     const {
@@ -74,11 +89,16 @@ const ProfileTemplate = ({title, btnText}) => {
         <Typography margin="2.25rem 0 0 0" fontSize="16px" fontWeight="600">
           닉네임
         </Typography>
-        <Input placeholder="2자에서 8자까지 입력해 주세요" />
-
-        <Typography margin="8px 0 0 0" fontSize="12px" color={Colar100}>
-          이미 사용 중인 닉네임이에요
-        </Typography>
+        <Input
+          value={nickname}
+          _onChange={handleChange}
+          placeholder="2자에서 8자까지 입력해 주세요"
+        />
+        {duplication && (
+          <Typography margin="8px 0 0 0" fontSize="12px" color={Colar100}>
+            이미 사용 중인 닉네임이에요
+          </Typography>
+        )}
       </Wrapper>
       <PrimaryButton
         _onClick={() => getCookie('token')}
