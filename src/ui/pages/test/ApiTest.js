@@ -138,22 +138,13 @@ const ApiTest = () => {
     console.log(a);
   };
 
-  //북마크 추가
-  const addBookMark = async () => {
-    const data = {
-      boardId: 1,
-    };
-    const a = await recipeApi.addBookMarkAxios(data);
+  //북마크 토글
+  const toggleBookMark = async () => {
+    const postId = 1;
+    const a = await recipeApi.togglebookMarkAxios(postId);
     console.log(a);
   };
-  //북마크 삭제
-  const delBookMark = async () => {
-    const data = {
-      boardId: 1,
-    };
-    const a = await recipeApi.delBookMarkAxios(data);
-    console.log(a);
-  };
+
   // -----------------------------------파티------------------------
   //게시글 목록 조회
   const getPosts = async () => {
@@ -345,8 +336,7 @@ const ApiTest = () => {
       <Button onClick={patchComment}>댓글 수정</Button>
 
       <h2>북마크</h2>
-      <Button onClick={addBookMark}>북마크 추가</Button>
-      <Button onClick={delBookMark}>북마크 삭제</Button>
+      <Button onClick={toggleBookMark}>북마크 토글</Button>
 
       <h2>회원정보</h2>
       <Button onClick={signup}>회원가입정보입력 </Button>

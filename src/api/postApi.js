@@ -41,7 +41,7 @@ const writePostAxios = async (data) => {
   data.images.forEach((image) => frm.append('images', image));
   try {
     const res = await http.post('community', frm, formConfig);
-    return res.data.success;
+    return res.data;
   } catch (error) {
     console.error(error);
   }

@@ -114,23 +114,22 @@ const WritePostTemplate = ({type}) => {
           images: sendImgs,
           content: content.current.value,
           tags: tags,
-          expiredAt: `${changeDate}`,
+          //Todo: 서버개발중
+          // expiredAt: `${changeDate}`,
           location: adress,
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
         };
 
-        console.log(data);
-        // dispatch(postActions.setPost(data ));
         if (type === 'modi') {
           const res = await postApi.patchPostAxios(postId, data);
-
+          console.log('modi');
           if (res) {
             navigate('/party');
           }
         } else {
           const res = await postApi.writePostAxios(data);
-
+          console.log(res);
           if (res) {
             navigate('/party');
           }
