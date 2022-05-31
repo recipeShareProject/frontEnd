@@ -45,15 +45,8 @@ const HeaderBar = ({type}) => {
     case 'recipe':
       return (
         <HeaderWrapper>
-          <ArrowBackIosIcon onClick={() => setModal(true)} fontSize="small" />
-
-          {modal && (
-            <ModalPopup
-              isOn={false}
-              content="레시피 등록을 정말 그만두시겠어요?"
-              closeEvent={setModal}
-              yesEvent={onClickBack}></ModalPopup>
-          )}
+          <ArrowBackIosIcon onClick={onClickBack} fontSize="small" />
+          <BookmarkIcon fontSize="small" />
         </HeaderWrapper>
       );
     case 'party':
@@ -90,6 +83,20 @@ const HeaderBar = ({type}) => {
             <ModalPopup
               isOn={false}
               content="게시글 등록을 정말 그만두시겠어요?"
+              closeEvent={setModal}
+              yesEvent={onClickBack}></ModalPopup>
+          )}
+        </HeaderWrapper>
+      );
+    case 'writeRecipe':
+      return (
+        <HeaderWrapper>
+          <ArrowBackIosIcon onClick={() => setModal(true)} fontSize="small" />
+
+          {modal && (
+            <ModalPopup
+              isOn={false}
+              content="레시피 등록을 정말 그만두시겠어요?"
               closeEvent={setModal}
               yesEvent={onClickBack}></ModalPopup>
           )}
