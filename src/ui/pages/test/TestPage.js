@@ -18,7 +18,7 @@ import axios from 'axios';
 import ImgSlider from 'ui/organisms/ImgSlider';
 
 import ModalPopup from 'ui/molecules/ModalPopup';
-import {getLocation} from 'common/presenters/getLocation';
+import {getAddress} from 'common/presenters/getAddress';
 
 import {useSearchParams, useNavigate} from 'react-router-dom';
 import {setCookie} from 'common/presenters/Cookie';
@@ -59,8 +59,8 @@ const TestPage = () => {
       'https://potluck-test.s3.ap-northeast-2.amazonaws.com/board/d9752923-a839-4823-bfc3-a92fc35d3245%EA%B9%80%EC%A7%80%EC%9B%901.jpg',
     );
   };
-  const ClickLocation = () => {
-    const a = getLocation();
+  const ClickAddress = () => {
+    const a = getAddress();
     console.log(a);
   };
   const getData = () => {
@@ -124,7 +124,7 @@ const TestPage = () => {
         dateFormat="h:mm aa"
       />
       <button onClick={onBtn}>input가져와</button>
-      <button onClick={ClickLocation}>위치가져와</button>
+      <button onClick={ClickAddress}>위치가져와</button>
       <button onClick={getImg}>사진가져와</button>
       <StyleImg src={img}></StyleImg>
       <a href="http://3.35.106.187/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/auth/profil">

@@ -32,9 +32,9 @@ const initialState = {
   user: {
     nickName: '',
     profilUrl: '',
-    location: '',
-    lat: '',
-    lon: '',
+    address: '',
+    latitude: '',
+    lontitude: '',
   },
   myRecipes: [],
   myPosts: [],

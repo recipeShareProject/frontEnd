@@ -20,7 +20,7 @@ const PartyTabTemplate = () => {
           key={v.postId}
           id={v.postId}
           title={v.title}
-          location={v.location}
+          address={v.address}
           category={v.category}
           // Todo: 이미지, expriedAt입력받기
         />

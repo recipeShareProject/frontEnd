@@ -35,7 +35,7 @@ const writePostAxios = async (data) => {
   frm.append('tags', data.tags);
   //Todo: 서버개발중
   // frm.append('expiredAt', data.expiredAt);
-  frm.append('location', data.location);
+  frm.append('address', data.address);
   frm.append('latitude', data.latitude);
   frm.append('longitude', data.longitude);
   data.images.forEach((image) => frm.append('images', image));
@@ -76,7 +76,7 @@ const patchPostAxios = async (communityId, data) => {
   frm.append('tags', data.tags);
   //Todo: 서버개발중
   // frm.append('expiredAt', data.expiredAt);
-  frm.append('location', data.location);
+  frm.append('address', data.address);
   frm.append('latitude', data.latitude);
   frm.append('longitude', data.longitude);
   data.images.forEach((image) =>

@@ -163,7 +163,7 @@ const ApiTest = () => {
       content: '나눔하는 내용입니다.',
       tags: ['재료', '뭘까', '태그'],
       expiredAt: date,
-      location: '중동',
+      address: '중동',
       latitude: 35.1631,
       longitude: 129.1636,
     };
@@ -268,7 +268,7 @@ const ApiTest = () => {
   //위치확인
   const home = async () => {
     const data = {
-      location: '중동',
+      address: '중동',
       latitude: 35.1631,
       longitude: 129.1636,
     };

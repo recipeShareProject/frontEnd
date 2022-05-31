@@ -60,8 +60,7 @@ const postSlice = createSlice({
       state.post = {};
     });
     builder.addCase(addComment.fulfilled, (state, {payload}) => {
-      console.log(payload);
-      // state.post.comment.push(payload);
+      state.post.commentList.push(payload);
     });
   },
 });

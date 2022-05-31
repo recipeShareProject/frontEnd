@@ -77,7 +77,7 @@ const WritePostTemplate = ({type}) => {
 
   const {kakao} = window;
   const geocoder = new kakao.maps.services.Geocoder();
-  const getLocation = () => {
+  const getAddress = () => {
     if (navigator.geolocation) {
       // GPS를 지원하면
       navigator.geolocation.getCurrentPosition(
@@ -116,7 +116,7 @@ const WritePostTemplate = ({type}) => {
           tags: tags,
           //Todo: 서버개발중
           // expiredAt: `${changeDate}`,
-          location: adress,
+          address: adress,
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
         };
@@ -139,7 +139,7 @@ const WritePostTemplate = ({type}) => {
   };
 
   const onSave = function (e) {
-    getLocation();
+    getAddress();
   };
 
   const deleteTag = (idx) => {
