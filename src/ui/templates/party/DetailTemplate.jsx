@@ -34,7 +34,6 @@ const DetailTemplate = () => {
     title,
     postId,
   } = post;
-  console.log(post);
   const [replyNickname, setReplyNickname] = React.useState('');
 
   return (

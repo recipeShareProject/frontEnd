@@ -32,8 +32,8 @@ const CommentInput = ({postId, content, _onClick}) => {
           {content}
         </Typography>
         <StyleInput onKeyPress={handleInput} placeholder="댓글을 남겨보세요" />
+        <SendIcon onClick={handleInput} />
       </InputWrapper>
-      <SendIcon onClick={handleInput} />
     </React.Fragment>
   );
 };

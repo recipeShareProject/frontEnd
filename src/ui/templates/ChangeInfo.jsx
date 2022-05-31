@@ -15,11 +15,12 @@ import userApi from 'api/userApi';
 const ProfileTemplate = ({title, btnText}) => {
   const fileInput = React.useRef('');
   const [Img, setImg] = React.useState(ProfileIcon);
+  const [sendImg, setsendImg] = React.useState('');
   const [nickname, setNickname] = React.useState('');
   const [duplication, setDuplication] = React.useState(false);
 
   const sendApi = async (sendData) => {
-    //Todo: 닉네임 중복 체크 api
+    //Todo: 닉네임 중복 체크 api테스트 필요
     const res = await userApi.checkNicknameAxios(sendData);
     console.log(sendData);
     setDuplication(sendData);
@@ -33,6 +34,15 @@ const ProfileTemplate = ({title, btnText}) => {
     setNickname(e.target.value);
     delayedSearch(e.target.value);
   };
+
+  const handleRegister = async () => {
+    //toto:api 테스트
+    const data = {
+      profileImage: sendImg,
+      nickname: nickname,
+    };
+    const res = await userApi.signupAxios(data);
+  };
   //파일선택
   const selectFile = (e) => {
     const {
@@ -41,7 +51,7 @@ const ProfileTemplate = ({title, btnText}) => {
 
     const imageFile = files[0];
     const reader = new FileReader();
-
+    setsendImg(imageFile);
     reader.readAsDataURL(imageFile);
 
     reader.onloadend = (e) => {
@@ -74,12 +84,14 @@ const ProfileTemplate = ({title, btnText}) => {
             onChange={selectFile}
             ref={fileInput}></Upload>
 
-          <Image src={Img} width="120px" height="120px" radius="50%" />
           <label htmlFor="1">
+            <Image src={Img} width="120px" height="120px" radius="50%" />
+
             <Typography
               margin="16px 0 0 0 "
               fontSize="12px"
               fontWeight="500"
+              align="center"
               color={Black40}>
               사진 업로드하기
             </Typography>
@@ -101,7 +113,7 @@ const ProfileTemplate = ({title, btnText}) => {
         )}
       </Wrapper>
       <PrimaryButton
-        _onClick={() => getCookie('token')}
+        _onClick={handleRegister}
         background={Colar100}
         color="white">
         {btnText}
