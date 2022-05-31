@@ -25,6 +25,15 @@ const imgSlice = createSlice({
       const img = payload.img;
       state.sendCompleteImgs[idx] = img;
     },
+    addProcessImgsImg: (state, {payload}) => {
+      const img = payload.img;
+
+      if (state.processImgs.length > 0) {
+        state.processImgs = [...state.processImgs, img];
+      } else {
+        state.processImgs[0] = img;
+      }
+    },
 
     setCompleteImg: (state, {payload}) => {
       state.completeImgs = ['', '', '', '', ''];
