@@ -81,7 +81,7 @@ const DetailTemplate = () => {
                 nickName={v.nickname}
                 comment={v.comment}
                 commentId={v.commentId}
-                createdAt={createdAt}
+                createdAt={v.createdAt}
                 _onClick={setReplyData}
               />
             ))}
