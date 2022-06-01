@@ -6,10 +6,10 @@ import Typography from 'ui/atoms/Typography';
 import Profile from 'ui/organisms/Profile';
 
 import {Colar100, Black40} from 'assets/colorSet';
-const Comment = ({nickName, commentId, comment, _onClick}) => {
+const Comment = ({nickName, createdAt, commentId, comment, _onClick}) => {
   return (
     <React.Fragment>
-      <Profile nickName={nickName} address="OO동" />
+      <Profile nickName={nickName} time={createdAt} address="OO동" />
       <Wrapper margin="16px 0">
         <Typography
           fontSize="14px"

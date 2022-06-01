@@ -22,7 +22,7 @@ const config = {
 //내정보 가져오기
 const myInfoAxios = async () => {
   try {
-    const res = await http.post('user/info', config);
+    const res = await http.get('user/info', config);
 
     return res;
   } catch (error) {

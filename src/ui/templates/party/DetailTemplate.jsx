@@ -29,12 +29,13 @@ const DetailTemplate = () => {
     expiredAt,
     images,
     address,
-    tag,
+    tags,
     title,
     postId,
     commentList,
+    profileUrl,
+    nickname,
   } = post;
-  console.log(post);
   const [replyData, setReplyData] = React.useState({
     nickName: '',
     commentId: '',
@@ -60,12 +61,12 @@ const DetailTemplate = () => {
             </Typography>
           </Wrapper>
           <ImgSlider Img={images}></ImgSlider>
-          <Profile nickName="닉네임" time={createdAt} />
+          <Profile nickName={nickname} src={profileUrl} time={createdAt} />
           <Typography fontSize="14px" margin="16px 0">
             {content}
           </Typography>
           <Wrapper margin="1.2rem 0" display="flex" flexWrap="wrap" gap="10px">
-            {tag && tag.map((v, idx) => <FIlterTag key={idx}>{v}</FIlterTag>)}
+            {tags && tags.map((v, idx) => <FIlterTag key={idx}>{v}</FIlterTag>)}
           </Wrapper>
         </Wrapper>
         <Divider />
@@ -80,6 +81,7 @@ const DetailTemplate = () => {
                 nickName={v.nickname}
                 comment={v.comment}
                 commentId={v.commentId}
+                createdAt={createdAt}
                 _onClick={setReplyData}
               />
             ))}
