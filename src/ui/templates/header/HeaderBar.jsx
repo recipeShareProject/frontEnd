@@ -58,7 +58,9 @@ const HeaderBar = ({type}) => {
           {shareModal && (
             <ModalPopup
               isOn={false}
-              content="나눔완료로 변경하시겠어요? 변경시 더 이상 상태를 수정할 수 없어요"
+              content={
+                '나눔완료로 변경하시겠어요?\n 변경시 더 이상 상태를 수정할 수 없어요'
+              }
               closeEvent={setShareModal}
               yesEvent={() => {}}></ModalPopup>
           )}

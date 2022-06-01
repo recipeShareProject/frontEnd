@@ -14,38 +14,40 @@ const Popup = ({content, closeEvent, yesEvent, isOn}) => {
   const yesText = isOn ? '완료' : '네';
   const noText = isOn ? '닫기' : '아니오';
   return (
-    <>
+    <React.Fragment>
       <Container onClick={() => closeEvent(false)}>
         <div>
           <Box height={_height}>
             <ContentWrapper>
-              <Content>{content}</Content>
+              {content.split('\n').map((txt, idx) => (
+                <Content key={idx}>{txt}</Content>
+              ))}
               {isOn && (
                 <EvalWrapper>
                   <IconWrapper onClick={() => setState('별로에요')}>
                     {state === '별로에요' ? (
-                      <>
+                      <React.Fragment>
                         <BadSelectIcon />
                         <IconContent color={Colar100}>별로에요</IconContent>
-                      </>
+                      </React.Fragment>
                     ) : (
-                      <>
+                      <React.Fragment>
                         <BadUnselectIcon />
                         <IconContent>별로에요</IconContent>
-                      </>
+                      </React.Fragment>
                     )}
                   </IconWrapper>
                   <IconWrapper onClick={() => setState('괜찮아요')}>
                     {state === '괜찮아요' ? (
-                      <>
+                      <React.Fragment>
                         <SosoSelectIcon />
                         <IconContent color={Colar100}>괜찮아요</IconContent>
-                      </>
+                      </React.Fragment>
                     ) : (
-                      <>
+                      <React.Fragment>
                         <SosoUnselectIcon />
                         <IconContent>괜찮아요</IconContent>
-                      </>
+                      </React.Fragment>
                     )}
                   </IconWrapper>
                   <IconWrapper onClick={() => setState('추천해요')}>
@@ -79,7 +81,7 @@ const Popup = ({content, closeEvent, yesEvent, isOn}) => {
           </StyleFlex>
         </div>
       </Container>
-    </>
+    </React.Fragment>
   );
 };
 
