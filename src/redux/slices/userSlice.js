@@ -2,26 +2,43 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import userApi from 'api/userApi';
 import {setCookie, getCookie, deleteCookie} from 'common/presenters/Cookie';
 
+export const getMyRecipe = createAsyncThunk('user/getMyRecipe', async () => {
+  const response = await userApi.getMyBoardAxios();
+
+  return response.data;
+});
+export const getMyPost = createAsyncThunk('user/getMyPost', async () => {
+  const response = await userApi.getMyPostAxios();
+
+  return response.data.content;
+});
+export const getMyComment = createAsyncThunk('user/getMyComment', async () => {
+  const response = await userApi.getMyCommentAxios();
+
+  return response.data.content;
+});
+
 export const getInfo = createAsyncThunk('user/getInfo', async (data) => {
   const response = await userApi.getInfoAxios();
 
-  // return response;
-  return data;
+  return response;
 });
 export const logout = createAsyncThunk('user/logout', async (data) => {
   const response = await userApi.logoutAxios();
 
-  // return response;
-  return data;
+  return response;
 });
 const initialState = {
   user: {
     nickName: '',
     profilUrl: '',
-    location: '',
-    lat: '',
-    lon: '',
+    address: '',
+    latitude: '',
+    lontitude: '',
   },
+  myRecipes: [],
+  myPosts: [],
+  myComments: [],
 };
 
 const imgSlice = createSlice({
@@ -46,11 +63,23 @@ const imgSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getInfo.fulfilled, (state, {payload}) => {
       console.log(payload);
+      //Todo:서버개발중
       // state.post.comment.push(payload);
     });
     builder.addCase(logout.fulfilled, (state, {payload}) => {
       console.log(payload);
+      //Todo:서버개발중
       // state.post.comment.push(payload);
+    });
+    builder.addCase(getMyRecipe.fulfilled, (state, {payload}) => {
+      state.myRecipes = payload;
+    });
+    builder.addCase(getMyPost.fulfilled, (state, {payload}) => {
+      state.myPosts = payload;
+    });
+    builder.addCase(getMyComment.fulfilled, (state, {payload}) => {
+      console.log(payload);
+      state.myComments = payload;
     });
   },
 });

@@ -1,8 +1,8 @@
 import http from 'api/http';
 import {getCookie} from 'common/presenters/Cookie';
 //설정
-// http.defaults.headers['Content-Type'] = 'application/json';
 const token = getCookie('token');
+
 const config = {
   headers: {
     authorization: 'Bearer ' + token,
@@ -28,21 +28,20 @@ const getPostsAxios = async () => {
 
 //게시글 작성
 const writePostAxios = async (data) => {
-  // http.defaults.headers['Content-Type'] = 'multipart/form-data';
-
   const frm = new FormData();
   frm.append('title', data.title);
   frm.append('category', data.category);
   frm.append('content', data.content);
   frm.append('tags', data.tags);
+  //Todo: 서버개발중
   // frm.append('expiredAt', data.expiredAt);
-  frm.append('location', data.location);
+  frm.append('address', data.address);
   frm.append('latitude', data.latitude);
   frm.append('longitude', data.longitude);
   data.images.forEach((image) => frm.append('images', image));
   try {
     const res = await http.post('community', frm, formConfig);
-    return res.data.success;
+    return res.data;
   } catch (error) {
     console.error(error);
   }
@@ -75,8 +74,9 @@ const patchPostAxios = async (communityId, data) => {
   frm.append('category', data.category);
   frm.append('content', data.content);
   frm.append('tags', data.tags);
+  //Todo: 서버개발중
   // frm.append('expiredAt', data.expiredAt);
-  frm.append('location', data.location);
+  frm.append('address', data.address);
   frm.append('latitude', data.latitude);
   frm.append('longitude', data.longitude);
   data.images.forEach((image) =>

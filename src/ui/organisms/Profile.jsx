@@ -7,7 +7,7 @@ import defaultImg from 'assets/imgs/profile48.png';
 import Wrapper from 'ui/atoms/Wrapper';
 import Image from 'ui/atoms/Image';
 import Typography from 'ui/atoms/Typography';
-const Profile = ({src = defaultImg, nickName, location, time}) => {
+const Profile = ({src = defaultImg, nickName, address, time}) => {
   return (
     <Wrapper margin="1rem 0 0 0 " display="flex" align="center">
       <Image
@@ -20,9 +20,9 @@ const Profile = ({src = defaultImg, nickName, location, time}) => {
       <Wrapper display="flex" direction="column" justify="center">
         <Typography fontSize="14px">{nickName}</Typography>
         <Wrapper display="flex">
-          {location && (
+          {address && (
             <Typography fontSize="12px" margin="0 8px 0 0">
-              {location}
+              {address}
             </Typography>
           )}
           <Typography fontSize="12px" color={Black40}>

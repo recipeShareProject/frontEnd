@@ -142,29 +142,16 @@ const patchReviewAxios = async (boardId, data) => {
   }
 };
 
-//북마크 추가
-const addBookMarkAxios = async (data) => {
-  const jsonData = JSON.stringify(data);
-
+//북마크 토글
+const togglebookMarkAxios = async (postId) => {
   try {
-    const res = await http.post('board/bookmark', jsonData, config);
+    const res = await http.post(`board/${postId}/bookmark`, '', config);
     return res;
   } catch (error) {
     console.error(error);
   }
 };
 
-//북마크 삭제
-const delBookMarkAxios = async (data) => {
-  const jsonData = JSON.stringify(data);
-
-  try {
-    const res = await http.delete('board/bookmark', jsonData, config);
-    return res;
-  } catch (error) {
-    console.error(error);
-  }
-};
 const recipeApi = {
   getHomeAxios,
   getSearchResultAxios,
@@ -175,7 +162,6 @@ const recipeApi = {
   writeReviewAxios,
   delReviewAxios,
   patchReviewAxios,
-  addBookMarkAxios,
-  delBookMarkAxios,
+  togglebookMarkAxios,
 };
 export default recipeApi;

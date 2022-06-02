@@ -22,7 +22,7 @@ export const addComment = createAsyncThunk(
   async ({postId, data}) => {
     const response = await postApi.writeCommentAxios(postId, data);
 
-    return response;
+    return response.data;
   },
 );
 
@@ -60,8 +60,7 @@ const postSlice = createSlice({
       state.post = {};
     });
     builder.addCase(addComment.fulfilled, (state, {payload}) => {
-      console.log(payload);
-      // state.post.comment.push(payload);
+      state.post.commentList.unshift(payload);
     });
   },
 });

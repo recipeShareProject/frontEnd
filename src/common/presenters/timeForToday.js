@@ -1,17 +1,17 @@
 export function timeForToday(value, type) {
   let today;
   let createdAt;
+  let expiredAt;
   let word;
   let betweenTime;
   if (type === 'party') {
     today = new Date();
-    createdAt = new Date(value);
+    expiredAt = new Date(value);
     word = '뒤까지';
     betweenTime = Math.floor(
-      (createdAt.getTime() - today.getTime()) / 1000 / 60,
+      (expiredAt.getTime() - today.getTime()) / 1000 / 60,
     );
   } else {
-    value = new Date();
     today = new Date();
     createdAt = new Date(value);
     word = '전';

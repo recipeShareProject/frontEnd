@@ -8,6 +8,7 @@ const Typography = ({
   onClick,
   mt,
   w,
+  align,
   children,
 }) => {
   return (
@@ -18,7 +19,8 @@ const Typography = ({
       margin={margin}
       fontWeight={fontWeight}
       w={w}
-      onClick={onClick}>
+      onClick={onClick}
+      align={align}>
       {children}
     </StyledTypography>
   );
@@ -31,6 +33,7 @@ const StyledTypography = styled.p`
   font-size: ${(props) => (props.fontSize ? props.fontSize : '1rem')};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : '400')};
   width: ${(props) => props.w};
+  text-align: ${(props) => props.align};
 `;
 
 export default Typography;

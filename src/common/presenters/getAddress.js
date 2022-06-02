@@ -2,7 +2,7 @@ import React from 'react';
 const {kakao} = window;
 const geocoder = new kakao.maps.services.Geocoder();
 
-const getLocation = () => {
+const getAddress = () => {
   let test;
   if (navigator.geolocation) {
     // GPS를 지원하면
@@ -47,4 +47,4 @@ const callback = function (result, status) {
 const b = (c, d) => {
   console.log(c);
 };
-export {getLocation};
+export {getAddress};

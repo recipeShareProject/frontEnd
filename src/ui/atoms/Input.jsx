@@ -1,10 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Black20} from 'assets/colorSet';
-const Input = ({placeholder, _ref}) => {
+const Input = ({placeholder, value, _onChange, _ref}) => {
   return (
     <InputWrapper>
-      <StyledInput ref={_ref} placeholder={placeholder} />
+      <StyledInput
+        value={value}
+        ref={_ref}
+        placeholder={placeholder}
+        onChange={_onChange}
+      />
     </InputWrapper>
   );
 };

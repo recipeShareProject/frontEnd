@@ -16,7 +16,15 @@ const useStyles = makeStyles({
   },
 });
 
-const RecipeCard = ({width, height}) => {
+const RecipeCard = ({
+  width,
+  height,
+  id,
+  title = '레시피명',
+  cookTime = 'n 분',
+  image = 'https://i.pinimg.com/564x/b9/cd/cc/b9cdccde10d5a581874f58bb7e914962.jpg',
+  isBookmark,
+}) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const {pathname} = useLocation();
@@ -25,7 +33,7 @@ const RecipeCard = ({width, height}) => {
     <MainBannerImgWrapper>
       <ImgWrapper width={width} height={height}>
         <Img
-          src="https://i.pinimg.com/564x/b9/cd/cc/b9cdccde10d5a581874f58bb7e914962.jpg"
+          src={image}
           alt="음식사진"
           onClick={() => {
             navigate('/recipe/detail');
@@ -38,9 +46,9 @@ const RecipeCard = ({width, height}) => {
           <BookmarkIcon fontSize="small" className={classes.bookMark} />
         </StyleBookIcon>
       </ImgWrapper>
-      <MainBannerTitle>레시피명</MainBannerTitle>
+      <MainBannerTitle>{title}</MainBannerTitle>
       <Box sx={{display: 'flex'}}>
-        <MainBannerTime color={Black100}>n 분</MainBannerTime>
+        <MainBannerTime color={Black100}>{cookTime}</MainBannerTime>
         {pathname === '/search/result' && (
           <MainBannerTime color={Black40} margin="0px 0px 0px 10px">
             100% 일치

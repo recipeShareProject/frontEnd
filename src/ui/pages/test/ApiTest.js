@@ -138,22 +138,13 @@ const ApiTest = () => {
     console.log(a);
   };
 
-  //북마크 추가
-  const addBookMark = async () => {
-    const data = {
-      boardId: 1,
-    };
-    const a = await recipeApi.addBookMarkAxios(data);
+  //북마크 토글
+  const toggleBookMark = async () => {
+    const postId = 1;
+    const a = await recipeApi.togglebookMarkAxios(postId);
     console.log(a);
   };
-  //북마크 삭제
-  const delBookMark = async () => {
-    const data = {
-      boardId: 1,
-    };
-    const a = await recipeApi.delBookMarkAxios(data);
-    console.log(a);
-  };
+
   // -----------------------------------파티------------------------
   //게시글 목록 조회
   const getPosts = async () => {
@@ -172,7 +163,7 @@ const ApiTest = () => {
       content: '나눔하는 내용입니다.',
       tags: ['재료', '뭘까', '태그'],
       expiredAt: date,
-      location: '중동',
+      address: '중동',
       latitude: 35.1631,
       longitude: 129.1636,
     };
@@ -254,6 +245,12 @@ const ApiTest = () => {
 
   // -----------------------------회원------------------------
 
+  //내정보 가져오기
+  const myInfo = async () => {
+    const res = await userApi.myInfoAxios();
+    console.log(res);
+  };
+
   //회원 가입
   const signup = async () => {
     const data = {
@@ -277,7 +274,7 @@ const ApiTest = () => {
   //위치확인
   const home = async () => {
     const data = {
-      location: '중동',
+      address: '중동',
       latitude: 35.1631,
       longitude: 129.1636,
     };
@@ -345,10 +342,10 @@ const ApiTest = () => {
       <Button onClick={patchComment}>댓글 수정</Button>
 
       <h2>북마크</h2>
-      <Button onClick={addBookMark}>북마크 추가</Button>
-      <Button onClick={delBookMark}>북마크 삭제</Button>
+      <Button onClick={toggleBookMark}>북마크 토글</Button>
 
       <h2>회원정보</h2>
+      <Button onClick={myInfo}>내 정보 가져오기 </Button>
       <Button onClick={signup}>회원가입정보입력 </Button>
       <Button onClick={patchMyInfo}>회원정보변경 </Button>
       <Button onClick={checkNickname}>닉네임 중복체크 </Button>

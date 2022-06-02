@@ -1,34 +1,31 @@
 import React from 'react';
-import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 
 import {timeForToday} from 'common/presenters/timeForToday';
-import {Black40, Colar100} from 'assets/colorSet';
-import postAction from 'redux/thunkActions/postAction';
+import {Black40} from 'assets/colorSet';
 import {getPosts} from 'redux/slices/postSlice';
-
-import WritePencilIcon from 'common/icons/WritePencilIcon';
 
 import Wrapper from 'ui/atoms/Wrapper';
 import Header from 'ui/templates/header/Header';
 import Navigation from 'ui/templates/navigation/Navigation';
 import Typography from 'ui/atoms/Typography';
-import PartyPost from 'ui/organisms/PartyPost';
+import PartyPost from 'ui/organisms/party/PartyPost';
 import NotFound from 'ui/templates/NotFound';
-
+import FloatButton from 'ui/atoms/FloatButton';
 const PartyTemplate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const posts = useSelector((state) => state.post.posts);
-  const [location, setLocation] = React.useState('');
+
+  const [address, setAddress] = React.useState('');
   const {kakao} = window;
   const geocoder = new kakao.maps.services.Geocoder();
   React.useEffect(() => {
     dispatch(getPosts());
-    getLocation();
+    getAddress();
   }, []);
-  const getLocation = () => {
+  const getAddress = () => {
     if (navigator.geolocation) {
       // GPS를 지원하면
       navigator.geolocation.getCurrentPosition(
@@ -59,7 +56,7 @@ const PartyTemplate = () => {
     if (status === kakao.maps.services.Status.OK) {
       navigator.geolocation.getCurrentPosition(async (position) => {
         const adress = result[0].address.region_3depth_name;
-        setLocation(adress);
+        setAddress(adress);
       });
     }
   };
@@ -73,21 +70,21 @@ const PartyTemplate = () => {
             파티
           </Typography>
           <Typography fontSize="14px" color={Black40}>
-            {location}
+            {address}
           </Typography>
         </Wrapper>
         <Typography fontSize="12px" color={Black40} margin="8px 0 24px 0">
           나의 위치를 기준으로 5km 이내의 게시물이 노출돼요
         </Typography>
-        {posts !== [] ? (
-          posts.map((v, idx) => (
+        {posts.length !== 0 ? (
+          posts.map((v) => (
             <PartyPost
               key={v.postId}
               id={v.postId}
               thumnail={v.images[0]}
               category={v.category}
               title={v.title}
-              location={v.location}
+              address={v.address}
               time={timeForToday(v.expiredAt, 'party')}
             />
           ))
@@ -95,34 +92,15 @@ const PartyTemplate = () => {
           <NotFound desc="새로운 게시글이 존재하지 않아요" />
         )}
 
-        <FloatBtn>
-          <WritePencilIcon
-            onClick={() => {
-              navigate('/party/addParty');
-            }}
-          />
-        </FloatBtn>
+        <FloatButton
+          onClick={() => {
+            navigate('/party/addParty');
+          }}
+        />
       </Wrapper>
       <Navigation />
     </React.Fragment>
   );
 };
-
-const FloatBtn = styled.div`
-  border-radius: 50%;
-  background-color: ${Colar100};
-  color: white;
-  width: 3rem;
-  height: 3rem;
-  position: fixed;
-  left: calc(100% - 4rem);
-  top: calc(100% - 8rem);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-`;
 
 export default PartyTemplate;
