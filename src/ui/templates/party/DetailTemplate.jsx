@@ -1,15 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import ImgSlider from 'ui/organisms/ImgSlider';
-import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
-import {useParams} from 'react-router-dom';
-
-import {timeForToday} from 'common/presenters/timeForToday';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
-import {Colar100, Black40, Black20} from 'assets/colorSet';
 
 import HeaderBar from 'ui/templates/header/HeaderBar';
 import Wrapper from 'ui/atoms/Wrapper';
@@ -17,9 +9,9 @@ import Typography from 'ui/atoms/Typography';
 import Divider from 'ui/atoms/Divider';
 import Profile from 'ui/organisms/Profile';
 import FIlterTag from 'ui/organisms/FIlterTag';
-import CommentInput from 'ui/organisms/CommentInput';
-import Comment from 'ui/organisms/Comment';
-
+import CommentInput from 'ui/organisms/party/CommentInput';
+import Comment from 'ui/organisms/party/Comment';
+import PartyMainBanner from 'ui/organisms/party/PartyMainBanner';
 const DetailTemplate = () => {
   const post = useSelector((state) => state.post.post);
   const {
@@ -46,20 +38,13 @@ const DetailTemplate = () => {
       <HeaderBar type="party" />
       <Wrapper padding="72px 0 40px 0">
         <Wrapper padding="0 1rem 0 1rem">
-          <Typography fontSize="12px" color={Colar100} margin="0 0 8px 0">
-            {category}
-          </Typography>
-          <Typography fontSize="20px" fontWeight="600" margin="0 0 8px 0">
-            {title}
-          </Typography>
-          <Wrapper display="flex" margin="0 0 1rem 0">
-            <Typography fontSize="14px" margin="0 8px 16px 0">
-              {address}
-            </Typography>
-            <Typography fontSize="14px" color={Black40}>
-              {timeForToday(expiredAt, 'party')}
-            </Typography>
-          </Wrapper>
+          <PartyMainBanner
+            category={category}
+            title={title}
+            address={address}
+            expiredAt={expiredAt}
+          />
+
           <ImgSlider Img={images}></ImgSlider>
           <Profile nickName={nickname} src={profileUrl} time={createdAt} />
           <Typography fontSize="14px" margin="16px 0">

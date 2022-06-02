@@ -5,7 +5,6 @@ import dayjs from 'dayjs';
 import {useDispatch, useSelector} from 'react-redux';
 import {tagActions} from 'redux/slices/tagSlice';
 import {imgActions} from 'redux/slices/imgSlice';
-import {postActions} from 'redux/slices/postSlice';
 
 import AddImgSlider from 'ui/organisms/AddImgSlider';
 import FilterInputTag from 'ui/organisms/FilterInputTag';
@@ -15,13 +14,13 @@ import Wrapper from 'ui/atoms/Wrapper';
 import HeaderBar from 'ui/templates/header/HeaderBar';
 import Typography from 'ui/atoms/Typography';
 import Input from 'ui/atoms/Input';
-import Radio from 'ui/organisms/PartyRadio';
+import Radio from 'ui/organisms/party/PartyRadio';
 import Divider from 'ui/atoms/Divider';
 import PlusIconInput from 'ui/organisms/PlusIconInput';
 import PrimaryButton from 'ui/atoms/PrimaryButton';
-
+import PartyEditForm from 'ui/organisms/party/PartyEditForm';
 import {Colar100} from 'assets/colorSet';
-
+import HeadTitle from 'ui/atoms/HeadTitle';
 import postApi from 'api/postApi';
 
 const WritePostTemplate = ({type}) => {
@@ -151,67 +150,65 @@ const WritePostTemplate = ({type}) => {
       <HeaderBar type="writeParty" />
       <Wrapper padding="72px 0 60px 0">
         <Wrapper padding="0 1rem 0 1rem">
-          <Typography fontSize="20px" fontWeight="600" margin="16px 0 0 0">
+          <HeadTitle>
             {type === 'modi' ? '게시글 수정하기' : '게시글 등록하기'}
-          </Typography>
-          <Typography fontSize="16px" fontWeight="600" margin="24px 0 0 0">
-            제목
-          </Typography>
+          </HeadTitle>
 
-          <Input _ref={title} placeholder="제목을 입력해주세요"></Input>
+          <PartyEditForm title="제목">
+            <Input _ref={title} placeholder="제목을 입력해주세요" />
+          </PartyEditForm>
 
-          <Typography fontSize="16px" fontWeight="600" margin="24px 0 0 0">
-            말머리
-          </Typography>
-          {type === 'modi' ? (
-            <Radio disabled={true} category={category} />
-          ) : (
-            <Radio category={category} handleChkChange={handleChkChange} />
-          )}
+          <PartyEditForm title="말머리">
+            {type === 'modi' ? (
+              <Radio disabled={true} category={category} />
+            ) : (
+              <Radio category={category} handleChkChange={handleChkChange} />
+            )}
+          </PartyEditForm>
         </Wrapper>
 
         <Divider />
         <Wrapper padding="0 1rem 0 1rem">
-          <Typography fontSize="16px" margin="24px 0 16px 0" fontWeight="600">
-            내용
-          </Typography>
-          <Wrapper margin="0 0 16px 0">
-            <Input _ref={content} placeholder="설명을 입력해 주세요"></Input>
-          </Wrapper>
-          <AddImgSlider />
-          <Typography fontSize="16px" margin="24px 0 16px 0" fontWeight="600">
-            태그
-          </Typography>
+          <PartyEditForm title="내용">
+            <Wrapper margin="0 0 16px 0">
+              <Input _ref={content} placeholder="설명을 입력해 주세요" />
+            </Wrapper>
+            <AddImgSlider />
+          </PartyEditForm>
 
-          <PlusIconInput
-            placeholder="태그를 입력해주세요"
-            handleTag={handleTag}
-            _ref={tag}
-          />
-          <Wrapper margin="1.2rem 0" display="flex" flexWrap="wrap" gap="10px">
-            {tags &&
-              tags.map((tag, idx) => (
-                <FilterInputTag
-                  key={idx}
-                  _onClick={() => deleteTag(idx)}
-                  type="input">
-                  {tag}
-                </FilterInputTag>
-              ))}
-          </Wrapper>
+          <PartyEditForm title="태그">
+            <PlusIconInput
+              placeholder="태그를 입력해주세요"
+              handleTag={handleTag}
+              _ref={tag}
+            />
+            <Wrapper
+              margin="1.2rem 0"
+              display="flex"
+              flexWrap="wrap"
+              gap="10px">
+              {tags &&
+                tags.map((tag, idx) => (
+                  <FilterInputTag
+                    key={idx}
+                    _onClick={() => deleteTag(idx)}
+                    type="input">
+                    {tag}
+                  </FilterInputTag>
+                ))}
+            </Wrapper>
+          </PartyEditForm>
         </Wrapper>
 
         <Divider />
         <Wrapper padding="0 1rem 2rem 1rem ">
-          <Typography fontSize="16px" margin="24px 0 16px 0" fontWeight="600">
-            나눔 종료 일시
-          </Typography>
+          <PartyEditForm title="나눔 종료 일시">
+            <Wrapper display="flex">
+              <CustomDatePicker _onChange={setChangeDate} />
 
-          <Wrapper display="flex">
-            <CustomDatePicker _onChange={setChangeDate} />
-
-            <CustomTimePicker _onChange={setChangeDate} />
-          </Wrapper>
+              <CustomTimePicker _onChange={setChangeDate} />
+            </Wrapper>
+          </PartyEditForm>
         </Wrapper>
       </Wrapper>
       <PrimaryButton

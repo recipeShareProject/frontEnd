@@ -1,22 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 
 import {timeForToday} from 'common/presenters/timeForToday';
-import {Black40, Colar100} from 'assets/colorSet';
-import postAction from 'redux/thunkActions/postAction';
+import {Black40} from 'assets/colorSet';
 import {getPosts} from 'redux/slices/postSlice';
-
-import WritePencilIcon from 'common/icons/WritePencilIcon';
 
 import Wrapper from 'ui/atoms/Wrapper';
 import Header from 'ui/templates/header/Header';
 import Navigation from 'ui/templates/navigation/Navigation';
 import Typography from 'ui/atoms/Typography';
-import PartyPost from 'ui/organisms/PartyPost';
+import PartyPost from 'ui/organisms/party/PartyPost';
 import NotFound from 'ui/templates/NotFound';
-
+import FloatButton from 'ui/atoms/FloatButton';
 const PartyTemplate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -81,7 +77,7 @@ const PartyTemplate = () => {
           나의 위치를 기준으로 5km 이내의 게시물이 노출돼요
         </Typography>
         {posts.length !== 0 ? (
-          posts.map((v, idx) => (
+          posts.map((v) => (
             <PartyPost
               key={v.postId}
               id={v.postId}
@@ -96,34 +92,15 @@ const PartyTemplate = () => {
           <NotFound desc="새로운 게시글이 존재하지 않아요" />
         )}
 
-        <FloatBtn>
-          <WritePencilIcon
-            onClick={() => {
-              navigate('/party/addParty');
-            }}
-          />
-        </FloatBtn>
+        <FloatButton
+          onClick={() => {
+            navigate('/party/addParty');
+          }}
+        />
       </Wrapper>
       <Navigation />
     </React.Fragment>
   );
 };
-
-const FloatBtn = styled.div`
-  border-radius: 50%;
-  background-color: ${Colar100};
-  color: white;
-  width: 3rem;
-  height: 3rem;
-  position: fixed;
-  left: calc(100% - 4rem);
-  top: calc(100% - 8rem);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-`;
 
 export default PartyTemplate;

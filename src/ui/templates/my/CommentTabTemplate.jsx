@@ -1,6 +1,6 @@
 import {Box} from '@mui/material';
 import {Black40} from 'assets/colorSet';
-import PartyPost from 'ui/organisms/PartyPost';
+import PartyPost from 'ui/organisms/party/PartyPost';
 import React from 'react';
 
 import Typography from 'ui/atoms/Typography';
