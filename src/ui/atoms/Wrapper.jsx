@@ -18,6 +18,7 @@ const Wrapper = ({
   disabled,
   _onClick,
   children,
+  mt,
 }) => {
   return (
     <StyledWrapper
@@ -35,7 +36,8 @@ const Wrapper = ({
       gap={gap}
       flexWrap={flexWrap}
       onClick={_onClick}
-      disabled={disabled}>
+      disabled={disabled}
+      mt={mt}>
       {children}
     </StyledWrapper>
   );
@@ -57,6 +59,8 @@ const StyledWrapper = styled.div`
   flex-wrap: ${(props) => props.flexWrap};
 
   ${(props) => (props.disabled ? {opacity: '0.3'} : '')}
+
+  margin-top: ${(props) => props.mt};
 `;
 
 export default Wrapper;

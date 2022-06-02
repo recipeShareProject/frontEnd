@@ -9,6 +9,8 @@ import Typography from 'ui/atoms/Typography';
 import Image from 'ui/atoms/Image';
 import Wrapper from 'ui/atoms/Wrapper';
 import Input from 'ui/atoms/Input';
+import HeadTitle from 'ui/atoms/HeadTitle';
+import EditFrom from 'ui/organisms/EditForm';
 
 import {getCookie} from 'common/presenters/Cookie';
 import userApi from 'api/userApi';
@@ -68,9 +70,7 @@ const ProfileTemplate = ({title, btnText}) => {
         boxSizing="border-box"
         height="calc(100vh - 60px)"
         padding="1rem">
-        <Typography margin="84px 0 0 0" fontSize="20px" fontWeight="600">
-          {title}
-        </Typography>
+        <HeadTitle mt="84px" title={title} />
 
         <Wrapper
           margin="40px 0 0 0 "
@@ -78,11 +78,7 @@ const ProfileTemplate = ({title, btnText}) => {
           direction="column"
           justify="center"
           align="center">
-          <Upload
-            id="1"
-            type="file"
-            onChange={selectFile}
-            ref={fileInput}></Upload>
+          <Upload id="1" type="file" onChange={selectFile} ref={fileInput} />
 
           <label htmlFor="1">
             <Image src={Img} width="120px" height="120px" radius="50%" />
@@ -98,19 +94,18 @@ const ProfileTemplate = ({title, btnText}) => {
           </label>
         </Wrapper>
 
-        <Typography margin="2.25rem 0 0 0" fontSize="16px" fontWeight="600">
-          닉네임
-        </Typography>
-        <Input
-          value={nickname}
-          _onChange={handleChange}
-          placeholder="2자에서 8자까지 입력해 주세요"
-        />
-        {duplication && (
-          <Typography margin="8px 0 0 0" fontSize="12px" color={Colar100}>
-            이미 사용 중인 닉네임이에요
-          </Typography>
-        )}
+        <EditFrom mt={'2.25rem'} title="닉네임">
+          <Input
+            value={nickname}
+            _onChange={handleChange}
+            placeholder="2자에서 8자까지 입력해 주세요"
+          />
+          {duplication && (
+            <Typography margin="8px 0 0 0" fontSize="12px" color={Colar100}>
+              이미 사용 중인 닉네임이에요
+            </Typography>
+          )}
+        </EditFrom>
       </Wrapper>
       <PrimaryButton
         _onClick={handleRegister}

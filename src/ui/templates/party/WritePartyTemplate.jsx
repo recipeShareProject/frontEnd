@@ -18,7 +18,7 @@ import Radio from 'ui/organisms/party/PartyRadio';
 import Divider from 'ui/atoms/Divider';
 import PlusIconInput from 'ui/organisms/PlusIconInput';
 import PrimaryButton from 'ui/atoms/PrimaryButton';
-import PartyEditForm from 'ui/organisms/party/PartyEditForm';
+import EditForm from 'ui/organisms/EditForm';
 import {Colar100} from 'assets/colorSet';
 import HeadTitle from 'ui/atoms/HeadTitle';
 import postApi from 'api/postApi';
@@ -154,29 +154,29 @@ const WritePostTemplate = ({type}) => {
             {type === 'modi' ? '게시글 수정하기' : '게시글 등록하기'}
           </HeadTitle>
 
-          <PartyEditForm title="제목">
+          <EditForm title="제목">
             <Input _ref={title} placeholder="제목을 입력해주세요" />
-          </PartyEditForm>
+          </EditForm>
 
-          <PartyEditForm title="말머리">
+          <EditForm title="말머리">
             {type === 'modi' ? (
               <Radio disabled={true} category={category} />
             ) : (
               <Radio category={category} handleChkChange={handleChkChange} />
             )}
-          </PartyEditForm>
+          </EditForm>
         </Wrapper>
 
         <Divider />
         <Wrapper padding="0 1rem 0 1rem">
-          <PartyEditForm title="내용">
+          <EditForm title="내용">
             <Wrapper margin="0 0 16px 0">
               <Input _ref={content} placeholder="설명을 입력해 주세요" />
             </Wrapper>
             <AddImgSlider />
-          </PartyEditForm>
+          </EditForm>
 
-          <PartyEditForm title="태그">
+          <EditForm title="태그">
             <PlusIconInput
               placeholder="태그를 입력해주세요"
               handleTag={handleTag}
@@ -197,18 +197,18 @@ const WritePostTemplate = ({type}) => {
                   </FilterInputTag>
                 ))}
             </Wrapper>
-          </PartyEditForm>
+          </EditForm>
         </Wrapper>
 
         <Divider />
         <Wrapper padding="0 1rem 2rem 1rem ">
-          <PartyEditForm title="나눔 종료 일시">
+          <EditForm title="나눔 종료 일시">
             <Wrapper display="flex">
               <CustomDatePicker _onChange={setChangeDate} />
 
               <CustomTimePicker _onChange={setChangeDate} />
             </Wrapper>
-          </PartyEditForm>
+          </EditForm>
         </Wrapper>
       </Wrapper>
       <PrimaryButton
