@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import {useNavigate} from 'react-router-dom';
-import {useLocation} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import HomeIcon from 'common/icons/HomeIcon';
@@ -15,7 +14,6 @@ import PartyColorIcon from 'common/icons/PartyColorIcon';
 import BookMarkColorIcon from 'common/icons/BookMarkColorIcon';
 
 const Navigation = () => {
-  const [value, setValue] = useState(0);
   const location = useLocation();
 
   const navigate = useNavigate();

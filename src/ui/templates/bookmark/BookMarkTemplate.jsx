@@ -2,7 +2,7 @@ import React from 'react';
 import {Box} from '@mui/material';
 import {Black40} from 'assets/colorSet';
 import NotFound from 'ui/templates/NotFound';
-import MainBannerImg from 'ui/organisms/MainBannerImg';
+import MainBannerImg from 'tablet-ui/organisms/MainBannerImg';
 import styled from 'styled-components';
 
 import Header from 'ui/templates/header/Header';

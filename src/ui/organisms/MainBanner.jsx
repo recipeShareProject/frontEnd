@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import MainBannerImg from './MainBannerImg';
+import MainBannerImg from '../../tablet-ui/organisms/MainBannerImg';
 import Box from 'ui/atoms/Box';
 import {useNavigate} from 'react-router-dom';
 
