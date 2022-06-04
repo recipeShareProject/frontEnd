@@ -12,8 +12,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* height: 100vh;
-  width: 100vw; */
 `;
 
 const Container = styled.div`
@@ -23,13 +21,6 @@ const Container = styled.div`
 
   overflow: auto;
 
-  border-radius: 5px;
-
-  /* @media screen and (max-width: 480px) {
-    width: 100vw;
-    height: 100vh;
-    padding: 0;
-  /* } */
   ::-webkit-scrollbar {
     display: none;
   }

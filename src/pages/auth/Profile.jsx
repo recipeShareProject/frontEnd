@@ -1,13 +1,16 @@
 import React from 'react';
-import ProfileTemplate from 'ui/templates/auth/ProfileTemplate';
+import {useMediaQuery} from 'react-responsive';
 
-import {useSearchParams} from 'react-router-dom';
-import {setCookie, getCookie} from 'common/presenters/Cookie';
+import ProfileTemplate from 'ui/templates/auth/ProfileTemplate';
+import ProfileTabletTemplate from 'tablet-ui/templates/auth/ProfileTabletTemplate';
 
 const Profile = (props) => {
+  const isTablet = useMediaQuery({query: '(min-width:768px)'});
+  const isMobile = useMediaQuery({query: '(max-width:767.5px)'});
   return (
     <React.Fragment>
-      <ProfileTemplate />
+      {isMobile && <ProfileTemplate />}
+      {isTablet && <ProfileTabletTemplate />}
     </React.Fragment>
   );
 };

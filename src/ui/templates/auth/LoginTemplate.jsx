@@ -16,7 +16,7 @@ const Login = () => {
         height="calc(100vh - 72px)"
         display="flex"
         direction="column"
-        justify="space-between"
+        justify="end"
         align="center"
         padding="72px 0 0 0 ">
         <Wrapper
@@ -33,7 +33,8 @@ const Login = () => {
             display="flex"
             direction="column"
             justify="center"
-            align="center">
+            align="center"
+            margin="0 0  58px 0">
             <Typography fonstSize="14px" fontWeight="400">
               쉽고 재미있게 요리하고
             </Typography>
@@ -42,7 +43,7 @@ const Login = () => {
             </Typography>
           </Wrapper>
         </Wrapper>
-        <Wrapper padding="5vh 0 0 0 ">
+        <Wrapper padding="0 0 82px 0 ">
           <LoginButton
             background="#fee500"
             src={KakaoIcon}

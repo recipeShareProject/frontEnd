@@ -17,19 +17,18 @@ const LoginTabletTemplate = () => {
       <Header />
       {/* <Wrapper padding="88px 64px 0 64px">로그인</Wrapper> */}
       <Wrapper
-        height="calc(100vh - 72px)"
+        height="100vh"
         display="flex"
         direction="column"
-        justify="space-between"
-        align="center"
-        padding="72px 0 0 0 ">
+        justify="end"
+        align="center">
         <Wrapper
           display="flex"
           direction="column"
           justify="center"
           align="center"
-          padding="15vh 0 0 0">
-          <Typography fontSize="20px" fontWeight="600" margin="0 0 16px 0 ">
+          padding="381px 0 0 0">
+          <Typography fontSize="20px" fontWeight="600" margin="0 0 24px 0 ">
             Potluck 시작하기
           </Typography>
 
@@ -37,7 +36,8 @@ const LoginTabletTemplate = () => {
             display="flex"
             direction="column"
             justify="center"
-            align="center">
+            align="center"
+            margin="0 0 58px 0 ">
             <Typography fonstSize="14px" fontWeight="400">
               쉽고 재미있게 요리하고
             </Typography>
@@ -46,7 +46,7 @@ const LoginTabletTemplate = () => {
             </Typography>
           </Wrapper>
         </Wrapper>
-        <Wrapper padding="5vh 0 0 0 ">
+        <Wrapper padding="0 0 144px 0 ">
           <LoginButton
             background="#fee500"
             src={KakaoIcon}

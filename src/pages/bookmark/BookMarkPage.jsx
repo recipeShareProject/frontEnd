@@ -5,7 +5,7 @@ import BookmarkTabletTemplate from 'tablet-ui/templates/bookmark/BookmarkTabletT
 import {useMediaQuery} from 'react-responsive';
 const BookMarkPage = () => {
   const isTablet = useMediaQuery({query: '(min-width:768px)'});
-  const isMobile = useMediaQuery({query: '(max-width:767px)'});
+  const isMobile = useMediaQuery({query: '(max-width:767.5px)'});
   return (
     <React.Fragment>
       {isMobile && <BookMarkTemplate />}

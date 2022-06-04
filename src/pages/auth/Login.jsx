@@ -4,7 +4,7 @@ import LoginTemplate from 'ui/templates/auth/LoginTemplate';
 import LoginTabletTemplate from 'tablet-ui/templates/auth/LoginTabletTemplate';
 const Login = () => {
   const isTablet = useMediaQuery({query: '(min-width:768px)'});
-  const isMobile = useMediaQuery({query: '(max-width:767px)'});
+  const isMobile = useMediaQuery({query: '(max-width:767.5px)'});
   return (
     <React.Fragment>
       {isMobile && <LoginTemplate />}

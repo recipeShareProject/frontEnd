@@ -11,6 +11,7 @@ const LoginButton = ({background, border, src, href, margin, children}) => {
 };
 
 const StyledButton = styled.div`
+  width: 310px;
   height: 49px;
   background: ${(props) => props.background};
   border: ${(props) => props.border};
