@@ -9,14 +9,15 @@ import Grid from 'tablet-ui/atoms/Grid';
 import Typography from 'tablet-ui/atoms/Typography';
 import MainBannerImg from 'tablet-ui/organisms/MainBannerImg';
 import TabletWrapper from 'tablet-ui/atoms/TabletWrapper';
-
 import {Black40} from 'assets/colorSet';
 
 const MainTabletTemplate = () => {
   return (
     <TabletWrapper>
       <Header />
-      <SearchBar />
+      <Wrapper padding="72px 0 0 0">
+        <SearchBar width="420px" margin="0 auto" />
+      </Wrapper>
       <Divider />
       <Wrapper padding="0 64px">
         <Wrapper
