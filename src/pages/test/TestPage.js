@@ -18,7 +18,6 @@ import axios from 'axios';
 import ImgSlider from 'ui/organisms/ImgSlider';
 
 import ModalPopup from 'ui/molecules/ModalPopup';
-import {getAddress} from 'common/presenters/getAddress';
 
 import {useSearchParams, useNavigate} from 'react-router-dom';
 import {setCookie} from 'common/presenters/Cookie';
@@ -59,10 +58,7 @@ const TestPage = () => {
       'https://potluck-test.s3.ap-northeast-2.amazonaws.com/board/d9752923-a839-4823-bfc3-a92fc35d3245%EA%B9%80%EC%A7%80%EC%9B%901.jpg',
     );
   };
-  const ClickAddress = () => {
-    const a = getAddress();
-    console.log(a);
-  };
+  const ClickAddress = () => {};
   const getData = () => {
     axios
       .get('http://3.35.106.187/api/board/1')
