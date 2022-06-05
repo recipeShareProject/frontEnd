@@ -13,6 +13,7 @@ const Box = ({
   children,
   position,
   bottom,
+  left,
   background,
 }) => {
   return (
@@ -20,6 +21,7 @@ const Box = ({
       mt={mt}
       position={position}
       bottom={bottom}
+      left={left}
       background={background}
       margin={margin}
       padding={padding}
@@ -44,6 +46,7 @@ const StyledBox = styled.div`
   justify-content: ${(props) => props.justifyContent};
   position: ${(props) => props.position};
   bottom: ${(props) => props.bottom};
+  left: ${(props) => props.left};
   background: ${(props) => props.background};
 `;
 export default Box;

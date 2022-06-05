@@ -7,11 +7,11 @@ const RecipeImgSlider = () => {
   return (
     <RecipeImgGroupWrapper>
       <RecipeImgGroup>
-        <RecipeImg width="160px" height="120px" />
-        <RecipeImg width="160px" height="120px" />
-        <RecipeImg width="160px" height="120px" />
-        <RecipeImg width="160px" height="120px" />
-        <RecipeImg width="160px" height="120px" />
+        <RecipeImg width="160px" height="120px" borderRadius="4px" />
+        <RecipeImg width="160px" height="120px" borderRadius="4px" />
+        <RecipeImg width="160px" height="120px" borderRadius="4px" />
+        <RecipeImg width="160px" height="120px" borderRadius="4px" />
+        <RecipeImg width="160px" height="120px" borderRadius="4px" />
       </RecipeImgGroup>
     </RecipeImgGroupWrapper>
   );

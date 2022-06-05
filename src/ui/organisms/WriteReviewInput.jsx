@@ -14,7 +14,12 @@ const WriteReviewInput = ({placeholder, _ref, handleTag}) => {
     setIsInputFocus(true);
   };
   return (
-    <Box position="fixed" bottom="0px" background="white" width="100%">
+    <Box
+      position="fixed"
+      bottom="0px"
+      left="0px"
+      background="white"
+      width="100%">
       <InputWrapper>
         <img alt="myinfo" src={picture} />
         <StyledInput
