@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Header from 'tablet-ui/templates/header/TabletHeader';
 import SearchBar from 'tablet-ui/organisms/SearchBar';
 import Divider from 'tablet-ui/atoms/Divider';

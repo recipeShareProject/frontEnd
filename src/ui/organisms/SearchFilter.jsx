@@ -59,7 +59,7 @@ const Button = styled.button`
   color: ${(props) => (props.color ? props.color : '')};
 `;
 
-const ToggleMenu = styled.div`
+export const ToggleMenu = styled.div`
   background: white;
   position: absolute;
   z-index: 100;

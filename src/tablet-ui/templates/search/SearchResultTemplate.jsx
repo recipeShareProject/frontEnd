@@ -15,6 +15,7 @@ const SearchResultTabletTemplate = () => {
         <SearchBar width="420px" margin="0 auto" />
       </Wrapper>
       <Divider />
+
       <Wrapper padding="0 64px">
         <Grid>
           <MainBannerImg width="310px" height="235px" />
