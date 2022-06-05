@@ -1,6 +1,6 @@
 import Box from 'ui/atoms/Box';
 import Grid from 'ui/atoms/Grid';
-import MainBannerImg from 'ui/organisms/MainBannerImg';
+import MainBannerImg from 'tablet-ui/organisms/MainBannerImg';
 
 const SearchResultContent = () => {
   return (

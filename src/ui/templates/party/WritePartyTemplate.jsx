@@ -18,7 +18,7 @@ import Radio from 'ui/organisms/party/PartyRadio';
 import Divider from 'ui/atoms/Divider';
 import PlusIconInput from 'ui/organisms/PlusIconInput';
 import PrimaryButton from 'ui/atoms/PrimaryButton';
-import PartyEditForm from 'ui/organisms/party/PartyEditForm';
+import EditForm from 'ui/organisms/EditForm';
 import {Colar100} from 'assets/colorSet';
 import HeadTitle from 'ui/atoms/HeadTitle';
 import postApi from 'api/postApi';
@@ -107,6 +107,25 @@ const WritePostTemplate = ({type}) => {
     if (status === kakao.maps.services.Status.OK) {
       navigator.geolocation.getCurrentPosition(async (position) => {
         const adress = result[0].address.region_3depth_name;
+        // 2022-01-20T13:23:34
+        const months = [
+          '01',
+          '02',
+          '03',
+          '04',
+          '05',
+          '06',
+          '07',
+          '08',
+          '09',
+          '10',
+          '11',
+          '12',
+        ];
+
+        const month = months[changeDate.getMonth()];
+        const expiredAt = `${changeDate.getFullYear()}-${month}-${changeDate.getDate()}T${changeDate.getHours()}:${changeDate.getMinutes()}:${changeDate.getSeconds()}`;
+
         const data = {
           title: title.current.value,
           category: category,
@@ -114,24 +133,24 @@ const WritePostTemplate = ({type}) => {
           content: content.current.value,
           tags: tags,
           //Todo: 서버개발중
-          // expiredAt: `${changeDate}`,
+          // expiredAt: expiredAt,
           address: adress,
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
         };
 
         if (type === 'modi') {
-          const res = await postApi.patchPostAxios(postId, data);
-          console.log('modi');
-          if (res) {
-            navigate('/party');
-          }
-        } else {
-          const res = await postApi.writePostAxios(data);
-          console.log(res);
-          if (res) {
-            navigate('/party');
-          }
+          //   // const res = await postApi.patchPostAxios(postId, data);
+          //   console.log('modi');
+          //   if (res) {
+          //     navigate('/party');
+          //   }
+          // } else {
+          //   const res = await postApi.writePostAxios(data);
+          //   console.log(res);
+          //   if (res) {
+          //     navigate('/party');
+          //   }
         }
       });
     }
@@ -150,33 +169,33 @@ const WritePostTemplate = ({type}) => {
       <HeaderBar type="writeParty" />
       <Wrapper padding="72px 0 60px 0">
         <Wrapper padding="0 1rem 0 1rem">
-          <HeadTitle>
-            {type === 'modi' ? '게시글 수정하기' : '게시글 등록하기'}
-          </HeadTitle>
+          <HeadTitle
+            title={type === 'modi' ? '게시글 수정하기' : '게시글 등록하기'}
+          />
 
-          <PartyEditForm title="제목">
+          <EditForm title="제목">
             <Input _ref={title} placeholder="제목을 입력해주세요" />
-          </PartyEditForm>
+          </EditForm>
 
-          <PartyEditForm title="말머리">
+          <EditForm title="카테고리">
             {type === 'modi' ? (
               <Radio disabled={true} category={category} />
             ) : (
               <Radio category={category} handleChkChange={handleChkChange} />
             )}
-          </PartyEditForm>
+          </EditForm>
         </Wrapper>
 
         <Divider />
         <Wrapper padding="0 1rem 0 1rem">
-          <PartyEditForm title="내용">
+          <EditForm title="내용">
             <Wrapper margin="0 0 16px 0">
               <Input _ref={content} placeholder="설명을 입력해 주세요" />
             </Wrapper>
             <AddImgSlider />
-          </PartyEditForm>
+          </EditForm>
 
-          <PartyEditForm title="태그">
+          <EditForm title="태그">
             <PlusIconInput
               placeholder="태그를 입력해주세요"
               handleTag={handleTag}
@@ -197,18 +216,18 @@ const WritePostTemplate = ({type}) => {
                   </FilterInputTag>
                 ))}
             </Wrapper>
-          </PartyEditForm>
+          </EditForm>
         </Wrapper>
 
         <Divider />
         <Wrapper padding="0 1rem 2rem 1rem ">
-          <PartyEditForm title="나눔 종료 일시">
+          <EditForm title="나눔 종료 일시">
             <Wrapper display="flex">
               <CustomDatePicker _onChange={setChangeDate} />
 
               <CustomTimePicker _onChange={setChangeDate} />
             </Wrapper>
-          </PartyEditForm>
+          </EditForm>
         </Wrapper>
       </Wrapper>
       <PrimaryButton

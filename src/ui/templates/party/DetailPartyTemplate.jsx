@@ -61,14 +61,18 @@ const DetailTemplate = () => {
           </Typography>
           {commentList &&
             commentList.map((v) => (
-              <Comment
-                key={v.commentId}
-                nickName={v.nickname}
-                comment={v.comment}
-                commentId={v.commentId}
-                createdAt={v.createdAt}
-                _onClick={setReplyData}
-              />
+              <React.Fragment key={v.commentId}>
+                <Profile
+                  nickName={v.nickName}
+                  time={v.createdAt}
+                  address="OO동"
+                />
+                <Comment
+                  comment={v.comment}
+                  commentId={v.commentId}
+                  _onClick={setReplyData}
+                />
+              </React.Fragment>
             ))}
         </Wrapper>
 

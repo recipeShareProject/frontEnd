@@ -4,17 +4,20 @@ import {PersistGate} from 'redux-persist/integration/react';
 import store, {persistor} from 'redux/store';
 import {Provider} from 'react-redux';
 
-import Auth from 'ui/pages/auth';
-import Party from 'ui/pages/party';
-import MyPage from 'ui/pages/myPage';
-import Noti from 'ui/pages/noti';
-import MainPage from 'ui/pages/main/MainPage';
-import Search from 'ui/pages/search';
-import Recipe from 'ui/pages/recipe';
-import BookMarkPage from 'ui/pages/bookmark/BookMarkPage';
+import styled from 'styled-components';
 
-import ApiTest from 'ui/pages/test/ApiTest';
-import TestPage from 'ui/pages/test/TestPage';
+import Auth from 'pages/auth';
+import Party from 'pages/party';
+import MyPage from 'pages/myPage';
+import Noti from 'pages/noti';
+import MainPage from 'pages/main/MainPage';
+import Search from 'pages/search';
+import Recipe from 'pages/recipe';
+import BookMarkPage from 'pages/bookmark/BookMarkPage';
+
+import ApiTest from 'pages/test/ApiTest';
+import TestPage from 'pages/test/TestPage';
+
 const App = () => {
   return (
     <Provider store={store}>

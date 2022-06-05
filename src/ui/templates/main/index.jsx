@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from 'ui/organisms/SearchBar';
+import SearchBar from 'tablet-ui/organisms/SearchBar';
 import MainBanner from 'ui/organisms/MainBanner';
 import Floating from 'ui/atoms/FloatingButton';
 import Header from 'ui/templates/header/Header';

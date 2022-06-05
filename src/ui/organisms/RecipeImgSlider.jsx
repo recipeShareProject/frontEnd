@@ -1,6 +1,6 @@
 import React from 'react';
-import {RecipeImgGroupWrapper} from 'ui/pages/recipe/RecipeDetail';
-import {RecipeImgGroup} from 'ui/pages/recipe/RecipeDetail';
+import {RecipeImgGroupWrapper} from 'pages/recipe/RecipeDetail';
+import {RecipeImgGroup} from 'pages/recipe/RecipeDetail';
 import RecipeImg from '../organisms/RecipeImg';
 
 const RecipeImgSlider = () => {
