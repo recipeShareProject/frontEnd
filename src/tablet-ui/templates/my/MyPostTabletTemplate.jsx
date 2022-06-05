@@ -99,7 +99,7 @@ const MyPostTabletTemplate = () => {
               <Tab label="댓글" {...a11yProps(2)} />
             </TabList>
           </Box>
-          <Wrapper padding="0 1rem">
+          <Wrapper padding="24px 64px">
             <TabPanel value={value} index={0}>
               <RecipeTabTabletTemplate />
             </TabPanel>
