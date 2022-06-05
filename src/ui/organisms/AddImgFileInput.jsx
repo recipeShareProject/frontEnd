@@ -1,4 +1,3 @@
-import {Box} from '@mui/system';
 import styled from 'styled-components';
 import React, {forwardRef, useRef} from 'react';
 import {useDispatch} from 'react-redux';
@@ -6,6 +5,7 @@ import Image from 'ui/atoms/Image';
 import EmptyImage from 'ui/atoms/EmptyImage';
 import {useState} from 'react';
 import {imgActions} from 'redux/slices/imgSlice';
+import Box from 'ui/atoms/Box';
 
 const AddImgFileInput = forwardRef((props, ref) => {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const AddImgFileInput = forwardRef((props, ref) => {
   };
 
   return (
-    <Box>
+    <Box width={props.width}>
       <StyleInput
         id={props.idx}
         type="file"
