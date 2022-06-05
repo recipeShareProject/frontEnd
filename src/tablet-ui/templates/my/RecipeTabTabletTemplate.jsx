@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Wrapper from 'ui/atoms/Wrapper';
+import Wrapper from 'tablet-ui/atoms/Wrapper';
 import MainBannerImg from 'tablet-ui/organisms/MainBannerImg';
-import Grid from 'ui/atoms/Grid';
+import Grid from 'tablet-ui/atoms/Grid';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {getMyRecipe} from 'redux/slices/userSlice';
@@ -13,9 +13,9 @@ const RecipeTabTemplate = () => {
     dispatch(getMyRecipe());
   }, [dispatch]);
   return (
-    <Wrapper padding="1rem">
+    <Wrapper>
       <Grid>
-        {recipes.map((v) => (
+        {/* {recipes.map((v) => (
           <MainBannerImg
             width="160px"
             cookTime={v.cookTime}
@@ -24,7 +24,11 @@ const RecipeTabTemplate = () => {
             image={v.images[0]}
             title={v.title}
           />
-        ))}
+        ))} */}
+        <MainBannerImg width="310px" height="235px" />
+        <MainBannerImg width="310px" height="235px" />
+        <MainBannerImg width="310px" height="235px" />
+        <MainBannerImg width="310px" height="235px" />
       </Grid>
       {/* TODO: 북마크 없을때 */}
       {/* <NotFound desc="북마크가 존재하지 않아요" /> */}
