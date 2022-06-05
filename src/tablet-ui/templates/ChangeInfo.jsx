@@ -2,9 +2,9 @@ import React, {useCallback} from 'react';
 import styled from 'styled-components';
 import {debounce} from 'lodash';
 
-import PrimaryButton from 'tablet-ui/atoms/PrimaryButton';
 import {Black40, Colar100} from 'assets/colorSet';
 import ProfileIcon from 'assets/imgs/profile120.png';
+import PrimaryButton from 'tablet-ui/atoms/PrimaryButton';
 import Typography from 'tablet-ui/atoms/Typography';
 import Image from 'tablet-ui/atoms/Image';
 import Wrapper from 'tablet-ui/atoms/Wrapper';
@@ -69,7 +69,7 @@ const ProfileTemplate = ({title, btnText}) => {
         boxSizing="border-box"
         height="calc(100vh - 61px)"
         padding="72px 64px 60px 64px ">
-        <HeadTitle mt="88px" title={title} />
+        <HeadTitle mt="16px" title={title} />
 
         <Wrapper
           margin="36px 0 0 0 "

@@ -26,7 +26,7 @@ const Profile = ({
         margin="0 8px 0 0"
       />
       <Wrapper display="flex" direction="column" justify="center">
-        <Typography fontSize="14px">{nickName}</Typography>
+        <Typography fontSize="16px">{nickName}</Typography>
         <Wrapper display="flex">
           {address && (
             <Typography fontSize="12px" margin="0 8px 0 0">

@@ -8,6 +8,7 @@ const LoginToken = () => {
   const navigate = useNavigate();
   React.useEffect(() => {
     const token = params.get('token');
+    console.log(token);
     if (token) {
       setCookie('token', token);
       navigate('/auth/profile');

@@ -6,7 +6,7 @@ const MyButton = ({children, _onClick}) => {
 };
 const Btn = styled.div`
   height: 48px;
-  padding: 0 2rem;
+  padding: 0 64px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid ${Black5};

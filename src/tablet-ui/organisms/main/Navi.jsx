@@ -23,7 +23,6 @@ const Navi = () => {
     navigate('/bookmark');
   };
   switch (location.pathname) {
-    case location.pathname.includes(`/my`) ? location.pathname : '':
     case '/search/filter':
     case '/recipe/write':
     case '/party/addParty':
