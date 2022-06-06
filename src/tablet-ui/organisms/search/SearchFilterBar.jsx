@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import Box from 'ui/atoms/Box';
 import {Black10, Black20, Colar100} from 'assets/colorSet';
 import styled from 'styled-components';
-import PlusIconInput from 'ui/organisms/PlusIconInput';
-import FIlterTag from 'ui/organisms/FilterInputTag';
 import {useDispatch} from 'react-redux';
 import {getFilteredRecipeList} from 'redux/slices/recipeSlice';
 import {FilterInputWrapper} from 'pages/search/SearchFilter';
