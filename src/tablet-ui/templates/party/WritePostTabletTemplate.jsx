@@ -123,7 +123,9 @@ const WritePostTabletTemplate = ({type}) => {
         ];
 
         const month = months[changeDate.getMonth()];
-        const expiredAt = `${changeDate.getFullYear()}-${month}-${changeDate.getDate()}T${changeDate.getHours()}:${changeDate.getMinutes()}:${changeDate.getSeconds()}`;
+        let day = changeDate.getDate().toString();
+        day = day.length < 2 ? `0${day}` : day;
+        const expiredAt = `${changeDate.getFullYear()}-${month}-${day}T${changeDate.getHours()}:${changeDate.getMinutes()}:${changeDate.getSeconds()}`;
 
         const data = {
           title: title.current.value,
@@ -131,8 +133,7 @@ const WritePostTabletTemplate = ({type}) => {
           images: sendImgs,
           content: content.current.value,
           tags: tags,
-          //Todo: 서버개발중
-          // expiredAt: expiredAt,
+          expiredAt: expiredAt,
           address: adress,
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,

@@ -65,7 +65,6 @@ const addIngredientAxios = async (data, recipeId) => {
   };
   const jsonData = JSON.stringify(sendData);
 
-  console.log(sendData);
   try {
     const res = await http.post(
       `board/${recipeId}/ingredient`,
@@ -96,16 +95,6 @@ const addProcessAxios = async (data, recipeId) => {
 const getRecipeAxios = async (boardId) => {
   try {
     const res = await http.get(`board/${boardId}`);
-    return res;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-//레시피 삭제 에러나옴
-const delRecipeAxios = async (boardId) => {
-  try {
-    const res = await http.delete(`board/${boardId}`, config);
     return res;
   } catch (error) {
     console.error(error);
@@ -168,14 +157,57 @@ const patchProcessAxios = async (data, recipeId) => {
     console.error(error);
   }
 };
+//레시피 삭제 에러나옴
+const delRecipeAxios = async (boardId) => {
+  try {
+    const res = await http.delete(`board/${boardId}`, config);
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//재료 삭제
+const delIngredientAxios = async (data, recipeId) => {
+  const sendData = {
+    ingredient: data.ingredient,
+    amount: data.amount,
+  };
+  const jsonData = JSON.stringify(sendData);
+
+  console.log(sendData);
+  try {
+    const res = await http.patch(
+      `board/${recipeId}/ingredient`,
+      jsonData,
+      config,
+    );
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//요리과정 삭제
+const delProcessAxios = async (data, recipeId) => {
+  const formData = new FormData();
+  formData.append('process', data.process);
+  data.processImages.forEach((img) => formData.append('processImages', img));
+
+  try {
+    const res = await http.patch('board', formData, formConfig);
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 //리뷰 작성
 const writeReviewAxios = async (boardId, data) => {
   const frm = new FormData();
-  frm.append('content', data.content);
-  frm.append('like', data.category);
+  frm.append('comment', data.comment);
+  frm.append('category', data.category);
   frm.append('images', data.images);
-  // frm.append('user', data.user);
 
   try {
     const res = await http.post(`board/${boardId}/review`, frm, formConfig);
@@ -184,26 +216,25 @@ const writeReviewAxios = async (boardId, data) => {
     console.error(error);
   }
 };
+//리뷰 수정 에러나옴
+const patchReviewAxios = async (boardId, data) => {
+  const frm = new FormData();
+  frm.append('comment', data.comment);
+  frm.append('category', data.category);
+  frm.append('images', data.images);
 
-//리뷰 삭제
-const delReviewAxios = async (boardId) => {
   try {
-    const res = await http.delete(`board/${boardId}/review`, config);
+    const res = await http.patch(`board/${boardId}/review`, formConfig);
     return res;
   } catch (error) {
     console.error(error);
   }
 };
 
-//리뷰 수정
-const patchReviewAxios = async (boardId, data) => {
-  const frm = new FormData();
-  frm.append('comment', data.content);
-  frm.append('category', data.category);
-  frm.append('images', data.images);
-
+//리뷰 삭제 에러
+const delReviewAxios = async (boardId) => {
   try {
-    const res = await http.patch(`board/${boardId}/review`, formConfig);
+    const res = await http.delete(`board/${boardId}/review`, config);
     return res;
   } catch (error) {
     console.error(error);
@@ -224,12 +255,12 @@ const recipeApi = {
   getHomeAxios,
   getSearchResultAxios,
   addRecipeAxios,
-  getRecipeAxios,
-  delRecipeAxios,
+  // getRecipeAxios,
+  // delRecipeAxios,
   patchRecipeAxios,
   writeReviewAxios,
   delReviewAxios,
-  patchReviewAxios,
+  // patchReviewAxios,
   togglebookMarkAxios,
 };
 export default recipeApi;

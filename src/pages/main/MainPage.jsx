@@ -3,6 +3,7 @@ import React from 'react';
 import {useMediaQuery} from 'react-responsive';
 import MainTemplate from 'ui/templates/main';
 import MainTablet from 'tablet-ui/templates/main/MainTabletTemplate';
+
 const MainPage = () => {
   const isPC = useMediaQuery({query: '(min-width:992px)'});
   const isTablet = useMediaQuery({query: '(min-width:768px)'});
