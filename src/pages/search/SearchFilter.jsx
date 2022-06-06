@@ -206,7 +206,7 @@ const FilterButton = styled.label`
   font-size: 14px;
 `;
 
-const FilterInputWrapper = styled.div`
+export const FilterInputWrapper = styled.div`
   width: 100%;
   height: 48px;
   display: flex;
@@ -217,7 +217,7 @@ const FilterInputWrapper = styled.div`
   border-bottom: 2px solid ${Black10};
 `;
 
-const FilterInput = styled.input`
+export const FilterInput = styled.input`
   width: 100%;
   border: none;
   background: none;

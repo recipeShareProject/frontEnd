@@ -1,11 +1,18 @@
 import React, {useState} from 'react';
 import Box from 'ui/atoms/Box';
-import {Black10, Black20} from 'assets/colorSet';
+import {Black10, Black20, Colar100} from 'assets/colorSet';
 import styled from 'styled-components';
 import PlusIconInput from 'ui/organisms/PlusIconInput';
 import FIlterTag from 'ui/organisms/FilterInputTag';
+import {useDispatch} from 'react-redux';
+import {getFilteredRecipeList} from 'redux/slices/recipeSlice';
+import {FilterInputWrapper} from 'pages/search/SearchFilter';
+import {FilterInput} from 'pages/search/SearchFilter';
+import FilterInputTag from 'ui/organisms/FilterInputTag';
+import AddIcon from '@mui/icons-material/Add';
 
 const SearchFilterBar = () => {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState();
   const [openInclude, setOpenInclude] = useState();
   const [openExcept, setOpenExcept] = useState();
@@ -20,17 +27,57 @@ const SearchFilterBar = () => {
     setOpenInclude(!openInclude);
     setOpenExcept(false);
     setOpen(false);
+    if (openInclude) {
+      const submitData = {
+        order: 'cook_time',
+        category: toggleCategoryValue,
+        include: includeList,
+        exclude: [],
+      };
+      dispatch(getFilteredRecipeList(submitData));
+    }
   };
   const onOpenExceptMenu = () => {
     setOpenExcept(!openExcept);
     setOpenInclude(false);
     setOpen(false);
+    if (openExcept) {
+      const submitData = {
+        order: 'cook_time',
+        category: toggleCategoryValue,
+        include: includeList,
+        exclude: exceptList,
+      };
+      dispatch(getFilteredRecipeList(submitData));
+    }
   };
 
   const selectFilterValue = (value) => {
     setToggleCategoryValue(value);
     setOpen(false);
+    const submitData = {
+      order: 'cook_time',
+      category: value,
+      include: [],
+      exclude: [],
+    };
+    dispatch(getFilteredRecipeList(submitData));
   };
+
+  const [includeTagValue, setIncludeTagValue] = useState('');
+  const [includeList, setIncludeList] = useState([]);
+  const addIncludeList = () => {
+    setIncludeList([...includeList, includeTagValue]);
+    setIncludeTagValue('');
+  };
+
+  const [exceptTagValue, setExceptTagValue] = useState('');
+  const [exceptList, setExceptList] = useState([]);
+  const addExceptList = () => {
+    setExceptList([...exceptList, exceptTagValue]);
+    setExceptTagValue('');
+  };
+
   return (
     <Box display="flex" justifyContent="center" gap="3rem" position="relative">
       <Button
@@ -51,20 +98,36 @@ const SearchFilterBar = () => {
       <Button onClick={() => onOpenIncludeMenu()}>포함할 재료</Button>
       {openInclude && (
         <IngredientMenu left="25%">
-          <PlusIconInput placeholder="파마산" />
+          <FilterInputWrapper>
+            <FilterInput
+              placeholder="재료를 추가해주세요"
+              value={includeTagValue}
+              onChange={(e) =>
+                setIncludeTagValue(e.target.value)
+              }></FilterInput>
+            <AddIcon onClick={() => addIncludeList()} />
+          </FilterInputWrapper>
           <Box display="flex" mt={10} gap="10px">
-            <FIlterTag>페퍼론치노</FIlterTag>
-            <FIlterTag>돼지고기</FIlterTag>
+            {includeList.map((p, idx) => {
+              return <FilterInputTag key={idx}>{p}</FilterInputTag>;
+            })}
           </Box>
         </IngredientMenu>
       )}
       <Button onClick={() => onOpenExceptMenu()}>제외할 재료</Button>
       {openExcept && (
         <IngredientMenu left="40%">
-          <PlusIconInput placeholder="파마산" />
+          <FilterInputWrapper>
+            <FilterInput
+              placeholder="재료를 추가해주세요"
+              value={exceptTagValue}
+              onChange={(e) => setExceptTagValue(e.target.value)}></FilterInput>
+            <AddIcon onClick={() => addExceptList()} />
+          </FilterInputWrapper>
           <Box display="flex" mt={10} gap="10px">
-            <FIlterTag>페퍼론치노</FIlterTag>
-            <FIlterTag>돼지고기</FIlterTag>
+            {exceptList.map((p, idx) => {
+              return <FilterInputTag key={idx}>{p}</FilterInputTag>;
+            })}
           </Box>
         </IngredientMenu>
       )}
@@ -88,9 +151,14 @@ export const ToggleMenu = styled.div`
   border: 1px solid ${Black10};
   border-radius: 4px;
   font-size: 14px;
+  cursor: pointer;
   color: ${Black20};
   p {
     text-align: center;
+    &:hover {
+      color: ${Colar100};
+      text-decoration: underline;
+    }
   }
 `;
 const IngredientMenu = styled.div`
