@@ -50,13 +50,10 @@ const ApiTest = () => {
   //레시피 검색
   const searchRecipe = async () => {
     const data = {
-      order: 'view',
-      search: '김치',
-      filter: {
-        category: '한식',
-        include: [],
-        exclude: [],
-      },
+      order: 'cook_time',
+      category: '한식',
+      include: ['김치'],
+      exclude: ['된장'],
     };
 
     const a = await recipeApi.getSearchResultAxios(data);
@@ -70,54 +67,53 @@ const ApiTest = () => {
       category: '한식',
       quantity: '1인분',
       cookTime: '20분',
-      ingredient: {김치: '200g', 고기: '200g'},
-      process: ['김치를 넣는다', '고기를 넣는다', '끓인다.'],
+      ingredient: '김치',
+      amount: '30g',
+      process: '김치를 넣는다',
       processImages: sendImgs,
       completeImages: sendImgs,
-      user: {nickname: '수민짱'},
     };
     const a = await recipeApi.addRecipeAxios(data);
     console.log(a);
   };
 
-  //레시피 한개 조회
+  //레시피 한개 조회 에러나옴
   const getRecipe = async () => {
     const a = await recipeApi.getRecipeAxios(2);
     console.log(a);
   };
 
-  //레시피 삭제
+  //레시피 삭제 에러나옴
   const delRecipe = async () => {
-    const a = await recipeApi.delRecipeAxios(9);
+    const a = await recipeApi.delRecipeAxios(118);
     console.log(a);
   };
 
   //레시피 수정
   const patchRecipe = async () => {
     const data = {
-      title: '김치찌개 수정',
+      title: '김치찌개',
       category: '한식',
       quantity: '1인분',
       cookTime: '20분',
-      ingredient: {김치: '200g', 고기: '200g'},
-      process: ['김치를 넣는다', '고기를 넣는다', '끓인다.'],
+      ingredient: '김치',
+      amount: '30g',
+      process: '김치를 넣는다',
       processImages: sendImgs,
       completeImages: sendImgs,
-      user: {nickname: '수민짱'},
     };
-    const a = await recipeApi.patchRecipeAxios(9, data);
+    const a = await recipeApi.patchRecipeAxios(121, data);
     console.log(a);
   };
 
   //리뷰 작성
   const writeReview = async () => {
-    console.log(sendImg);
     const data = {
-      content: '리뷰작성테스트',
+      comment: '리뷰작성테스트',
       category: '괜찮아요',
       images: sendImg,
     };
-    const a = await recipeApi.writeReviewAxios(1, data);
+    const a = await recipeApi.writeReviewAxios(120, data);
     console.log(a);
   };
 
@@ -127,20 +123,20 @@ const ApiTest = () => {
     console.log(a);
   };
 
-  //리뷰 수정
+  //리뷰 수정 에러나옴
   const patchReview = async () => {
     const data = {
-      content: '리뷰수정테스트',
+      comment: '리뷰수정테스트',
       category: '싫어요',
       images: sendImg,
     };
-    const a = await recipeApi.patchReviewAxios(1, data);
+    const a = await recipeApi.patchReviewAxios(6, data);
     console.log(a);
   };
 
   //북마크 토글
   const toggleBookMark = async () => {
-    const postId = 1;
+    const postId = 120;
     const a = await recipeApi.togglebookMarkAxios(postId);
     console.log(a);
   };
@@ -156,13 +152,34 @@ const ApiTest = () => {
   const addPost = async () => {
     const date = new Date();
 
+    const months = [
+      '01',
+      '02',
+      '03',
+      '04',
+      '05',
+      '06',
+      '07',
+      '08',
+      '09',
+      '10',
+      '11',
+      '12',
+    ];
+
+    const month = months[date.getMonth()];
+    let day = date.getDate().toString();
+    day = day.length < 2 ? `0${day}` : day;
+
+    const expiredAt = `${date.getFullYear()}-${month}-${day}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
     const data = {
       title: '게시글제목',
       category: '나눔해요',
       images: sendImgs,
       content: '나눔하는 내용입니다.',
       tags: ['재료', '뭘까', '태그'],
-      expiredAt: date,
+      expiredAt: expiredAt,
       address: '중동',
       latitude: 35.1631,
       longitude: 129.1636,
@@ -174,7 +191,7 @@ const ApiTest = () => {
 
   //게시글 한개 조회
   const getPost = async () => {
-    const res = await postApi.getPostAxios(2);
+    const res = await postApi.getPostAxios(7);
 
     // const time = timeForToday(res.data.expiredAt, 'party');
     console.log(res);
@@ -189,15 +206,41 @@ const ApiTest = () => {
   //게시글 수정
   const patchPost = async () => {
     const date = new Date();
+
+    const months = [
+      '01',
+      '02',
+      '03',
+      '04',
+      '05',
+      '06',
+      '07',
+      '08',
+      '09',
+      '10',
+      '11',
+      '12',
+    ];
+
+    const month = months[date.getMonth()];
+    let day = date.getDate().toString();
+    day = day.length < 2 ? `0${day}` : day;
+
+    const expiredAt = `${date.getFullYear()}-${month}-${day}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
     const data = {
-      title: '게시글제목 수정',
+      title: '게시글수정',
       category: '나눔해요',
       images: sendImgs,
-      content: '수정 나눔하는 내용입니다.',
+      content: '나눔하는 내용입니다.',
       tags: ['재료', '뭘까', '태그'],
-      expiredAt: date,
+      expiredAt: expiredAt,
+      address: '중동',
+      latitude: 35.1631,
+      longitude: 129.1636,
     };
-    const res = await postApi.patchPostAxios(2, data);
+
+    const res = await postApi.patchPostAxios(8, data);
     console.log(res);
   };
 

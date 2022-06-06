@@ -17,7 +17,7 @@ const formConfig = {
 //게시글 목록 조회
 const getPostsAxios = async () => {
   try {
-    const res = await http.get('community');
+    const res = await http.get('community', config);
 
     return res;
   } catch (error) {
@@ -34,7 +34,7 @@ const writePostAxios = async (data) => {
   frm.append('content', data.content);
   frm.append('tags', data.tags);
   //Todo: 서버개발중
-  // frm.append('expiredAt', data.expiredAt);
+  frm.append('expiredAt', data.expiredAt);
   frm.append('address', data.address);
   frm.append('latitude', data.latitude);
   frm.append('longitude', data.longitude);
