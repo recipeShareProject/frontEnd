@@ -5,7 +5,7 @@ import {makeStyles} from '@mui/styles';
 import {useNavigate, useLocation} from 'react-router-dom';
 import {Box} from '@mui/material';
 import {Black100, Black40} from 'assets/colorSet';
-import Floating from 'ui/atoms/FloatingButton';
+import {foodImgs} from 'common/presenters/foodImgs';
 
 const useStyles = makeStyles({
   bookMark: {
@@ -22,13 +22,13 @@ const RecipeCard = ({
   id,
   title = '레시피명',
   cookTime = 'n 분',
-  image = 'https://i.pinimg.com/564x/b9/cd/cc/b9cdccde10d5a581874f58bb7e914962.jpg',
   isBookmark,
 }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const {pathname} = useLocation();
 
+  const image = foodImgs[id % 11];
   return (
     <MainBannerImgWrapper width={width} height={height}>
       <ImgWrapper width={width} height={height}>

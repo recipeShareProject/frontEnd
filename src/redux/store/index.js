@@ -7,6 +7,8 @@ import postReducer from 'redux/slices/postSlice';
 import tagReducer from 'redux/slices/tagSlice';
 import imgReducer from 'redux/slices/imgSlice';
 import userReducer from 'redux/slices/userSlice';
+import recipeReducer from 'redux/slices/recipeSlice';
+
 const persistConfig = {
   key: 'root',
   version: 1,
@@ -19,6 +21,7 @@ const rootReducer = combineReducers({
   tag: tagReducer,
   img: imgReducer,
   user: userReducer,
+  recipe: recipeReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
