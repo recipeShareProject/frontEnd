@@ -9,6 +9,7 @@ import imgReducer from 'redux/slices/imgSlice';
 import userReducer from 'redux/slices/userSlice';
 import recipeReducer from 'redux/slices/recipeSlice';
 
+
 const persistConfig = {
   key: 'root',
   version: 1,
