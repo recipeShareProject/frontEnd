@@ -41,17 +41,48 @@ const addRecipeAxios = async (data) => {
   formData.append('category', data.category);
   formData.append('quantity', data.quantity);
   formData.append('cookTime', data.cookTime);
-  formData.append('ingredient', data.ingredient);
-  formData.append('process', data.process);
-  data.processImages.forEach((processImage) =>
-    formData.append('processImages', processImage),
-  );
   data.completeImages.forEach((completeImage) =>
     formData.append('completeImages', completeImage),
   );
 
-  //Todo : 백엔드 api 개발중
-  // frm.append('user', data.user);
+  try {
+    const res = await http.post('board', formData, formConfig);
+    const ingredient = await addIngredientAxios(data, res.data.id);
+    const process = await addProcessAxios(data, res.data.id);
+
+    const response = {res, ingredient, process};
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//재료 추가
+const addIngredientAxios = async (data, recipeId) => {
+  const sendData = {
+    ingredient: data.ingredient,
+    amount: data.amount,
+  };
+  const jsonData = JSON.stringify(sendData);
+
+  console.log(sendData);
+  try {
+    const res = await http.post(
+      `board/${recipeId}/ingredient`,
+      jsonData,
+      config,
+    );
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//요리과정 추가
+const addProcessAxios = async (data, recipeId) => {
+  const formData = new FormData();
+  formData.append('process', data.process);
+  data.processImages.forEach((img) => formData.append('processImages', img));
 
   try {
     const res = await http.post('board', formData, formConfig);
@@ -61,7 +92,7 @@ const addRecipeAxios = async (data) => {
   }
 };
 
-//레시피 한개 조회
+//레시피 한개 조회 에러나옴
 const getRecipeAxios = async (boardId) => {
   try {
     const res = await http.get(`board/${boardId}`);
@@ -71,7 +102,7 @@ const getRecipeAxios = async (boardId) => {
   }
 };
 
-//레시피 삭제
+//레시피 삭제 에러나옴
 const delRecipeAxios = async (boardId) => {
   try {
     const res = await http.delete(`board/${boardId}`, config);
@@ -83,18 +114,55 @@ const delRecipeAxios = async (boardId) => {
 
 //레시피 수정
 const patchRecipeAxios = async (boardId, data) => {
-  const frm = new FormData();
-  frm.append('title', data.title);
-  // frm.append('category', data.category);
-  // frm.append('quantity', data.quantity);
-  // frm.append('cookTime', data.cookTime);
-  // frm.append('ingredient', data.ingredient);
-  // frm.append('process', data.process);
-  // frm.append('processImages', data.processImages);
-  frm.append('completeImages', data.completeImages);
-  // frm.append('user', data.user);
+  const formData = new FormData();
+  formData.append('title', data.title);
+  formData.append('category', data.category);
+  formData.append('quantity', data.quantity);
+  formData.append('cookTime', data.cookTime);
+  data.completeImages.forEach((completeImage) =>
+    formData.append('completeImages', completeImage),
+  );
+
   try {
     const res = await http.patch(`board/${boardId}`, formConfig);
+    const ingredient = await patchIngredientAxios(data, res.data.id);
+    const process = await patchProcessAxios(data, res.data.id);
+
+    const response = {res, ingredient, process};
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+//재료 수정
+const patchIngredientAxios = async (data, recipeId) => {
+  const sendData = {
+    ingredient: data.ingredient,
+    amount: data.amount,
+  };
+  const jsonData = JSON.stringify(sendData);
+
+  console.log(sendData);
+  try {
+    const res = await http.patch(
+      `board/${recipeId}/ingredient`,
+      jsonData,
+      config,
+    );
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//요리과정 수정
+const patchProcessAxios = async (data, recipeId) => {
+  const formData = new FormData();
+  formData.append('process', data.process);
+  data.processImages.forEach((img) => formData.append('processImages', img));
+
+  try {
+    const res = await http.patch('board', formData, formConfig);
     return res;
   } catch (error) {
     console.error(error);

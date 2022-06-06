@@ -50,13 +50,10 @@ const ApiTest = () => {
   //레시피 검색
   const searchRecipe = async () => {
     const data = {
-      order: 'view',
-      search: '김치',
-      filter: {
-        category: '한식',
-        include: [],
-        exclude: [],
-      },
+      order: 'cook_time',
+      category: '한식',
+      include: ['김치'],
+      exclude: ['된장'],
     };
 
     const a = await recipeApi.getSearchResultAxios(data);
@@ -70,40 +67,40 @@ const ApiTest = () => {
       category: '한식',
       quantity: '1인분',
       cookTime: '20분',
-      ingredient: {김치: '200g', 고기: '200g'},
-      process: ['김치를 넣는다', '고기를 넣는다', '끓인다.'],
+      ingredient: '김치',
+      amount: '30g',
+      process: '김치를 넣는다',
       processImages: sendImgs,
       completeImages: sendImgs,
-      user: {nickname: '수민짱'},
     };
     const a = await recipeApi.addRecipeAxios(data);
     console.log(a);
   };
 
-  //레시피 한개 조회
+  //레시피 한개 조회 에러나옴
   const getRecipe = async () => {
     const a = await recipeApi.getRecipeAxios(2);
     console.log(a);
   };
 
-  //레시피 삭제
+  //레시피 삭제 에러나옴
   const delRecipe = async () => {
-    const a = await recipeApi.delRecipeAxios(9);
+    const a = await recipeApi.delRecipeAxios(118);
     console.log(a);
   };
 
   //레시피 수정
   const patchRecipe = async () => {
     const data = {
-      title: '김치찌개 수정',
+      title: '김치찌개',
       category: '한식',
       quantity: '1인분',
       cookTime: '20분',
-      ingredient: {김치: '200g', 고기: '200g'},
-      process: ['김치를 넣는다', '고기를 넣는다', '끓인다.'],
+      ingredient: '김치',
+      amount: '30g',
+      process: '김치를 넣는다',
       processImages: sendImgs,
       completeImages: sendImgs,
-      user: {nickname: '수민짱'},
     };
     const a = await recipeApi.patchRecipeAxios(9, data);
     console.log(a);
