@@ -20,9 +20,10 @@ const config = {
 };
 
 //내정보 가져오기
-const myInfoAxios = async () => {
+const myInfoAxios = async (data) => {
+  const jsonData = JSON.stringify(data);
   try {
-    const res = await http.get('user/info', config);
+    const res = await http.post('user/info', jsonData, config);
 
     return res;
   } catch (error) {
@@ -47,37 +48,14 @@ const signupAxios = async (data) => {
 
 //회원정보 수정
 const patchMyInfoAxios = async (data) => {
-  const frm = new FormData();
-  frm.append('nickname', data.nickname);
-  frm.append('profileImage', data.profileImage);
-  try {
-    const res = await http.patch('user/me/edit', data, formConfig);
-
-    return res;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-//닉네임 중복체크
-const checkNicknameAxios = async (data) => {
+  // const frm = new FormData();
+  // frm.append('nickname', data.nickname);
+  // frm.append('profileImage', data.profileImage);
   const jsonData = JSON.stringify(data);
   try {
-    const res = await http.post('user/me/edit', jsonData);
+    const res = await http.patch('user/me/edit', jsonData, config);
 
-    return res;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-//사용자 위치보내기
-const homeAxios = async (data) => {
-  const jsonData = JSON.stringify(data);
-  try {
-    const res = await http.post('home', jsonData);
-
-    return res;
+    return res.data;
   } catch (error) {
     console.error(error);
   }
@@ -86,9 +64,9 @@ const homeAxios = async (data) => {
 //회원 로그아웃
 const logoutAxios = async () => {
   try {
-    const res = await http.post('user/logout');
+    const res = await http.post('user/logout', '', config);
 
-    return res;
+    return res.data;
   } catch (error) {
     console.error(error);
   }
@@ -99,7 +77,7 @@ const getMyBoardAxios = async () => {
   try {
     const res = await http.get('user/me/board', config);
 
-    return res;
+    return res.data;
   } catch (error) {
     console.error(error);
   }
@@ -109,7 +87,7 @@ const getMyPostAxios = async () => {
   try {
     const res = await http.get('user/me/community', config);
 
-    return res;
+    return res.data;
   } catch (error) {
     console.error(error);
   }
@@ -119,7 +97,7 @@ const getMyCommentAxios = async () => {
   try {
     const res = await http.get('user/me/comment', config);
 
-    return res;
+    return res.data;
   } catch (error) {
     console.error(error);
   }
@@ -129,8 +107,6 @@ const userApi = {
   myInfoAxios,
   signupAxios,
   patchMyInfoAxios,
-  checkNicknameAxios,
-  homeAxios,
   logoutAxios,
   getMyBoardAxios,
   getMyPostAxios,

@@ -290,7 +290,12 @@ const ApiTest = () => {
 
   //내정보 가져오기
   const myInfo = async () => {
-    const res = await userApi.myInfoAxios();
+    const data = {
+      address: '중동',
+      longitude: '34.234',
+      latitude: '53.2351',
+    };
+    const res = await userApi.myInfoAxios(data);
     console.log(res);
   };
 
@@ -307,8 +312,7 @@ const ApiTest = () => {
   //닉네임수정
   const patchMyInfo = async () => {
     const data = {
-      profileImage: sendImg,
-      nickname: '닉네임 수정',
+      name: '홍현승',
     };
     const res = await userApi.patchMyInfoAxios(data);
     console.log(res);
@@ -389,10 +393,7 @@ const ApiTest = () => {
 
       <h2>회원정보</h2>
       <Button onClick={myInfo}>내 정보 가져오기 </Button>
-      <Button onClick={signup}>회원가입정보입력 </Button>
-      <Button onClick={patchMyInfo}>회원정보변경 </Button>
-      <Button onClick={checkNickname}>닉네임 중복체크 </Button>
-      <Button onClick={home}>내 위치보내기 </Button>
+      <Button onClick={patchMyInfo}>닉네임변경 </Button>
       <Button onClick={getMyBoard}>내 레시피글 </Button>
       <Button onClick={getMyPost}>내 파티글 </Button>
       <Button onClick={getMyComment}>내 댓글</Button>
