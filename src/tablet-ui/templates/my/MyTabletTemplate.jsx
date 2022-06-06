@@ -33,7 +33,7 @@ const MyTabletTemplate = () => {
       <MyPageButton
         src={myInfo}
         alt="myInfo"
-        content="나의 정보"
+        content="내 정보변경"
         _onClick={() => navigate('/my/myInfo')}
       />
       <MyPageButton

@@ -4,21 +4,22 @@ import Wrapper from 'ui/atoms/Wrapper';
 import Image from 'ui/atoms/Image';
 import Typography from 'ui/atoms/Typography';
 
+import defaultImg from 'assets/imgs/defaultImg.png';
 const PartyPost = ({
-  thumnail = 'https://user-images.githubusercontent.com/51289147/169662629-ca401384-f9b4-464b-a2a1-a1a6aad119af.jpg',
-  category = '나눔해요',
-  title = '쭈꾸미 좋아하세요?',
-  address = '카이센동',
-  time = '10분 뒤까지',
+  thumnail = defaultImg,
+  category,
+  title,
+  address,
+  time,
   id,
 }) => {
   const navigate = useNavigate();
   const moveDetailPage = () => {
-    navigate(`detailParty/${id}`);
+    navigate(`/party/detailParty/${id}`);
   };
   if (category === '나눔완료') {
     return (
-      <Wrapper display="flex" margin="1rem 0" disabled="true">
+      <Wrapper display="flex" margin="1rem 0" disabled={true}>
         <Image
           width="6.5rem"
           height="6.5rem"

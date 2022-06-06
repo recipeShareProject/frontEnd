@@ -1,8 +1,7 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import profileImg from 'assets/imgs/profile48.png';
-// import {Box} from '@mui/material';
-import {Black40} from 'assets/colorSet';
+import {useSelector, useDispatch} from 'react-redux';
 
 import HeaderBar from 'ui/templates/header/HeaderBar';
 import Wrapper from 'ui/atoms/Wrapper';
@@ -14,9 +13,19 @@ import Profile from 'ui/organisms/Profile';
 
 import myInfo from 'assets/imgs/myInfo.png';
 import pencil from 'assets/imgs/pencil_black.png';
-import logout from 'assets/imgs/logout.png';
+import logoutLogo from 'assets/imgs/logout.png';
+
+import {deleteCookie} from 'common/presenters/Cookie';
+import {logout} from 'redux/slices/userSlice';
 const MyTemplate = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+  const handleLogout = () => {
+    dispatch(logout());
+    deleteCookie('token');
+    navigate('/');
+  };
   return (
     <React.Fragment>
       <HeaderBar type="my" />
@@ -26,9 +35,9 @@ const MyTemplate = () => {
 
           <Profile
             size="48px"
-            src={profileImg}
-            nickName="닉네임"
-            email="email@example.com"
+            src={user.imageUrl ? user.imageUrl : profileImg}
+            nickName={user.name}
+            email={user.email}
             margin="24px 0 24px 0"
           />
         </Wrapper>
@@ -37,7 +46,7 @@ const MyTemplate = () => {
         <MyPageButton
           src={myInfo}
           alt="myInfo"
-          content="나의 정보"
+          content="내 정보 변경"
           _onClick={() => navigate('/my/myInfo')}
         />
         <MyPageButton
@@ -47,7 +56,14 @@ const MyTemplate = () => {
           _onClick={() => navigate('/my/myPost')}
         />
 
-        <MyPageButton src={logout} alt="logout" content="로그아웃" />
+        <MyPageButton
+          src={logoutLogo}
+          alt="logout"
+          content="로그아웃"
+          _onClick={() => {
+            handleLogout();
+          }}
+        />
       </Wrapper>
     </React.Fragment>
   );

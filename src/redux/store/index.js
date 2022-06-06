@@ -7,6 +7,7 @@ import postReducer from 'redux/slices/postSlice';
 import tagReducer from 'redux/slices/tagSlice';
 import imgReducer from 'redux/slices/imgSlice';
 import userReducer from 'redux/slices/userSlice';
+
 const persistConfig = {
   key: 'root',
   version: 1,
