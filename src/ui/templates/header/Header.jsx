@@ -1,5 +1,8 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
+import {useSelector} from 'react-redux';
+
+import {getCookie} from 'common/presenters/Cookie';
 
 import LogoIcon from 'common/icons/LogoIcon';
 import AlarmIcon from 'common/icons/AlarmIcon';
@@ -11,6 +14,16 @@ import Typography from 'ui/atoms/Typography';
 const Header = () => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = React.useState(false);
+  const user = useSelector((state) => state.user.user);
+  React.useEffect(() => {
+    const token = getCookie('token');
+    // console.log(user);
+    // console.log(token);
+    // console.log(user !== {});
+    // console.log(token !== undefined);
+    setIsLogin(user !== {} && token !== undefined);
+  }, [user]);
+
   const moveToMain = () => {
     navigate('/');
   };

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import HeaderBar from 'ui/templates/header/HeaderBar';
 import ChangeInfo from 'ui/templates/ChangeInfo';
 const MyInfoTemplate = () => {

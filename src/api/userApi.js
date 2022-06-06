@@ -20,12 +20,12 @@ const config = {
 };
 
 //내정보 가져오기
-const myInfoAxios = async (data) => {
+const getmyInfoAxios = async (data) => {
   const jsonData = JSON.stringify(data);
   try {
     const res = await http.post('user/info', jsonData, config);
 
-    return res;
+    return res.data;
   } catch (error) {
     console.error(error);
   }
@@ -51,11 +51,14 @@ const patchMyInfoAxios = async (data) => {
   // const frm = new FormData();
   // frm.append('nickname', data.nickname);
   // frm.append('profileImage', data.profileImage);
-  const jsonData = JSON.stringify(data);
+  const sendData = {
+    name: data,
+  };
+  const jsonData = JSON.stringify(sendData);
   try {
     const res = await http.patch('user/me/edit', jsonData, config);
 
-    return res.data;
+    return res;
   } catch (error) {
     console.error(error);
   }
@@ -104,7 +107,7 @@ const getMyCommentAxios = async () => {
 };
 
 const userApi = {
-  myInfoAxios,
+  getmyInfoAxios,
   signupAxios,
   patchMyInfoAxios,
   logoutAxios,

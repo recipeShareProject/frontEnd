@@ -1,25 +1,29 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import userApi from 'api/userApi';
-import {setCookie, getCookie, deleteCookie} from 'common/presenters/Cookie';
 
+export const changeInfo = createAsyncThunk('user/changeInfo', async (data) => {
+  const response = await userApi.patchMyInfoAxios(data);
+
+  return response;
+});
 export const getMyRecipe = createAsyncThunk('user/getMyRecipe', async () => {
   const response = await userApi.getMyBoardAxios();
 
-  return response.data;
+  return response;
 });
 export const getMyPost = createAsyncThunk('user/getMyPost', async () => {
   const response = await userApi.getMyPostAxios();
 
-  return response.data.content;
+  return response.content;
 });
 export const getMyComment = createAsyncThunk('user/getMyComment', async () => {
   const response = await userApi.getMyCommentAxios();
 
-  return response.data.content;
+  return response.content;
 });
 
 export const getInfo = createAsyncThunk('user/getInfo', async (data) => {
-  const response = await userApi.getInfoAxios();
+  const response = await userApi.getmyInfoAxios(data);
 
   return response;
 });
@@ -29,47 +33,28 @@ export const logout = createAsyncThunk('user/logout', async (data) => {
   return response;
 });
 const initialState = {
-  user: {
-    nickName: '',
-    profilUrl: '',
-    address: '',
-    latitude: '',
-    lontitude: '',
-  },
+  user: {},
   myRecipes: [],
   myPosts: [],
   myComments: [],
 };
 
-const imgSlice = createSlice({
-  name: 'img',
+const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
-    addCompleteImg: (state, {payload}) => {
-      const idx = payload.idx;
-      const img = payload.img;
-
-      state.completeImgs[idx] = img;
-    },
-    delCompleteImg: (state, {payload}) => {
-      state.completeImgs = state.completeImgs.filter(
-        (val, idx) => idx !== payload,
-      );
-    },
-    setCompleteImg: (state, {payload}) => {
-      state.completeImgs = ['', '', '', '', ''];
+    changeName: (state, {payload}) => {
+      state.user.name = payload;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(getInfo.fulfilled, (state, {payload}) => {
-      console.log(payload);
-      //Todo:서버개발중
-      // state.post.comment.push(payload);
+      state.user = payload;
     });
     builder.addCase(logout.fulfilled, (state, {payload}) => {
-      console.log(payload);
-      //Todo:서버개발중
-      // state.post.comment.push(payload);
+      if (payload) {
+        state.user = {};
+      }
     });
     builder.addCase(getMyRecipe.fulfilled, (state, {payload}) => {
       state.myRecipes = payload;
@@ -78,13 +63,12 @@ const imgSlice = createSlice({
       state.myPosts = payload;
     });
     builder.addCase(getMyComment.fulfilled, (state, {payload}) => {
-      console.log(payload);
       state.myComments = payload;
     });
   },
 });
 
 // Action creators are generated for each case reducer function
-export const imgActions = imgSlice.actions;
+export const userActions = userSlice.actions;
 
-export default imgSlice.reducer;
+export default userSlice.reducer;
