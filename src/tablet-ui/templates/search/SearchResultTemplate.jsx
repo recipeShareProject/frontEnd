@@ -6,6 +6,7 @@ import Wrapper from 'tablet-ui/atoms/Wrapper';
 import Divider from 'tablet-ui/atoms/Divider';
 import Grid from 'tablet-ui/atoms/Grid';
 import MainBannerImg from 'tablet-ui/organisms/MainBannerImg';
+import SearchFilterBar from 'tablet-ui/organisms/search/SearchFilterBar';
 
 const SearchResultTabletTemplate = () => {
   return (
@@ -13,6 +14,7 @@ const SearchResultTabletTemplate = () => {
       <Header />
       <Wrapper padding="72px 0 0 0">
         <SearchBar width="420px" margin="0 auto" />
+        <SearchFilterBar />
       </Wrapper>
       <Divider />
 
