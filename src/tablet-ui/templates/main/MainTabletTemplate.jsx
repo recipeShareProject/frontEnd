@@ -9,8 +9,10 @@ import Typography from 'tablet-ui/atoms/Typography';
 import MainBannerImg from 'tablet-ui/organisms/MainBannerImg';
 import TabletWrapper from 'tablet-ui/atoms/TabletWrapper';
 import {Black40} from 'assets/colorSet';
+import {useSelector} from 'react-redux';
 
 const MainTabletTemplate = () => {
+  const recipeList = useSelector((state) => state.recipe.recipeList);
   return (
     <TabletWrapper>
       <Header />
@@ -30,11 +32,19 @@ const MainTabletTemplate = () => {
           </Typography>
         </Wrapper>
         <Grid>
-          <MainBannerImg width="310px" height="235px" />
-          <MainBannerImg width="310px" height="235px" />
-          <MainBannerImg width="310px" height="235px" />
-          <MainBannerImg width="310px" height="235px" />
-          <MainBannerImg width="310px" height="235px" />
+          {recipeList.slice(0, 6).map((p) => {
+            return (
+              <MainBannerImg
+                width="100%"
+                height="235px"
+                key={p.id}
+                id={p.id}
+                cookTime={p.cookTime}
+                isBookmark={p.isBookmark}
+                title={p.title}
+              />
+            );
+          })}
         </Grid>
       </Wrapper>
       <Divider />
@@ -50,11 +60,19 @@ const MainTabletTemplate = () => {
           </Typography>
         </Wrapper>
         <Grid>
-          <MainBannerImg width="310px" height="235px" />
-          <MainBannerImg width="310px" height="235px" />
-          <MainBannerImg width="310px" height="235px" />
-          <MainBannerImg width="310px" height="235px" />
-          <MainBannerImg width="310px" height="235px" />
+          {recipeList.slice(7, 14).map((p) => {
+            return (
+              <MainBannerImg
+                width="100%"
+                height="235px"
+                key={p.id}
+                id={p.id}
+                cookTime={p.cookTime}
+                isBookmark={p.isBookmark}
+                title={p.title}
+              />
+            );
+          })}
         </Grid>
       </Wrapper>
     </TabletWrapper>

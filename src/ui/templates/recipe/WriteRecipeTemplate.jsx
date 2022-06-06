@@ -36,10 +36,11 @@ const WriteRecipeTemplate = () => {
       parseInt(data.cookTime_hour) * 60 + parseInt(data.cookTime_minute);
     const sendData = {
       ...data,
+      quantity: quantity,
       category: category,
       processImages: processImgs,
       completeImages: sendCompleteImgs,
-      cookTime: _cookTime,
+      cookTime: `${_cookTime}분`,
     };
 
     recipeApi.addRecipeAxios(sendData).then((res) => {
@@ -159,6 +160,7 @@ const WriteRecipeTemplate = () => {
                 type="number"
                 width="50px"
                 placeholder="0"
+                defaultValue={0}
                 {...register('cookTime_hour')}
               />
               <Typography>시간</Typography>
@@ -166,6 +168,7 @@ const WriteRecipeTemplate = () => {
                 type="number"
                 width="50px"
                 placeholder="0"
+                defaultValue={0}
                 {...register('cookTime_minute')}
               />
               <Typography>분</Typography>
@@ -180,12 +183,12 @@ const WriteRecipeTemplate = () => {
                     <TimeInput
                       width="100%"
                       placeholder="재료를 입력해주세요"
-                      {...register(`ingredient.${index}.name`)}
+                      {...register(`ingredient`)}
                     />
                     <TimeInput
                       width="100%"
                       placeholder="양을 입력해 주세요"
-                      {...register(`ingredient.${index}.amount`)}
+                      {...register(`amount`)}
                     />
                   </Box>
                 </Box>
@@ -206,7 +209,7 @@ const WriteRecipeTemplate = () => {
                     <TimeInput
                       width="100%"
                       placeholder="과정을 입력해주세요"
-                      {...register(`process.${index}`)}
+                      {...register(`process`)}
                     />
                   </Box>
                   <AddImgFileInput

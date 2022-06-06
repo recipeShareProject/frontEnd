@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import MainBannerImg from '../../tablet-ui/organisms/MainBannerImg';
 import Box from 'ui/atoms/Box';
 import {useNavigate} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
 const Item = ({text}) => {
   return (
@@ -18,6 +19,8 @@ const Item = ({text}) => {
 };
 const MainBanner = ({title}) => {
   const navigate = useNavigate();
+  const recipeList = useSelector((state) => state.recipe.recipeList);
+
   return (
     <Box padding="1rem">
       <BannerTitleBox>
@@ -28,11 +31,18 @@ const MainBanner = ({title}) => {
       </BannerTitleBox>
       <BannerImgGroupWrapper>
         <BannerImgGroup>
-          <MainBannerImg width="160px" />
-          <MainBannerImg width="160px" />
-          <MainBannerImg width="160px" />
-          <MainBannerImg width="160px" />
-          <MainBannerImg width="160px" />
+          {recipeList.slice(0, 6).map((p) => {
+            return (
+              <MainBannerImg
+                width="160px"
+                key={p.id}
+                id={p.id}
+                cookTime={p.cookTime}
+                isBookmark={p.isBookmark}
+                title={p.title}
+              />
+            );
+          })}
         </BannerImgGroup>
       </BannerImgGroupWrapper>
     </Box>
