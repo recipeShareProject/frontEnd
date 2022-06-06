@@ -13,12 +13,18 @@ const SearchFilterBar = () => {
 
   const onOpenCategoryFilterMenu = () => {
     setOpen(!open);
+    setOpenInclude(false);
+    setOpenExcept(false);
   };
   const onOpenIncludeMenu = () => {
     setOpenInclude(!openInclude);
+    setOpenExcept(false);
+    setOpen(false);
   };
   const onOpenExceptMenu = () => {
     setOpenExcept(!openExcept);
+    setOpenInclude(false);
+    setOpen(false);
   };
 
   const selectFilterValue = (value) => {

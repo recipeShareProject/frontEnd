@@ -7,8 +7,11 @@ import Divider from 'tablet-ui/atoms/Divider';
 import Grid from 'tablet-ui/atoms/Grid';
 import MainBannerImg from 'tablet-ui/organisms/MainBannerImg';
 import SearchFilterBar from 'tablet-ui/organisms/search/SearchFilterBar';
+import {useSelector} from 'react-redux';
 
 const SearchResultTabletTemplate = () => {
+  const recipeList = useSelector((state) => state.recipe.recipeList);
+
   return (
     <TabletWrapper>
       <Header />
@@ -20,11 +23,19 @@ const SearchResultTabletTemplate = () => {
 
       <Wrapper padding="0 64px">
         <Grid>
-          <MainBannerImg width="310px" height="235px" />
-          <MainBannerImg width="310px" height="235px" />
-          <MainBannerImg width="310px" height="235px" />
-          <MainBannerImg width="310px" height="235px" />
-          <MainBannerImg width="310px" height="235px" />
+          {recipeList.map((p) => {
+            return (
+              <MainBannerImg
+                width="310px"
+                height="235px"
+                key={p.id}
+                id={p.id}
+                cookTime={p.cookTime}
+                isBookmark={p.isBookmark}
+                title={p.title}
+              />
+            );
+          })}
         </Grid>
       </Wrapper>
     </TabletWrapper>

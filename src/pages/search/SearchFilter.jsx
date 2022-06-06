@@ -1,6 +1,5 @@
 import {Box} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import CloseIcon from '@mui/icons-material/Close';
 import styled from 'styled-components';
 import {
   Beige60,
@@ -14,24 +13,50 @@ import {useForm} from 'react-hook-form';
 import {useState} from 'react';
 import HeaderBar from 'ui/templates/header/HeaderBar';
 import Wrapper from 'tablet-ui/atoms/Wrapper';
+import FilterInputTag from 'ui/organisms/FilterInputTag';
+import {useDispatch} from 'react-redux';
+import {getFilteredRecipeList} from 'redux/slices/recipeSlice';
+import {useNavigate} from 'react-router';
 
 const SearchFilter = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    watch,
     formState: {errors},
   } = useForm();
 
   const onSubmitSearchFilter = (data) => {
-    console.log(data);
-    console.log(category);
+    const submitData = {
+      order: 'cook_time',
+      category: category,
+      include: includeList,
+      exclude: exceptList,
+    };
+
+    dispatch(getFilteredRecipeList(submitData));
+    navigate('/search/result');
   };
 
-  const [category, setCategory] = useState('korea');
+  const [category, setCategory] = useState('한식');
 
   const onChangeCategoryValue = (e) => {
     setCategory(e.target.value);
+  };
+
+  const [includeTagValue, setIncludeTagValue] = useState('');
+  const [includeList, setIncludeList] = useState([]);
+  const addIncludeList = () => {
+    setIncludeList([...includeList, includeTagValue]);
+    setIncludeTagValue('');
+  };
+
+  const [exceptTagValue, setExceptTagValue] = useState('');
+  const [exceptList, setExceptList] = useState([]);
+  const addExceptList = () => {
+    setExceptList([...exceptList, exceptTagValue]);
+    setExceptTagValue('');
   };
 
   return (
@@ -43,105 +68,103 @@ const SearchFilter = () => {
             <Title>필터 설정하기</Title>
             <FilterTitle>카테고리</FilterTitle>
           </Wrapper>
-          {/* todo : 이거를 어떻게 공통화 하지? */}
+
           <FilterButtonGroup>
             <input
               type="radio"
-              name="korea"
-              id="korea"
-              value="korea"
+              name="한식"
+              id="한식"
+              value="한식"
               style={{display: 'none'}}
               {...register('category')}
               onChange={(e) => onChangeCategoryValue(e)}
             />
-            <FilterButton htmlFor="korea" isChecked={category === 'korea'}>
+            <FilterButton htmlFor="한식" isChecked={category === '한식'}>
               한식
             </FilterButton>
             <input
               type="radio"
-              name="china"
-              id="china"
-              value="china"
+              name="중식"
+              id="중식"
+              value="중식"
               style={{display: 'none'}}
               {...register('category')}
               onChange={(e) => onChangeCategoryValue(e)}
             />
-            <FilterButton htmlFor="china" isChecked={category === 'china'}>
+            <FilterButton htmlFor="중식" isChecked={category === '중식'}>
               중식
             </FilterButton>
             <input
               type="radio"
-              name="japan"
-              id="japan"
-              value="japan"
+              name="일식"
+              id="일식"
+              value="일식"
               style={{display: 'none'}}
               {...register('category')}
               onChange={(e) => onChangeCategoryValue(e)}
             />
-            <FilterButton htmlFor="japan" isChecked={category === 'japan'}>
+            <FilterButton htmlFor="일식" isChecked={category === '일식'}>
               일식
             </FilterButton>
             <input
               type="radio"
-              name="america"
-              id="america"
-              value="america"
+              name="양식"
+              id="양식"
+              value="양식"
               style={{display: 'none'}}
               {...register('category')}
               onChange={(e) => onChangeCategoryValue(e)}
             />
-            <FilterButton htmlFor="america" isChecked={category === 'america'}>
+            <FilterButton htmlFor="양식" isChecked={category === '양식'}>
               양식
             </FilterButton>
             <input
               type="radio"
-              name="snack"
-              id="snack"
-              value="snack"
+              name="간식"
+              id="간식"
+              value="간식"
               style={{display: 'none'}}
               {...register('category')}
               onChange={(e) => onChangeCategoryValue(e)}
             />
-            <FilterButton htmlFor="snack" isChecked={category === 'snack'}>
+            <FilterButton htmlFor="간식" isChecked={category === '간식'}>
               간식
             </FilterButton>
           </FilterButtonGroup>
           <Box mt={5}>
             <FilterTitle>포함할 재료</FilterTitle>
             <FilterInputWrapper>
-              <FilterInput placeholder="재료를 추가해주세요"></FilterInput>
-              <AddIcon />
+              <FilterInput
+                placeholder="재료를 추가해주세요"
+                value={includeTagValue}
+                onChange={(e) =>
+                  setIncludeTagValue(e.target.value)
+                }></FilterInput>
+              <AddIcon onClick={() => addIncludeList()} />
             </FilterInputWrapper>
 
             <FilterInputTagWrapper>
-              {/* Todo : tag공통으로 빼기 */}
-              <FilterInputTag>
-                <p>페퍼론치노</p>
-                <CloseIcon fontSize="small" />
-              </FilterInputTag>
-              <FilterInputTag>
-                <p>돼지고기</p>
-                <CloseIcon fontSize="small" />
-              </FilterInputTag>
+              {includeList.map((p, idx) => {
+                return <FilterInputTag key={idx}>{p}</FilterInputTag>;
+              })}
             </FilterInputTagWrapper>
           </Box>
           <Box mt={5}>
             <FilterTitle>제외할 재료</FilterTitle>
             <FilterInputWrapper>
-              <FilterInput placeholder="재료를 추가해주세요"></FilterInput>
-              <AddIcon />
+              <FilterInput
+                placeholder="재료를 추가해주세요"
+                value={exceptTagValue}
+                onChange={(e) =>
+                  setExceptTagValue(e.target.value)
+                }></FilterInput>
+              <AddIcon onClick={() => addExceptList()} />
             </FilterInputWrapper>
 
             <FilterInputTagWrapper>
-              {/* Todo :atom으로 빼기*/}
-              <FilterInputTag>
-                <p>페퍼론치노</p>
-                <CloseIcon fontSize="small" />
-              </FilterInputTag>
-              <FilterInputTag>
-                <p>돼지고기</p>
-                <CloseIcon fontSize="small" />
-              </FilterInputTag>
+              {exceptList.map((p, idx) => {
+                return <FilterInputTag key={idx}>{p}</FilterInputTag>;
+              })}
             </FilterInputTagWrapper>
           </Box>
         </Box>
@@ -206,20 +229,20 @@ const FilterInputTagWrapper = styled.div`
   gap: 10px;
   flex-wrap: wrap;
 `;
-const FilterInputTag = styled.div`
-  color: ${Colar100};
-  border: 2px solid ${Black5};
-  display: flex;
-  align-items: center;
-  width: fit-content;
-  padding: 2px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  p {
-    margin: 0;
-    margin: 0px 10px;
-  }
-`;
+// const FilterInputTag = styled.div`
+//   color: ${Colar100};
+//   border: 2px solid ${Black5};
+//   display: flex;
+//   align-items: center;
+//   width: fit-content;
+//   padding: 2px;
+//   font-size: 0.8rem;
+//   font-weight: 600;
+//   p {
+//     margin: 0;
+//     margin: 0px 10px;
+//   }
+// `;
 const SubmitButtonWrapper = styled.div`
   position: fixed;
   bottom: 0px;
