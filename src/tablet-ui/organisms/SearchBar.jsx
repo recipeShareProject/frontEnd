@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import SearchIcon from 'common/icons/SearchIcon';
 import {Black20} from 'assets/colorSet';
-
 import Box from 'ui/atoms/Box';
-const SearchBar = () => {
+
+const SearchBar = ({width, margin}) => {
   return (
-    <Box padding="72px 174px 0 174px">
+    <Box padding="1rem" width={width} margin={margin}>
       <SearchBarWrapper>
         <SearchIcon />
         <SearchInput placeholder="오늘은 무엇을 만들어볼까요?" />
@@ -20,8 +20,8 @@ const SearchBarWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   border-bottom: 1px solid ${Black20};
+  padding: 0px 1rem;
 `;
 
 const SearchInput = styled.input`

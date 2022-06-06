@@ -12,6 +12,8 @@ import {
 } from 'assets/colorSet';
 import {useForm} from 'react-hook-form';
 import {useState} from 'react';
+import HeaderBar from 'ui/templates/header/HeaderBar';
+import Wrapper from 'tablet-ui/atoms/Wrapper';
 
 const SearchFilter = () => {
   const {
@@ -35,110 +37,113 @@ const SearchFilter = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmitSearchFilter)}>
-        <Box>
-          <Title>필터 설정하기</Title>
-          <FilterTitle>카테고리</FilterTitle>
-        </Box>
-        {/* todo : 이거를 어떻게 공통화 하지? */}
-        <FilterButtonGroup>
-          <input
-            type="radio"
-            name="korea"
-            id="korea"
-            value="korea"
-            style={{display: 'none'}}
-            {...register('category')}
-            onChange={(e) => onChangeCategoryValue(e)}
-          />
-          <FilterButton htmlFor="korea" isChecked={category === 'korea'}>
-            한식
-          </FilterButton>
-          <input
-            type="radio"
-            name="china"
-            id="china"
-            value="china"
-            style={{display: 'none'}}
-            {...register('category')}
-            onChange={(e) => onChangeCategoryValue(e)}
-          />
-          <FilterButton htmlFor="china" isChecked={category === 'china'}>
-            중식
-          </FilterButton>
-          <input
-            type="radio"
-            name="japan"
-            id="japan"
-            value="japan"
-            style={{display: 'none'}}
-            {...register('category')}
-            onChange={(e) => onChangeCategoryValue(e)}
-          />
-          <FilterButton htmlFor="japan" isChecked={category === 'japan'}>
-            일식
-          </FilterButton>
-          <input
-            type="radio"
-            name="america"
-            id="america"
-            value="america"
-            style={{display: 'none'}}
-            {...register('category')}
-            onChange={(e) => onChangeCategoryValue(e)}
-          />
-          <FilterButton htmlFor="america" isChecked={category === 'america'}>
-            양식
-          </FilterButton>
-          <input
-            type="radio"
-            name="snack"
-            id="snack"
-            value="snack"
-            style={{display: 'none'}}
-            {...register('category')}
-            onChange={(e) => onChangeCategoryValue(e)}
-          />
-          <FilterButton htmlFor="snack" isChecked={category === 'snack'}>
-            간식
-          </FilterButton>
-        </FilterButtonGroup>
-        <Box mt={5}>
-          <FilterTitle>포함할 재료</FilterTitle>
-          <FilterInputWrapper>
-            <FilterInput placeholder="재료를 추가해주세요"></FilterInput>
-            <AddIcon />
-          </FilterInputWrapper>
+        <HeaderBar />
+        <Box padding="1rem">
+          <Wrapper padding="72px 0 0 0">
+            <Title>필터 설정하기</Title>
+            <FilterTitle>카테고리</FilterTitle>
+          </Wrapper>
+          {/* todo : 이거를 어떻게 공통화 하지? */}
+          <FilterButtonGroup>
+            <input
+              type="radio"
+              name="korea"
+              id="korea"
+              value="korea"
+              style={{display: 'none'}}
+              {...register('category')}
+              onChange={(e) => onChangeCategoryValue(e)}
+            />
+            <FilterButton htmlFor="korea" isChecked={category === 'korea'}>
+              한식
+            </FilterButton>
+            <input
+              type="radio"
+              name="china"
+              id="china"
+              value="china"
+              style={{display: 'none'}}
+              {...register('category')}
+              onChange={(e) => onChangeCategoryValue(e)}
+            />
+            <FilterButton htmlFor="china" isChecked={category === 'china'}>
+              중식
+            </FilterButton>
+            <input
+              type="radio"
+              name="japan"
+              id="japan"
+              value="japan"
+              style={{display: 'none'}}
+              {...register('category')}
+              onChange={(e) => onChangeCategoryValue(e)}
+            />
+            <FilterButton htmlFor="japan" isChecked={category === 'japan'}>
+              일식
+            </FilterButton>
+            <input
+              type="radio"
+              name="america"
+              id="america"
+              value="america"
+              style={{display: 'none'}}
+              {...register('category')}
+              onChange={(e) => onChangeCategoryValue(e)}
+            />
+            <FilterButton htmlFor="america" isChecked={category === 'america'}>
+              양식
+            </FilterButton>
+            <input
+              type="radio"
+              name="snack"
+              id="snack"
+              value="snack"
+              style={{display: 'none'}}
+              {...register('category')}
+              onChange={(e) => onChangeCategoryValue(e)}
+            />
+            <FilterButton htmlFor="snack" isChecked={category === 'snack'}>
+              간식
+            </FilterButton>
+          </FilterButtonGroup>
+          <Box mt={5}>
+            <FilterTitle>포함할 재료</FilterTitle>
+            <FilterInputWrapper>
+              <FilterInput placeholder="재료를 추가해주세요"></FilterInput>
+              <AddIcon />
+            </FilterInputWrapper>
 
-          <FilterInputTagWrapper>
-            {/* Todo : tag공통으로 빼기 */}
-            <FilterInputTag>
-              <p>페퍼론치노</p>
-              <CloseIcon fontSize="small" />
-            </FilterInputTag>
-            <FilterInputTag>
-              <p>돼지고기</p>
-              <CloseIcon fontSize="small" />
-            </FilterInputTag>
-          </FilterInputTagWrapper>
-        </Box>
-        <Box mt={5}>
-          <FilterTitle>제외할 재료</FilterTitle>
-          <FilterInputWrapper>
-            <FilterInput placeholder="재료를 추가해주세요"></FilterInput>
-            <AddIcon />
-          </FilterInputWrapper>
+            <FilterInputTagWrapper>
+              {/* Todo : tag공통으로 빼기 */}
+              <FilterInputTag>
+                <p>페퍼론치노</p>
+                <CloseIcon fontSize="small" />
+              </FilterInputTag>
+              <FilterInputTag>
+                <p>돼지고기</p>
+                <CloseIcon fontSize="small" />
+              </FilterInputTag>
+            </FilterInputTagWrapper>
+          </Box>
+          <Box mt={5}>
+            <FilterTitle>제외할 재료</FilterTitle>
+            <FilterInputWrapper>
+              <FilterInput placeholder="재료를 추가해주세요"></FilterInput>
+              <AddIcon />
+            </FilterInputWrapper>
 
-          <FilterInputTagWrapper>
-            {/* Todo :atom으로 빼기*/}
-            <FilterInputTag>
-              <p>페퍼론치노</p>
-              <CloseIcon fontSize="small" />
-            </FilterInputTag>
-            <FilterInputTag>
-              <p>돼지고기</p>
-              <CloseIcon fontSize="small" />
-            </FilterInputTag>
-          </FilterInputTagWrapper>
+            <FilterInputTagWrapper>
+              {/* Todo :atom으로 빼기*/}
+              <FilterInputTag>
+                <p>페퍼론치노</p>
+                <CloseIcon fontSize="small" />
+              </FilterInputTag>
+              <FilterInputTag>
+                <p>돼지고기</p>
+                <CloseIcon fontSize="small" />
+              </FilterInputTag>
+            </FilterInputTagWrapper>
+          </Box>
         </Box>
         <SubmitButtonWrapper>
           <SubmitButton reset>초기화</SubmitButton>
@@ -217,10 +222,9 @@ const FilterInputTag = styled.div`
 `;
 const SubmitButtonWrapper = styled.div`
   position: fixed;
-  bottom: 60px;
+  bottom: 0px;
   background: pink;
   width: 100%;
-  margin-left: -1rem;
   height: 60px;
   display: flex;
 `;
