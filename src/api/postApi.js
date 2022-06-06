@@ -18,14 +18,22 @@ const formConfig = {
 const getPostsAxios = async () => {
   try {
     const res = await http.get('community', config);
-
-    return res;
+    console.log(res.data);
+    return res.data;
   } catch (error) {
     console.error(error);
     console.log('조회 실패');
   }
 };
-
+//게시글 한개 조회
+const getPostAxios = async (communityId) => {
+  try {
+    const res = await http.get(`community/${communityId}`);
+    return res.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 //게시글 작성
 const writePostAxios = async (data) => {
   const frm = new FormData();
@@ -41,16 +49,6 @@ const writePostAxios = async (data) => {
   try {
     const res = await http.post('community', frm, formConfig);
     return res.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-//게시글 한개 조회
-const getPostAxios = async (communityId) => {
-  try {
-    const res = await http.get(`community/${communityId}`);
-    return res;
   } catch (error) {
     console.error(error);
   }
@@ -77,6 +75,7 @@ const patchPostAxios = async (communityId, data) => {
   frm.append('address', data.address);
   frm.append('latitude', data.latitude);
   frm.append('longitude', data.longitude);
+  console.log(data.expiredAt);
   data.images.forEach((image) =>
     typeof image === 'string'
       ? frm.append('saveimageurl', image)

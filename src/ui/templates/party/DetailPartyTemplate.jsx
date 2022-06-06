@@ -1,6 +1,8 @@
 import React from 'react';
+import {useParams} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
+import {getPost} from 'redux/slices/postSlice';
 
-import {useSelector} from 'react-redux';
 import ImgSlider from 'ui/organisms/ImgSlider';
 
 import HeaderBar from 'ui/templates/header/HeaderBar';
@@ -13,6 +15,12 @@ import CommentInput from 'ui/organisms/party/CommentInput';
 import Comment from 'ui/organisms/party/Comment';
 import PartyMainBanner from 'ui/organisms/party/PartyMainBanner';
 const DetailTemplate = () => {
+  const dispatch = useDispatch();
+  const params = useParams();
+  const id = params.postId;
+  React.useEffect(() => {
+    dispatch(getPost(id));
+  }, [id, dispatch]);
   const post = useSelector((state) => state.post.post);
   const {
     category,
@@ -31,6 +39,7 @@ const DetailTemplate = () => {
   const [replyData, setReplyData] = React.useState({
     nickName: '',
     commentId: '',
+    parentId: '',
   });
 
   return (
@@ -59,21 +68,46 @@ const DetailTemplate = () => {
           <Typography fontSize="20px" fontWeight="600" margin="24px 0 0 0">
             댓글
           </Typography>
-          {commentList &&
-            commentList.map((v) => (
-              <React.Fragment key={v.commentId}>
-                <Profile
-                  nickName={v.nickName}
-                  time={v.createdAt}
-                  address="OO동"
-                />
-                <Comment
-                  comment={v.comment}
-                  commentId={v.commentId}
-                  _onClick={setReplyData}
-                />
-              </React.Fragment>
-            ))}
+          <React.Fragment>
+            {commentList &&
+              commentList.map(
+                (parentValue) =>
+                  parentValue !== null &&
+                  typeof parentValue === 'object' && (
+                    <React.Fragment key={parentValue.id}>
+                      <Profile
+                        nickName={parentValue.nickname}
+                        time={parentValue.createdAt}
+                        address={parentValue.address}
+                      />
+                      <Comment
+                        comment={parentValue.comment}
+                        commentId={parentValue.commentId}
+                        parentId={parentValue.id}
+                        nickName={parentValue.nickname}
+                        _onClick={setReplyData}
+                      />
+                      {parentValue.childList &&
+                        parentValue.childList.map((childValue) => (
+                          <React.Fragment key={childValue.id}>
+                            <Profile
+                              nickName={childValue.nickname}
+                              time={childValue.createdAt}
+                              address={childValue.address}
+                            />
+                            <Comment
+                              parentId={childValue.parent}
+                              comment={childValue.comment}
+                              commentId={childValue.commentId}
+                              parentName={parentValue.nickname}
+                              _onClick={setReplyData}
+                            />
+                          </React.Fragment>
+                        ))}
+                    </React.Fragment>
+                  ),
+              )}
+          </React.Fragment>
         </Wrapper>
 
         <CommentInput

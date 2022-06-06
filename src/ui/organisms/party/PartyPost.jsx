@@ -3,8 +3,7 @@ import {useNavigate} from 'react-router';
 import Wrapper from 'ui/atoms/Wrapper';
 import Image from 'ui/atoms/Image';
 import Typography from 'ui/atoms/Typography';
-import {useDispatch} from 'react-redux';
-import {getPost} from 'redux/slices/postSlice';
+
 const PartyPost = ({
   thumnail = 'https://user-images.githubusercontent.com/51289147/169662629-ca401384-f9b4-464b-a2a1-a1a6aad119af.jpg',
   category = '나눔해요',
@@ -13,10 +12,8 @@ const PartyPost = ({
   time = '10분 뒤까지',
   id,
 }) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const moveDetailPage = () => {
-    dispatch(getPost(id));
     navigate(`detailParty/${id}`);
   };
   if (category === '나눔완료') {

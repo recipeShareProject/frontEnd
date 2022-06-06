@@ -41,14 +41,14 @@ const WritePostTemplate = ({type}) => {
 
   React.useEffect(() => {
     if (type === 'modi') {
-      // dispatch(tagActions.setTags(post.tag));
+      dispatch(tagActions.setTags(post.tags));
 
       post.images.map((v, idx) => {
         dispatch(imgActions.setImgs({idx, v}));
       });
 
       setcategory('나눔해요'); //post.category
-      setChangeDate(post.expiredAt);
+
       title.current.value = post.title;
       content.current.value = post.content;
     }
@@ -124,7 +124,18 @@ const WritePostTemplate = ({type}) => {
         ];
 
         const month = months[changeDate.getMonth()];
-        const expiredAt = `${changeDate.getFullYear()}-${month}-${changeDate.getDate()}T${changeDate.getHours()}:${changeDate.getMinutes()}:${changeDate.getSeconds()}`;
+        let day = changeDate.getDate().toString();
+        day = day.length < 2 ? `0${day}` : day;
+
+        let hour = changeDate.getHours().toString();
+        hour = hour.length < 2 ? `0${hour}` : hour;
+
+        let min = changeDate.getMinutes().toString();
+        min = min.length < 2 ? `0${min}` : min;
+        let sec = changeDate.getSeconds().toString();
+        sec = sec.length < 2 ? `0${sec}` : sec;
+
+        const expiredAt = `${changeDate.getFullYear()}-${month}-${day}T${hour}:${min}:${sec}`;
 
         const data = {
           title: title.current.value,
@@ -132,25 +143,25 @@ const WritePostTemplate = ({type}) => {
           images: sendImgs,
           content: content.current.value,
           tags: tags,
-          //Todo: 서버개발중
-          // expiredAt: expiredAt,
+
+          expiredAt: expiredAt,
           address: adress,
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
         };
 
         if (type === 'modi') {
-          //   // const res = await postApi.patchPostAxios(postId, data);
-          //   console.log('modi');
-          //   if (res) {
-          //     navigate('/party');
-          //   }
-          // } else {
-          //   const res = await postApi.writePostAxios(data);
-          //   console.log(res);
-          //   if (res) {
-          //     navigate('/party');
-          //   }
+          const res = await postApi.patchPostAxios(postId, data);
+
+          if (res) {
+            navigate('/party');
+          }
+        } else {
+          const res = await postApi.writePostAxios(data);
+          console.log(res);
+          if (res) {
+            navigate('/party');
+          }
         }
       });
     }

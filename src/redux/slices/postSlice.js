@@ -4,13 +4,13 @@ import postApi from 'api/postApi';
 export const getPosts = createAsyncThunk('post/getPosts', async () => {
   const response = await postApi.getPostsAxios();
 
-  return response.data;
+  return response;
 });
 
 export const getPost = createAsyncThunk('post/getPost', async (postId) => {
   const response = await postApi.getPostAxios(postId);
 
-  return response.data;
+  return response;
 });
 export const delPost = createAsyncThunk('post/delPost', async (postId) => {
   const response = await postApi.delPostAxios(postId);
@@ -25,7 +25,15 @@ export const addComment = createAsyncThunk(
     return response.data;
   },
 );
+export const addReply = createAsyncThunk(
+  'post/addReply',
+  async ({postId, commentId, parentId, data}) => {
+    const response = await postApi.writeReplyAxios(postId, commentId, data);
 
+    const sendData = {response, parentId};
+    return sendData;
+  },
+);
 // {
 //   title: '',
 //   category: '',
@@ -61,6 +69,13 @@ const postSlice = createSlice({
     });
     builder.addCase(addComment.fulfilled, (state, {payload}) => {
       state.post.commentList.unshift(payload);
+    });
+    builder.addCase(addReply.fulfilled, (state, {payload}) => {
+      const findIndex = state.post.commentList.findIndex(
+        (comment) => comment.id === payload.parentId,
+      );
+
+      state.post.commentList[findIndex].childList.push(payload.response);
     });
   },
 });
