@@ -63,7 +63,6 @@ const userSlice = createSlice({
       state.myPosts = payload;
     });
     builder.addCase(getMyComment.fulfilled, (state, {payload}) => {
-      console.log(payload);
       state.myComments = payload;
     });
   },
