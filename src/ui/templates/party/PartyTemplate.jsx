@@ -13,6 +13,7 @@ import Typography from 'ui/atoms/Typography';
 import PartyPost from 'ui/organisms/party/PartyPost';
 import NotFound from 'ui/templates/NotFound';
 import FloatButton from 'ui/atoms/FloatButton';
+
 const PartyTemplate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

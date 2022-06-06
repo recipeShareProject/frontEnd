@@ -171,7 +171,15 @@ const ApiTest = () => {
     let day = date.getDate().toString();
     day = day.length < 2 ? `0${day}` : day;
 
-    const expiredAt = `${date.getFullYear()}-${month}-${day}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    let hour = date.getHours().toString();
+    hour = hour.length < 2 ? `0${hour}` : hour;
+
+    let min = date.getMinutes().toString();
+    min = min.length < 2 ? `0${min}` : min;
+    let sec = date.getSeconds().toString();
+    sec = sec.length < 2 ? `0${sec}` : sec;
+
+    const expiredAt = `${date.getFullYear()}-${month}-${day}T${hour}:${min}:${sec}`;
 
     const data = {
       title: '게시글제목',
@@ -191,7 +199,7 @@ const ApiTest = () => {
 
   //게시글 한개 조회
   const getPost = async () => {
-    const res = await postApi.getPostAxios(7);
+    const res = await postApi.getPostAxios(9);
 
     // const time = timeForToday(res.data.expiredAt, 'party');
     console.log(res);
@@ -199,7 +207,7 @@ const ApiTest = () => {
 
   //게시글 삭제
   const delPost = async () => {
-    const res = await postApi.delPostAxios(2);
+    const res = await postApi.delPostAxios(8);
     console.log(res);
   };
 
@@ -226,7 +234,15 @@ const ApiTest = () => {
     let day = date.getDate().toString();
     day = day.length < 2 ? `0${day}` : day;
 
-    const expiredAt = `${date.getFullYear()}-${month}-${day}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    let hour = date.getHours().toString();
+    hour = hour.length < 2 ? `0${hour}` : hour;
+
+    let min = date.getMinutes().toString();
+    min = min.length < 2 ? `0${min}` : min;
+    let sec = date.getSeconds().toString();
+    sec = sec.length < 2 ? `0${sec}` : sec;
+
+    const expiredAt = `${date.getFullYear()}-${month}-${day}T${hour}:${min}:${sec}`;
 
     const data = {
       title: '게시글수정',
@@ -240,11 +256,11 @@ const ApiTest = () => {
       longitude: 129.1636,
     };
 
-    const res = await postApi.patchPostAxios(8, data);
+    const res = await postApi.patchPostAxios(9, data);
     console.log(res);
   };
 
-  //나눔완료
+  //나눔완료 에러
   const patchPostState = async () => {
     const data = {
       category: '나눔완료',
@@ -258,7 +274,7 @@ const ApiTest = () => {
     const data = {
       comment: '댓글작성완료!',
     };
-    const res = await postApi.writeCommentAxios(1, data);
+    const res = await postApi.writeCommentAxios(7, data);
     console.log(res);
   };
 
@@ -273,7 +289,7 @@ const ApiTest = () => {
 
   //댓글 삭제
   const delComment = async () => {
-    const res = await postApi.delCommentAxios(1);
+    const res = await postApi.delCommentAxios(7);
     console.log(res);
   };
 
@@ -290,7 +306,12 @@ const ApiTest = () => {
 
   //내정보 가져오기
   const myInfo = async () => {
-    const res = await userApi.myInfoAxios();
+    const data = {
+      address: '중동',
+      longitude: '34.234',
+      latitude: '53.2351',
+    };
+    const res = await userApi.myInfoAxios(data);
     console.log(res);
   };
 
@@ -307,8 +328,7 @@ const ApiTest = () => {
   //닉네임수정
   const patchMyInfo = async () => {
     const data = {
-      profileImage: sendImg,
-      nickname: '닉네임 수정',
+      name: '홍현승',
     };
     const res = await userApi.patchMyInfoAxios(data);
     console.log(res);
@@ -389,10 +409,7 @@ const ApiTest = () => {
 
       <h2>회원정보</h2>
       <Button onClick={myInfo}>내 정보 가져오기 </Button>
-      <Button onClick={signup}>회원가입정보입력 </Button>
-      <Button onClick={patchMyInfo}>회원정보변경 </Button>
-      <Button onClick={checkNickname}>닉네임 중복체크 </Button>
-      <Button onClick={home}>내 위치보내기 </Button>
+      <Button onClick={patchMyInfo}>닉네임변경 </Button>
       <Button onClick={getMyBoard}>내 레시피글 </Button>
       <Button onClick={getMyPost}>내 파티글 </Button>
       <Button onClick={getMyComment}>내 댓글</Button>

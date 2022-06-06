@@ -5,10 +5,10 @@ import Typography from 'ui/atoms/Typography';
 import {Colar100, Black20} from 'assets/colorSet';
 
 import {useDispatch} from 'react-redux';
-import {addComment} from 'redux/slices/postSlice';
-const CommentInput = ({postId, content, _onClick}) => {
+import {addComment, addReply} from 'redux/slices/postSlice';
+const CommentInput = ({postId, replyData, _onClick}) => {
   const dispatch = useDispatch();
-  const w = content ? '50px' : '';
+  const w = replyData.nickName !== '' ? '50px' : '';
 
   const handleInput = (e) => {
     //enter 키코드 = 0
@@ -16,8 +16,14 @@ const CommentInput = ({postId, content, _onClick}) => {
       const data = {
         comment: e.target.value,
       };
+      if (replyData.nickName === '') {
+        dispatch(addComment({postId, data}));
+      } else {
+        const commentId = replyData.commentId;
+        const parentId = replyData.parentId;
 
-      dispatch(addComment({postId, data}));
+        dispatch(addReply({postId, commentId, parentId, data}));
+      }
       e.target.value = '';
     }
   };
@@ -28,9 +34,14 @@ const CommentInput = ({postId, content, _onClick}) => {
         <Typography
           color={Colar100}
           fontSize="12px"
-          onClick={() => _onClick('')}
+          onClick={() =>
+            _onClick({
+              nickName: '',
+              commentId: '',
+            })
+          }
           w={w}>
-          {content}
+          {replyData.nickName}
         </Typography>
         <StyleInput onKeyPress={handleInput} placeholder="댓글을 남겨보세요" />
         <SendIcon onClick={handleInput} />
@@ -54,12 +65,11 @@ const InputWrapper = styled.div`
   position: fixed;
   bottom: 0;
 
-  &:before {
-    content: '${(props) => props.content}';
+  /* &:before {
     color: ${Colar100};
     font-size: 12px;
     width: ${(props) => (props.content ? '3rem' : '')};
-  }
+  } */
 `;
 
 const StyleInput = styled.input`
