@@ -191,7 +191,7 @@ const ApiTest = () => {
 
   //게시글 한개 조회
   const getPost = async () => {
-    const res = await postApi.getPostAxios(7);
+    const res = await postApi.getPostAxios(8);
 
     // const time = timeForToday(res.data.expiredAt, 'party');
     console.log(res);
@@ -199,7 +199,7 @@ const ApiTest = () => {
 
   //게시글 삭제
   const delPost = async () => {
-    const res = await postApi.delPostAxios(2);
+    const res = await postApi.delPostAxios(8);
     console.log(res);
   };
 
@@ -244,7 +244,7 @@ const ApiTest = () => {
     console.log(res);
   };
 
-  //나눔완료
+  //나눔완료 에러
   const patchPostState = async () => {
     const data = {
       category: '나눔완료',
@@ -258,7 +258,7 @@ const ApiTest = () => {
     const data = {
       comment: '댓글작성완료!',
     };
-    const res = await postApi.writeCommentAxios(1, data);
+    const res = await postApi.writeCommentAxios(7, data);
     console.log(res);
   };
 
@@ -273,7 +273,7 @@ const ApiTest = () => {
 
   //댓글 삭제
   const delComment = async () => {
-    const res = await postApi.delCommentAxios(1);
+    const res = await postApi.delCommentAxios(7);
     console.log(res);
   };
 

@@ -33,7 +33,6 @@ const writePostAxios = async (data) => {
   frm.append('category', data.category);
   frm.append('content', data.content);
   frm.append('tags', data.tags);
-  //Todo: 서버개발중
   frm.append('expiredAt', data.expiredAt);
   frm.append('address', data.address);
   frm.append('latitude', data.latitude);
@@ -74,8 +73,7 @@ const patchPostAxios = async (communityId, data) => {
   frm.append('category', data.category);
   frm.append('content', data.content);
   frm.append('tags', data.tags);
-  //Todo: 서버개발중
-  // frm.append('expiredAt', data.expiredAt);
+  frm.append('expiredAt', data.expiredAt);
   frm.append('address', data.address);
   frm.append('latitude', data.latitude);
   frm.append('longitude', data.longitude);
@@ -93,7 +91,7 @@ const patchPostAxios = async (communityId, data) => {
   }
 };
 
-//나눔완료
+//나눔완료 에러
 const patchPostStateAxios = async (communityId, data) => {
   const jsonData = JSON.stringify(data);
   try {
@@ -111,7 +109,7 @@ const patchPostStateAxios = async (communityId, data) => {
 //댓글 작성
 const writeCommentAxios = async (postId, data) => {
   const jsonData = JSON.stringify(data);
-  console.log(jsonData);
+
   try {
     const res = await http.post(`comment/${postId}`, jsonData, config);
     return res;
@@ -130,9 +128,8 @@ const writeReplyAxios = async (communityId, commentId, data) => {
       jsonData,
       config,
     );
-    if (res.status === 200) {
-      return data;
-    }
+
+    return res.data;
   } catch (error) {
     console.error(error);
   }
