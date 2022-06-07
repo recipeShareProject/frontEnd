@@ -1,13 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'tablet-ui/atoms/Image';
-const ImgSlider = () => {
+const ImgSlider = ({Img}) => {
   return (
     <BannerImgGroupWrapper>
       <BannerImgGroup>
-        <Image width="310px" height="235px" />
-        <Image width="310px" height="235px" />
-        <Image width="310px" height="235px" />
+        {Img &&
+          Img.map(
+            (v, idx) =>
+              v && (
+                <Image
+                  key={idx}
+                  src={Img[idx]}
+                  width="310px"
+                  height="235px"
+                  radius="8px"></Image>
+              ),
+          )}
       </BannerImgGroup>
     </BannerImgGroupWrapper>
   );

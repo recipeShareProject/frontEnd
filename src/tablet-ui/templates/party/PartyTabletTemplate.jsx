@@ -17,11 +17,11 @@ import NotFound from 'tablet-ui/templates/NotFound';
 const PartyTabletTemplate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const posts = useSelector((state) => state.post.posts);
+  const posts = useSelector((state) => state.post?.posts);
   const user = useSelector((state) => state.user.user);
 
   React.useEffect(() => {
-    dispatch(getPosts());
+    // dispatch(getPosts());
   }, []);
   return (
     <TabletWrapper>
@@ -32,22 +32,29 @@ const PartyTabletTemplate = () => {
             파티
           </Typography>
           <Typography fontSize="14px" color={Black40}>
-            {/* {address} */}
-            oo동
+            {user.address}
           </Typography>
         </Wrapper>
         <Typography fontSize="12px" color={Black40} margin="8px 0 24px 0">
           나의 위치를 기준으로 5km 이내의 게시물이 노출돼요
         </Typography>
-        <Grid columns="repeat(3,1fr)">
-          <PartyPost />
-          <PartyPost />
-          <PartyPost />
-          <PartyPost />
-          <PartyPost />
-          <PartyPost />
-        </Grid>
-        {/* <NotFound desc="새로운 게시글이 존재하지 않아요" /> */}
+        {posts !== undefined ? (
+          <Grid columns="repeat(3,1fr)">
+            {posts.map((v) => (
+              <PartyPost
+                key={v?.postId}
+                id={v?.postId}
+                thumnail={v?.images[0]}
+                category={v?.category}
+                title={v?.title}
+                address={v?.address}
+                time={timeForToday(v?.expiredAt, 'party')}
+              />
+            ))}
+          </Grid>
+        ) : (
+          <NotFound desc="새로운 게시글이 존재하지 않아요" />
+        )}
       </Wrapper>
     </TabletWrapper>
   );

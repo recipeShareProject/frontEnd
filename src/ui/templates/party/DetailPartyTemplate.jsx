@@ -75,10 +75,10 @@ const DetailTemplate = () => {
           <React.Fragment>
             {post?.commentList &&
               post?.commentList.map(
-                (parentValue) =>
+                (parentValue, idx) =>
                   parentValue !== null &&
                   typeof parentValue === 'object' && (
-                    <React.Fragment key={parentValue.id}>
+                    <React.Fragment key={idx}>
                       <Profile
                         nickName={parentValue.nickname}
                         time={parentValue.createdAt}
@@ -92,8 +92,8 @@ const DetailTemplate = () => {
                         _onClick={setReplyData}
                       />
                       {parentValue.childList &&
-                        parentValue.childList.map((childValue) => (
-                          <React.Fragment key={childValue.id}>
+                        parentValue.childList.map((childValue, idx) => (
+                          <React.Fragment key={idx}>
                             <Profile
                               nickName={childValue.nickname}
                               time={childValue.createdAt}

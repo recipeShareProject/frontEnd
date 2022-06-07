@@ -16,12 +16,12 @@ const MoreButton = ({setShareModal, setDelModal}) => {
       {open && (
         <CloseEffect onClick={() => setOpen(!open)}>
           <DropdownContent>
-            <ContentButton
+            {/* <ContentButton
               onClick={() => {
                 setShareModal(true);
               }}>
               나눔 완료로 변경하기
-            </ContentButton>
+            </ContentButton> */}
             <ContentButton
               onClick={() => {
                 navigate(`/party/modiParty/${postId}`);
@@ -49,7 +49,7 @@ const CloseEffect = styled.div`
 `;
 const DropdownContent = styled.div`
   width: 160px;
-  height: 120px;
+  height: 80px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
   border: 1px solid ${Black10};

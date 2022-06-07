@@ -13,7 +13,7 @@ import Wrapper from 'tablet-ui/atoms/Wrapper';
 import MoreButton from 'tablet-ui/organisms/header/MoreButton';
 import ModalPopup from 'tablet-ui/molecules/ModalPopup';
 
-import {delPost} from 'redux/slices/postSlice';
+import {delPost, postActions} from 'redux/slices/postSlice';
 const TabletHeaderBar = ({type}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const TabletHeaderBar = ({type}) => {
           <ArrowBackIosIcon onClick={onClickBack} fontSize="small" />
           <Wrapper display="flex" justify="center" align="center">
             <Wrapper _onClick={moveToNoti} margin="0 11px 0 0">
-              <AlarmIcon />
+              {/* <AlarmIcon /> */}
             </Wrapper>
             <ProfileIcon />
           </Wrapper>
@@ -72,6 +72,7 @@ const TabletHeaderBar = ({type}) => {
               closeEvent={setDelModal}
               yesEvent={() => {
                 dispatch(delPost(postId));
+                dispatch(postActions.deletePost(postId));
                 navigate('/party');
               }}></ModalPopup>
           )}

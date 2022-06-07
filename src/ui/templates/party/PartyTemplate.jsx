@@ -39,7 +39,7 @@ const PartyTemplate = () => {
         <Typography fontSize="12px" color={Black40} margin="8px 0 24px 0">
           나의 위치를 기준으로 5km 이내의 게시물이 노출돼요
         </Typography>
-        {posts.length !== 0 ? (
+        {posts !== undefined ? (
           posts.map((v) => (
             <PartyPost
               key={v?.postId}
