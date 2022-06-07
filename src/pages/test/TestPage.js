@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {useSelector, useDispatch} from 'react-redux';
-import postsActions from 'redux/thunkActions/postAction';
 
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
@@ -15,12 +14,8 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import dayjs from 'dayjs';
 import axios from 'axios';
-import ImgSlider from 'ui/organisms/ImgSlider';
 
 import ModalPopup from 'ui/molecules/ModalPopup';
-
-import {useSearchParams, useNavigate} from 'react-router-dom';
-import {setCookie} from 'common/presenters/Cookie';
 
 const TestPage = () => {
   // const navigate = useNavigate();

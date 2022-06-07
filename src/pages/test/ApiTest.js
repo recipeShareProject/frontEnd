@@ -3,14 +3,13 @@ import styled from 'styled-components';
 import recipeApi from 'api/recipeApi';
 import postApi from 'api/postApi';
 import userApi from 'api/userApi';
-import {timeForToday} from 'common/presenters/timeForToday';
 
 import {imgActions} from 'redux/slices/imgSlice';
 import {useDispatch, useSelector} from 'react-redux';
 import AddImgSlider from 'ui/organisms/AddImgSlider';
 const ApiTest = () => {
   const dispatch = useDispatch();
-  const Imgs = useSelector((state) => state.img.completeImgs);
+  // const Imgs = useSelector((state) => state.img.completeImgs);
   const sendImgs = useSelector((state) => state.img.sendCompleteImgs);
   const fileInput = React.useRef('');
   const [img, setImg] = React.useState();
