@@ -15,7 +15,7 @@ const LoginTabletTemplate = () => {
   return (
     <TabletWrapper>
       <Header />
-      {/* <Wrapper padding="88px 64px 0 64px">로그인</Wrapper> */}
+
       <Wrapper
         height="100vh"
         display="flex"

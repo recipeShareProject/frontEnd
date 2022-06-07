@@ -65,12 +65,6 @@ const InputWrapper = styled.div`
 
   position: fixed;
   bottom: 0;
-
-  /* &:before {
-    color: ${Colar100};
-    font-size: 12px;
-    width: ${(props) => (props.content ? '3rem' : '')};
-  } */
 `;
 
 const StyleInput = styled.input`

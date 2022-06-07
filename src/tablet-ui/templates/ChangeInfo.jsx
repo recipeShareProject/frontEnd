@@ -20,6 +20,7 @@ import {userActions} from 'redux/slices/userSlice';
 const ProfileTemplate = ({title, btnText}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  //todo:서버개발
   // const fileInput = React.useRef('');
   // const [Img, setImg] = React.useState(ProfileIcon);
   // const [sendImg, setsendImg] = React.useState('');
@@ -28,7 +29,7 @@ const ProfileTemplate = ({title, btnText}) => {
   const [duplication, setDuplication] = React.useState(false);
 
   const sendApi = async (sendData) => {
-    //Todo: 닉네임 중복 체크 api테스트 필요
+    //Todo: todo:서버개발
     // const res = await userApi.checkNicknameAxios(sendData);
     // console.log(sendData);
     // setDuplication(sendData);
@@ -57,7 +58,7 @@ const ProfileTemplate = ({title, btnText}) => {
       }
     }
   };
-  //todo:서버 프로필이미지
+  //todo:서버개발
   // //파일선택
   // const selectFile = (e) => {
   //   const {
@@ -91,7 +92,7 @@ const ProfileTemplate = ({title, btnText}) => {
           direction="column"
           justify="center"
           align="center">
-          {/* todo:서버 프로필이미지 */}
+          {/* todo:서버개발*/}
           {/* <Upload id="1" type="file" onChange={selectFile} ref={fileInput} />
 
           <label htmlFor="1">
@@ -131,8 +132,9 @@ const ProfileTemplate = ({title, btnText}) => {
   );
 };
 
-const Upload = styled.input`
-  display: none;
-`;
+// todo:서버개발
+// const Upload = styled.input`
+//   display: none;
+// `;
 
 export default ProfileTemplate;

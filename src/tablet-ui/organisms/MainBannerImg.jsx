@@ -7,7 +7,6 @@ import {Box} from '@mui/material';
 import {Black100, Black40} from 'assets/colorSet';
 import {foodImgs} from 'common/presenters/foodImgs';
 
-import recipeApi from 'api/recipeApi';
 import {chnageBookmarkStatus} from 'redux/slices/recipeSlice';
 import {useDispatch} from 'react-redux';
 const useStyles = makeStyles({

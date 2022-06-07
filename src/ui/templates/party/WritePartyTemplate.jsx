@@ -12,7 +12,6 @@ import CustomTimePicker from 'ui/atoms/CustomTimePicker';
 import CustomDatePicker from 'ui/atoms/CustomDatePicker';
 import Wrapper from 'ui/atoms/Wrapper';
 import HeaderBar from 'ui/templates/header/HeaderBar';
-import Typography from 'ui/atoms/Typography';
 import Input from 'ui/atoms/Input';
 import Radio from 'ui/organisms/party/PartyRadio';
 import Divider from 'ui/atoms/Divider';

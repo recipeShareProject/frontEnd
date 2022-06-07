@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import Typography from 'ui/atoms/Typography';
 import {Black10} from 'assets/colorSet';
 import {useNavigate, useParams} from 'react-router-dom';
 const MoreButton = ({setShareModal, setDelModal}) => {
@@ -16,7 +15,8 @@ const MoreButton = ({setShareModal, setDelModal}) => {
       {open && (
         <CloseEffect onClick={() => setOpen(!open)}>
           <DropdownContent>
-            {/* <ContentButton
+            {/*todo:서버개발 
+             <ContentButton
               onClick={() => {
                 setShareModal(true);
               }}>

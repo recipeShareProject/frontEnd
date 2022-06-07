@@ -5,7 +5,7 @@ import Typography from 'tablet-ui/atoms/Typography';
 
 import Wrapper from 'tablet-ui/atoms/Wrapper';
 import AlertProfile from 'tablet-ui/organisms/header/AlertProfile';
-
+//todo: 서버개발
 const DropAlert = ({setOpen}) => {
   return (
     <React.Fragment>

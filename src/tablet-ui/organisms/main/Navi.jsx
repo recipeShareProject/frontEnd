@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Black20, Colar100} from 'assets/colorSet';
+import {Black20} from 'assets/colorSet';
 import {useNavigate, useLocation} from 'react-router-dom';
 
 import LogoIcon from 'common/icons/LogoIcon';

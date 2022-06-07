@@ -12,7 +12,6 @@ import CommentTabTabletTemplate from 'tablet-ui/templates/my/CommentTabTabletTem
 import TabletWrapper from 'tablet-ui/atoms/TabletWrapper';
 import TabletHeaderBar from 'tablet-ui/templates/header/TabletHeaderBar';
 import Wrapper from 'tablet-ui/atoms/Wrapper';
-import Divider from 'tablet-ui/atoms/Divider';
 import HeadTitle from 'tablet-ui/atoms/HeadTitle';
 
 import {Black5} from 'assets/colorSet';

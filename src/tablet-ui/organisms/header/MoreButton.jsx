@@ -15,7 +15,8 @@ const MoreButton = ({setShareModal, setDelModal}) => {
       {open && (
         <CloseEffect onClick={() => setOpen(!open)}>
           <DropdownContent>
-            {/* <ContentButton
+            {/*todo: 나눔완료 서버개발 
+            <ContentButton
               onClick={() => {
                 setShareModal(true);
               }}>

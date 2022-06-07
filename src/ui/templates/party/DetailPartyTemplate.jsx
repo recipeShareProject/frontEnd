@@ -27,20 +27,7 @@ const DetailTemplate = () => {
     commentId: '',
     parentId: '',
   });
-  // const {
-  //   category,
-  //   content,
-  //   createdAt,
-  //   expiredAt,
-  //   images,
-  //   address,
-  //   tags,
-  //   title,
-  //   postId,
-  //   commentList,
-  //   profileUrl,
-  //   nickname,
-  // } = post;
+
   return (
     <React.Fragment>
       <HeaderBar type="party" />

@@ -36,7 +36,9 @@ const TabletHeaderBar = ({type}) => {
           <ArrowBackIosIcon onClick={onClickBack} fontSize="small" />
           <Wrapper display="flex" justify="center" align="center">
             <Wrapper _onClick={moveToNoti} margin="0 11px 0 0">
-              {/* <AlarmIcon /> */}
+              {/* 
+              todo:서버개발
+              <AlarmIcon /> */}
             </Wrapper>
             <ProfileIcon />
           </Wrapper>

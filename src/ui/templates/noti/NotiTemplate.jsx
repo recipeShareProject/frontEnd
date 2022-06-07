@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import HeaderBar from 'ui/templates/header/HeaderBar';
 import Wrapper from 'ui/atoms/Wrapper';
@@ -25,7 +24,7 @@ const NotiTemplate = () => {
         <Divider />
         <Wrapper padding="0 1rem">
           <NotiProfile />
-          {/* <NotFound desc="새로운 알림이 없어요" /> */}
+          {/*todo:서버개발  <NotFound desc="새로운 알림이 없어요" /> */}
         </Wrapper>
       </Wrapper>
     </React.Fragment>

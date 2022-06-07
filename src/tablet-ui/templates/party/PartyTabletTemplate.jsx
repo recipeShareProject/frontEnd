@@ -1,5 +1,4 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 
 import {timeForToday} from 'common/presenters/timeForToday';
@@ -16,12 +15,12 @@ import NotFound from 'tablet-ui/templates/NotFound';
 
 const PartyTabletTemplate = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const posts = useSelector((state) => state.post?.posts);
   const user = useSelector((state) => state.user.user);
 
   React.useEffect(() => {
-    // dispatch(getPosts());
+    //todo:서버개발  dispatch(getPosts());
   }, []);
   return (
     <TabletWrapper>

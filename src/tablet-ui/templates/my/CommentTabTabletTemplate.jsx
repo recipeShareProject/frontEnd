@@ -1,5 +1,3 @@
-import {Box} from '@mui/material';
-import {Black40} from 'assets/colorSet';
 import React from 'react';
 
 import PartyPost from 'tablet-ui/organisms/party/PartyPost';
@@ -19,7 +17,8 @@ const CommentTabTemplate = () => {
 
   return (
     <Wrapper>
-      {/* <Typography color={Black40} fontSize="12px" margin="0 0 16px 0">
+      {/*todo:서버개발
+       <Typography color={Black40} fontSize="12px" margin="0 0 16px 0">
         2022년 5월 21일
       </Typography> */}
       <Grid columns="repeat(3,1fr)">
@@ -39,15 +38,6 @@ const CommentTabTemplate = () => {
         ) : (
           <NotFound desc="댓글이 존재하지 않아요" />
         )}
-        {/* {comments.map((v) => (
-        <PartyPost
-          key={v.commentId}
-          id={v.commentId}
-          title={v.comment}
-
-          // Todo: 이미지, expriedAt입력받기/>
-        />
-      ))} */}
       </Grid>
       {/* <Typography color={Black40} fontSize="12px">
         2022년 5월 20일

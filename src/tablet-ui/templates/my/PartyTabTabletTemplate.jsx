@@ -1,6 +1,3 @@
-import {Box} from '@mui/material';
-import {Black40} from 'assets/colorSet';
-
 import React from 'react';
 
 import Typography from 'tablet-ui/atoms/Typography';
@@ -35,7 +32,8 @@ const PartyTabTemplate = () => {
           <NotFound desc="게시글이 존재하지 않아요" />
         )}
       </Grid>
-      {/* <Typography color={Black40} fontSize="12px">
+      {/*todo:서버개발
+       <Typography color={Black40} fontSize="12px">
         2022년 5월 21일
       </Typography>
 

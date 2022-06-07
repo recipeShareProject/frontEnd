@@ -7,7 +7,6 @@ import {useDispatch} from 'react-redux';
 import {getRecipeList} from 'redux/slices/recipeSlice';
 
 const MainPage = () => {
-  const isPC = useMediaQuery({query: '(min-width:992px)'});
   const isTablet = useMediaQuery({query: '(min-width:768px)'});
   const isMobile = useMediaQuery({query: '(max-width:767.5px)'});
 

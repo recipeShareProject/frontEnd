@@ -6,7 +6,6 @@ import Typography from 'ui/atoms/Typography';
 import {Black40, Colar100} from 'assets/colorSet';
 
 const RecipeDetailImgSection = () => {
-  const [modal, setModal] = React.useState(false);
   return (
     <Box padding="72px 16px">
       <Typography fontSize="1.4rem" fontWeight="bold" margin="1rem 0px 0px 0px">
@@ -42,17 +41,7 @@ const RecipeDetailImgSection = () => {
 };
 
 export default RecipeDetailImgSection;
-const Title = styled.p`
-  font-size: 1.4rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  margin-bottom: 0;
-`;
-const TitleBox = styled.div`
-  font-size: 0.8rem;
-  display: flex;
-  justify-content: space-between;
-`;
+
 export const RecipeImgGroupWrapper = styled.div`
   width: 100%;
   overflow: scroll;

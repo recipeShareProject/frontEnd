@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import Wrapper from 'ui/atoms/Wrapper';
 import Typography from 'ui/atoms/Typography';
-import Profile from 'ui/organisms/Profile';
 
 import {Colar100, Black40} from 'assets/colorSet';
 const Comment = ({
