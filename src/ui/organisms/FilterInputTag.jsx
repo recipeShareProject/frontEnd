@@ -2,17 +2,9 @@ import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import styled from 'styled-components';
 
-import {useDispatch, useSelector} from 'react-redux';
-import {tagActions} from 'redux/slices/tagSlice';
 import {Black5, Colar100} from 'assets/colorSet';
 
 const FIlterTag = ({children, _onClick}) => {
-  const dispatch = useDispatch();
-  const tags = useSelector((state) => state.tag.tags);
-
-  const deleteTag = (idx) => {
-    dispatch(tagActions.delTag(idx));
-  };
   return (
     <FilterInputTag>
       <p>{children}</p>

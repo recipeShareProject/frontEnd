@@ -41,13 +41,7 @@ const Navigation = () => {
     default:
       return (
         <Box>
-          <StyleNavi
-          // showLabels
-          // value={value}
-          // onChange={(event, newValue) => {
-          // setValue(newValue);
-          // }}
-          >
+          <StyleNavi>
             <NaviBox
               onClick={() => {
                 moveToHome();

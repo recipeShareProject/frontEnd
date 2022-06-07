@@ -4,8 +4,6 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import {Black10} from 'assets/colorSet';
-
 import Image from 'ui/atoms/Image';
 const AddImgSlider = ({Img}) => {
   const settings = {

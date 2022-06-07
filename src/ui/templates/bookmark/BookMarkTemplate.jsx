@@ -1,9 +1,8 @@
 import React from 'react';
-import {Box} from '@mui/material';
+
 import {Black40} from 'assets/colorSet';
 import NotFound from 'ui/templates/NotFound';
 import MainBannerImg from 'ui/organisms/MainBannerImg';
-import styled from 'styled-components';
 
 import Header from 'ui/templates/header/Header';
 import Navigation from 'ui/templates/navigation/Navigation';
@@ -23,7 +22,8 @@ const BookMarkTemplate = () => {
           <Typography fontSize="20px" fontWeight="600" margin="0 8px 0 0">
             북마크
           </Typography>
-          {/* <Typography color={Black40} fontSize="14px">n개</Typography> */}
+          {/*todo:서버개발
+           <Typography color={Black40} fontSize="14px">n개</Typography> */}
         </Wrapper>
         <Divider />
 

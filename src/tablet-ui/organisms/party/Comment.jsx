@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import Wrapper from 'tablet-ui/atoms/Wrapper';
 import Typography from 'tablet-ui/atoms/Typography';
-import Profile from 'tablet-ui/organisms/Profile';
 
 import {Colar100, Black40} from 'assets/colorSet';
 const Comment = ({

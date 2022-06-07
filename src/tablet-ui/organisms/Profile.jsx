@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+
 import {Black40} from 'assets/colorSet';
 import {timeForToday} from 'common/presenters/timeForToday';
 import defaultImg from 'assets/imgs/profile48.png';

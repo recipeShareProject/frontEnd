@@ -59,10 +59,6 @@ const DropdownContent = styled.div`
 
     cursor: pointer;
   }
-
-  div:nth-child(odd) {
-    // margin-bottom: 0.5rem;
-  }
 `;
 
 const FloatBtn = styled.div`

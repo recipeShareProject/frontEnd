@@ -34,15 +34,6 @@ export const addReply = createAsyncThunk(
     return sendData;
   },
 );
-// {
-//   title: '',
-//   category: '',
-//   imagePath: [],
-//   content: '',
-//   tag: [],
-//   expiredAt: '',
-//   loaction: '',
-// },
 const initialState = {
   posts: [],
   post: {},

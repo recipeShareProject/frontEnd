@@ -53,7 +53,9 @@ const TabletHeader = () => {
             <AddIcon />
           </Wrapper>
           <Wrapper _onClick={moveToNoti} margin="0 19px 0 0">
-            {/* <AlarmIcon /> */}
+            {/* 
+            todo:서버개발
+            <AlarmIcon /> */}
           </Wrapper>
           <ProfileIcon src={user.imageUrl} onClick={moveToMypage}></ProfileIcon>
         </Wrapper>

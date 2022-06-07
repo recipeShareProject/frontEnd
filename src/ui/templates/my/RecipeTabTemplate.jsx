@@ -33,8 +33,6 @@ const RecipeTabTemplate = () => {
       ) : (
         <NotFound desc="레시피가 존재하지 않아요" />
       )}
-
-      {/* TODO: 북마크 없을때 */}
     </Wrapper>
   );
 };

@@ -9,7 +9,6 @@ import MainBannerImg from 'tablet-ui/organisms/MainBannerImg';
 import Grid from 'tablet-ui/atoms/Grid';
 import NotFound from 'tablet-ui/templates/NotFound';
 
-import {Black40} from 'assets/colorSet';
 import {useSelector} from 'react-redux';
 const BookmarkTabletTemplate = () => {
   const recipeList = useSelector((state) => state.recipe.recipeList);
@@ -21,6 +20,7 @@ const BookmarkTabletTemplate = () => {
           <Typography fontSize="20px" fontWeight="600" margin="0 8px 0 0">
             북마크
           </Typography>
+          {/* todo:서버개발 */}
           {/* <Typography color={Black40} fontSize="14px">
             n개
           </Typography> */}

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, {forwardRef, useRef} from 'react';
+import React, {forwardRef} from 'react';
 import {useDispatch} from 'react-redux';
 import Image from 'ui/atoms/Image';
 import EmptyImage from 'ui/atoms/EmptyImage';
@@ -33,7 +33,6 @@ const AddImgFileInput = forwardRef((props, ref) => {
         img: img,
         idx: idx,
       });
-      //   dispatch(imgActions.addCompleteImg({img: img, idx: idx}));
     };
   };
 

@@ -17,7 +17,8 @@ const CommentTabTemplate = () => {
 
   return (
     <Box mt={4}>
-      {/* <Typography color={Black40} fontSize="12px">
+      {/* todo:서버개발
+      <Typography color={Black40} fontSize="12px">
         2022년 5월 21일
       </Typography> 
         <Typography color={Black40} fontSize="12px">

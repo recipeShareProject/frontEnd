@@ -17,10 +17,6 @@ const Header = () => {
   const user = useSelector((state) => state.user.user);
   React.useEffect(() => {
     const token = getCookie('token');
-    // console.log(user);
-    // console.log(token);
-    // console.log(user?.name !== undefined);
-    // console.log(token !== undefined);
     setIsLogin(user?.name !== undefined && token !== undefined);
   }, [user]);
 
@@ -47,7 +43,8 @@ const Header = () => {
       {isLogin ? (
         <Wrapper display="flex" justify="center" align="center">
           <Wrapper _onClick={moveToNoti} margin="0 11px 0 0">
-            {/* <AlarmIcon /> */}
+            {/*todo:서버개발
+             <AlarmIcon /> */}
           </Wrapper>
           <ProfileIcon src={user.imageUrl} onClick={moveToMypage}></ProfileIcon>
         </Wrapper>

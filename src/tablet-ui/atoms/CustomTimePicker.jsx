@@ -2,15 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import dayjs from 'dayjs';
 import {Black20} from 'assets/colorSet';
 const CustomDatePicker = ({_onChange}) => {
   const [selectDate, setSelectDate] = React.useState(new Date());
-  //   const ExampleCustomInput = React.forwardRef(({value, onClick}, ref) => (
-  //     <div style={{textAlign: 'center'}} onClick={onClick} ref={ref}>
-  //       {value}
-  //     </div>
-  //   ));
+
   return (
     <PickerWrapper>
       <TimePicker

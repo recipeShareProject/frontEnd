@@ -21,7 +21,7 @@ const PartyTemplate = () => {
   const user = useSelector((state) => state.user.user);
 
   React.useEffect(() => {
-    // dispatch(getPosts());
+    // todo:서버개발 dispatch(getPosts());
   }, []);
 
   return (
