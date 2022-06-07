@@ -19,9 +19,9 @@ const Header = () => {
     const token = getCookie('token');
     // console.log(user);
     // console.log(token);
-    // console.log(user !== {});
+    // console.log(user?.name !== undefined);
     // console.log(token !== undefined);
-    setIsLogin(user !== {} && token !== undefined);
+    setIsLogin(user?.name !== undefined && token !== undefined);
   }, [user]);
 
   const moveToMain = () => {
@@ -47,9 +47,9 @@ const Header = () => {
       {isLogin ? (
         <Wrapper display="flex" justify="center" align="center">
           <Wrapper _onClick={moveToNoti} margin="0 11px 0 0">
-            <AlarmIcon />
+            {/* <AlarmIcon /> */}
           </Wrapper>
-          <ProfileIcon onClick={moveToMypage}></ProfileIcon>
+          <ProfileIcon src={user.imageUrl} onClick={moveToMypage}></ProfileIcon>
         </Wrapper>
       ) : (
         <Typography fontSize="14px" fontWeight="700" onClick={onClickLogin}>

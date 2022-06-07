@@ -1,10 +1,11 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
 
 import profileImg from 'assets/imgs/profile48.png';
 import myInfo from 'assets/imgs/myInfo.png';
 import pencil from 'assets/imgs/pencil_black.png';
-import logout from 'assets/imgs/logout.png';
+import logoutImg from 'assets/imgs/logout.png';
 
 import TabletWrapper from 'tablet-ui/atoms/TabletWrapper';
 import Header from 'tablet-ui/templates/header/TabletHeader';
@@ -13,8 +14,18 @@ import HeadTitle from 'tablet-ui/atoms/HeadTitle';
 import Profile from 'tablet-ui/organisms/Profile';
 import Divider from 'tablet-ui/atoms/Divider';
 import MyPageButton from 'tablet-ui/organisms/MyPageButton';
+
+import {deleteCookie} from 'common/presenters/Cookie';
+import {logout} from 'redux/slices/userSlice';
 const MyTabletTemplate = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+  const handleLogout = () => {
+    dispatch(logout());
+    deleteCookie('token');
+    navigate('/');
+  };
   return (
     <TabletWrapper>
       <Header />
@@ -22,9 +33,9 @@ const MyTabletTemplate = () => {
         <HeadTitle title="마이페이지"></HeadTitle>
         <Profile
           size="48px"
-          src={profileImg}
-          nickName="닉네임"
-          email="email@example.com"
+          src={user.imageUrl ? user.imageUrl : profileImg}
+          nickName={user.name}
+          email={user.email}
           margin="24px 0 24px 0"
         />
       </Wrapper>
@@ -43,7 +54,14 @@ const MyTabletTemplate = () => {
         _onClick={() => navigate('/my/myPost')}
       />
 
-      <MyPageButton src={logout} alt="logout" content="로그아웃" />
+      <MyPageButton
+        _onClick={() => {
+          handleLogout();
+        }}
+        src={logoutImg}
+        alt="logout"
+        content="로그아웃"
+      />
     </TabletWrapper>
   );
 };

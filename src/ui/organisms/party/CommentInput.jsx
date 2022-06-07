@@ -38,6 +38,7 @@ const CommentInput = ({postId, replyData, _onClick}) => {
             _onClick({
               nickName: '',
               commentId: '',
+              parentId: '',
             })
           }
           w={w}>

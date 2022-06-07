@@ -21,9 +21,9 @@ import {userActions} from 'redux/slices/userSlice';
 const ProfileTemplate = ({title, btnText}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const fileInput = React.useRef('');
-  const [Img, setImg] = React.useState(ProfileIcon);
-  const [sendImg, setsendImg] = React.useState('');
+  // const fileInput = React.useRef('');
+  // const [Img, setImg] = React.useState(ProfileIcon);
+  // const [sendImg, setsendImg] = React.useState('');
 
   const [duplication, setDuplication] = React.useState(false);
   const user = useSelector((state) => state.user.user);
@@ -65,25 +65,25 @@ const ProfileTemplate = ({title, btnText}) => {
       }
     }
   };
+  //todo:서버 프로필이미지
+  // //파일선택
+  // const selectFile = (e) => {
+  //   const {
+  //     target: {files},
+  //   } = e;
 
-  //파일선택
-  const selectFile = (e) => {
-    const {
-      target: {files},
-    } = e;
+  //   const imageFile = files[0];
+  //   const reader = new FileReader();
+  //   setsendImg(imageFile);
+  //   reader.readAsDataURL(imageFile);
 
-    const imageFile = files[0];
-    const reader = new FileReader();
-    setsendImg(imageFile);
-    reader.readAsDataURL(imageFile);
-
-    reader.onloadend = (e) => {
-      const {
-        currentTarget: {result},
-      } = e;
-      setImg(result);
-    };
-  };
+  //   reader.onloadend = (e) => {
+  //     const {
+  //       currentTarget: {result},
+  //     } = e;
+  //     setImg(result);
+  //   };
+  // };
 
   return (
     <React.Fragment>
@@ -99,6 +99,7 @@ const ProfileTemplate = ({title, btnText}) => {
           direction="column"
           justify="center"
           align="center">
+          {/* //todo:서버 프로필이미지 */}
           {/* <Upload id="1" type="file" onChange={selectFile} ref={fileInput} />
 
           <label htmlFor="1">

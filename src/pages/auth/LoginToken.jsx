@@ -39,10 +39,10 @@ const LoginToken = () => {
   const callback = (result, status) => {
     if (status === kakao.maps.services.Status.OK) {
       navigator.geolocation.getCurrentPosition(async (position) => {
-        const lon = position.coords.longitude;
-        const lat = position.coords.latitude;
+        const longitude = position.coords.longitude.toString();
+        const latitude = position.coords.latitude.toString();
         const address = result[0].address.region_3depth_name;
-        dispatch(getInfo({lon, lat, address}));
+        dispatch(getInfo({longitude, latitude, address}));
         navigate('/');
       });
     }

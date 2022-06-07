@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Wrapper from 'ui/atoms/Wrapper';
-import MainBannerImg from 'tablet-ui/organisms/MainBannerImg';
+import MainBannerImg from 'ui/organisms/MainBannerImg';
 import Grid from 'ui/atoms/Grid';
 import NotFound from 'ui/templates/NotFound';
 

@@ -1,4 +1,7 @@
 import React from 'react';
+import {useParams} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
+import {getPost} from 'redux/slices/postSlice';
 
 import TabletWrapper from 'tablet-ui/atoms/TabletWrapper';
 import HeaderBar from 'tablet-ui/templates/header/TabletHeaderBar';
@@ -12,33 +15,44 @@ import Divider from 'tablet-ui/atoms/Divider';
 import Comment from 'tablet-ui/organisms/party/Comment';
 import CommentInput from 'tablet-ui/organisms/party/CommentInput';
 const DetailPartyTabletTemplate = () => {
+  const dispatch = useDispatch();
+  const params = useParams();
+  const id = params.postId;
+  React.useEffect(() => {
+    dispatch(getPost(id));
+  }, [id, dispatch]);
+  const post = useSelector((state) => state.post?.post);
+  const [replyData, setReplyData] = React.useState({
+    nickName: '',
+    commentId: '',
+    parentId: '',
+  });
   return (
     <TabletWrapper>
       <HeaderBar type="party" />
       <Wrapper padding="85px 64px 0 64px">
         <PartyMainBanner
-          category={'나눔해요'}
-          title={'게시글 제목'}
-          address={'oo동'}
-          expiredAt={'2022-06-01T17:35:28'}
+          category={post?.category}
+          title={post?.title}
+          address={post?.address}
+          expiredAt={post?.expiredAt}
         />
       </Wrapper>
       <Wrapper padding="0 0 0 64px">
-        <ImgSlider />
+        <ImgSlider Img={post?.images} />
       </Wrapper>
       <Wrapper padding="0 64px 0 64px">
-        <Profile nickName="닉네임" time={'2022-06-01T17:35:28'} />
+        <Profile
+          nickName={post?.nickname}
+          src={post?.profileUrl}
+          time={post?.createdAt}
+        />
         <Typography fontSize="14px" margin="16px 0">
-          {/* {content} */}
-          여기에는 내용이 들어가는 곳이에요
+          {post?.content}
         </Typography>
         <Wrapper margin="1.2rem 0" display="flex" flexWrap="wrap" gap="10px">
-          {/* {tags && tags.map((v, idx) => <FIlterTag key={idx}>{v}</FIlterTag>)} */}
-          <FIlterTag>태그</FIlterTag>
-          <FIlterTag>태그</FIlterTag>
-          <FIlterTag>태그</FIlterTag>
-          <FIlterTag>태그</FIlterTag>
-          <FIlterTag>태그</FIlterTag>
+          {post?.tags &&
+            post?.tags.map((v, idx) => <FIlterTag key={idx}>{v}</FIlterTag>)}
         </Wrapper>
       </Wrapper>
       <Divider />
@@ -46,43 +60,51 @@ const DetailPartyTabletTemplate = () => {
         <Typography fontSize="20px" fontWeight="600" margin="24px 0 0 0">
           댓글
         </Typography>
-        <React.Fragment key={'v.commentId'}>
-          <Profile
-            nickName={'v.nickName'}
-            time={'v.createdAt'}
-            address="OO동"
-          />
-          <Comment
-            comment={'v.comment'}
-            commentId={'v.commentId'}
-            _onClick={'setReplyData'}
-          />
-          <Profile
-            nickName={'v.nickName'}
-            time={'v.createdAt'}
-            address="OO동"
-          />
-          <Comment
-            comment={'v.comment'}
-            commentId={'v.commentId'}
-            _onClick={'setReplyData'}
-          />
-          <Profile
-            nickName={'v.nickName'}
-            time={'v.createdAt'}
-            address="OO동"
-          />
-          <Comment
-            comment={'v.comment'}
-            commentId={'v.commentId'}
-            _onClick={'setReplyData'}
-          />
+        <React.Fragment>
+          {post?.commentList &&
+            post?.commentList.map(
+              (parentValue, idx) =>
+                parentValue !== null &&
+                typeof parentValue === 'object' && (
+                  <React.Fragment key={idx}>
+                    <Profile
+                      nickName={parentValue.nickname}
+                      time={parentValue.createdAt}
+                      address={parentValue.address}
+                    />
+                    <Comment
+                      comment={parentValue.comment}
+                      commentId={parentValue.commentId}
+                      parentId={parentValue.id}
+                      nickName={parentValue.nickname}
+                      _onClick={setReplyData}
+                    />
+                    {parentValue.childList &&
+                      parentValue.childList.map((childValue, idx) => (
+                        <React.Fragment key={idx}>
+                          <Profile
+                            nickName={childValue.nickname}
+                            time={childValue.createdAt}
+                            address={childValue.address}
+                          />
+                          <Comment
+                            parentId={childValue.parent}
+                            comment={childValue.comment}
+                            commentId={childValue.commentId}
+                            parentName={parentValue.nickname}
+                            _onClick={setReplyData}
+                          />
+                        </React.Fragment>
+                      ))}
+                  </React.Fragment>
+                ),
+            )}
         </React.Fragment>
       </Wrapper>
       <CommentInput
-      // postId={postId}
-      // replyData={replyData}
-      // _onClick={setReplyData}
+        postId={post?.postId}
+        replyData={replyData}
+        _onClick={setReplyData}
       />
     </TabletWrapper>
   );

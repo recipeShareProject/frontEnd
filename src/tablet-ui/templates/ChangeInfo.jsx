@@ -1,6 +1,7 @@
 import React, {useCallback} from 'react';
 import styled from 'styled-components';
 import {debounce} from 'lodash';
+import {useNavigate} from 'react-router-dom';
 
 import {Black40, Colar100} from 'assets/colorSet';
 import ProfileIcon from 'assets/imgs/profile120.png';
@@ -12,19 +13,25 @@ import Input from 'tablet-ui/atoms/Input';
 import HeadTitle from 'tablet-ui/atoms/HeadTitle';
 import EditFrom from 'tablet-ui/organisms/EditForm';
 
+import {useSelector, useDispatch} from 'react-redux';
 import userApi from 'api/userApi';
+
+import {userActions} from 'redux/slices/userSlice';
 const ProfileTemplate = ({title, btnText}) => {
-  const fileInput = React.useRef('');
-  const [Img, setImg] = React.useState(ProfileIcon);
-  const [sendImg, setsendImg] = React.useState('');
-  const [nickname, setNickname] = React.useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // const fileInput = React.useRef('');
+  // const [Img, setImg] = React.useState(ProfileIcon);
+  // const [sendImg, setsendImg] = React.useState('');
+  const user = useSelector((state) => state.user.user);
+  const [nickname, setNickname] = React.useState(user.name);
   const [duplication, setDuplication] = React.useState(false);
 
   const sendApi = async (sendData) => {
     //Todo: 닉네임 중복 체크 api테스트 필요
-    const res = await userApi.checkNicknameAxios(sendData);
-    console.log(sendData);
-    setDuplication(sendData);
+    // const res = await userApi.checkNicknameAxios(sendData);
+    // console.log(sendData);
+    // setDuplication(sendData);
   };
 
   const delayedSearch = useCallback(
@@ -37,31 +44,38 @@ const ProfileTemplate = ({title, btnText}) => {
   };
 
   const handleRegister = async () => {
-    //toto:api 테스트
-    const data = {
-      profileImage: sendImg,
-      nickname: nickname,
-    };
-    const res = await userApi.signupAxios(data);
-  };
-  //파일선택
-  const selectFile = (e) => {
-    const {
-      target: {files},
-    } = e;
+    if (duplication === false) {
+      const res = await userApi.patchMyInfoAxios(nickname);
 
-    const imageFile = files[0];
-    const reader = new FileReader();
-    setsendImg(imageFile);
-    reader.readAsDataURL(imageFile);
+      if (res.status === 208) {
+        setDuplication(true);
+      } else if (res.status === 200) {
+        const sendData = res.data.name;
+        dispatch(userActions.changeName(sendData));
 
-    reader.onloadend = (e) => {
-      const {
-        currentTarget: {result},
-      } = e;
-      setImg(result);
-    };
+        navigate(-1);
+      }
+    }
   };
+  //todo:서버 프로필이미지
+  // //파일선택
+  // const selectFile = (e) => {
+  //   const {
+  //     target: {files},
+  //   } = e;
+
+  //   const imageFile = files[0];
+  //   const reader = new FileReader();
+  //   setsendImg(imageFile);
+  //   reader.readAsDataURL(imageFile);
+
+  //   reader.onloadend = (e) => {
+  //     const {
+  //       currentTarget: {result},
+  //     } = e;
+  //     setImg(result);
+  //   };
+  // };
 
   return (
     <React.Fragment>
@@ -77,7 +91,8 @@ const ProfileTemplate = ({title, btnText}) => {
           direction="column"
           justify="center"
           align="center">
-          <Upload id="1" type="file" onChange={selectFile} ref={fileInput} />
+          {/* todo:서버 프로필이미지 */}
+          {/* <Upload id="1" type="file" onChange={selectFile} ref={fileInput} />
 
           <label htmlFor="1">
             <Image src={Img} width="120px" height="120px" radius="50%" />
@@ -90,7 +105,7 @@ const ProfileTemplate = ({title, btnText}) => {
               color={Black40}>
               사진 업로드하기
             </Typography>
-          </label>
+          </label> */}
         </Wrapper>
 
         <EditFrom mt={'2.25rem'} title="닉네임">
