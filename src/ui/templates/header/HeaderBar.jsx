@@ -13,7 +13,7 @@ import HeaderWrapper from 'ui/atoms/HeaderWrapper';
 import MoreButton from 'ui/organisms/MoreButton';
 import Wrapper from 'ui/atoms/Wrapper';
 
-import {delPost} from 'redux/slices/postSlice';
+import {delPost, postActions} from 'redux/slices/postSlice';
 const HeaderBar = ({type}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -72,6 +72,7 @@ const HeaderBar = ({type}) => {
               closeEvent={setDelModal}
               yesEvent={() => {
                 dispatch(delPost(postId));
+                dispatch(postActions.deletePost(postId));
                 navigate('/party');
               }}></ModalPopup>
           )}

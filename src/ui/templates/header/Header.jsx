@@ -19,9 +19,9 @@ const Header = () => {
     const token = getCookie('token');
     // console.log(user);
     // console.log(token);
-    // console.log(user !== {});
+    // console.log(user?.name !== undefined);
     // console.log(token !== undefined);
-    setIsLogin(user !== {} && token !== undefined);
+    setIsLogin(user?.name !== undefined && token !== undefined);
   }, [user]);
 
   const moveToMain = () => {

@@ -22,6 +22,7 @@ import EditForm from 'ui/organisms/EditForm';
 import {Colar100} from 'assets/colorSet';
 import HeadTitle from 'ui/atoms/HeadTitle';
 import postApi from 'api/postApi';
+import {postActions} from 'redux/slices/postSlice';
 
 const WritePostTemplate = ({type}) => {
   const navigate = useNavigate();
@@ -36,8 +37,9 @@ const WritePostTemplate = ({type}) => {
   const startDay = now.add(1, 'day').$d;
   const [changeDate, setChangeDate] = React.useState(startDay);
   const [category, setcategory] = React.useState('나눔해요');
-  const post = useSelector((state) => state.post.post);
-  const postId = post.postId;
+  const post = useSelector((state) => state.post?.post);
+  const user = useSelector((state) => state.user.user);
+  const postId = post?.postId;
 
   React.useEffect(() => {
     if (type === 'modi') {
@@ -74,101 +76,64 @@ const WritePostTemplate = ({type}) => {
     }
   };
 
-  const {kakao} = window;
-  const geocoder = new kakao.maps.services.Geocoder();
-  const getAddress = () => {
-    if (navigator.geolocation) {
-      // GPS를 지원하면
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const coord = new kakao.maps.LatLng(
-            // `${position.coords.latitude}`,
-            // `${position.coords.longitude}`,
-            35.1631,
-            129.1636,
-          );
-          geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
-        },
-        (error) => {
-          console.error(error);
-        },
-        {
-          enableHighAccuracy: false,
-          maximumAge: 0,
-          timeout: Infinity,
-        },
-      );
+  const onSave = async function (e) {
+    const months = [
+      '01',
+      '02',
+      '03',
+      '04',
+      '05',
+      '06',
+      '07',
+      '08',
+      '09',
+      '10',
+      '11',
+      '12',
+    ];
+
+    const month = months[changeDate.getMonth()];
+    let day = changeDate.getDate().toString();
+    day = day.length < 2 ? `0${day}` : day;
+
+    let hour = changeDate.getHours().toString();
+    hour = hour.length < 2 ? `0${hour}` : hour;
+
+    let min = changeDate.getMinutes().toString();
+    min = min.length < 2 ? `0${min}` : min;
+    let sec = changeDate.getSeconds().toString();
+    sec = sec.length < 2 ? `0${sec}` : sec;
+
+    const expiredAt = `${changeDate.getFullYear()}-${month}-${day}T${hour}:${min}:${sec}`;
+
+    const data = {
+      title: title.current.value,
+      category: category,
+      images: sendImgs,
+      content: content.current.value,
+      tags: tags,
+      expiredAt: expiredAt,
+      address: user.address,
+      latitude: user.latitude,
+      longitude: user.longitude,
+    };
+    console.log(data);
+    if (type === 'modi') {
+      const res = await postApi.patchPostAxios(postId, data);
+      console.log(res);
+      dispatch(postActions.updatePost(res));
+      if (res) {
+        navigate('/party');
+      }
     } else {
-      alert('GPS를 지원하지 않습니다');
+      const res = await postApi.writePostAxios(data);
+      dispatch(postActions.addPost(res));
+
+      console.log(res);
+      if (res) {
+        navigate('/party');
+      }
     }
-  };
-
-  const callback = (result, status) => {
-    if (status === kakao.maps.services.Status.OK) {
-      navigator.geolocation.getCurrentPosition(async (position) => {
-        const adress = result[0].address.region_3depth_name;
-        // 2022-01-20T13:23:34
-        const months = [
-          '01',
-          '02',
-          '03',
-          '04',
-          '05',
-          '06',
-          '07',
-          '08',
-          '09',
-          '10',
-          '11',
-          '12',
-        ];
-
-        const month = months[changeDate.getMonth()];
-        let day = changeDate.getDate().toString();
-        day = day.length < 2 ? `0${day}` : day;
-
-        let hour = changeDate.getHours().toString();
-        hour = hour.length < 2 ? `0${hour}` : hour;
-
-        let min = changeDate.getMinutes().toString();
-        min = min.length < 2 ? `0${min}` : min;
-        let sec = changeDate.getSeconds().toString();
-        sec = sec.length < 2 ? `0${sec}` : sec;
-
-        const expiredAt = `${changeDate.getFullYear()}-${month}-${day}T${hour}:${min}:${sec}`;
-
-        const data = {
-          title: title.current.value,
-          category: category,
-          images: sendImgs,
-          content: content.current.value,
-          tags: tags,
-
-          expiredAt: expiredAt,
-          address: adress,
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        };
-
-        if (type === 'modi') {
-          const res = await postApi.patchPostAxios(postId, data);
-
-          if (res) {
-            navigate('/party');
-          }
-        } else {
-          const res = await postApi.writePostAxios(data);
-          console.log(res);
-          if (res) {
-            navigate('/party');
-          }
-        }
-      });
-    }
-  };
-
-  const onSave = function (e) {
-    getAddress();
   };
 
   const deleteTag = (idx) => {

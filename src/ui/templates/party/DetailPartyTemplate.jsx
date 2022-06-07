@@ -21,46 +21,50 @@ const DetailTemplate = () => {
   React.useEffect(() => {
     dispatch(getPost(id));
   }, [id, dispatch]);
-  const post = useSelector((state) => state.post.post);
-  const {
-    category,
-    content,
-    createdAt,
-    expiredAt,
-    images,
-    address,
-    tags,
-    title,
-    postId,
-    commentList,
-    profileUrl,
-    nickname,
-  } = post;
+  const post = useSelector((state) => state.post?.post);
   const [replyData, setReplyData] = React.useState({
     nickName: '',
     commentId: '',
     parentId: '',
   });
-
+  // const {
+  //   category,
+  //   content,
+  //   createdAt,
+  //   expiredAt,
+  //   images,
+  //   address,
+  //   tags,
+  //   title,
+  //   postId,
+  //   commentList,
+  //   profileUrl,
+  //   nickname,
+  // } = post;
   return (
     <React.Fragment>
       <HeaderBar type="party" />
       <Wrapper padding="72px 0 40px 0">
         <Wrapper padding="0 1rem 0 1rem">
           <PartyMainBanner
-            category={category}
-            title={title}
-            address={address}
-            expiredAt={expiredAt}
+            category={post?.category}
+            title={post?.title}
+            address={post?.address}
+            expiredAt={post?.expiredAt}
           />
 
-          <ImgSlider Img={images}></ImgSlider>
-          <Profile nickName={nickname} src={profileUrl} time={createdAt} />
+          <ImgSlider Img={post?.images}></ImgSlider>
+          <Profile
+            nickName={post?.nickname}
+            src={post?.profileUrl}
+            time={post?.createdAt}
+          />
           <Typography fontSize="14px" margin="16px 0">
-            {content}
+            {post?.content}
           </Typography>
           <Wrapper margin="1.2rem 0" display="flex" flexWrap="wrap" gap="10px">
-            {tags && tags.map((v, idx) => <FIlterTag key={idx}>{v}</FIlterTag>)}
+            {post?.tags &&
+              post?.tags.map((v, idx) => <FIlterTag key={idx}>{v}</FIlterTag>)}
           </Wrapper>
         </Wrapper>
         <Divider />
@@ -69,8 +73,8 @@ const DetailTemplate = () => {
             댓글
           </Typography>
           <React.Fragment>
-            {commentList &&
-              commentList.map(
+            {post?.commentList &&
+              post?.commentList.map(
                 (parentValue) =>
                   parentValue !== null &&
                   typeof parentValue === 'object' && (
@@ -111,7 +115,7 @@ const DetailTemplate = () => {
         </Wrapper>
 
         <CommentInput
-          postId={postId}
+          postId={post?.postId}
           replyData={replyData}
           _onClick={setReplyData}
         />

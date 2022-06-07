@@ -1,4 +1,10 @@
 import React from 'react';
+import {useNavigate} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
+
+import {timeForToday} from 'common/presenters/timeForToday';
+import {Black40} from 'assets/colorSet';
+import {getPosts} from 'redux/slices/postSlice';
 
 import Header from 'tablet-ui/templates/header/TabletHeader';
 import TabletWrapper from 'tablet-ui/atoms/TabletWrapper';
@@ -7,8 +13,16 @@ import Wrapper from 'tablet-ui/atoms/Wrapper';
 import Typography from 'tablet-ui/atoms/Typography';
 import PartyPost from 'tablet-ui/organisms/party/PartyPost';
 import NotFound from 'tablet-ui/templates/NotFound';
-import {Black40} from 'assets/colorSet';
+
 const PartyTabletTemplate = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const posts = useSelector((state) => state.post.posts);
+  const user = useSelector((state) => state.user.user);
+
+  React.useEffect(() => {
+    dispatch(getPosts());
+  }, []);
   return (
     <TabletWrapper>
       <Header />

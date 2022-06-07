@@ -52,9 +52,25 @@ const postSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {
+    addPost: (state, {payload}) => {
+      state.posts.push(payload);
+    },
+    updatePost: (state, {payload}) => {
+      const findIndex = state.posts.findIndex(
+        (post) => post.postId === payload.postId,
+      );
+      state.posts[findIndex] = payload;
+    },
     setPost: (state, {payload}) => {
-      // state.posts.push(payload);
       state.posts = payload;
+    },
+    deletePost: (state, {payload}) => {
+      console.log(payload);
+      const filterArray = state.posts.filter(
+        (post) => post.postId.toString() !== payload,
+      );
+      console.log(filterArray);
+      state.posts = filterArray;
     },
   },
   extraReducers: (builder) => {

@@ -58,7 +58,7 @@ const writePostAxios = async (data) => {
 const delPostAxios = async (communityId) => {
   try {
     const res = await http.delete(`community/${communityId}`, config);
-    return res;
+    return res.data;
   } catch (error) {
     console.error(error);
   }
@@ -84,7 +84,7 @@ const patchPostAxios = async (communityId, data) => {
 
   try {
     const res = await http.patch(`community/${communityId}`, frm, formConfig);
-    return res;
+    return res.data;
   } catch (error) {
     console.error(error);
   }
