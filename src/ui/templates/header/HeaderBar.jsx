@@ -12,7 +12,7 @@ import ModalPopup from 'ui/molecules/ModalPopup';
 import HeaderWrapper from 'ui/atoms/HeaderWrapper';
 import MoreButton from 'ui/organisms/MoreButton';
 import Wrapper from 'ui/atoms/Wrapper';
-
+import {useSelector} from 'react-redux';
 import {delPost, postActions} from 'redux/slices/postSlice';
 const HeaderBar = ({type}) => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const HeaderBar = ({type}) => {
   const [modal, setModal] = React.useState(false);
   const [shareModal, setShareModal] = React.useState(false);
   const [delModal, setDelModal] = React.useState(false);
-
+  const user = useSelector((state) => state.user.user);
   const onClickBack = () => {
     navigate(-1);
   };
@@ -36,9 +36,9 @@ const HeaderBar = ({type}) => {
           <ArrowBackIosIcon onClick={onClickBack} fontSize="small" />
           <Wrapper display="flex" justify="center" align="center">
             <Wrapper _onClick={moveToNoti} margin="0 11px 0 0">
-              <AlarmIcon />
+              {/* <AlarmIcon /> */}
             </Wrapper>
-            <ProfileIcon />
+            <ProfileIcon src={user.imageUrl}></ProfileIcon>
           </Wrapper>
         </HeaderWrapper>
       );

@@ -47,9 +47,9 @@ const Header = () => {
       {isLogin ? (
         <Wrapper display="flex" justify="center" align="center">
           <Wrapper _onClick={moveToNoti} margin="0 11px 0 0">
-            <AlarmIcon />
+            {/* <AlarmIcon /> */}
           </Wrapper>
-          <ProfileIcon onClick={moveToMypage}></ProfileIcon>
+          <ProfileIcon src={user.imageUrl} onClick={moveToMypage}></ProfileIcon>
         </Wrapper>
       ) : (
         <Typography fontSize="14px" fontWeight="700" onClick={onClickLogin}>
