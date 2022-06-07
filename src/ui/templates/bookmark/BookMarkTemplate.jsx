@@ -2,7 +2,7 @@ import React from 'react';
 import {Box} from '@mui/material';
 import {Black40} from 'assets/colorSet';
 import NotFound from 'ui/templates/NotFound';
-import MainBannerImg from 'tablet-ui/organisms/MainBannerImg';
+import MainBannerImg from 'ui/organisms/MainBannerImg';
 import styled from 'styled-components';
 
 import Header from 'ui/templates/header/Header';
@@ -23,10 +23,10 @@ const BookMarkTemplate = () => {
           <Typography fontSize="20px" fontWeight="600" margin="0 8px 0 0">
             북마크
           </Typography>
-          <Typography color={Black40} fontSize="14px"></Typography>
+          {/* <Typography color={Black40} fontSize="14px">n개</Typography> */}
         </Wrapper>
         <Divider />
-        {/* TODO: 북마크 있을때 */}
+
         {recipeList ? (
           <Wrapper padding="1rem">
             <Grid>
@@ -44,7 +44,6 @@ const BookMarkTemplate = () => {
                   ),
               )}
             </Grid>
-            {/* TODO: 북마크 없을때 */}
           </Wrapper>
         ) : (
           <Wrapper padding="1rem">
