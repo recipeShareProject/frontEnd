@@ -6,6 +6,7 @@ import PartyPost from 'tablet-ui/organisms/party/PartyPost';
 import Typography from 'tablet-ui/atoms/Typography';
 import Grid from 'tablet-ui/atoms/Grid';
 import Wrapper from 'tablet-ui/atoms/Wrapper';
+import NotFound from 'tablet-ui/templates/NotFound';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {getMyComment} from 'redux/slices/userSlice';
@@ -15,13 +16,29 @@ const CommentTabTemplate = () => {
   React.useEffect(() => {
     dispatch(getMyComment());
   }, [dispatch]);
-  console.log(comments);
+
   return (
     <Wrapper>
-      <Typography color={Black40} fontSize="12px" margin="0 0 16px 0">
+      {/* <Typography color={Black40} fontSize="12px" margin="0 0 16px 0">
         2022년 5월 21일
-      </Typography>
+      </Typography> */}
       <Grid columns="repeat(3,1fr)">
+        {comments ? (
+          comments.map((v) => (
+            <PartyPost
+              key={v.commentId}
+              id={v.commentId}
+              title={v.comment}
+              category="댓글"
+              addresses=""
+              expiredAt=""
+
+              // Todo: 이미지, expriedAt입력받기/>
+            />
+          ))
+        ) : (
+          <NotFound desc="댓글이 존재하지 않아요" />
+        )}
         {/* {comments.map((v) => (
         <PartyPost
           key={v.commentId}
@@ -31,16 +48,10 @@ const CommentTabTemplate = () => {
           // Todo: 이미지, expriedAt입력받기/>
         />
       ))} */}
-
-        <PartyPost />
-        <PartyPost />
-        <PartyPost />
-        <PartyPost />
-        <PartyPost />
       </Grid>
-      <Typography color={Black40} fontSize="12px">
+      {/* <Typography color={Black40} fontSize="12px">
         2022년 5월 20일
-      </Typography>
+      </Typography> */}
     </Wrapper>
   );
 };

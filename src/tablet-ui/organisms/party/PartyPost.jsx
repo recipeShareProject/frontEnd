@@ -5,12 +5,13 @@ import Image from 'tablet-ui/atoms/Image';
 import Typography from 'tablet-ui/atoms/Typography';
 import {useDispatch} from 'react-redux';
 import {getPost} from 'redux/slices/postSlice';
+import defaultImg from 'assets/imgs/defaultImg.png';
 const PartyPost = ({
-  thumnail = 'https://user-images.githubusercontent.com/51289147/169662629-ca401384-f9b4-464b-a2a1-a1a6aad119af.jpg',
-  category = '나눔해요',
-  title = '쭈꾸미 좋아하세요?',
-  address = '카이센동',
-  time = '10분 뒤까지',
+  thumnail = defaultImg,
+  category,
+  title,
+  address,
+  time,
   id,
 }) => {
   const dispatch = useDispatch();
@@ -22,6 +23,36 @@ const PartyPost = ({
   if (category === '나눔완료') {
     return (
       <Wrapper display="flex" direction="column" disabled="true">
+        <Wrapper width="200px" height="218px">
+          <Image
+            width="200px"
+            height="151px"
+            src={thumnail}
+            radius="4px"
+            margin="0 8px 0 0 "
+          />
+          <Wrapper margin="8px  0 0 0">
+            <Typography color={Colar100} fontSize="12px">
+              {category}
+            </Typography>
+            <Typography fontWeight="bold" fontSize="1rem">
+              {title}
+            </Typography>
+            <Wrapper display="flex">
+              <Typography fontSize="12px" margin="0 8px 0 0">
+                {address}
+              </Typography>
+              <Typography color={Black40} fontSize="12px">
+                {time}
+              </Typography>
+            </Wrapper>
+          </Wrapper>
+        </Wrapper>
+      </Wrapper>
+    );
+  } else if (category === '댓글') {
+    return (
+      <Wrapper display="flex" direction="column">
         <Wrapper width="200px" height="218px">
           <Image
             width="200px"

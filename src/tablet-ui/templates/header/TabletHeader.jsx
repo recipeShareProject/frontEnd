@@ -1,5 +1,8 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
+import {useSelector} from 'react-redux';
+
+import {getCookie} from 'common/presenters/Cookie';
 
 import AlarmIcon from 'common/icons/AlarmIcon';
 import ProfileIcon from 'common/icons/ProfileIcon';
@@ -14,17 +17,19 @@ import DropPopup from 'tablet-ui/organisms/main/DropPopup';
 import DropAlert from 'tablet-ui/organisms/main/DropAlert';
 const TabletHeader = () => {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = React.useState(true);
+  const [isLogin, setIsLogin] = React.useState(false);
+  const user = useSelector((state) => state.user.user);
   const [open, setOpen] = React.useState(false);
   const [openAlert, setOpenAlert] = React.useState(false);
   React.useEffect(() => {
+    const token = getCookie('token');
+    setIsLogin(user?.name !== undefined && token !== undefined);
     return setOpen(false);
   }, []);
   const showPopup = () => {
     setOpen(true);
   };
   const moveToNoti = () => {
-    // navigate('/noti');
     setOpenAlert(true);
   };
 
@@ -48,9 +53,9 @@ const TabletHeader = () => {
             <AddIcon />
           </Wrapper>
           <Wrapper _onClick={moveToNoti} margin="0 19px 0 0">
-            <AlarmIcon />
+            {/* <AlarmIcon /> */}
           </Wrapper>
-          <ProfileIcon onClick={moveToMypage}></ProfileIcon>
+          <ProfileIcon src={user.imageUrl} onClick={moveToMypage}></ProfileIcon>
         </Wrapper>
       ) : (
         <Typography fontSize="14px" fontWeight="700" onClick={onClickLogin}>
