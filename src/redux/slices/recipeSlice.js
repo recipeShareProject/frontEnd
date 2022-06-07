@@ -18,6 +18,18 @@ export const getFilteredRecipeList = createAsyncThunk(
   },
 );
 
+export const chnageBookmarkStatus = createAsyncThunk(
+  'recipe/chnageBookmarkStatus',
+  async (id) => {
+    const response = await recipeApi.togglebookMarkAxios(id);
+    const returnData = {
+      response,
+      id,
+    };
+    return returnData;
+  },
+);
+
 const initialState = {
   recipeList: [],
 };
@@ -32,6 +44,13 @@ const recipeSlice = createSlice({
     });
     builder.addCase(getFilteredRecipeList.fulfilled, (state, {payload}) => {
       state.recipeList = payload;
+    });
+    builder.addCase(chnageBookmarkStatus.fulfilled, (state, {payload}) => {
+      console.log(payload);
+      const findIndex = state.recipeList.findIndex(
+        (recipe) => recipe.id === payload.id,
+      );
+      state.recipeList[findIndex].isBookmark = payload.response;
     });
   },
 });

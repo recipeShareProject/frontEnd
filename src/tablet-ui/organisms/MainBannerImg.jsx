@@ -7,12 +7,14 @@ import {Box} from '@mui/material';
 import {Black100, Black40} from 'assets/colorSet';
 import {foodImgs} from 'common/presenters/foodImgs';
 
+import recipeApi from 'api/recipeApi';
+import {chnageBookmarkStatus} from 'redux/slices/recipeSlice';
+import {useDispatch} from 'react-redux';
 const useStyles = makeStyles({
   bookMark: {
     position: 'absolute',
     bottom: '5px',
     right: '5px',
-    color: 'white',
   },
 });
 
@@ -26,9 +28,12 @@ const RecipeCard = ({
 }) => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {pathname} = useLocation();
+  const [bookmark, setBookmark] = React.useState(isBookmark);
 
   const image = foodImgs[id % 11];
+
   return (
     <MainBannerImgWrapper width={width} height={height}>
       <ImgWrapper width={width} height={height}>
@@ -40,10 +45,15 @@ const RecipeCard = ({
           }}
         />
         <StyleBookIcon
-          onClick={() => {
-            navigate('/bookmark');
+          onClick={async () => {
+            dispatch(chnageBookmarkStatus(id));
+            setBookmark(!bookmark);
           }}>
-          <BookmarkIcon fontSize="small" className={classes.bookMark} />
+          <BookmarkIcon
+            fontSize="small"
+            className={classes.bookMark}
+            sx={{color: bookmark ? 'black' : 'white'}}
+          />
         </StyleBookIcon>
       </ImgWrapper>
       <MainBannerTitle>{title}</MainBannerTitle>

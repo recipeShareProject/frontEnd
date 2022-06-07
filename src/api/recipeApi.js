@@ -245,7 +245,7 @@ const delReviewAxios = async (boardId) => {
 const togglebookMarkAxios = async (postId) => {
   try {
     const res = await http.post(`board/${postId}/bookmark`, '', config);
-    return res;
+    return res.data.bookmarkStatus;
   } catch (error) {
     console.error(error);
   }
