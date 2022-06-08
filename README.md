@@ -9,9 +9,8 @@
  2. [사용 기술](#사용-기술)
  3. [아키텍쳐](#아키텍쳐)
  4. [협업 과정](#협업-과정)
- 5. [저희 프론트엔드는](#저희-프론트엔드는)
- 6. [기능소개/실행화면](#기능소개/-실행-화면)
-
+ 5. [실행 화면](#실행-화면)
+ 6. [dependency](#dependencies)
 <br>
 <br>
 
@@ -90,21 +89,38 @@
 <br>
 <br>
 
-## 기능소개/ 실행 화면
-![게시글 등록 모바일](https://user-images.githubusercontent.com/51289147/172576595-330bb1fd-c3b0-4a3a-b284-a94fad9fc8e0.PNG)
-![게시글 등록 태블릿](https://user-images.githubusercontent.com/51289147/172576602-16a64d23-f72a-46e3-90cb-dd324dc0b459.PNG)
-![나의글](https://user-images.githubusercontent.com/51289147/172576606-73eb1b15-6b9b-4c02-94a3-0315f95409f0.PNG)
-![등록 상세](https://user-images.githubusercontent.com/51289147/172576610-9b97eec4-f351-428e-9be9-c2097ffec32d.PNG)
-![레시피 등록](https://user-images.githubusercontent.com/51289147/172576613-8b9f6fcc-12f6-4690-9d2e-22895c80e8ca.PNG)
-![레시피 등록2](https://user-images.githubusercontent.com/51289147/172576614-dd70f279-8470-40bf-8909-a3175c190f77.PNG)
-![레시피 모바일](https://user-images.githubusercontent.com/51289147/172576618-923980d3-3f3c-4901-a903-2b533e98d7f5.PNG)
-![레시피 태블릿](https://user-images.githubusercontent.com/51289147/172576620-3537eeea-9419-415f-8f8e-13211dcc89ef.PNG)
-![마이페이지 모바일](https://user-images.githubusercontent.com/51289147/172576629-497a73be-4609-4dec-a8b1-38148ee969a6.PNG)
-![마이페이지 태블릿](https://user-images.githubusercontent.com/51289147/172576631-3cf3fbde-0087-4e2c-a903-b386be85d8fd.PNG)
+##  실행 화면
+### 메인화면
+
 ![메인 모바일](https://user-images.githubusercontent.com/51289147/172576635-673f082b-3db0-4ead-acdf-360156f8c647.PNG)
 ![메인 태블릿](https://user-images.githubusercontent.com/51289147/172576638-42a6b9da-3631-4eb3-b996-da1b5536612d.PNG)
+
+### 로그인
+![로그인](https://user-images.githubusercontent.com/51289147/172578830-907a88e8-9ac9-4841-ad5c-0556f7bf4273.PNG)
+
+### 레시피
+![레시피 모바일](https://user-images.githubusercontent.com/51289147/172576618-923980d3-3f3c-4901-a903-2b533e98d7f5.PNG)
+![레시피 태블릿](https://user-images.githubusercontent.com/51289147/172576620-3537eeea-9419-415f-8f8e-13211dcc89ef.PNG)
+![레시피 등록](https://user-images.githubusercontent.com/51289147/172576613-8b9f6fcc-12f6-4690-9d2e-22895c80e8ca.PNG)
+![레시피 등록2](https://user-images.githubusercontent.com/51289147/172576614-dd70f279-8470-40bf-8909-a3175c190f77.PNG)
+
+### 파티(커뮤니티)
 ![파티 모바일](https://user-images.githubusercontent.com/51289147/172576641-b28aa11f-a531-4b95-949e-c6c7f7c5ffe6.PNG)
 ![파티 태블릿](https://user-images.githubusercontent.com/51289147/172576645-f6c14dca-a91b-4175-a8be-8106316f978e.PNG)
+![게시글 등록 모바일](https://user-images.githubusercontent.com/51289147/172576595-330bb1fd-c3b0-4a3a-b284-a94fad9fc8e0.PNG)
+![게시글 등록 태블릿](https://user-images.githubusercontent.com/51289147/172576602-16a64d23-f72a-46e3-90cb-dd324dc0b459.PNG)
+![등록 상세](https://user-images.githubusercontent.com/51289147/172576610-9b97eec4-f351-428e-9be9-c2097ffec32d.PNG)
+
+### 마이페이지
+![마이페이지 모바일](https://user-images.githubusercontent.com/51289147/172576629-497a73be-4609-4dec-a8b1-38148ee969a6.PNG)
+![마이페이지 태블릿](https://user-images.githubusercontent.com/51289147/172576631-3cf3fbde-0087-4e2c-a903-b386be85d8fd.PNG)
+![나의글](https://user-images.githubusercontent.com/51289147/172576606-73eb1b15-6b9b-4c02-94a3-0315f95409f0.PNG)
+
+
+
+
+
+
 
 
 <br>
