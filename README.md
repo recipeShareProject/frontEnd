@@ -7,10 +7,11 @@
 ## 목차
  1. [팀원 소개 및 제작 기간](#팀원-소개-및-제작-기간)
  2. [사용 기술](#사용-기술)
- 3. [아키텍쳐](#아키텍쳐)
- 4. [협업 과정](#협업-과정)
- 5. [실행 화면](#실행-화면)
- 6. [dependency](#dependencies)
+ 3. [파일구조](#파일구조)
+ 4. [아키텍쳐](#아키텍쳐)
+ 5. [협업 과정](#협업-과정)
+ 6. [실행 화면](#실행-화면)
+ 7. [dependency](#dependencies)
 <br>
 <br>
 
@@ -61,11 +62,15 @@
 <br>
 <br>
 
+## 파일구조
+atommic패턴을 적용하여 파일 구조를 짯다.
+
+![파일구조](https://user-images.githubusercontent.com/51289147/172580408-fcdfd6ff-2344-4ea3-b8f2-a1d5709a30ff.png)
+
 ##  아키텍쳐
 <br>
 
 <br>
-
 ![아키텍처](https://user-images.githubusercontent.com/51289147/172575643-67c679c6-ba66-477e-b5d9-758081878d19.png)
 
 <br>
